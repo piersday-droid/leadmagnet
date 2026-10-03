@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Piers Day Business Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long sheet, night-to-dawn. Thesis quote up top, then the flow (reach > capture > convert > deliver), the price ladder, the people, the money, the five-year path. */
+:root {
+  --bg: #EDF0F4;
+  --sheet: #FFFFFF;
+  --ink: #15203A;
+  --muted: #59647A;
+  --line: #D3DAE3;
+  --dawn: #C9822F;
+  --dawn-soft: #F6E7D3;
+  --tide: #2C6A73;
+  --tide-soft: #DCEBEC;
+  --night: #15203A;
+  --on-night: #F1F3F7;
+  --display: "Gloock", "Georgia", "Times New Roman", serif;
+  --body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1322; --sheet: #121C30; --ink: #E7EBF2; --muted: #9CA8BB; --line: #26324A;
+    --dawn: #EDB26A; --dawn-soft: #33281C; --tide: #74B7BF; --tide-soft: #17303A;
+    --night: #070C17; --on-night: #E7EBF2; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1322; --sheet: #121C30; --ink: #E7EBF2; --muted: #9CA8BB; --line: #26324A;
+  --dawn: #EDB26A; --dawn-soft: #33281C; --tide: #74B7BF; --tide-soft: #17303A;
+  --night: #070C17; --on-night: #E7EBF2; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 16px/1.55 var(--body);
+  padding: 0 16px;
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; display: grid; gap: 20px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; line-height: 1.1; }
+p { margin: 0; }
+.label { font: 500 11px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.sheet { background: var(--sheet); border: 1px solid var(--line); border-radius: 6px; padding: clamp(20px, 4vw, 40px); display: grid; gap: 22px; min-width: 0; }
+.sheet > header { display: grid; gap: 6px; }
+.sheet h2 { font-size: clamp(26px, 3.4vw, 34px); }
+.lede { color: var(--muted); max-width: 62ch; }
+
+/* Hero */
+.hero { background: var(--night); color: var(--on-night); border-radius: 6px; padding: clamp(24px, 5vw, 56px); display: grid; gap: 28px; position: relative; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: auto -10% -60% -10%; height: 90%; background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--dawn) 55%, transparent), transparent 65%); pointer-events: none; }
+.hero > * { position: relative; z-index: 1; }
+.hero .label { color: color-mix(in srgb, var(--on-night) 65%, transparent); }
+.hero h1 { font-size: clamp(44px, 8vw, 84px); }
+.hero .role { font-size: clamp(16px, 2vw, 19px); max-width: 60ch; color: color-mix(in srgb, var(--on-night) 85%, transparent); }
+.hero blockquote { margin: 0; font-family: var(--display); font-size: clamp(24px, 3.6vw, 38px); line-height: 1.2; max-width: 24ch; color: var(--dawn); }
+.hero cite { display: block; margin-top: 10px; font: 400 13px/1.4 var(--body); font-style: normal; color: color-mix(in srgb, var(--on-night) 70%, transparent); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: color-mix(in srgb, var(--on-night) 18%, transparent); border-radius: 4px; overflow: hidden; }
+.stat { background: var(--night); padding: 14px 16px; display: grid; gap: 2px; }
+.stat b { font: 400 clamp(24px, 3vw, 32px)/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: color-mix(in srgb, var(--on-night) 70%, transparent); }
+
+/* Flow */
+.flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.stage { display: grid; align-content: start; gap: 10px; padding: 16px; border-top: 3px solid var(--tide); background: color-mix(in srgb, var(--tide-soft) 55%, var(--sheet)); border-radius: 0 0 4px 4px; position: relative; min-width: 0; }
+.stage:nth-child(4) { border-top-color: var(--dawn); background: color-mix(in srgb, var(--dawn-soft) 60%, var(--sheet)); }
+.stage h3 { font-size: 22px; }
+.stage .label { color: var(--tide); }
+.stage:nth-child(4) .label { color: var(--dawn); }
+.stage ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; font-size: 14.5px; }
+.stage li { padding-left: 14px; position: relative; }
+.stage li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 1.5px; background: currentColor; opacity: .5; }
+.stage:not(:last-child)::after { content: "\2192"; position: absolute; right: -13px; top: 14px; font: 500 16px var(--mono); color: var(--muted); }
+.flow-note { font-size: 14.5px; color: var(--muted); max-width: 70ch; }
+
+/* Ladder */
+.ladder { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; align-items: end; }
+.rung { display: grid; gap: 6px; align-content: start; padding: 14px; border: 1px solid var(--line); border-radius: 4px; background: var(--sheet); min-width: 0; }
+.rung:nth-child(1) { margin-top: 64px; }
+.rung:nth-child(2) { margin-top: 48px; }
+.rung:nth-child(3) { margin-top: 32px; }
+.rung:nth-child(4) { margin-top: 16px; }
+.rung:nth-child(5) { background: var(--night); color: var(--on-night); border-color: var(--night); }
+.rung:nth-child(5) .label, .rung:nth-child(5) p { color: color-mix(in srgb, var(--on-night) 72%, transparent); }
+.rung .price { font: 400 26px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.rung:nth-child(5) .price { color: var(--dawn); }
+.rung h3 { font: 600 15px/1.3 var(--body); }
+.rung p { font-size: 13.5px; color: var(--muted); }
+
+/* Living Game strip */
+.cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.deck { border: 1px dashed var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 4px; min-width: 0; }
+.deck b { font-weight: 600; }
+.deck span { font-size: 13px; color: var(--muted); }
+.deck .state { font: 500 10.5px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--tide); }
+.deck.ready { border-style: solid; border-color: var(--tide); }
+
+/* People */
+.people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.person { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.person h3 { font-size: 24px; }
+.person p { color: var(--muted); font-size: 15px; }
+.voices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.voice { display: grid; gap: 10px; align-content: start; padding: 18px; border-radius: 4px; min-width: 0; }
+.voice.before { background: color-mix(in srgb, var(--line) 45%, var(--sheet)); }
+.voice.after { background: color-mix(in srgb, var(--dawn-soft) 70%, var(--sheet)); }
+.voice q { display: block; font-family: var(--display); font-size: 18px; line-height: 1.3; quotes: "\201C" "\201D"; }
+.voice.after .label { color: var(--dawn); }
+
+/* Money */
+.money { display: grid; gap: 18px; }
+.bar-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) 90px; gap: 12px; align-items: center; }
+.bar-row .name { font-size: 14px; font-weight: 600; }
+.bar-row .total { font: 500 14px var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+.track { position: relative; height: 34px; background: color-mix(in srgb, var(--line) 50%, transparent); border-radius: 3px; display: flex; overflow: visible; }
+.seg { height: 100%; }
+.seg:first-child { border-radius: 3px 0 0 3px; }
+.seg.s1 { background: var(--tide); }
+.seg.s2 { background: var(--dawn); }
+.seg.s3 { background: color-mix(in srgb, var(--dawn) 55%, var(--sheet)); }
+.seg.s4 { background: var(--ink); border-radius: 0 3px 3px 0; }
+.target { position: absolute; top: -8px; bottom: -8px; left: 70.59%; width: 0; border-left: 2px dashed var(--ink); }
+.target span { position: absolute; top: -18px; left: 6px; font: 500 11px var(--mono); white-space: nowrap; color: var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13.5px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.legend .l1 { background: var(--tide); } .legend .l2 { background: var(--dawn); } .legend .l3 { background: color-mix(in srgb, var(--dawn) 55%, var(--sheet)); } .legend .l4 { background: var(--ink); }
+.levers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.lever { border-left: 2px solid var(--dawn); padding: 2px 0 2px 14px; display: grid; gap: 4px; min-width: 0; }
+.lever b { font-weight: 600; }
+.lever span { font-size: 14px; color: var(--muted); }
+
+/* Path */
+.path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.step { padding: 18px 18px 4px 0; display: grid; gap: 6px; position: relative; min-width: 0; }
+.step::before { content: ""; position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--sheet); border: 2px solid var(--tide); }
+.step:last-child::before { background: var(--dawn); border-color: var(--dawn); }
+.step h3 { font-size: 20px; }
+.step p { font-size: 14.5px; color: var(--muted); }
+
+/* Footer band */
+.foot { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; }
+.foot ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 14.5px; }
+.crisis { background: var(--tide-soft); border-radius: 4px; padding: 16px; display: grid; gap: 8px; font-size: 14px; align-content: start; }
+.crisis div { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid color-mix(in srgb, var(--tide) 25%, transparent); padding-bottom: 6px; }
+.crisis div:last-child { border: 0; padding: 0; }
+.crisis span:last-child { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.colophon { text-align: center; font-size: 12.5px; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .flow, .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stage:nth-child(2)::after { display: none; }
+  .ladder { grid-template-columns: minmax(0, 1fr); }
+  .rung:nth-child(n) { margin-top: 0; }
+  .levers, .path { grid-template-columns: minmax(0, 1fr); }
+  .path { border-top: 0; border-left: 1px solid var(--line); }
+  .step { padding: 0 0 18px 20px; }
+  .step::before { top: 4px; left: -7px; }
+  .foot { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flow, .cards, .people, .voices { grid-template-columns: minmax(0, 1fr); }
+  .stage::after { display: none; }
+  .bar-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .bar-row .track { grid-column: 1 / -1; grid-row: 2; }
+  .target span { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .seg { animation: grow .9s ease-out both; transform-origin: left; }
+  @keyframes grow { from { transform: scaleX(.2); } to { transform: scaleX(1); } }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <section class="hero">
+    <div class="label">Business map &middot; Bury St Edmunds, Suffolk &middot; October 2026</div>
+    <h1>Piers Day</h1>
+    <p class="role">Metaphor-led hypnotherapy for anxiety, depression, self-harm and dark thoughts. Helping teenagers and young men through the move from school to university to the real world, so their families get them back.</p>
+    <blockquote>&ldquo;It&rsquo;s so nice to have my son back. I thought I&rsquo;d lost him.&rdquo;<cite>A mother, after her son&rsquo;s final session</cite></blockquote>
+    <div class="stats">
+      <div class="stat"><b>27</b><span>years in practice</span></div>
+      <div class="stat"><b>2,000+</b><span>people helped</span></div>
+      <div class="stat"><b>15&ndash;20</b><span>clients a week</span></div>
+      <div class="stat"><b>&pound;2k</b><span>a week, and rising</span></div>
+    </div>
+  </section>
+
+  <section class="sheet">
+    <header>
+      <div class="label">How it connects</div>
+      <h2>From a worried parent to a family that sleeps again</h2>
+    </header>
+    <div class="flow">
+      <div class="stage">
+        <div class="label">1 &middot; Reach</div>
+        <h3>Get known</h3>
+        <ul>
+          <li>Parent-to-parent word of mouth</li>
+          <li>School corridors: friends of past clients</li>
+          <li>Free school and PTA talks</li>
+          <li>Podcast: Heard Not Hushed</li>
+          <li>Social, about 3,500 followers</li>
+          <li>Decks sold by other therapists</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <div class="label">2 &middot; Capture</div>
+        <h3>Start a relationship</h3>
+        <ul>
+          <li>Free sleep recording for an email</li>
+          <li>10&ndash;20% off The Living Game for an email</li>
+          <li>WhatsApp to past client families</li>
+          <li>Kajabi as the home for the list</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <div class="label">3 &middot; Convert</div>
+        <h3>Listen first</h3>
+        <ul>
+          <li>Parent call: serious listening, no selling</li>
+          <li>5&ndash;10 minute call with the young person</li>
+          <li>Plan of 4&ndash;6 sessions, payable in stages</li>
+          <li>Booked via Calendly, invoiced via Xero</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <div class="label">4 &middot; Deliver</div>
+        <h3>Change lives</h3>
+        <ul>
+          <li>One-to-one: clinic, home or online</li>
+          <li>Parent sessions where needed</li>
+          <li>Monthly maintenance for six months</li>
+          <li>Three-day mindset retreats, 18+</li>
+        </ul>
+      </div>
+    </div>
+    <p class="flow-note">Every happy family loops back to stage one. Nearly all new clients today come from a parent who was helped telling another parent. The Living Game and the podcast carry that same conversation to families who will never meet Piers.</p>
+  </section>
+
+  <section class="sheet">
+    <header>
+      <div class="label">The offer ladder</div>
+      <h2>Five steps, from free to premium</h2>
+      <p class="lede">Each step earns the trust that makes the next one an easy yes.</p>
+    </header>
+    <div class="ladder">
+      <div class="rung">
+        <div class="label">Free</div>
+        <div class="price">&pound;0</div>
+        <h3>Talks, podcast, sleep recording</h3>
+        <p>School and PTA talks free within 25 miles; travel allowance beyond.</p>
+      </div>
+      <div class="rung">
+        <div class="label">Entry</div>
+        <div class="price">&pound;9&ndash;&pound;39</div>
+        <h3>Hypnosis recordings</h3>
+        <p>Seven MP3s: sleep, relaxation, stress and anxiety, weight. Single or bundle.</p>
+      </div>
+      <div class="rung">
+        <div class="label">Product</div>
+        <div class="price">&pound;25</div>
+        <h3>The Living Game</h3>
+        <p>Conversation cards for families. &pound;15 trade price for therapists and schools.</p>
+      </div>
+      <div class="rung">
+        <div class="label">Core</div>
+        <div class="price">&pound;530&ndash;&pound;770</div>
+        <h3>One-to-one therapy plan</h3>
+        <p>&pound;170 first session, &pound;120 after, 4&ndash;6 weeks. Stop smoking: &pound;575, one session.</p>
+      </div>
+      <div class="rung">
+        <div class="label">Premium</div>
+        <div class="price">&pound;1,200</div>
+        <h3>Three-day mindset retreat</h3>
+        <p>12&ndash;15 people, 18+. Visualisation, meditation, techniques, journaling.</p>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="deck ready"><span class="state">Ready for print</span><b>Family Edition</b><span>55 cards, travel pack, &pound;6.50 a deck to make</span></div>
+      <div class="deck"><span class="state">Almost ready</span><b>Ages 8&ndash;13 edition</b><span>Needs a name</span></div>
+      <div class="deck"><span class="state">Planned</span><b>Older age bands</b><span>Following each stage of growing up</span></div>
+      <div class="deck"><span class="state">Planned</span><b>The Forgotten Forties</b><span>40 to mid-50s, played with trusted friends after dinner</span></div>
+    </div>
+  </section>
+
+  <section class="sheet">
+    <header>
+      <div class="label">The people</div>
+      <h2>One person pays. Another is helped. The whole house changes.</h2>
+    </header>
+    <div class="people">
+      <div class="person">
+        <div class="label">Who calls</div>
+        <h3>The worried parent</h3>
+        <p>Usually a middle-class mum or dad who wants their child to do as well as possible. Already tried the GP and been sent to a six to eight month waiting list. Often does not realise how bad things are until late. Busiest in March, April and May, when exams bite.</p>
+      </div>
+      <div class="person">
+        <div class="label">Who is helped</div>
+        <h3>The young man in transition</h3>
+        <p>Aged 14 to 25. Anxious or low, hiding in his bedroom, avoiding his year group. Or older: degree done, no job, frustrated, leaning on weed, cocaine or alcohol to get through the day. Mostly needs someone to talk to who does not judge him.</p>
+      </div>
+    </div>
+    <div class="voices">
+      <div class="voice before">
+        <div class="label">Before: on the first call</div>
+        <q>I&rsquo;m worried about my son.</q>
+        <q>The doctor keeps referring me to MIND, and the waiting list is six to eight months.</q>
+        <q>You are my last hope.</q>
+      </div>
+      <div class="voice after">
+        <div class="label">After: a few weeks later</div>
+        <q>He&rsquo;s back on form, like his old self again. We&rsquo;re enjoying family time again.</q>
+        <q>Since the last session I&rsquo;ve been able to sleep soundly again, knowing all my family are well.</q>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet money">
+    <header>
+      <div class="label">The money</div>
+      <h2>From one income stream to four</h2>
+      <p class="lede">Today nearly everything comes from one-to-one hours, and health caps those at 15 to 20 a week. The plan keeps the hours where they are and adds income that does not need Piers in the room. Plan figures are illustrative targets, not forecasts.</p>
+    </header>
+    <div class="bar-row">
+      <span class="name">Today</span>
+      <div class="track" role="img" aria-label="Today: about 92 thousand pounds a year, all from one-to-one work">
+        <div class="seg s1" style="width:54.12%; border-radius:3px"></div>
+        <div class="target"><span>&pound;120k goal</span></div>
+      </div>
+      <span class="total">&pound;92,000</span>
+    </div>
+    <div class="bar-row">
+      <span class="name">The plan</span>
+      <div class="track" role="img" aria-label="Plan: about 163 thousand pounds a year from one-to-one, retreats, cards and recordings">
+        <div class="seg s1" style="width:54.12%"></div>
+        <div class="seg s2" style="width:25.41%"></div>
+        <div class="seg s3" style="width:14.41%"></div>
+        <div class="seg s4" style="width:1.76%"></div>
+        <div class="target"></div>
+      </div>
+      <span class="total">&pound;162,700</span>
+    </div>
+    <div class="legend">
+      <span><i class="l1"></i>One-to-one and stop smoking &pound;92,000</span>
+      <span><i class="l2"></i>3 retreats &pound;43,200</span>
+      <span><i class="l3"></i>The Living Game &pound;24,500</span>
+      <span><i class="l4"></i>Recordings &pound;3,000</span>
+      <span>Dashed line: &pound;120,000 goal</span>
+    </div>
+    <div class="levers">
+      <div class="lever"><b>Retreats</b><span>One retreat of 12 people keeps about &pound;12,000 after venue costs. That is roughly 100 one-to-one sessions in three days.</span></div>
+      <div class="lever"><b>Cards through schools and therapists</b><span>&pound;18.50 kept on every &pound;25 deck, &pound;8.50 on trade. Every deck in a classroom or therapy room is marketing that keeps working.</span></div>
+      <div class="lever"><b>The email list</b><span>Built from cards and the free sleep recording. It turns one-off clients into a following that buys the next recording, retreat and edition.</span></div>
+    </div>
+  </section>
+
+  <section class="sheet">
+    <header>
+      <div class="label">The five-year path</div>
+      <h2>Build the assets, then step back</h2>
+    </header>
+    <div class="path">
+      <div class="step"><div class="label">Years 1&ndash;2</div><h3>Launch</h3><p>Hold one-to-one at current levels. Print the cards and get them into schools. Run the first retreats. Build the list.</p></div>
+      <div class="step"><div class="label">Years 3&ndash;4</div><h3>Shift</h3><p>Fewer one-to-one hours. Retreats, cards and recordings carry more of the income.</p></div>
+      <div class="step"><div class="label">Year 5</div><h3>Step back</h3><p>A card range, recording library and podcast that keep earning, ready to license to schools and therapists, or to sell.</p></div>
+    </div>
+  </section>
+
+  <section class="sheet">
+    <div class="foot">
+      <div style="display:grid; gap:12px; min-width:0">
+        <div class="label">Next moves</div>
+        <ol>
+          <li>Back to the printer on Monday, or get new quotes</li>
+          <li>Set up Calendly (Clinic, Home, Online) and Xero invoicing</li>
+          <li>Put the free sleep recording on Kajabi</li>
+          <li>Collect written testimonials by WhatsApp</li>
+          <li>Merge the podcasts under Heard Not Hushed</li>
+          <li>Email PTAs once the DBS and the decks arrive</li>
+        </ol>
+      </div>
+      <div class="crisis">
+        <div class="label">Always to hand</div>
+        <div><span>Samaritans, 24 hours</span><span>116 123</span></div>
+        <div><span>Papyrus HOPELINE247</span><span>0800 068 4141</span></div>
+        <div><span>Shout, text SHOUT to</span><span>85258</span></div>
+        <div><span>NHS urgent mental health</span><span>111, option 2</span></div>
+      </div>
+    </div>
+  </section>
+
+  <p class="colophon">piersday.com &middot; suffolkhypnotherapy.co.uk &middot; thelivinggame.co.uk</p>
+</main>
+</body>
+</html>
