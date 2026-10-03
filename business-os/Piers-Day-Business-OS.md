@@ -45,14 +45,24 @@ Piers runs everything alone. No VA, no partner, no staff. Claude is being brough
 
 | Asset | What it is | State |
 |---|---|---|
-| piersday.com | Personal brand site | Live |
-| suffolkhypnotherapy.co.uk | Local search and clinic site | Live |
+| piersday.com | The broad front door: therapist who also uses hypnotherapy. For parents, schools, PTAs, the cards and the podcast | Live |
+| suffolkhypnotherapy.co.uk | The hypnotherapy front door: for people already searching for hypnotherapy (stop smoking, weight, phobias, anxiety) | Live |
 | The Living Game (thelivinggame.co.uk) | Conversation card decks for families | Family Edition ready for print; printer order cancelled after price doubled |
 | Inspirational Talks with Piers Day | Podcast, 30+ episodes | Live, small audience |
 | Heard Not Hushed | Newer podcast, 1 episode | Live; to be merged with the above |
 | MP3 recordings | 7 hypnosis recordings | Recorded, not yet online |
 | Kajabi | Planned hub for recordings and email list | To be set up |
 | Xero | Accounting and invoicing | Account exists, not set up properly |
+
+### Two front doors, one treatment
+
+The word hypnotherapy frightens some people off, so the practice runs two sites. Both lead to the same treatment; they only describe it differently.
+
+piersday.com presents Piers as a therapist with many approaches, hypnotherapy among them. This is the name used in schools, with PTAs, on the cards and on the podcast. A school will show a hypnotherapist the door; it will welcome someone who helps young people feel calmer, more confident and comfortable in their own skin.
+
+suffolkhypnotherapy.co.uk catches people who already want hypnotherapy and are searching for it locally.
+
+Rule: anything aimed at schools, parents and young people leads with Piers Day and the outcome (calmer, more confident, back to themselves). Hypnotherapy is mentioned as one of the tools, never the headline. Anything aimed at stop smoking, weight and phobias can lead with hypnotherapy.
 
 ### Social channels
 
@@ -240,6 +250,10 @@ Enhanced DBS check is in progress and due within a week. Get it before contactin
 
 Before any website, social or ad copy goes public, check it against the ASA and CAP guidance for hypnotherapy. That guidance restricts claims to treat medical conditions such as depression and expects practitioners not to discourage people from seeking medical help. Client quotes describing how they feel are safer than claims to cure.
 
+### Educating people about hypnosis
+
+Fear of the word is a real barrier to booking. Build a steady drip of plain, calm explanation on piersday.com and the podcast: what a session actually feels like, that the client stays aware and in control throughout, that nobody can be made to do anything against their will, and how it differs from stage hypnosis. A short FAQ page, one podcast episode, and a handful of short videos answering the questions parents ask most would cover it. Parents who understand it stop being afraid of it.
+
 ### Tone
 
 Calm, warm, direct, non-judgemental. Never pushy. The listening-first intake is the brand.
@@ -260,3 +274,4 @@ Calm, warm, direct, non-judgemental. Never pushy. The listening-first intake is 
 10. Email PTAs on the existing list of schools within 50 miles once cards are printed and the DBS has arrived.
 11. Brainstorm further audiences and places to speak.
 12. Confirm where the podcast is hosted and where the MP3 files are stored.
+13. Write a plain-English "What hypnosis is and is not" page for piersday.com, plus a matching podcast episode.
