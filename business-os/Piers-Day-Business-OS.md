@@ -1,6 +1,6 @@
 # Piers Day: Business Operating System
 
-Version 1.0, compiled 3 October 2026 from a structured interview.
+Version 1.1, updated 5 October 2026 from a structured interview.
 Use this as the master reference. When asking Claude for help with anything in the business, point it at this document first.
 
 ---
@@ -20,6 +20,15 @@ Piers came into this work after friends took their own lives. That loss is the r
 ### History
 
 Late 1990s to around 2012: best known for weight control (healthy choices without dieting, ending binge eating and cravings for sweet and fatty foods). Stop smoking has always been a strength. From about 2012 the focus moved to anxiety, worry and depression. Since COVID, and through a period of cancer treatment, hours were reduced, but the practice kept running. Health has improved over the last three months and the diary has filled back up.
+
+### Credentials and training
+
+Original training: Cambridge College of Hypnotherapy.
+Further training with Mike Mandel and Cal Banyan, among others, in hypnosis.
+NLP Master Practitioner. Reiki Master. EMDR trained.
+No current professional membership (dropped on cost). See Guardrails for why rejoining one register is worth it now.
+
+The method: metaphor-led hypnotherapy with direct suggestion built in. Metaphors are the core tool, and a library of them is planned as a product (see Offers).
 
 ### The one-sentence position
 
@@ -95,8 +104,9 @@ Attention comes from word of mouth between parents, school corridors, talks, the
 | Entry | The Living Game, Family Edition | £25 retail (unit cost £6.50) | Travel-pack format to keep costs down. 10 to 20% off in exchange for email |
 | Trade | The Living Game, therapist and school price | £15 per deck | Therapists resell to clients; schools buy sets |
 | Core | One-to-one therapy | £170 first session, £120 after | Typically 4 to 6 sessions over 4 to 6 weeks; £530 to £770 per family |
-| Core | Stop smoking | £575, one two-hour session | Very high success rate |
+| Core | Stop smoking | £575, one two-hour session | Free follow-up session if they smoke again within six months. Only about 1 in 12 come back for it |
 | Core | Parent sessions | £120 per session | Offered when parental frustration is part of the problem |
+| Continuity | Metaphor library | Suggested £7 to £9 a month | Planned. Piers's metaphors as downloadable MP3s and a PDF collection, released monthly on Kajabi |
 | Continuity | Monthly maintenance | Reduced rate, once a month for 6 months | Rarely taken up today; needs repositioning (see below) |
 | Premium | Mindset retreat | £1,200 per person, 3 days | 12 to 15 people, 18+, venue costs under £2,500 |
 
@@ -181,7 +191,7 @@ Money is the main reason given. The deeper problem is that many parents do not r
 
 Last 12 months: about £45,000, during a period of illness and cancer treatment.
 Last three months: 15 to 20 clients a week, about £2,000 a week. Over a 46-week year that is a run rate of roughly £92,000.
-Nearly all income is one-to-one therapy and stop smoking. Cards, recordings, retreats and talks have not yet produced income.
+Stop smoking brings in one or two clients a month (roughly £7,000 to £14,000 a year). Everything else comes from therapy. Weight control has not been promoted and is rare. Cards, recordings, retreats and talks have not yet produced income.
 
 ### The target
 
@@ -195,8 +205,8 @@ At least £120,000 a year, with retreats, cards and speaking taking it well past
 | Retreats | 3 a year, 12 people at £1,200 | £43,200 (about £35,700 after venue costs) |
 | The Living Game, direct | 500 decks at £25 | £12,500 |
 | The Living Game, trade | 800 decks at £15 to therapists and schools | £12,000 |
-| Recordings via Kajabi | Modest sales once the list grows | £3,000 |
-| Total | | about £162,700 |
+| Recordings and metaphor library | £3,000 of recordings plus 50 subscribers at £9 a month | £8,400 |
+| Total | | about £168,100 |
 
 ### Where the growth is
 
@@ -225,7 +235,7 @@ Xero for invoicing. Claude to draft invoices, send reminders and chase late paym
 
 ### Podcast
 
-Recommendation: keep the existing Inspirational Talks feed (30+ episodes and its subscribers) and rename the show Heard Not Hushed with Piers Day. Move the one Heard Not Hushed episode into that feed. Same audience, stronger name, no lost history.
+Hosted on Spotify for Creators. Recommendation: keep the existing Inspirational Talks feed (30+ episodes and its subscribers) and rename the show Heard Not Hushed with Piers Day. Move the one Heard Not Hushed episode into that feed. Same audience, stronger name, no lost history.
 
 ### Kajabi
 
@@ -245,6 +255,10 @@ NHS 111, option 2 for urgent mental health help in England
 999 for immediate danger
 
 Enhanced DBS check is in progress and due within a week. Get it before contacting any school.
+
+### Membership and insurance
+
+There is no current professional membership. Rejoining one accredited register (CNHC or the National Council for Hypnotherapy are the usual choices) is worth the annual fee now. Schools, PTAs and retreat venues will ask, it backs up the advertising claims the ASA expects, and it reassures a frightened parent in a single line. Confirm professional indemnity and public liability insurance covers group work, school talks and retreats before booking any of them.
 
 ### Advertising rules
 
@@ -273,5 +287,8 @@ Calm, warm, direct, non-judgemental. Never pushy. The listening-first intake is 
 9. Price and book the first retreat venue (check current rates, likely 20% above the old figures).
 10. Email PTAs on the existing list of schools within 50 miles once cards are printed and the DBS has arrived.
 11. Brainstorm further audiences and places to speak.
-12. Confirm where the podcast is hosted and where the MP3 files are stored.
+12. Confirm where the MP3 files are stored (podcast is on Spotify for Creators).
 13. Write a plain-English "What hypnosis is and is not" page for piersday.com, plus a matching podcast episode.
+14. Rejoin one accredited register and confirm insurance covers schools, groups and retreats.
+15. Build the metaphor library: choose the first 12 metaphors, record them, and set up the subscription on Kajabi.
+16. Share The Living Game card text so it can be described properly to schools and therapists.

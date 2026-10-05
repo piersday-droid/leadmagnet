@@ -10,17 +10,18 @@
 <style>
 /* Layout: one long sheet, night-to-dawn. Thesis quote up top, then the flow (reach > capture > convert > deliver), the price ladder, the people, the money, the five-year path. */
 :root {
-  --bg: #EDF0F4;
+  --bg: #EEF3F3;
   --sheet: #FFFFFF;
-  --ink: #15203A;
-  --muted: #59647A;
-  --line: #D3DAE3;
-  --dawn: #C9822F;
-  --dawn-soft: #F6E7D3;
-  --tide: #2C6A73;
-  --tide-soft: #DCEBEC;
-  --night: #15203A;
-  --on-night: #F1F3F7;
+  --ink: #1B3A4B;
+  --muted: #536872;
+  --line: #CFDCDD;
+  --dawn: #94681C;
+  --dawn-soft: #F5EBD8;
+  --amber: #C9963A;
+  --tide: #2E7D8C;
+  --tide-soft: #E1F3EF;
+  --night: #1B3A4B;
+  --on-night: #F1F5F5;
   --display: "Gloock", "Georgia", "Times New Roman", serif;
   --body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -28,15 +29,15 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0C1322; --sheet: #121C30; --ink: #E7EBF2; --muted: #9CA8BB; --line: #26324A;
-    --dawn: #EDB26A; --dawn-soft: #33281C; --tide: #74B7BF; --tide-soft: #17303A;
-    --night: #070C17; --on-night: #E7EBF2; color-scheme: dark;
+    --bg: #0C1A21; --sheet: #12252E; --ink: #E6EEEF; --muted: #9DB2B7; --line: #24414A;
+    --dawn: #D9A84E; --dawn-soft: #33291A; --amber: #C9963A; --tide: #7ECFC0; --tide-soft: #123238;
+    --night: #08141A; --on-night: #E6EEEF; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0C1322; --sheet: #121C30; --ink: #E7EBF2; --muted: #9CA8BB; --line: #26324A;
-  --dawn: #EDB26A; --dawn-soft: #33281C; --tide: #74B7BF; --tide-soft: #17303A;
-  --night: #070C17; --on-night: #E7EBF2; color-scheme: dark;
+  --bg: #0C1A21; --sheet: #12252E; --ink: #E6EEEF; --muted: #9DB2B7; --line: #24414A;
+  --dawn: #D9A84E; --dawn-soft: #33291A; --amber: #C9963A; --tide: #7ECFC0; --tide-soft: #123238;
+  --night: #08141A; --on-night: #E6EEEF; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -57,12 +58,13 @@ p { margin: 0; }
 
 /* Hero */
 .hero { background: var(--night); color: var(--on-night); border-radius: 6px; padding: clamp(24px, 5vw, 56px); display: grid; gap: 28px; position: relative; overflow: hidden; }
-.hero::after { content: ""; position: absolute; inset: auto -10% -60% -10%; height: 90%; background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--dawn) 55%, transparent), transparent 65%); pointer-events: none; }
+.hero::after { content: ""; position: absolute; inset: auto -10% -60% -10%; height: 90%; background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--amber) 55%, transparent), transparent 65%); pointer-events: none; }
 .hero > * { position: relative; z-index: 1; }
 .hero .label { color: color-mix(in srgb, var(--on-night) 65%, transparent); }
 .hero h1 { font-size: clamp(44px, 8vw, 84px); }
 .hero .role { font-size: clamp(16px, 2vw, 19px); max-width: 60ch; color: color-mix(in srgb, var(--on-night) 85%, transparent); }
-.hero blockquote { margin: 0; font-family: var(--display); font-size: clamp(24px, 3.6vw, 38px); line-height: 1.2; max-width: 24ch; color: var(--dawn); }
+.hero blockquote { margin: 0; font-family: var(--display); font-size: clamp(24px, 3.6vw, 38px); line-height: 1.2; max-width: 24ch; color: var(--amber); }
+.hero .creds { font: 500 11.5px/1.6 var(--mono); letter-spacing: .06em; color: color-mix(in srgb, var(--on-night) 75%, transparent); max-width: 80ch; }
 .hero cite { display: block; margin-top: 10px; font: 400 13px/1.4 var(--body); font-style: normal; color: color-mix(in srgb, var(--on-night) 70%, transparent); }
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: color-mix(in srgb, var(--on-night) 18%, transparent); border-radius: 4px; overflow: hidden; }
 .stat { background: var(--night); padding: 14px 16px; display: grid; gap: 2px; }
@@ -92,7 +94,7 @@ p { margin: 0; }
 .rung:nth-child(5) { background: var(--night); color: var(--on-night); border-color: var(--night); }
 .rung:nth-child(5) .label, .rung:nth-child(5) p { color: color-mix(in srgb, var(--on-night) 72%, transparent); }
 .rung .price { font: 400 26px/1.1 var(--display); font-variant-numeric: tabular-nums; }
-.rung:nth-child(5) .price { color: var(--dawn); }
+.rung:nth-child(5) .price { color: var(--amber); }
 .rung h3 { font: 600 15px/1.3 var(--body); }
 .rung p { font-size: 13.5px; color: var(--muted); }
 
@@ -187,6 +189,7 @@ p { margin: 0; }
     <div class="label">Business map &middot; Bury St Edmunds, Suffolk &middot; October 2026</div>
     <h1>Piers Day</h1>
     <p class="role">Therapist and clinical hypnotherapist for anxiety, depression, self-harm and dark thoughts. Helping teenagers and young men through the move from school to university to the real world, so their families get them back.</p>
+    <p class="creds">Cambridge College of Hypnotherapy &middot; trained with Mike Mandel and Cal Banyan &middot; NLP Master Practitioner &middot; Reiki Master &middot; EMDR</p>
     <blockquote>&ldquo;It&rsquo;s so nice to have my son back. I thought I&rsquo;d lost him.&rdquo;<cite>A mother, after her son&rsquo;s final session</cite></blockquote>
     <div class="stats">
       <div class="stat"><b>27</b><span>years in practice</span></div>
@@ -244,6 +247,7 @@ p { margin: 0; }
           <li>Parent sessions where needed</li>
           <li>Monthly maintenance for six months</li>
           <li>Three-day mindset retreats, 18+</li>
+          <li>Metaphor library subscription (planned)</li>
         </ul>
       </div>
     </div>
@@ -267,7 +271,7 @@ p { margin: 0; }
         <div class="label">Entry</div>
         <div class="price">&pound;9&ndash;&pound;39</div>
         <h3>Hypnosis recordings</h3>
-        <p>Seven MP3s: sleep, relaxation, stress and anxiety, weight. Single or bundle.</p>
+        <p>Seven MP3s: sleep, relaxation, stress and anxiety, weight. Plus a planned metaphor library at &pound;7&ndash;&pound;9 a month.</p>
       </div>
       <div class="rung">
         <div class="label">Product</div>
@@ -279,7 +283,7 @@ p { margin: 0; }
         <div class="label">Core</div>
         <div class="price">&pound;530&ndash;&pound;770</div>
         <h3>One-to-one therapy plan</h3>
-        <p>&pound;170 first session, &pound;120 after, 4&ndash;6 weeks. Stop smoking: &pound;575, one session.</p>
+        <p>&pound;170 first session, &pound;120 after, 4&ndash;6 weeks. Stop smoking: &pound;575, one session, free follow-up if needed (about 1 in 12).</p>
       </div>
       <div class="rung">
         <div class="label">Premium</div>
@@ -344,20 +348,20 @@ p { margin: 0; }
     </div>
     <div class="bar-row">
       <span class="name">The plan</span>
-      <div class="track" role="img" aria-label="Plan: about 163 thousand pounds a year from one-to-one, retreats, cards and recordings">
+      <div class="track" role="img" aria-label="Plan: about 168 thousand pounds a year from one-to-one, retreats, cards, recordings and the metaphor library">
         <div class="seg s1" style="width:54.12%"></div>
         <div class="seg s2" style="width:25.41%"></div>
         <div class="seg s3" style="width:14.41%"></div>
-        <div class="seg s4" style="width:1.76%"></div>
+        <div class="seg s4" style="width:4.94%"></div>
         <div class="target"></div>
       </div>
-      <span class="total">&pound;162,700</span>
+      <span class="total">&pound;168,100</span>
     </div>
     <div class="legend">
       <span><i class="l1"></i>One-to-one and stop smoking &pound;92,000</span>
       <span><i class="l2"></i>3 retreats &pound;43,200</span>
       <span><i class="l3"></i>The Living Game &pound;24,500</span>
-      <span><i class="l4"></i>Recordings &pound;3,000</span>
+      <span><i class="l4"></i>Recordings and metaphor library &pound;8,400</span>
       <span>Dashed line: &pound;120,000 goal</span>
     </div>
     <div class="levers">
