@@ -85,12 +85,8 @@ p { margin: 0; }
 .flow-note { font-size: 14.5px; color: var(--muted); max-width: 70ch; }
 
 /* Ladder */
-.ladder { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; align-items: end; }
+.ladder { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
 .rung { display: grid; gap: 6px; align-content: start; padding: 14px; border: 1px solid var(--line); border-radius: 4px; background: var(--sheet); min-width: 0; }
-.rung:nth-child(1) { margin-top: 64px; }
-.rung:nth-child(2) { margin-top: 48px; }
-.rung:nth-child(3) { margin-top: 32px; }
-.rung:nth-child(4) { margin-top: 16px; }
 .rung:nth-child(5) { background: var(--night); color: var(--on-night); border-color: var(--night); }
 .rung:nth-child(5) .label, .rung:nth-child(5) p { color: color-mix(in srgb, var(--on-night) 72%, transparent); }
 .rung .price { font: 400 26px/1.1 var(--display); font-variant-numeric: tabular-nums; }
@@ -161,7 +157,6 @@ p { margin: 0; }
   .flow, .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stage:nth-child(2)::after { display: none; }
   .ladder { grid-template-columns: minmax(0, 1fr); }
-  .rung:nth-child(n) { margin-top: 0; }
   .levers, .path { grid-template-columns: minmax(0, 1fr); }
   .path { border-top: 0; border-left: 1px solid var(--line); }
   .step { padding: 0 0 18px 20px; }
