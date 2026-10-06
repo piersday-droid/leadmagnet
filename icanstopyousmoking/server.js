@@ -1,6 +1,6 @@
 // Zero-dependency static server for icanstopyousmoking.com.
 // Contact details come from Railway environment variables, so nothing in the code needs editing:
-//   PHONE        e.g. 07700 900123   (shown on the page and used for tap-to-call)
+//   PHONE        defaults to 07716 008836 (shown on the page and used for tap-to-call)
 //   WHATSAPP     e.g. 447700900123   (international format, digits only)
 //   BOOKING_URL  e.g. https://calendly.com/piersday/stop-smoking
 // Any of them can be left unset; the matching button is simply hidden.
@@ -28,7 +28,7 @@ const MIME = {
 };
 
 const contact = {
-  PHONE: (process.env.PHONE || "").trim(),
+  PHONE: (process.env.PHONE || "07716 008836").trim(),
   WHATSAPP: (process.env.WHATSAPP || "").replace(/\D/g, ""),
   BOOKING_URL: (process.env.BOOKING_URL || "").trim(),
 };

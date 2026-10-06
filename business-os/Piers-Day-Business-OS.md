@@ -56,7 +56,7 @@ Piers runs everything alone. No VA, no partner, no staff. Claude is being brough
 |---|---|---|
 | piersday.com | The broad front door: therapist who also uses hypnotherapy. For parents, schools, PTAs, the cards and the podcast | Live |
 | suffolkhypnotherapy.co.uk | The hypnotherapy front door: for people already searching for hypnotherapy (weight, phobias, anxiety) | Live |
-| icanstopyousmoking.com | Single-purpose stop smoking site: one offer, one price, one call to action | Built, ready to deploy on Railway |
+| icanstopyousmoking.com | Single-purpose stop smoking site: one offer, one price, one call to action. Phone 07716 008836 | Domain owned. Built, ready to deploy on Railway |
 | The Living Game (thelivinggame.co.uk) | Conversation card decks for families | Family Edition ready for print; printer order cancelled after price doubled |
 | Inspirational Talks with Piers Day | Podcast, 30+ episodes | Live, small audience |
 | Heard Not Hushed | Newer podcast, 1 episode | Live; to be merged with the above |
@@ -297,6 +297,6 @@ Calm, warm, direct, non-judgemental. Never pushy. The listening-first intake is 
 14. Rejoin one accredited register and confirm insurance covers schools, groups and retreats.
 15. Build the metaphor library: choose the first 12 metaphors, record them, and set up the subscription on Kajabi.
 16. Share The Living Game card text so it can be described properly to schools and therapists.
-17. icanstopyousmoking.com: confirm the domain is registered, add the phone number and booking link to the site, deploy on Railway, point the domain at it.
+17. icanstopyousmoking.com: domain owned, phone 07716 008836 built in. Still to do: fix GitHub access, deploy on Railway, point the domain at it, add the booking link once Calendly is set up.
 18. Set up a Google Business Profile for stop smoking and a small local Google Ads campaign (start around £10 a day) pointing at icanstopyousmoking.com. Time pushes for Stoptober (October) and New Year (January).
 19. Keep a simple record of every stop smoking client and whether they return for the free follow-up, so the "1 in 12" figure can be backed up if anyone asks.

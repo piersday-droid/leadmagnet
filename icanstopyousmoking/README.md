@@ -13,8 +13,8 @@ Then open http://localhost:3000
 1. In Railway, create a new project and choose "Deploy from GitHub repo". Pick this repository and set the root directory to `icanstopyousmoking`.
 2. Railway detects `package.json` and runs `npm start`. There is nothing to build.
 3. Under the service's Variables, add the contact details (all optional; any left out simply hide their button):
-   - `PHONE` the number to show and call, for example `07700 900123`
-   - `WHATSAPP` the same number in international format, digits only, for example `447700900123`
+   - `PHONE` the number to show and call. Already set to `07716 008836` in the code, so only add this to change it
+   - `WHATSAPP` the same number in international format, digits only, which would be `447716008836`
    - `BOOKING_URL` the Calendly link for the stop smoking session
 4. Under Settings, then Networking, add the custom domain `icanstopyousmoking.com` (and `www.icanstopyousmoking.com`). Railway shows the DNS records to add at your domain registrar.
 5. Health check path: `/health`
