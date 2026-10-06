@@ -25,7 +25,7 @@ Late 1990s to around 2012: best known for weight control (healthy choices withou
 
 Original training: Cambridge College of Hypnotherapy.
 Further training with Mike Mandel and Cal Banyan, among others, in hypnosis.
-NLP Master Practitioner. Reiki Master. EMDR trained.
+NLP Master Practitioner. Reiki Master. EMDR trained. BWRT (BrainWorking Recursive Therapy) practitioner.
 No current professional membership (dropped on cost). See Guardrails for why rejoining one register is worth it now.
 
 The method: metaphor-led hypnotherapy with direct suggestion built in. Metaphors are the core tool, and a library of them is planned as a product (see Offers).
