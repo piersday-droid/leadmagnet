@@ -1,0 +1,13 @@
+{
+  "name": "icanstopyousmoking",
+  "version": "1.0.0",
+  "description": "Stop smoking hypnotherapy with Piers Day. Zero-dependency Node server for Railway.",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

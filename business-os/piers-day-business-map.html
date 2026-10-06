@@ -20,6 +20,7 @@
   --amber: #C9963A;
   --tide: #2E7D8C;
   --tide-soft: #E1F3EF;
+  --mint: #7ECFC0;
   --night: #1B3A4B;
   --on-night: #F1F5F5;
   --display: "Gloock", "Georgia", "Times New Roman", serif;
@@ -126,12 +127,13 @@ p { margin: 0; }
 .seg.s2 { background: var(--dawn); }
 .seg.s3 { background: color-mix(in srgb, var(--dawn) 55%, var(--sheet)); }
 .seg.s4 { background: var(--ink); border-radius: 0 3px 3px 0; }
-.target { position: absolute; top: -8px; bottom: -8px; left: 70.59%; width: 0; border-left: 2px dashed var(--ink); }
+.target { position: absolute; top: -8px; bottom: -8px; left: 60%; width: 0; border-left: 2px dashed var(--ink); }
 .target span { position: absolute; top: -18px; left: 6px; font: 500 11px var(--mono); white-space: nowrap; color: var(--ink); }
 .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13.5px; color: var(--muted); }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
-.legend .l1 { background: var(--tide); } .legend .l2 { background: var(--dawn); } .legend .l3 { background: color-mix(in srgb, var(--dawn) 55%, var(--sheet)); } .legend .l4 { background: var(--ink); }
-.levers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.legend .l1 { background: var(--tide); } .legend .l2 { background: var(--dawn); } .legend .l3 { background: color-mix(in srgb, var(--dawn) 55%, var(--sheet)); } .legend .l4 { background: var(--ink); } .legend .l5 { background: var(--mint); }
+.seg.s5 { background: var(--mint); }
+.levers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
 .lever { border-left: 2px solid var(--dawn); padding: 2px 0 2px 14px; display: grid; gap: 4px; min-width: 0; }
 .lever b { font-weight: 600; }
 .lever span { font-size: 14px; color: var(--muted); }
@@ -211,6 +213,7 @@ p { margin: 0; }
           <li>Social, about 3,500 followers</li>
           <li>piersday.com: the front door for parents and schools</li>
           <li>suffolkhypnotherapy.co.uk: for people already searching hypnotherapy</li>
+          <li>icanstopyousmoking.com: for smokers ready to stop</li>
           <li>Decks sold by other therapists</li>
         </ul>
       </div>
@@ -330,36 +333,39 @@ p { margin: 0; }
   <section class="sheet money">
     <header>
       <div class="label">The money</div>
-      <h2>From one income stream to four</h2>
+      <h2>From one income stream to five</h2>
       <p class="lede">Today nearly everything comes from one-to-one hours, and health caps those at 15 to 20 a week. The plan keeps the hours where they are and adds income that does not need Piers in the room. Plan figures are illustrative targets, not forecasts.</p>
     </header>
     <div class="bar-row">
       <span class="name">Today</span>
       <div class="track" role="img" aria-label="Today: about 92 thousand pounds a year, all from one-to-one work">
-        <div class="seg s1" style="width:54.12%; border-radius:3px"></div>
+        <div class="seg s1" style="width:46%; border-radius:3px"></div>
         <div class="target"><span>&pound;120k goal</span></div>
       </div>
       <span class="total">&pound;92,000</span>
     </div>
     <div class="bar-row">
       <span class="name">The plan</span>
-      <div class="track" role="img" aria-label="Plan: about 168 thousand pounds a year from one-to-one, retreats, cards, recordings and the metaphor library">
-        <div class="seg s1" style="width:54.12%"></div>
-        <div class="seg s2" style="width:25.41%"></div>
-        <div class="seg s3" style="width:14.41%"></div>
-        <div class="seg s4" style="width:4.94%"></div>
+      <div class="track" role="img" aria-label="Plan: about 196 thousand pounds a year from one-to-one, extra stop smoking clients, retreats, cards, recordings and the metaphor library">
+        <div class="seg s1" style="width:46%"></div>
+        <div class="seg s5" style="width:13.8%"></div>
+        <div class="seg s2" style="width:21.6%"></div>
+        <div class="seg s3" style="width:12.25%"></div>
+        <div class="seg s4" style="width:4.2%"></div>
         <div class="target"></div>
       </div>
-      <span class="total">&pound;168,100</span>
+      <span class="total">&pound;195,700</span>
     </div>
     <div class="legend">
       <span><i class="l1"></i>One-to-one and stop smoking &pound;92,000</span>
+      <span><i class="l5"></i>Extra smokers via icanstopyousmoking.com &pound;27,600</span>
       <span><i class="l2"></i>3 retreats &pound;43,200</span>
       <span><i class="l3"></i>The Living Game &pound;24,500</span>
       <span><i class="l4"></i>Recordings and metaphor library &pound;8,400</span>
       <span>Dashed line: &pound;120,000 goal</span>
     </div>
     <div class="levers">
+      <div class="lever"><b>Stop smoking, the fastest win</b><span>Four extra smokers a month is &pound;27,600 a year for eight more hours a month. icanstopyousmoking.com and local search ads bring them in.</span></div>
       <div class="lever"><b>Retreats</b><span>One retreat of 12 people keeps about &pound;12,000 after venue costs. That is roughly 100 one-to-one sessions in three days.</span></div>
       <div class="lever"><b>Cards through schools and therapists</b><span>&pound;18.50 kept on every &pound;25 deck, &pound;8.50 on trade. Every deck in a classroom or therapy room is marketing that keeps working.</span></div>
       <div class="lever"><b>The email list</b><span>Built from cards and the free sleep recording. It turns one-off clients into a following that buys the next recording, retreat and edition.</span></div>
@@ -402,7 +408,7 @@ p { margin: 0; }
     </div>
   </section>
 
-  <p class="colophon">piersday.com &middot; suffolkhypnotherapy.co.uk &middot; thelivinggame.co.uk</p>
+  <p class="colophon">piersday.com &middot; suffolkhypnotherapy.co.uk &middot; icanstopyousmoking.com &middot; thelivinggame.co.uk</p>
 </main>
 </body>
 </html>

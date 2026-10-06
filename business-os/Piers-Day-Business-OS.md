@@ -1,6 +1,6 @@
 # Piers Day: Business Operating System
 
-Version 1.1, updated 5 October 2026 from a structured interview.
+Version 1.2, updated 6 October 2026 from a structured interview.
 Use this as the master reference. When asking Claude for help with anything in the business, point it at this document first.
 
 ---
@@ -55,7 +55,8 @@ Piers runs everything alone. No VA, no partner, no staff. Claude is being brough
 | Asset | What it is | State |
 |---|---|---|
 | piersday.com | The broad front door: therapist who also uses hypnotherapy. For parents, schools, PTAs, the cards and the podcast | Live |
-| suffolkhypnotherapy.co.uk | The hypnotherapy front door: for people already searching for hypnotherapy (stop smoking, weight, phobias, anxiety) | Live |
+| suffolkhypnotherapy.co.uk | The hypnotherapy front door: for people already searching for hypnotherapy (weight, phobias, anxiety) | Live |
+| icanstopyousmoking.com | Single-purpose stop smoking site: one offer, one price, one call to action | Built, ready to deploy on Railway |
 | The Living Game (thelivinggame.co.uk) | Conversation card decks for families | Family Edition ready for print; printer order cancelled after price doubled |
 | Inspirational Talks with Piers Day | Podcast, 30+ episodes | Live, small audience |
 | Heard Not Hushed | Newer podcast, 1 episode | Live; to be merged with the above |
@@ -63,13 +64,15 @@ Piers runs everything alone. No VA, no partner, no staff. Claude is being brough
 | Kajabi | Planned hub for recordings and email list | To be set up |
 | Xero | Accounting and invoicing | Account exists, not set up properly |
 
-### Two front doors, one treatment
+### Three front doors, one practitioner
 
-The word hypnotherapy frightens some people off, so the practice runs two sites. Both lead to the same treatment; they only describe it differently.
+The word hypnotherapy frightens some people off, so the practice runs separate sites for separate audiences. They all lead to Piers; they only describe the work differently.
 
 piersday.com presents Piers as a therapist with many approaches, hypnotherapy among them. This is the name used in schools, with PTAs, on the cards and on the podcast. A school will show a hypnotherapist the door; it will welcome someone who helps young people feel calmer, more confident and comfortable in their own skin.
 
 suffolkhypnotherapy.co.uk catches people who already want hypnotherapy and are searching for it locally.
+
+icanstopyousmoking.com does one job: turn smokers into booked two-hour sessions. A smoker searching for help does not want to read about anxiety or teenagers. They want the price, how it works, what happens if it does not stick, and a number to call. Every page and every ad for stop smoking points here. It has its own cost-of-smoking calculator, because the strongest argument for £575 is that a 20-a-day smoker spends that in about five weeks.
 
 Rule: anything aimed at schools, parents and young people leads with Piers Day and the outcome (calmer, more confident, back to themselves). Hypnotherapy is mentioned as one of the tools, never the headline. Anything aimed at stop smoking, weight and phobias can lead with hypnotherapy.
 
@@ -202,18 +205,20 @@ At least £120,000 a year, with retreats, cards and speaking taking it well past
 | Stream | Assumption | Annual revenue |
 |---|---|---|
 | One-to-one and stop smoking | Hold at about £2,000 a week, 46 weeks | £92,000 |
+| Extra stop smoking clients | icanstopyousmoking.com takes smokers from 1 to 2 a month up to 5 to 6 a month: 4 extra a month, 12 months, at £575 | £27,600 |
 | Retreats | 3 a year, 12 people at £1,200 | £43,200 (about £35,700 after venue costs) |
 | The Living Game, direct | 500 decks at £25 | £12,500 |
 | The Living Game, trade | 800 decks at £15 to therapists and schools | £12,000 |
 | Recordings and metaphor library | £3,000 of recordings plus 50 subscribers at £9 a month | £8,400 |
-| Total | | about £168,100 |
+| Total | | about £195,700 |
 
 ### Where the growth is
 
-1. Retreats are the biggest single lever. One retreat earns about the same as 100 one-to-one sessions.
-2. The Living Game through schools and therapists. Every deck in a school or therapy room is marketing Piers does not have to do, and it keeps selling after retirement.
-3. The email list built from the cards and the free sleep recording. It turns one-off clients into a following that buys recordings, retreats and the next edition.
-4. The podcast as the long-term trust builder for parents across the UK.
+1. Stop smoking is the fastest win. Every extra smoker is £575 for two hours, and four extra a month is only eight more hours a month. icanstopyousmoking.com plus local Google ads and a Google Business Profile can deliver that within months.
+2. Retreats are the biggest single lever. One retreat earns about the same as 100 one-to-one sessions.
+3. The Living Game through schools and therapists. Every deck in a school or therapy room is marketing Piers does not have to do, and it keeps selling after retirement.
+4. The email list built from the cards and the free sleep recording. It turns one-off clients into a following that buys recordings, retreats and the next edition.
+5. The podcast as the long-term trust builder for parents across the UK.
 
 ### The five-year exit path
 
@@ -292,3 +297,6 @@ Calm, warm, direct, non-judgemental. Never pushy. The listening-first intake is 
 14. Rejoin one accredited register and confirm insurance covers schools, groups and retreats.
 15. Build the metaphor library: choose the first 12 metaphors, record them, and set up the subscription on Kajabi.
 16. Share The Living Game card text so it can be described properly to schools and therapists.
+17. icanstopyousmoking.com: confirm the domain is registered, add the phone number and booking link to the site, deploy on Railway, point the domain at it.
+18. Set up a Google Business Profile for stop smoking and a small local Google Ads campaign (start around £10 a day) pointing at icanstopyousmoking.com. Time pushes for Stoptober (October) and New Year (January).
+19. Keep a simple record of every stop smoking client and whether they return for the free follow-up, so the "1 in 12" figure can be backed up if anyone asks.
