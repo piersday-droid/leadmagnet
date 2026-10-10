@@ -1,0 +1,13 @@
+{
+  "name": "mind-the-map",
+  "version": "1.0.0",
+  "description": "Mind the Map: an underground-style map of the hard feelings everyone passes through. Interactive lead magnet with a journey planner and printable poster.",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

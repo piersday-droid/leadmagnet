@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mind the Map · The Inner Underground</title>
+<meta name="description" content="An underground map of the hard feelings everyone passes through. Anxiety, low mood, pressure, traffic, love and family all run on one network, and every line keeps moving.">
+<meta property="og:title" content="Mind the Map · The Inner Underground">
+<meta property="og:description" content="Every feeling is a stop. None of them is the end of the line.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b1b1a;
+    --muted: #5d5a54;
+    --paper: #f6f3ec;
+    --card: #fffdf8;
+    --rule: #e3ddd0;
+    --navy: #1c3f94;
+    --orange: #ee7c0e;
+    --red: #dc241f;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Cabin, "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  a { color: var(--navy); }
+  button, input, select { font: inherit; }
+
+  /* ---------- header ---------- */
+  .top {
+    background: var(--navy);
+    color: #fff;
+  }
+  .top-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .top .brand { font-weight: 700; font-size: 20px; letter-spacing: .3px; }
+  .top .brand small { font-weight: 500; opacity: .75; font-size: 14px; margin-left: 8px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .top nav { margin-left: auto; display: flex; gap: 18px; font-size: 15px; }
+  .top nav a { color: #fff; text-decoration: none; opacity: .85; }
+  .top nav a:hover { opacity: 1; text-decoration: underline; }
+  @media (max-width: 640px) { .top nav { display: none; } .top .brand small { display: none; } }
+
+  .wrap { max-width: 1480px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- intro ---------- */
+  .intro { padding-top: 36px; padding-bottom: 22px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: end; }
+  .intro h1 { font-size: clamp(30px, 4.2vw, 50px); line-height: 1.08; margin: 0; letter-spacing: -.5px; }
+  .intro h1 span { color: var(--orange); }
+  .intro p { margin: 0; color: var(--muted); max-width: 60ch; }
+  @media (max-width: 860px) { .intro { grid-template-columns: 1fr; gap: 14px; } }
+
+  /* ---------- map ---------- */
+  .mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 350px; gap: 18px; align-items: start; }
+  @media (max-width: 1100px) { .mapwrap { grid-template-columns: 1fr; } }
+  .map-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 12px 30px -18px rgba(28,63,148,.25);
+  }
+  .map-scroll {
+    overflow: auto;
+    aspect-ratio: 16 / 11;
+    cursor: grab;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .map-scroll.dragging { cursor: grabbing; user-select: none; }
+  #map { display: block; width: 100%; height: auto; min-width: 1050px; }
+  @media (max-width: 700px) { .map-scroll { aspect-ratio: auto; height: 70vh; } }
+
+  .map-tools {
+    position: absolute; right: 12px; top: 12px; z-index: 2;
+    display: flex; gap: 6px;
+  }
+  .map-tools button {
+    width: 38px; height: 38px; border-radius: 10px;
+    border: 1px solid var(--rule); background: rgba(255,253,248,.95);
+    color: var(--ink); font-size: 20px; line-height: 1; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+  .map-tools button.wide { width: auto; padding: 0 12px; font-size: 14px; font-weight: 600; }
+  .map-tools button:hover { background: #fff; }
+  .map-tools button[hidden] { display: none; }
+
+  /* svg interaction */
+  #map .stn { cursor: pointer; }
+  #map .stn:focus { outline: none; }
+  #map .stn:hover text, #map .stn:focus-visible text { font-weight: 700; }
+  #map .stn:focus-visible .hit { stroke: var(--navy); stroke-width: 2; stroke-dasharray: 3 3; }
+  #map .ln, #map .stn, #map .river { transition: opacity .25s ease; }
+  #map.focus .ln:not(.on) { opacity: .1; }
+  #map.focus .stn:not(.on) { opacity: .2; }
+  #map.focus .river { opacity: .45; }
+  #map .lg { cursor: pointer; }
+  #map .lg:hover text { text-decoration: underline; }
+  #map .river { cursor: pointer; }
+  @keyframes pulse { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(2.2); opacity: 0; } }
+  #map .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 1.6s ease-out infinite; }
+
+  /* ---------- panel ---------- */
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    position: sticky; top: 16px;
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+  }
+  @media (max-width: 1100px) { .panel { position: static; max-height: none; } }
+  .panel .kicker { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 6px; }
+  .panel h2 { font-size: 30px; line-height: 1.1; margin: 0 0 12px; }
+  .panel h3 { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; margin: 18px 0 4px; color: var(--muted); }
+  .panel p { margin: 0; }
+  .panel .gap { background: #fff7e8; border-left: 4px solid var(--orange); padding: 10px 12px; border-radius: 0 8px 8px 0; margin-top: 6px; }
+  .panel .help { background: #fdecec; border-left: 4px solid var(--red); padding: 10px 12px; border-radius: 0 8px 8px 0; margin-top: 14px; font-size: 15px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--c); color: var(--t, #fff);
+    font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+    border: 0; cursor: pointer; white-space: nowrap;
+  }
+  .pill.growth { background: var(--orange); box-shadow: inset 0 0 0 2px var(--orange), inset 0 0 0 3px #fff; }
+  .dirs { list-style: none; margin: 6px 0 0; padding: 0; font-size: 15px; }
+  .dirs li { padding: 7px 0; border-top: 1px solid var(--rule); display: flex; gap: 10px; align-items: baseline; }
+  .dirs li > span:last-child, .dirs li > button { flex: 1; text-align: left; }
+  .dirs li:first-child { border-top: 0; }
+  .dirs .swatch { width: 14px; height: 6px; border-radius: 3px; background: var(--c); flex: none; transform: translateY(-2px); }
+  .linkbtn { background: none; border: 0; padding: 0; color: var(--navy); text-decoration: underline; cursor: pointer; font-weight: 600; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--navy); color: #fff; border: 0; border-radius: 10px;
+    padding: 11px 16px; font-weight: 600; cursor: pointer; text-decoration: none;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .btn.ghost { background: transparent; color: var(--navy); box-shadow: inset 0 0 0 2px var(--navy); }
+  .btn.orange { background: var(--orange); }
+  .panel .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+
+  /* ---------- sections ---------- */
+  section.block { padding: 56px 0 8px; }
+  section.block > .wrap > h2 { font-size: clamp(26px, 3vw, 36px); margin: 0 0 6px; }
+  section.block > .wrap > .lede { color: var(--muted); margin: 0 0 22px; max-width: 70ch; }
+
+  /* planner */
+  .planner { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 22px; }
+  .planner form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; }
+  @media (max-width: 760px) { .planner form { grid-template-columns: 1fr; } }
+  .planner label { font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 600; color: var(--muted); display: block; margin-bottom: 4px; }
+  .planner select {
+    width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid #cfc7b6; background: #fff; color: var(--ink);
+  }
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .presets span { font-size: 14px; color: var(--muted); align-self: center; margin-right: 4px; }
+  .chip { border: 1px solid #cfc7b6; background: #fff; border-radius: 999px; padding: 6px 12px; font-size: 14px; cursor: pointer; color: var(--ink); }
+  .chip:hover { border-color: var(--navy); color: var(--navy); }
+  .result { margin-top: 20px; }
+  .result:empty { display: none; }
+  .result .summary { font-weight: 600; margin: 0 0 12px; }
+  .legs { list-style: none; margin: 0; padding: 0; }
+  .leg { border-left: 8px solid var(--c); padding: 4px 0 4px 16px; margin-left: 6px; }
+  .leg.growth { border-left-color: var(--orange); }
+  .leg-head { font-weight: 700; margin-bottom: 4px; }
+  .leg-head .pill { margin-right: 6px; cursor: default; }
+  .leg ol { list-style: none; margin: 0; padding: 0; }
+  .leg ol li { padding: 6px 0; font-size: 15px; color: var(--muted); }
+  .leg ol li b { color: var(--ink); }
+  .change { margin: 8px 0 8px -4px; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+  .change::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--ink); background: #fff; flex: none; }
+  .arrive { margin-top: 10px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .arrive::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--orange); flex: none; }
+
+  /* lines */
+  .lines-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .line-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px 18px 16px; border-top: 8px solid var(--c); display: flex; flex-direction: column; }
+  .line-card.growth { border-top-color: var(--orange); }
+  .line-card h3 { margin: 0; font-size: 21px; }
+  .line-card .topic { font-size: 13px; letter-spacing: 1.3px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+  .line-card p { margin: 0 0 12px; font-size: 15.5px; }
+  .line-card .route { font-size: 14px; color: var(--muted); margin-bottom: 14px; flex: 1; }
+  .line-card .route b { color: var(--ink); font-weight: 600; }
+
+  /* poster capture */
+  .capture { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 30px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: center; position: relative; overflow: hidden; }
+  @media (max-width: 860px) { .capture { grid-template-columns: 1fr; padding: 22px; } }
+  .capture h2 { margin: 0 0 8px; font-size: clamp(26px, 3vw, 36px); }
+  .capture p { margin: 0 0 10px; opacity: .9; }
+  .capture form { display: grid; gap: 10px; }
+  .capture input[type=text], .capture input[type=email] { width: 100%; padding: 12px 14px; border-radius: 10px; border: 0; color: var(--ink); }
+  .capture .small { font-size: 13px; opacity: .75; }
+  .capture .msg { min-height: 1.2em; font-size: 15px; }
+  .capture .unlocked { display: grid; gap: 10px; }
+  .capture .unlocked[hidden] { display: none; }
+  .capture .btn.orange { justify-self: start; }
+  .capture .stripe { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: linear-gradient(90deg, #f5c400 0 12.5%, #1c3f94 12.5% 25%, #dc241f 25% 37.5%, #8d969e 37.5% 50%, #e0699a 50% 62.5%, #00843d 62.5% 75%, #7b3f98 75% 87.5%, #ee7c0e 87.5% 100%); }
+
+  footer { margin-top: 56px; border-top: 1px solid var(--rule); padding: 26px 0 40px; font-size: 14.5px; color: var(--muted); }
+  footer strong { color: var(--ink); }
+  footer .crisis { background: #fff; border: 1px solid var(--rule); border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; color: var(--ink); }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+  @media print {
+    @page { size: A3 landscape; margin: 8mm; }
+    body { background: #fff; }
+    body > *:not(main), main > *:not(.mapsection), .panel, .map-tools, .intro { display: none !important; }
+    .mapwrap { display: block; }
+    .map-card { border: 0; box-shadow: none; }
+    .map-scroll { overflow: visible; aspect-ratio: auto; height: auto; }
+    #map { width: 100% !important; min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <svg width="34" height="34" viewBox="0 0 80 80" aria-hidden="true">
+      <circle cx="40" cy="40" r="28" fill="none" stroke="#ee7c0e" stroke-width="12" stroke-dasharray="150 26" transform="rotate(-60 40 40)"/>
+      <rect x="4" y="31" width="72" height="18" rx="2" fill="#fff"/>
+    </svg>
+    <div class="brand">Mind the Map <small>The Inner Underground</small></div>
+    <nav>
+      <a href="#map-section">Map</a>
+      <a href="#planner">Journey planner</a>
+      <a href="#lines">Lines</a>
+      <a href="#poster">Get the poster</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <h1>Every feeling is a stop.<br><span>None of them is the end of the line.</span></h1>
+    <p>Anxiety, grey days, exam pressure, an hour stuck on the ring road, a toddler flat out on the supermarket floor. They feel like separate problems. On this map they are stations on one network, with interchanges between them and trains that keep moving. Tap any station to see what it feels like and the way through, or plan a journey from where you are to where you would like to be.</p>
+  </div>
+
+  <div class="wrap mapsection" id="map-section">
+    <div class="mapwrap">
+      <div class="map-card">
+        <div class="map-tools">
+          <button type="button" class="wide" id="clearBtn" hidden>Show all lines</button>
+          <button type="button" id="zoomOut" aria-label="Zoom out">−</button>
+          <button type="button" id="zoomIn" aria-label="Zoom in">+</button>
+        </div>
+        <div class="map-scroll" id="mapScroll">
+          <svg id="map" viewBox="0 0 1600 1100" role="img" aria-labelledby="mapTitle mapDesc">
+            <title id="mapTitle">Mind the Map: The Inner Underground</title>
+            <desc id="mapDesc">An underground style map where each line is an area of life, such as anxiety, low mood, pressure, traffic, relationships, family and escape, and each station is a feeling. All lines connect to the orange Growth Overground.</desc>
+          </svg>
+        </div>
+      </div>
+      <aside class="panel" id="panel" aria-live="polite"></aside>
+    </div>
+  </div>
+
+  <section class="block" id="planner">
+    <div class="wrap">
+      <h2>Journey planner</h2>
+      <p class="lede">Pick where you are today and where you would like to end up. The planner finds the route with the fewest stops and changes, and tells you what each station has to teach on the way.</p>
+      <div class="planner">
+        <form id="planForm">
+          <div>
+            <label for="fromSel">I am at</label>
+            <select id="fromSel"></select>
+          </div>
+          <div>
+            <label for="toSel">I want to get to</label>
+            <select id="toSel"></select>
+          </div>
+          <button class="btn" type="submit">Plan my journey</button>
+        </form>
+        <div class="presets" id="presets"><span>Popular journeys:</span></div>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="lines">
+    <div class="wrap">
+      <h2>The lines</h2>
+      <p class="lede">Eight lines, one network. Every coloured line starts somewhere hard and ends somewhere better, and every one of them meets the orange Growth Overground on the way.</p>
+      <div class="lines-grid" id="linesGrid"></div>
+    </div>
+  </section>
+
+  <section class="block" id="poster">
+    <div class="wrap">
+      <div class="capture">
+        <div>
+          <h2>Take the map home</h2>
+          <p>Get the full size poster file, ready to print at A2 or A1. Made for classrooms, staffrooms, therapy rooms, student halls and the back of the bathroom door.</p>
+          <p>We will also send you the occasional "next stop": one short, practical note about a single station. Nothing else.</p>
+        </div>
+        <div>
+          <form id="leadForm" novalidate>
+            <label class="sr-only" for="leadName">First name</label>
+            <input type="text" id="leadName" name="name" placeholder="First name" autocomplete="given-name" maxlength="80">
+            <label class="sr-only" for="leadEmail">Email</label>
+            <input type="email" id="leadEmail" name="email" placeholder="you@example.com" autocomplete="email" required maxlength="200">
+            <button class="btn orange" type="submit" id="leadBtn">Send me the poster</button>
+            <div class="small">No spam. Unsubscribe whenever you like.</div>
+            <div class="msg" id="leadMsg" role="status"></div>
+          </form>
+          <div class="unlocked" id="unlocked" hidden>
+            <p><strong>You are on the list. Here is your poster.</strong></p>
+            <button class="btn orange" type="button" id="dlSvg">Download poster (SVG, any size)</button>
+            <button class="btn ghost" type="button" id="printBtn" style="color:#fff;box-shadow:inset 0 0 0 2px #fff">Print or save as PDF</button>
+          </div>
+        </div>
+        <div class="stripe"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="crisis"><strong>If you are in crisis right now</strong>, please talk to someone today. In the UK and Ireland call Samaritans free on <strong>116 123</strong>, day or night, or text <strong>SHOUT</strong> to <strong>85258</strong>. If you are in danger, call <strong>999</strong>. Outside the UK, call your local emergency number.</div>
+    <p>Mind the Map is a reflection tool. It is not medical advice and it does not replace a GP, therapist or counsellor. If any station on this map feels like home for more than a couple of weeks, that is a good reason to book an appointment.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+'use strict';
+
+/* =====================================================================
+   NETWORK DATA
+   Coordinates sit on a 1600 x 1100 canvas. Every segment between two
+   consecutive stops is horizontal, vertical or 45 degrees, like the
+   real thing. `l` is where the label sits relative to the station.
+   ===================================================================== */
+
+const LINES = {
+  worry: {
+    tag: 'anxiety', name: 'Worry Line', topic: 'Anxiety', color: '#F5C400', text: '#1b1b1a',
+    about: 'The fastest trains on the network, mostly heading for places that do not exist. Runs all night.',
+    stops: ['whatif', 'racing', 'tightchest', 'doomscroll', 'sleepless', 'overwhelm', 'nameit', 'talk', 'grounding', 'breathe', 'calm']
+  },
+  low: {
+    tag: 'low mood', name: 'Low Line', topic: 'Depression and low mood', color: '#1C3F94',
+    about: 'The deepest line on the network. Trains are slow and the lights flicker, but they are still running, and every one of them is heading for First Light.',
+    stops: ['heavymornings', 'greydays', 'numb', 'sleepless', 'runningempty', 'isolation', 'guilt', 'rockbottom', 'talk', 'smallsteps', 'boundaries', 'selfcompassion', 'firstlight']
+  },
+  pressure: {
+    tag: 'exams and work', name: 'Pressure Line', topic: 'Exams, study and work', color: '#DC241F',
+    about: 'School, university and the office. A rush hour line: packed, hot, and convinced everyone else got a seat.',
+    stops: ['deadline', 'examhall', 'procrastination', 'allnighter', 'imposter', 'runningempty', 'overwhelm', 'burnout', 'boundaries', 'rest', 'enough']
+  },
+  gridlock: {
+    tag: 'traffic and waiting', name: 'Gridlock Line', topic: 'Traffic, commuting and waiting', color: '#8D969E', text: '#1b1b1a',
+    about: 'Every jam, queue and red light on the network. Slow and stop start, and excellent practice for everything else.',
+    stops: ['trafficjam', 'hornlane', 'roadrage', 'argument', 'clenchedjaw', 'runninglate', 'perspective', 'lettinggo', 'openroad']
+  },
+  heart: {
+    tag: 'relationships', name: 'Heart Line', topic: 'Relationships', color: '#E0699A',
+    about: 'Love, friendship, loss and longing. The line that runs through everyone\'s map sooner or later.',
+    stops: ['loneliness', 'argument', 'jealousy', 'heartbreak', 'isolation', 'overwhelm', 'honesttalk', [980, 320], 'beingseen', 'forgiveness', 'connection']
+  },
+  family: {
+    tag: 'parenting', name: 'Family Line', topic: 'Children and parenting', color: '#00843D',
+    about: 'The most rewarding line on the network. Also the one with the fewest seats and the most raisins on the floor.',
+    stops: ['tantrum', 'schoolrun', 'runninglate', 'nevertime', 'guilt', 'overwhelm', 'touchedout', [760, 300], [820, 240], 'village', 'patience', 'littlejoys']
+  },
+  escape: {
+    tag: 'needing out', name: 'Escape Line', topic: 'When you need a way out', color: '#7B3F98',
+    about: 'For when everything is too much. The early stops numb you. Stay on and the later ones fill you back up.',
+    stops: ['getout', 'procrastination', 'avoidance', 'doomscroll', 'numb', [690, 150], 'longwalks', 'makingthings', 'stillness', 'wonder']
+  },
+  growth: {
+    tag: 'healing', name: 'Growth Overground', topic: 'Healing, from anywhere', color: '#EE7C0E', overground: true,
+    about: 'Connects with every line on the network. You can board it from wherever you are, and it runs in both directions.',
+    stops: ['awareness', 'stillness', 'patience', 'forgiveness', 'selfcompassion', 'acceptance', 'rest', 'courage', 'breathe', 'resilience', 'lettinggo', 'becoming']
+  }
+};
+const LINE_ORDER = ['worry', 'low', 'pressure', 'gridlock', 'heart', 'family', 'escape', 'growth'];
+
+const STATIONS = {
+  /* ---- Worry Line ---- */
+  whatif: { name: 'What If?', x: 120, y: 380, l: 's',
+    feel: 'Two small words that can keep you up all night. Every answer opens three new questions.',
+    gap: 'You cannot think your way out of a what if. Swap it for an even if: even if that happens, what would I do? You usually know the answer.' },
+  racing: { name: 'Racing Thoughts', x: 230, y: 380, l: 's',
+    feel: 'Forty tabs open in your head, and one of them is playing music you cannot find.',
+    gap: 'Get it out of your head and onto paper. Thoughts written down slow to walking pace.' },
+  tightchest: { name: 'Tight Chest', x: 340, y: 380, l: 's',
+    feel: 'Shallow breaths, tight shoulders, a heart that will not slow down.',
+    gap: 'Your body is running a fire drill. It feels awful and it will pass. Long, slow out-breaths tell it the drill is over.' },
+  doomscroll: { name: 'Doom Scroll', x: 460, y: 380, l: 'se',
+    feel: '1am. Your thumb is still moving, and every swipe makes you feel a little worse.',
+    gap: 'The feed is built never to end, so you have to end it. Tonight, try charging your phone in another room.' },
+  sleepless: { name: 'Sleepless', x: 600, y: 380, l: 'ne',
+    feel: '3am, the ceiling, and a full replay of every mistake you have made since school.',
+    gap: 'Nothing looks its real size at 3am. Get up, keep the lights low, read something dull, then try again. Tomorrow does not get decided tonight.' },
+  overwhelm: { name: 'Overwhelm Central', x: 760, y: 540, l: { dx: 18, dy: -13, anchor: 'start' }, big: true,
+    feel: 'The busiest station on the network. Everything arrives at once and every platform is shouting your name.',
+    gap: 'Nearly everyone changes here at some point. You do not have to catch every train. Pick one platform, one next step, and let the rest wait.' },
+  nameit: { name: 'Name It', x: 840, y: 620, l: 'ne',
+    feel: 'Saying the feeling out loud. I am anxious. I am scared. I am at the end of my rope.',
+    gap: 'Putting a feeling into words turns the volume down. Psychologists call it affect labelling. Your nan called it getting it off your chest.' },
+  talk: { name: 'Talk to Someone', x: 920, y: 700, l: 'se',
+    feel: 'Telling a friend, your GP, a counsellor or a helpline the thing you swore you could handle alone.',
+    gap: 'Shared weight is lighter. This is the interchange most people walk straight past, and the one that changes the most journeys.' },
+  grounding: { name: 'Grounding', x: 1060, y: 700, l: 'n',
+    feel: 'Five things you can see. Four you can touch. Three you can hear. Two you can smell. One you can taste.',
+    gap: 'Anxiety lives in the future. Your senses only work in the present, so use them to climb back into it.' },
+  breathe: { name: 'Breathe', x: 1220, y: 700, l: 'ne',
+    feel: 'In for four. Hold for four. Out for six.',
+    gap: 'Breath is the one part of your nervous system you can steer by hand. Make the out-breath longer than the in-breath and the brakes come on.' },
+  calm: { name: 'Calm', x: 1380, y: 700, l: 'e',
+    feel: 'Worry still turns up sometimes. It just does not get to drive any more.',
+    gap: 'Calm is a skill you build with practice. Every time you ride this line to the end, the trip gets a little shorter.' },
+
+  /* ---- Low Line ---- */
+  heavymornings: { name: 'Heavy Mornings', x: 600, y: 80, l: 'w',
+    feel: 'The alarm goes off and your body feels like wet sand.',
+    gap: 'Forget the whole day. Feet on the floor is the only job right now. Then the kettle. Then the next small thing.' },
+  greydays: { name: 'Grey Days', x: 600, y: 160, l: 'w',
+    feel: 'Colours fade. Food tastes of cardboard. Things you used to love feel like paperwork.',
+    gap: 'Grey days are a symptom, and they do not get to write the verdict on your life. Keep doing small things you used to enjoy, even when they feel empty. Feeling tends to follow action.' },
+  numb: { name: 'Numb', x: 600, y: 240, l: 'e',
+    feel: 'Not sad, not happy. Just flat grey static where your feelings used to be.',
+    gap: 'Numbness is your mind pulling the emergency brake to protect you. Feeling comes back slowly, usually through small doors first: a song, a smell, sun on your face.' },
+  runningempty: { name: 'Running on Empty', x: 600, y: 540, l: 'nw',
+    feel: 'Still turning up. Still smiling in meetings. Nothing left in the tank.',
+    gap: 'You cannot study, work or parent on fumes. Refuelling is part of the job, so put it in the diary like everything else.' },
+  isolation: { name: 'Isolation', x: 680, y: 620, l: 'w',
+    feel: 'You cancel the plans, then feel hurt that nobody calls.',
+    gap: 'Low mood tells you that you are a burden. It is lying. Send one message today. "Thinking of you" counts.' },
+  guilt: { name: 'Guilt', x: 760, y: 700, l: 'e',
+    feel: 'Every bedtime story you rushed, every snapped word, every "not now, darling".',
+    gap: 'Guilt is proof you care. Let it point you towards one repair, then put it down. Children need parents who come back and make things right far more than they need perfect ones.' },
+  rockbottom: { name: 'Rock Bottom', x: 840, y: 780, l: 's', crisis: true,
+    feel: 'The lowest point on the network. From here it feels impossible that anything could get better.',
+    gap: 'Look at the map: from Rock Bottom the line only goes up. Nobody is meant to make this climb alone.' },
+  smallsteps: { name: 'Small Steps', x: 1000, y: 620, l: 'se',
+    feel: 'A shower. A walk to the shop. One email answered.',
+    gap: 'Small wins are bigger than they look. Each one proves to your brain that doing things still works.' },
+  boundaries: { name: 'Boundaries', x: 1080, y: 540, l: 'se',
+    feel: 'Saying no without writing a three paragraph apology.',
+    gap: 'Every yes to something is a no to something else. Make sure you are not always the thing getting the no.' },
+  selfcompassion: { name: 'Self-Compassion', x: 1220, y: 400, l: 'ne',
+    feel: 'Talking to yourself the way you would talk to a friend having a rough week.',
+    gap: 'Being harsh with yourself rarely gets you moving. Kindness does, and it lasts longer.' },
+  firstlight: { name: 'First Light', x: 1380, y: 400, l: 'e',
+    feel: 'The morning you notice the birds again.',
+    gap: 'Recovery rarely runs in a straight line. First light still comes, and it keeps coming back after the cloudy days.' },
+
+  /* ---- Pressure Line ---- */
+  deadline: { name: 'Deadline', x: 120, y: 540, l: 'n',
+    feel: 'The date on the calendar that has been quietly growing teeth.',
+    gap: 'Break the task down until the first step is almost embarrassingly small. Then take that step.' },
+  examhall: { name: 'Exam Hall', x: 210, y: 540, l: 'n',
+    feel: 'Rows of desks, a loud clock and a mind that has gone perfectly blank.',
+    gap: 'The knowledge is still in there; stress has just locked the door. Breathe out slowly, start with a question you can answer, and the door starts to open.' },
+  procrastination: { name: 'Procrastination', x: 300, y: 540, l: 'se',
+    feel: 'The essay is due tomorrow and you have just alphabetised the spice rack.',
+    gap: 'Procrastination is usually fear in a clever disguise. Ask what you are scared of, then set a timer for ten minutes. Just ten.' },
+  allnighter: { name: 'All-Nighter', x: 400, y: 540, l: 'n',
+    feel: 'Coffee, panic and a highlighter at 4am.',
+    gap: 'Sleep is when your brain saves what you learned. A full night beats three extra hours of panic revision every time.' },
+  imposter: { name: 'Imposter Syndrome', x: 500, y: 540, l: 's',
+    feel: 'Everyone here knows what they are doing. Any minute now they will find out you do not.',
+    gap: 'Most of the room feels exactly the same way. Feeling out of your depth is often a sign you are growing into something bigger.' },
+  burnout: { name: 'Burnout', x: 920, y: 540, l: 's',
+    feel: 'Beyond tired. Hollow. You have stopped caring about things that used to matter.',
+    gap: 'A weekend off will not fix burnout. Changing the load will. Something has to come off the pile, and you are allowed to choose what.' },
+  rest: { name: 'Rest', x: 1220, y: 540, l: 'ne',
+    feel: 'Rest you do not have to earn, schedule to the minute or feel guilty about.',
+    gap: 'Rest is part of the work. It is how you finish, so stop waiting until you have finished to take it.' },
+  enough: { name: 'Enough', x: 1380, y: 540, l: 'e',
+    feel: 'Good enough marks. Good enough work. A good enough day.',
+    gap: 'The job, the course and the inbox will never tell you when it is enough. You have to choose it yourself.' },
+
+  /* ---- Gridlock Line ---- */
+  trafficjam: { name: 'Traffic Jam', x: 120, y: 860, l: 's',
+    feel: 'Brake lights to the horizon, and the satnav keeps adding minutes.',
+    gap: 'You cannot move the traffic. You can choose what happens inside the car: a podcast, a call to your mum, or five minutes of simply sitting.' },
+  hornlane: { name: 'Horn Lane', x: 230, y: 860, l: 's',
+    feel: 'Everyone else on the road is an idiot and you are the last competent driver on Earth.',
+    gap: 'Traffic anger is usually anger about something else that found a handy target. Ask what it is really about.' },
+  roadrage: { name: 'Road Rage', x: 340, y: 860, l: 's',
+    feel: 'White knuckles on the wheel, shouting at someone who cannot hear you.',
+    gap: 'The chemical rush of anger peaks and fades in about ninety seconds if you stop feeding it. Count it out.' },
+  argument: { name: 'Argument', x: 440, y: 860, l: 'nw',
+    feel: 'Two people, one car, one wrong turn, and both of you are right.',
+    gap: 'Most arguments are two tired people asking to be understood. Lower your voice first. It works more often than winning.' },
+  clenchedjaw: { name: 'Clenched Jaw', x: 600, y: 860, l: 's',
+    feel: 'You did not even notice you were doing it.',
+    gap: 'Drop your shoulders. Unclench your jaw. Loosen your grip. Your body has been carrying the traffic for you.' },
+  runninglate: { name: 'Running Late', x: 760, y: 860, l: 'se',
+    feel: 'Shoes on the wrong feet, a missing book bag, and the 8:15 already gone.',
+    gap: 'Late is a problem with a fix. Send the text and arrive calm. Ten minutes late and calm beats on time and furious.' },
+  perspective: { name: 'Perspective', x: 980, y: 860, l: 's',
+    feel: 'Will this jam matter in a year? In a week? By dinner?',
+    gap: 'Zoom out. Most stuck moments shrink once you look at the whole map.' },
+  lettinggo: { name: 'Letting Go', x: 1220, y: 860, l: 'ne',
+    feel: 'Releasing what you cannot control, one red light at a time.',
+    gap: 'Letting go means putting your energy where it can actually move something. Giving up is a different station entirely.' },
+  openroad: { name: 'Open Road', x: 1380, y: 860, l: 'e',
+    feel: 'The traffic clears, the windows go down and the right song comes on.',
+    gap: 'It always clears in the end. The trick is to arrive still feeling like yourself.' },
+
+  /* ---- Heart Line ---- */
+  loneliness: { name: 'Loneliness', x: 300, y: 1000, l: 's',
+    feel: 'Surrounded by people, or by nobody at all, and still feeling unseen.',
+    gap: 'Loneliness is a hunger signal, as natural as thirst. It is telling you to reach towards people. It says nothing about your worth.' },
+  jealousy: { name: 'Jealousy', x: 520, y: 780, l: 'se',
+    feel: 'Scrolling through someone else\'s life and feeling yours shrink.',
+    gap: 'Jealousy is a map of what you want. Read it, then stop comparing your behind the scenes with their highlight reel.' },
+  heartbreak: { name: 'Heartbreak', x: 600, y: 700, l: 'se',
+    feel: 'The real, physical ache of a love that ended or changed shape.',
+    gap: 'It hurts this much because you loved this much. That capacity is still yours, and it will find somewhere to go again.' },
+  honesttalk: { name: 'Honest Talk', x: 880, y: 420, l: 'se',
+    feel: 'Saying the true thing, gently, while your voice shakes.',
+    gap: 'Relationships rarely break from conflict. They break from the conversations that never happen.' },
+  beingseen: { name: 'Being Seen', x: 1090, y: 320, l: 'n',
+    feel: 'Letting someone see the messy, uncertain, real you.',
+    gap: 'Vulnerability is the ticket price for connection. There is no cheaper fare and no back door.' },
+  forgiveness: { name: 'Forgiveness', x: 1220, y: 320, l: 'ne',
+    feel: 'Putting down a bag you have carried for years, including the one with your own name on it.',
+    gap: 'Forgiving does not mean it was okay. It means it no longer gets to drive your life.' },
+  connection: { name: 'Connection', x: 1380, y: 320, l: 'e',
+    feel: 'Being known, and loved anyway.',
+    gap: 'This is where most of the other lines were heading all along.' },
+
+  /* ---- Family Line ---- */
+  tantrum: { name: 'Tantrum Terrace', x: 760, y: 1050, l: 'e',
+    feel: 'Screaming in the supermarket. Theirs first, then very nearly yours.',
+    gap: 'A meltdown is a small nervous system overloaded. It says nothing about your parenting. Stay calm and close: you are their brakes until they grow their own.' },
+  schoolrun: { name: 'School Run', x: 760, y: 955, l: 'e',
+    feel: 'Teeth, shoes, lunchbox, permission slip. Where is your other shoe?',
+    gap: 'Mornings go better with a plan made the night before. Prepared beats perfect.' },
+  nevertime: { name: 'Never Enough Time', x: 760, y: 780, l: 'w',
+    feel: 'Work wants you. The kids want you. You want a hot cup of tea.',
+    gap: 'Children remember presence more than hours. Ten minutes on the floor with your phone away fills them up more than a distracted afternoon.' },
+  touchedout: { name: 'Touched Out', x: 760, y: 400, l: 'e',
+    feel: 'Someone has been climbing on you since 6am and you need one hour where nobody touches you.',
+    gap: 'Needing space is part of loving people well. Ask for a tap out, take it, and come back fuller.' },
+  village: { name: 'It Takes a Village', x: 960, y: 240, l: 'n',
+    feel: 'Grandparents, friends, neighbours, the parent at the school gate who gets it.',
+    gap: 'Nobody was ever meant to raise children alone. Asking for help is how humans have always done this.' },
+  patience: { name: 'Patience', x: 1220, y: 240, l: 'ne',
+    feel: 'Counting to ten. Then to twenty. Then laughing about it later.',
+    gap: 'Patience means coming back to calm, again and again, a little faster each time. Endless calm was never the goal.' },
+  littlejoys: { name: 'Little Joys', x: 1380, y: 240, l: 'e',
+    feel: 'Sticky kisses, terrible jokes and the bedtime question you did not see coming.',
+    gap: 'The days are long but the years are short. The small moments turn out to be the big ones.' },
+
+  /* ---- Escape Line ---- */
+  getout: { name: 'Get Me Out of Here', x: 180, y: 660, l: 'w',
+    feel: 'The urge to be anywhere but here. Your chest says run; your calendar says stay.',
+    gap: 'Wanting to escape is a signal that something needs to change. Listen to it, then choose a better exit than the first one you see.' },
+  avoidance: { name: 'Avoidance', x: 380, y: 460, l: 'se',
+    feel: 'Unopened letters. Unanswered messages. The thing you are not thinking about fills the whole room.',
+    gap: 'Avoidance buys calm today and charges interest tomorrow. Pick the smallest thing you have been avoiding and touch it once.' },
+  longwalks: { name: 'Long Walks', x: 820, y: 150, l: 'n',
+    feel: 'Your feet are moving and, for the first time today, your head is quiet.',
+    gap: 'The best escapes take you towards something. Walking is the oldest therapy we have, and it is free.' },
+  makingthings: { name: 'Making Things', x: 980, y: 150, l: 'n',
+    feel: 'Clay, cake, code, a chord progression. Hours pass and you never noticed.',
+    gap: 'Making something puts you in charge of a small world. That feeling of control leaks back into the big one.' },
+  stillness: { name: 'Stillness', x: 1220, y: 150, l: 'ne',
+    feel: 'Sitting quietly with nothing to escape from at all.',
+    gap: 'Ten minutes a day of doing nothing on purpose. It is harder than it sounds, and it gets easier every time.' },
+  wonder: { name: 'Wonder', x: 1380, y: 150, l: 'e',
+    feel: 'Stars, the sea, a child\'s question, a cathedral ceiling. You feel small in the best way.',
+    gap: 'Wonder shrinks problems back to their real size. Go looking for it on purpose.' },
+
+  /* ---- Growth Overground ---- */
+  awareness: { name: 'Awareness', x: 1220, y: 70, l: 'e',
+    feel: 'Noticing where you are on the map.',
+    gap: 'You cannot change trains until you know which station you are at. Every recovery starts here.' },
+  acceptance: { name: 'Acceptance', x: 1220, y: 470, l: 'e',
+    feel: 'This is how it is right now. Not forever. Right now.',
+    gap: 'Acceptance is the solid ground you push off from. Fighting reality only keeps you on the platform.' },
+  courage: { name: 'Courage', x: 1220, y: 620, l: 'e',
+    feel: 'Doing the thing while you are still scared.',
+    gap: 'Fear does not have to leave before you move. Courage is deciding something else matters more.' },
+  resilience: { name: 'Resilience', x: 1220, y: 775, l: 'e',
+    feel: 'Bending without breaking. Falling, then getting up a little faster than last time.',
+    gap: 'Resilience is built at the hard stations. Every line you have ridden has added to it.' },
+  becoming: { name: 'Becoming', x: 1220, y: 970, l: 'e',
+    feel: 'Who you are after travelling through all of it.',
+    gap: 'Nobody arrives here by avoiding the hard stations. You become someone new by going through them.' }
+};
+
+const RIVER = {
+  name: 'River of Tears',
+  feel: 'Sometimes it all comes out at once, in the car, in the shower, in the middle of the biscuit aisle.',
+  gap: 'Crying is the body\'s pressure valve. Every line on this map crosses the river at some point. That is normal, and the trains always reach the other side.'
+};
+
+const PRESETS = [
+  ['3am worry', 'sleepless', 'calm'],
+  ['Exam stress', 'examhall', 'enough'],
+  ['Rock bottom', 'rockbottom', 'firstlight'],
+  ['Stuck in traffic', 'trafficjam', 'openroad'],
+  ['Toddler meltdown', 'tantrum', 'littlejoys'],
+  ['Heartbreak', 'heartbreak', 'connection'],
+  ['Doom scrolling', 'doomscroll', 'wonder'],
+  ['Overwhelmed', 'overwhelm', 'becoming']
+];
+
+/* ---------- derive membership ---------- */
+for (const id of LINE_ORDER) {
+  const line = LINES[id];
+  line.id = id;
+  line.points = line.stops.map(s => typeof s === 'string' ? [STATIONS[s].x, STATIONS[s].y] : s);
+  line.isStation = line.stops.map(s => typeof s === 'string');
+  line.stations = line.stops.filter(s => typeof s === 'string');
+  for (const sid of line.stations) {
+    const st = STATIONS[sid];
+    if (!st) throw new Error('Unknown station ' + sid);
+    (st.lines = st.lines || []).push(id);
+  }
+}
+for (const [id, s] of Object.entries(STATIONS)) s.id = id;
+
+/* =====================================================================
+   DRAWING
+   ===================================================================== */
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map');
+const FONT = 'Cabin, \'Gill Sans\', \'Gill Sans MT\', Calibri, sans-serif';
+const BG = '#FFFDF8';
+const INK = '#1b1b1a';
+const LINE_W = 9;
+const DIRS = { n: [0, -1], s: [0, 1], e: [1, 0], w: [-1, 0], ne: [1, -1], nw: [-1, -1], se: [1, 1], sw: [-1, 1] };
+
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function text(parent, x, y, str, attrs) {
+  const t = el('text', Object.assign({ x, y, 'font-family': FONT, fill: INK }, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+
+/* Expand any non-octilinear hop into diagonal + straight, then round
+   the corners at waypoints. Corners at stations stay crisp. */
+function linePath(points, isStation) {
+  const v = [], st = [];
+  points.forEach((p, i) => {
+    if (i > 0) {
+      const [ax, ay] = points[i - 1], [bx, by] = p;
+      const dx = bx - ax, dy = by - ay;
+      if (dx && dy && Math.abs(dx) !== Math.abs(dy)) {
+        const d = Math.min(Math.abs(dx), Math.abs(dy));
+        v.push([ax + Math.sign(dx) * d, ay + Math.sign(dy) * d]); st.push(false);
+      }
+    }
+    v.push(p); st.push(isStation ? isStation[i] : false);
+  });
+  let d = `M${v[0][0]} ${v[0][1]}`;
+  for (let i = 1; i < v.length - 1; i++) {
+    const [px, py] = v[i - 1], [cx, cy] = v[i], [nx, ny] = v[i + 1];
+    const l1 = Math.hypot(cx - px, cy - py), l2 = Math.hypot(nx - cx, ny - cy);
+    const u1 = [(cx - px) / l1, (cy - py) / l1], u2 = [(nx - cx) / l2, (ny - cy) / l2];
+    const cross = u1[0] * u2[1] - u1[1] * u2[0];
+    if (Math.abs(cross) < 1e-6 || st[i]) { d += ` L${cx} ${cy}`; continue; }
+    const r = Math.min(30, l1 / 2, l2 / 2);
+    d += ` L${(cx - u1[0] * r).toFixed(1)} ${(cy - u1[1] * r).toFixed(1)} Q${cx} ${cy} ${(cx + u2[0] * r).toFixed(1)} ${(cy + u2[1] * r).toFixed(1)}`;
+  }
+  const last = v[v.length - 1];
+  return d + ` L${last[0]} ${last[1]}`;
+}
+
+function strokeLine(parent, line, d) {
+  el('path', { d, fill: 'none', stroke: BG, 'stroke-width': LINE_W + 7, 'stroke-linejoin': 'round' }, parent);
+  el('path', { d, fill: 'none', stroke: line.color, 'stroke-width': LINE_W, 'stroke-linejoin': 'round' }, parent);
+  if (line.overground) el('path', { d, fill: 'none', stroke: '#fff', 'stroke-width': 2.6, 'stroke-linejoin': 'round' }, parent);
+}
+
+function dirAt(line, sid) {
+  const k = line.stops.indexOf(sid), P = line.points;
+  const a = P[Math.max(0, k - 1)], b = P[Math.min(P.length - 1, k + 1)];
+  const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1;
+  return [dx / L, dy / L];
+}
+
+function drawTick(parent, sid, lid) {
+  const s = STATIONS[sid], line = LINES[lid];
+  const [ux, uy] = dirAt(line, sid);
+  let px = -uy, py = ux;
+  const ld = typeof s.l === 'string' ? DIRS[s.l] : [s.l.dx, s.l.dy];
+  if (px * ld[0] + py * ld[1] < 0) { px = -px; py = -py; }
+  const k = line.stops.indexOf(sid);
+  const terminus = k === 0 || k === line.stops.length - 1;
+  const a = terminus ? -11 : 0, b = terminus ? 11 : 10.5;
+  el('line', { x1: s.x + px * a, y1: s.y + py * a, x2: s.x + px * b, y2: s.y + py * b, stroke: line.color, 'stroke-width': 6 }, parent);
+}
+
+function labelAttrs(s) {
+  if (typeof s.l === 'object') return { x: s.x + s.l.dx, y: s.y + s.l.dy, anchor: s.l.anchor };
+  const [dx, dy] = DIRS[s.l];
+  const d = s.lines.length > 1 ? 13 : 15;
+  const n = dx && dy ? d * 0.75 : d;
+  const base = dy < 0 ? 0 : dy > 0 ? 10 : 4.5;
+  return { x: s.x + dx * n, y: s.y + dy * n + base, anchor: dx > 0 ? 'start' : dx < 0 ? 'end' : 'middle' };
+}
+
+const halo = { stroke: BG, 'stroke-width': 4.5, 'stroke-linejoin': 'round', 'paint-order': 'stroke' };
+
+/* layers */
+const L = {};
+['bg', 'decor', 'river', 'lines', 'route', 'stations', 'marker'].forEach(n => L[n] = el('g', { id: n + 'Layer' }, svg));
+
+el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: BG }, L.bg);
+
+/* river */
+(function drawRiver() {
+  const g = el('g', { class: 'river', role: 'button', tabindex: 0, 'aria-label': RIVER.name }, L.river);
+  const d = 'M-30 760 L440 760 Q460 760 474 774 L506 806 Q520 820 540 820 L1630 820';
+  el('path', { d, fill: 'none', stroke: '#D6ECF5', 'stroke-width': 30, 'stroke-linecap': 'round' }, g);
+  text(g, 38, 765.5, 'River of Tears', { 'font-size': 13, 'font-style': 'italic', fill: '#4E8FB0', 'font-weight': 500, 'letter-spacing': .6 });
+  text(g, 1440, 825.5, 'River of Tears', { 'font-size': 13, 'font-style': 'italic', fill: '#4E8FB0', 'font-weight': 500, 'letter-spacing': .6 });
+  g.addEventListener('click', () => { if (!dragMoved()) showRiver(); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showRiver(); } });
+})();
+
+/* lines */
+const lineGroups = {};
+for (const id of LINE_ORDER) {
+  const line = LINES[id];
+  const g = el('g', { class: 'ln', 'data-line': id }, L.lines);
+  lineGroups[id] = g;
+  strokeLine(g, line, linePath(line.points, line.isStation));
+  for (const sid of line.stations) if (STATIONS[sid].lines.length === 1) drawTick(g, sid, id);
+}
+
+/* stations */
+const stationEls = {};
+for (const s of Object.values(STATIONS)) {
+  const g = el('g', { class: 'stn', 'data-id': s.id, tabindex: 0, role: 'button', 'aria-label': s.name }, L.stations);
+  stationEls[s.id] = g;
+  const ix = s.lines.length > 1;
+  el('circle', { class: 'hit', cx: s.x, cy: s.y, r: ix ? 15 : 13, fill: 'transparent' }, g);
+  if (ix) {
+    const r = s.big ? 12.5 : 8.5;
+    el('circle', { cx: s.x, cy: s.y, r, fill: '#fff', stroke: INK, 'stroke-width': s.big ? 4 : 3.2 }, g);
+  }
+  const la = labelAttrs(s);
+  const t = text(g, la.x, la.y, s.name, Object.assign({
+    'text-anchor': la.anchor,
+    'font-size': s.big ? 16 : 13.5,
+    'font-weight': s.big ? 700 : 500,
+  }, halo));
+  if (s.crisis) t.setAttribute('font-weight', 700);
+  g.addEventListener('click', () => { if (!dragMoved()) selectStation(s.id); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectStation(s.id); } });
+}
+
+/* ---------- decoration: title, key, legend, notes ---------- */
+(function drawDecor() {
+  const D = L.decor;
+  // emblem: an open ring (the gap you mind) crossed by a bar
+  const em = el('g', { transform: 'translate(78 92)' }, D);
+  el('circle', { cx: 0, cy: 0, r: 33, fill: 'none', stroke: '#EE7C0E', 'stroke-width': 14, 'stroke-dasharray': '178 30', transform: 'rotate(-62)' }, em);
+  el('rect', { x: -44, y: -11, width: 88, height: 22, rx: 2, fill: '#1C3F94' }, em);
+  text(em, 0, 5, 'MIND', { 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 700, fill: '#fff', 'letter-spacing': 3 });
+
+  text(D, 132, 92, 'Mind the Map', { 'font-size': 44, 'font-weight': 700, fill: '#1C3F94', 'letter-spacing': -.5 });
+  text(D, 134, 120, 'THE INNER UNDERGROUND', { 'font-size': 14, 'font-weight': 600, fill: '#C25F00', 'letter-spacing': 3.2 });
+  text(D, 44, 182, 'Every feeling is a stop.', { 'font-size': 22, 'font-weight': 600 });
+  text(D, 44, 210, 'None of them is the end of the line.', { 'font-size': 22, 'font-weight': 400 });
+  const blurb = [
+    'Anxiety, low mood, pressure, traffic, love and family',
+    'all run on the same network. Change at the white',
+    'circles. The orange Overground meets every line, so',
+    'you can start growing from wherever you are today.'
+  ];
+  blurb.forEach((line, i) => text(D, 44, 250 + i * 19, line, { 'font-size': 14, fill: '#5d5a54' }));
+
+  // key, bottom left
+  const k = el('g', { transform: 'translate(28 902)' }, D);
+  el('rect', { x: 0, y: 0, width: 230, height: 172, rx: 10, fill: '#fff', stroke: '#e3ddd0' }, k);
+  el('rect', { x: 0, y: 0, width: 230, height: 34, rx: 10, fill: INK }, k);
+  el('rect', { x: 0, y: 24, width: 230, height: 10, fill: INK }, k);
+  text(k, 115, 23, 'MIND THE GAP', { 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 700, fill: '#F5C400', 'letter-spacing': 3 });
+  text(k, 115, 53, 'between how you feel and who you are', { 'text-anchor': 'middle', 'font-size': 12, 'font-style': 'italic', fill: '#5d5a54' });
+  // station tick
+  el('line', { x1: 16, y1: 80, x2: 50, y2: 80, stroke: '#1C3F94', 'stroke-width': 9 }, k);
+  el('line', { x1: 33, y1: 80, x2: 33, y2: 69, stroke: '#1C3F94', 'stroke-width': 6 }, k);
+  text(k, 62, 84.5, 'A feeling (station)', { 'font-size': 13 });
+  // interchange
+  el('line', { x1: 16, y1: 110, x2: 50, y2: 110, stroke: '#DC241F', 'stroke-width': 9 }, k);
+  el('circle', { cx: 33, cy: 110, r: 8.5, fill: '#fff', stroke: INK, 'stroke-width': 3.2 }, k);
+  text(k, 62, 114.5, 'Change lines here', { 'font-size': 13 });
+  // terminus
+  el('line', { x1: 16, y1: 140, x2: 44, y2: 140, stroke: '#00843D', 'stroke-width': 9 }, k);
+  el('line', { x1: 44, y1: 129, x2: 44, y2: 151, stroke: '#00843D', 'stroke-width': 6 }, k);
+  text(k, 62, 144.5, 'End of the line (for now)', { 'font-size': 13 });
+
+  // note by the bottom of the Low Line
+  const n = el('g', { transform: 'translate(905 930)' }, D);
+  text(n, 0, 0, 'Look at the Low Line.', { 'font-size': 15, 'font-weight': 700, fill: '#1C3F94' });
+  text(n, 0, 21, 'From Rock Bottom, the only', { 'font-size': 15, 'font-style': 'italic' });
+  text(n, 0, 41, 'way the track goes is up.', { 'font-size': 15, 'font-style': 'italic' });
+
+  // legend, bottom right
+  const lg = el('g', { transform: 'translate(1340 900)' }, D);
+  text(lg, 0, 0, 'LINES', { 'font-size': 12, 'font-weight': 700, 'letter-spacing': 2.5, fill: '#5d5a54' });
+  LINE_ORDER.forEach((id, i) => {
+    const line = LINES[id];
+    const row = el('g', { class: 'lg', 'data-line': id, transform: `translate(0 ${16 + i * 21})`, role: 'button', tabindex: 0, 'aria-label': 'Show ' + line.name }, lg);
+    el('rect', { x: -4, y: -8, width: 250, height: 20, fill: 'transparent' }, row);
+    el('line', { x1: 0, y1: 2, x2: 30, y2: 2, stroke: line.color, 'stroke-width': 8 }, row);
+    if (line.overground) el('line', { x1: 0, y1: 2, x2: 30, y2: 2, stroke: '#fff', 'stroke-width': 2.4 }, row);
+    text(row, 40, 6.5, line.name, { 'font-size': 13, 'font-weight': 600 });
+    const nameW = line.name.length * 6.9;
+    text(row, 44 + nameW, 6.5, line.tag, { 'font-size': 11.5, fill: '#6f6b63' });
+    row.addEventListener('click', () => focusLine(id));
+    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusLine(id); } });
+  });
+
+  text(D, 800, 1088, 'In crisis? Samaritans 116 123 (UK and ROI, free, 24/7) or your local emergency number.', { 'text-anchor': 'middle', 'font-size': 12, fill: '#8a857b' });
+})();
+
+/* =====================================================================
+   INTERACTION
+   ===================================================================== */
+const panel = document.getElementById('panel');
+const clearBtn = document.getElementById('clearBtn');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+function pill(id, asButton) {
+  const line = LINES[id];
+  const style = `--c:${line.color};--t:${line.text || '#fff'}`;
+  const cls = 'pill' + (line.overground ? ' growth' : '');
+  return asButton
+    ? `<button type="button" class="${cls}" style="${style}" data-line="${id}">${esc(line.name)}</button>`
+    : `<span class="${cls}" style="${style}">${esc(line.name)}</span>`;
+}
+
+function clearFocus() {
+  svg.classList.remove('focus');
+  svg.querySelectorAll('.on').forEach(n => n.classList.remove('on'));
+  L.route.replaceChildren();
+  clearBtn.hidden = true;
+}
+
+function setMarker(sid) {
+  L.marker.replaceChildren();
+  if (!sid) return;
+  const s = STATIONS[sid];
+  el('circle', { class: 'pulse', cx: s.x, cy: s.y, r: 16, fill: 'none', stroke: '#DC241F', 'stroke-width': 3 }, L.marker);
+  el('circle', { cx: s.x, cy: s.y, r: 4.5, fill: '#DC241F', 'pointer-events': 'none' }, L.marker);
+}
+
+function focusLine(id) {
+  clearFocus();
+  setMarker(null);
+  svg.classList.add('focus');
+  lineGroups[id].classList.add('on');
+  for (const sid of LINES[id].stations) stationEls[sid].classList.add('on');
+  clearBtn.hidden = false;
+  showLine(id);
+}
+
+function nextStops(sid) {
+  return STATIONS[sid].lines.map(lid => {
+    const line = LINES[lid], st = line.stations, i = st.indexOf(sid), out = [];
+    if (i < st.length - 1) out.push({ lid, toward: st[st.length - 1], next: st[i + 1] });
+    if (i > 0) out.push({ lid, toward: st[0], next: st[i - 1] });
+    return out;
+  }).flat();
+}
+
+function showIntro() {
+  panel.innerHTML = `
+    <p class="kicker">You are here</p>
+    <h2>Find your station</h2>
+    <p>Tap any station on the map to see what it feels like and the way through it. Tap a line in the key to follow it end to end.</p>
+    <h3>How to read the map</h3>
+    <p>Every coloured line starts somewhere hard and ends somewhere better. The white circles are interchanges, where one feeling leads into another. The orange Growth Overground crosses every line, so you can step onto it from wherever you are.</p>
+    <div class="actions">
+      <button class="btn" type="button" data-go="overwhelm">Start at Overwhelm Central</button>
+      <a class="btn ghost" href="#planner">Plan a journey</a>
+    </div>`;
+}
+
+function showStation(sid) {
+  const s = STATIONS[sid];
+  const dirs = nextStops(sid).map(d => {
+    const line = LINES[d.lid];
+    return `<li style="--c:${line.color}"><span class="swatch"></span><span>${esc(line.name)} towards <b>${esc(STATIONS[d.toward].name)}</b>: next stop <button type="button" class="linkbtn" data-go="${d.next}">${esc(STATIONS[d.next].name)}</button></span></li>`;
+  }).join('');
+  const ix = s.lines.length > 1 ? `<p class="kicker">Interchange · ${s.lines.length} lines</p>` : `<p class="kicker">Station</p>`;
+  panel.innerHTML = `
+    ${ix}
+    <h2>${esc(s.name)}</h2>
+    <div class="pills">${s.lines.map(id => pill(id, true)).join('')}</div>
+    <h3>What it feels like</h3>
+    <p>${esc(s.feel)}</p>
+    <h3>Mind the gap</h3>
+    <p class="gap">${esc(s.gap)}</p>
+    ${s.crisis ? `<p class="help">If you are here right now, please talk to someone today. In the UK and Ireland, Samaritans are free on <strong>116 123</strong>, any time. If you are in danger, call <strong>999</strong>.</p>` : ''}
+    <h3>Trains from here</h3>
+    <ul class="dirs">${dirs}</ul>
+    <div class="actions">
+      <button class="btn" type="button" data-plan-from="${sid}">Plan a journey from here</button>
+    </div>`;
+}
+
+function showLine(id) {
+  const line = LINES[id];
+  const st = line.stations;
+  panel.innerHTML = `
+    <p class="kicker">${esc(line.topic)}</p>
+    <h2>${esc(line.name)}</h2>
+    <p>${esc(line.about)}</p>
+    <h3>Stations, in order</h3>
+    <ul class="dirs">${st.map(sid => `<li style="--c:${line.color}"><span class="swatch"></span><button type="button" class="linkbtn" data-go="${sid}">${esc(STATIONS[sid].name)}</button>${STATIONS[sid].lines.length > 1 ? ' <span style="color:#8a857b;font-size:13px">change here</span>' : ''}</li>`).join('')}</ul>
+    <div class="actions">
+      <button class="btn" type="button" data-plan-pair="${st[0]}|${st[st.length - 1]}">Ride it end to end</button>
+    </div>`;
+}
+
+function showRiver() {
+  clearFocus();
+  setMarker(null);
+  panel.innerHTML = `
+    <p class="kicker">Landmark</p>
+    <h2>${esc(RIVER.name)}</h2>
+    <h3>What it feels like</h3>
+    <p>${esc(RIVER.feel)}</p>
+    <h3>Mind the gap</h3>
+    <p class="gap">${esc(RIVER.gap)}</p>`;
+  if (window.innerWidth <= 1100) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function selectStation(sid, keepRoute) {
+  if (!keepRoute) {
+    clearFocus();
+    svg.classList.add('focus');
+    stationEls[sid].classList.add('on');
+    for (const lid of STATIONS[sid].lines) {
+      lineGroups[lid].classList.add('on');
+      for (const other of LINES[lid].stations) stationEls[other].classList.add('on');
+    }
+    clearBtn.hidden = false;
+  }
+  setMarker(sid);
+  showStation(sid);
+  if (window.innerWidth <= 1100 && !keepRoute) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+panel.addEventListener('click', e => {
+  const go = e.target.closest('[data-go]');
+  if (go) return selectStation(go.dataset.go);
+  const ln = e.target.closest('[data-line]');
+  if (ln) return focusLine(ln.dataset.line);
+  const pf = e.target.closest('[data-plan-from]');
+  if (pf) { fromSel.value = pf.dataset.planFrom; document.getElementById('planner').scrollIntoView({ behavior: 'smooth' }); toSel.focus({ preventScroll: true }); return; }
+  const pp = e.target.closest('[data-plan-pair]');
+  if (pp) { const [a, b] = pp.dataset.planPair.split('|'); runPlan(a, b, true); }
+});
+clearBtn.addEventListener('click', () => { clearFocus(); setMarker(null); showIntro(); });
+
+/* ---------- zoom and drag ---------- */
+const scroller = document.getElementById('mapScroll');
+let zoom = 1;
+function setZoom(z) {
+  const cx = (scroller.scrollLeft + scroller.clientWidth / 2) / scroller.scrollWidth;
+  const cy = (scroller.scrollTop + scroller.clientHeight / 2) / scroller.scrollHeight;
+  zoom = Math.max(1, Math.min(3, z));
+  svg.style.width = zoom === 1 ? '' : (zoom * 100) + '%';
+  svg.style.minWidth = zoom === 1 ? '' : (1050 * zoom) + 'px';
+  scroller.scrollLeft = cx * scroller.scrollWidth - scroller.clientWidth / 2;
+  scroller.scrollTop = cy * scroller.scrollHeight - scroller.clientHeight / 2;
+}
+document.getElementById('zoomIn').addEventListener('click', () => setZoom(zoom + 0.5));
+document.getElementById('zoomOut').addEventListener('click', () => setZoom(zoom - 0.5));
+
+let drag = null;
+function dragMoved() { return drag && drag.moved; }
+scroller.addEventListener('pointerdown', e => {
+  if (e.pointerType !== 'mouse' || e.button !== 0) return;
+  drag = { x: e.clientX, y: e.clientY, sl: scroller.scrollLeft, st: scroller.scrollTop, moved: false };
+});
+window.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if (!drag.moved && Math.abs(dx) + Math.abs(dy) > 5) { drag.moved = true; scroller.classList.add('dragging'); }
+  if (drag.moved) { scroller.scrollLeft = drag.sl - dx; scroller.scrollTop = drag.st - dy; }
+});
+window.addEventListener('pointerup', () => { scroller.classList.remove('dragging'); setTimeout(() => { drag = null; }, 0); });
+
+/* =====================================================================
+   JOURNEY PLANNER
+   Dijkstra over (station, line) states. A stop costs 1, a change costs 3,
+   so the planner prefers staying on a line over hopping about.
+   ===================================================================== */
+function plan(from, to) {
+  if (from === to) return [];
+  const key = (s, l) => s + '|' + l;
+  const dist = new Map(), prev = new Map(), queue = [];
+  for (const l of STATIONS[from].lines) { dist.set(key(from, l), 0); queue.push([0, from, l]); }
+  let end = null;
+  while (queue.length) {
+    queue.sort((a, b) => a[0] - b[0]);
+    const [d, s, l] = queue.shift();
+    const k = key(s, l);
+    if (d > dist.get(k)) continue;
+    if (s === to) { end = k; break; }
+    const st = LINES[l].stations, i = st.indexOf(s), nb = [];
+    if (i > 0) nb.push([st[i - 1], l, 1]);
+    if (i < st.length - 1) nb.push([st[i + 1], l, 1]);
+    for (const l2 of STATIONS[s].lines) if (l2 !== l) nb.push([s, l2, 3]);
+    for (const [s2, l2, c] of nb) {
+      const k2 = key(s2, l2), nd = d + c;
+      if (nd < (dist.has(k2) ? dist.get(k2) : Infinity)) { dist.set(k2, nd); prev.set(k2, k); queue.push([nd, s2, l2]); }
+    }
+  }
+  if (!end) return null;
+  const states = [];
+  for (let k = end; k; k = prev.get(k)) states.unshift(k.split('|'));
+  const legs = [];
+  for (const [s, l] of states) {
+    const last = legs[legs.length - 1];
+    if (last && last.line === l) last.stations.push(s);
+    else legs.push({ line: l, stations: [s] });
+  }
+  return legs.filter(leg => leg.stations.length > 1);
+}
+
+function legPath(leg) {
+  const line = LINES[leg.line];
+  let i = line.stops.indexOf(leg.stations[0]), j = line.stops.indexOf(leg.stations[leg.stations.length - 1]);
+  const lo = Math.min(i, j), hi = Math.max(i, j);
+  return linePath(line.points.slice(lo, hi + 1), line.isStation.slice(lo, hi + 1));
+}
+
+function drawRoute(legs, from) {
+  clearFocus();
+  svg.classList.add('focus');
+  clearBtn.hidden = false;
+  const onRoute = new Set([from]);
+  for (const leg of legs) {
+    const g = el('g', {}, L.route);
+    strokeLine(g, LINES[leg.line], legPath(leg));
+    leg.stations.forEach(sid => {
+      onRoute.add(sid);
+      if (STATIONS[sid].lines.length === 1) drawTick(g, sid, leg.line);
+    });
+  }
+  onRoute.forEach(sid => stationEls[sid].classList.add('on'));
+}
+
+const fromSel = document.getElementById('fromSel');
+const toSel = document.getElementById('toSel');
+const result = document.getElementById('result');
+const sorted = Object.values(STATIONS).sort((a, b) => a.name.localeCompare(b.name));
+const opts = sorted.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
+fromSel.innerHTML = opts; toSel.innerHTML = opts;
+fromSel.value = 'overwhelm'; toSel.value = 'becoming';
+
+const firstSentence = t => (t.match(/^.*?[.!?](\s|$)/) || [t])[0].trim();
+
+function runPlan(from, to, scrollToMap) {
+  fromSel.value = from; toSel.value = to;
+  if (from === to) {
+    result.innerHTML = `<p class="summary">You are already at ${esc(STATIONS[from].name)}. Sometimes the work is staying put for a while.</p>`;
+    selectStation(from);
+    return;
+  }
+  const legs = plan(from, to);
+  if (!legs) { result.innerHTML = '<p class="summary">No route found.</p>'; return; }
+  const stops = legs.reduce((n, l) => n + l.stations.length - 1, 0);
+  const changes = legs.length - 1;
+  let html = `<p class="summary">${esc(STATIONS[from].name)} to ${esc(STATIONS[to].name)}: ${stops} stop${stops === 1 ? '' : 's'}, ${changes === 0 ? 'no changes' : changes + ' change' + (changes === 1 ? '' : 's')}. Journey time varies. Feelings do not run to a timetable.</p><div class="legs">`;
+  legs.forEach((leg, li) => {
+    const line = LINES[leg.line];
+    const st = line.stations;
+    const forward = st.indexOf(leg.stations[1]) > st.indexOf(leg.stations[0]);
+    const toward = forward ? st[st.length - 1] : st[0];
+    if (li > 0) html += `<div class="change">Change at ${esc(STATIONS[leg.stations[0]].name)} for the ${esc(line.name)}</div>`;
+    html += `<div class="leg${line.overground ? ' growth' : ''}" style="--c:${line.color}">
+      <div class="leg-head">${pill(leg.line)} towards ${esc(STATIONS[toward].name)} · ${leg.stations.length - 1} stop${leg.stations.length === 2 ? '' : 's'}</div>
+      <ol>${leg.stations.map((sid, i) => `<li><button type="button" class="linkbtn" data-route-stn="${sid}">${esc(STATIONS[sid].name)}</button>${i === 0 && li === 0 ? ' · start here' : ''}<br>${esc(firstSentence(STATIONS[sid].gap))}</li>`).join('')}</ol>
+    </div>`;
+  });
+  html += `</div><div class="arrive">Arrive at ${esc(STATIONS[to].name)}</div>`;
+  result.innerHTML = html;
+  drawRoute(legs, from);
+  setMarker(from);
+  showStation(from);
+  if (scrollToMap) document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.getElementById('planForm').addEventListener('submit', e => { e.preventDefault(); runPlan(fromSel.value, toSel.value); });
+result.addEventListener('click', e => {
+  const b = e.target.closest('[data-route-stn]');
+  if (b) { setMarker(b.dataset.routeStn); showStation(b.dataset.routeStn); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); }
+});
+const presetsEl = document.getElementById('presets');
+PRESETS.forEach(([label, a, b]) => {
+  const btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'chip'; btn.textContent = label;
+  btn.addEventListener('click', () => runPlan(a, b));
+  presetsEl.appendChild(btn);
+});
+
+/* ---------- line cards ---------- */
+document.getElementById('linesGrid').innerHTML = LINE_ORDER.map(id => {
+  const line = LINES[id], st = line.stations;
+  return `<article class="line-card${line.overground ? ' growth' : ''}" style="--c:${line.color}">
+    <div class="topic">${esc(line.topic)}</div>
+    <h3>${esc(line.name)}</h3>
+    <p>${esc(line.about)}</p>
+    <div class="route"><b>${esc(STATIONS[st[0]].name)}</b> → ${st.slice(1, -1).map(s => esc(STATIONS[s].name)).join(' → ')} → <b>${esc(STATIONS[st[st.length - 1]].name)}</b></div>
+    <div><button class="btn ghost" type="button" data-show-line="${id}">Show on the map</button></div>
+  </article>`;
+}).join('');
+document.getElementById('linesGrid').addEventListener('click', e => {
+  const b = e.target.closest('[data-show-line]');
+  if (b) { focusLine(b.dataset.showLine); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); }
+});
+
+/* ---------- poster capture ---------- */
+const leadForm = document.getElementById('leadForm');
+const leadMsg = document.getElementById('leadMsg');
+const unlocked = document.getElementById('unlocked');
+function unlock() {
+  leadForm.hidden = true; unlocked.hidden = false;
+  try { localStorage.setItem('mtm-unlocked', '1'); } catch (e) { /* storage unavailable */ }
+}
+try { if (localStorage.getItem('mtm-unlocked') === '1') unlock(); } catch (e) { /* storage unavailable */ }
+
+leadForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = document.getElementById('leadEmail').value.trim();
+  const name = document.getElementById('leadName').value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { leadMsg.textContent = 'That email address does not look quite right.'; return; }
+  const btn = document.getElementById('leadBtn');
+  btn.disabled = true; leadMsg.textContent = 'Sending…';
+  try {
+    const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name, source: 'mind-the-map' }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) throw new Error(j.error || 'Something went wrong. Please try again in a minute.');
+    leadMsg.textContent = '';
+    unlock();
+  } catch (err) {
+    leadMsg.textContent = err.message && !/fetch|JSON/i.test(err.message) ? err.message : 'We could not reach the server. Please try again in a minute.';
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+function downloadSVG() {
+  const clone = svg.cloneNode(true);
+  clone.removeAttribute('class');
+  clone.removeAttribute('style');
+  clone.querySelector('#routeLayer').replaceChildren();
+  clone.querySelector('#markerLayer').replaceChildren();
+  clone.querySelectorAll('[tabindex]').forEach(n => n.removeAttribute('tabindex'));
+  clone.setAttribute('xmlns', NS);
+  clone.setAttribute('width', '1600');
+  clone.setAttribute('height', '1100');
+  const style = document.createElementNS(NS, 'style');
+  style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');";
+  clone.insertBefore(style, clone.firstChild);
+  const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mind-the-map-poster.svg';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+document.getElementById('dlSvg').addEventListener('click', downloadSVG);
+document.getElementById('printBtn').addEventListener('click', () => { clearFocus(); setMarker(null); setZoom(1); window.print(); });
+
+/* ---------- start ---------- */
+showIntro();
+if (scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) * 0.4;
+})();
+</script>
+</body>
+</html>
