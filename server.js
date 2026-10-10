@@ -99,6 +99,8 @@ function serveStatic(req, res) {
   if (!file.startsWith(PUBLIC_DIR + path.sep)) return send(res, 403, 'Forbidden');
 
   fs.stat(file, (err, stat) => {
+    // /treasure-map -> /treasure-map/ so relative links and index.html resolve
+    if (!err && stat.isDirectory()) return send(res, 301, '', { Location: urlPath + '/' });
     if (err || !stat.isFile()) return send(res, 404, 'Not found', { 'Content-Type': 'text/plain; charset=utf-8' });
     const ext = path.extname(file).toLowerCase();
     res.writeHead(200, {

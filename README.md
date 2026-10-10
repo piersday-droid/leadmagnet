@@ -30,6 +30,27 @@ Every coloured line crosses the Growth Overground once, so there is always a way
 
 Everything lives in `public/index.html`. The `LINES` and `STATIONS` objects near the top of the script hold all the copy and coordinates (a 1600 x 1100 canvas). Keep consecutive stops horizontal, vertical or exactly diagonal and the track stays tidy; `l` sets which side the label sits on.
 
+## The Wobbly Seas: a treasure map for children (8 to 13)
+
+Served at `/treasure-map/`. Same idea, younger crew: a pirate map where every route starts with a wobble in the stormy west, sails past a friendly sea monster and ends at a treasure island in the sunny east. The language is written for 8 to 13 year olds, so it says "worried", "cross", "sad" and "scared", never adult labels.
+
+![The Wobbly Seas](docs/treasure-map-preview.png)
+
+| Route | Covers | Sea monster (tame it, never fight it) | Treasure |
+| --- | --- | --- | --- |
+| Worry Waters | Worries and what-ifs | The What-If Kraken | Calm Cove |
+| Grumble Gulf | Feeling cross | The Grumble Dragon | Calm Cove |
+| Drizzly Deep | Feeling sad, missing someone | Old Drizzle the Sea Serpent | Loved Lagoon |
+| Lonely Lagoon | Falling out, feeling left out | The Lonely Whale | Loved Lagoon |
+| Shadow Sea | Feeling scared, bad dreams | The Shadow Shark | Safe Harbour |
+| Changing Tides | Moving, new school, two homes | The Wibble-Wobble Jellyfish | Secure Shores |
+| Test Day Tempest | Tests, homework, mistakes | The Perfect Pufferfish | Secure Shores |
+| The Golden Current | Helpers that work anywhere | none | Treasure Island (X marks the spot) |
+
+What is on the page: the tappable map (islands give a captain's tip, monsters give "how to tame it"), a voyage planner where a little ship sails the route, a "fill your own treasure chest" activity that saves on the device and prints, a short guide for grown-ups, the same poster email capture (`source: "wobbly-seas"`), and Childline (0800 1111) signposting. Sea routes only sail one way, towards treasure; the Golden Current runs both ways.
+
+To edit it, everything lives in `public/treasure-map/index.html`: `ROUTES` and `PLACES` near the top of the script hold all the copy and positions on a 1600 x 1100 canvas. Routes are smooth curves, so any coordinates work.
+
 ## Running it
 
 Zero dependencies. Node 18 or newer.

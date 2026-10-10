@@ -1,0 +1,1567 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Wobbly Seas · A Treasure Map for Brave Hearts</title>
+<meta name="description" content="A pirate treasure map of feelings for children aged 8 to 13. Sail from worries and wobbles past friendly sea monsters to Calm Cove, Loved Lagoon, Safe Harbour and Secure Shores.">
+<meta property="og:title" content="The Wobbly Seas · A Treasure Map for Brave Hearts">
+<meta property="og:description" content="Every wobble is just an island. Keep sailing and you will find the treasure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Pirata+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2e2116;
+    --muted: #6a5a48;
+    --paper: #fbf4e4;
+    --card: #fffcf4;
+    --rule: #eadcbf;
+    --sea: #12466b;
+    --gold: #e2a912;
+    --gold-soft: #fff4d1;
+    --red: #c8322b;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Nunito, "Trebuchet MS", system-ui, sans-serif;
+    font-size: 17.5px;
+    line-height: 1.55;
+  }
+  a { color: var(--sea); }
+  button, input, select, textarea { font: inherit; }
+  h1, h2, h3 { font-family: Fredoka, Nunito, sans-serif; }
+
+  /* ---------- header ---------- */
+  .top { background: var(--sea); color: #fff; }
+  .top-inner { max-width: 1480px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
+  .top .brand { font-family: "Pirata One", Fredoka, serif; font-size: 27px; letter-spacing: .5px; line-height: 1; }
+  .top .brand small { font-family: Nunito, sans-serif; font-weight: 700; opacity: .8; font-size: 13px; margin-left: 10px; letter-spacing: 1.6px; text-transform: uppercase; }
+  .top nav { margin-left: auto; display: flex; gap: 18px; font-size: 15px; font-weight: 700; }
+  .top nav a { color: #fff; text-decoration: none; opacity: .85; }
+  .top nav a:hover { opacity: 1; text-decoration: underline; }
+  @media (max-width: 760px) { .top nav { display: none; } .top .brand small { display: none; } }
+
+  .wrap { max-width: 1480px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- intro ---------- */
+  .intro { padding-top: 34px; padding-bottom: 22px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 32px; align-items: end; }
+  .intro h1 { font-size: clamp(30px, 4.2vw, 50px); line-height: 1.08; margin: 0; font-weight: 700; color: var(--sea); }
+  .intro h1 span { color: #c27a00; }
+  .intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+  @media (max-width: 860px) { .intro { grid-template-columns: 1fr; gap: 14px; } }
+
+  /* ---------- map ---------- */
+  .mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
+  @media (max-width: 1100px) { .mapwrap { grid-template-columns: 1fr; } }
+  .map-card {
+    background: #f3e3bf;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 14px 32px -18px rgba(18,70,107,.35);
+  }
+  .map-scroll {
+    overflow: auto;
+    aspect-ratio: 16 / 11;
+    cursor: grab;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .map-scroll.dragging { cursor: grabbing; user-select: none; }
+  #map { display: block; width: 100%; height: auto; min-width: 1050px; }
+  @media (max-width: 700px) { .map-scroll { aspect-ratio: auto; height: 70vh; } }
+
+  .map-tools { position: absolute; right: 12px; top: 12px; z-index: 2; display: flex; gap: 6px; }
+  .map-tools button {
+    width: 40px; height: 40px; border-radius: 12px;
+    border: 1px solid var(--rule); background: rgba(255,252,244,.95);
+    color: var(--ink); font-size: 21px; line-height: 1; cursor: pointer; font-weight: 800;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  }
+  .map-tools button.wide { width: auto; padding: 0 12px; font-size: 14px; }
+  .map-tools button:hover { background: #fff; }
+  .map-tools button[hidden] { display: none; }
+
+  /* svg interaction */
+  #map .stn { cursor: pointer; }
+  #map .stn:focus { outline: none; }
+  #map .stn:hover .lbl, #map .stn:focus-visible .lbl { fill: #9a3412; }
+  #map .stn:focus-visible .hit { stroke: var(--sea); stroke-width: 2.5; stroke-dasharray: 4 3; }
+  #map .stn.monster:hover .art { transform: scale(1.06); }
+  #map .art { transform-box: fill-box; transform-origin: center; transition: transform .2s ease; }
+  #map .rt, #map .stn, #map .isl { transition: opacity .25s ease; }
+  #map.focus .rt:not(.on) { opacity: .12; }
+  #map.focus .stn:not(.on) { opacity: .28; }
+  #map.focus .isl:not(.on) { opacity: .45; }
+  #map .lg { cursor: pointer; }
+  #map .lg:hover text { text-decoration: underline; }
+  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-3px) rotate(3deg); } }
+  #map .bob { transform-box: fill-box; transform-origin: 50% 80%; animation: bob 2.4s ease-in-out infinite; }
+  @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+  #map .sparkle { animation: twinkle 2.8s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { #map .bob, #map .sparkle { animation: none; } }
+
+  /* ---------- panel ---------- */
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    position: sticky; top: 16px;
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+  }
+  @media (max-width: 1100px) { .panel { position: static; max-height: none; } }
+  .panel .kicker { font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); font-weight: 800; margin: 0 0 6px; }
+  .panel h2 { font-size: 30px; line-height: 1.1; margin: 0 0 12px; color: var(--sea); }
+  .panel h3 { font-family: Nunito, sans-serif; font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 18px 0 4px; color: var(--muted); font-weight: 900; }
+  .panel p { margin: 0; }
+  .panel .tip { background: var(--gold-soft); border-left: 5px solid var(--gold); padding: 10px 12px; border-radius: 0 10px 10px 0; margin-top: 6px; }
+  .panel .tip.tame { background: #f1ebfa; border-left-color: #7b52b0; }
+  .panel .tip.treasure { background: #fff1c2; border-left-color: #c27a00; }
+  .panel .help { background: #fdecec; border-left: 5px solid var(--red); padding: 10px 12px; border-radius: 0 10px 10px 0; margin-top: 14px; font-size: 15.5px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--c); color: var(--t, #fff);
+    font-size: 13px; font-weight: 800; padding: 3px 11px; border-radius: 999px;
+    border: 0; cursor: pointer; white-space: nowrap;
+  }
+  .dirs { list-style: none; margin: 6px 0 0; padding: 0; font-size: 15.5px; }
+  .dirs li { padding: 7px 0; border-top: 1px solid var(--rule); display: flex; gap: 10px; align-items: baseline; }
+  .dirs li > span:last-child, .dirs li > button { flex: 1; text-align: left; }
+  .dirs li:first-child { border-top: 0; }
+  .dirs .swatch { width: 16px; height: 6px; border-radius: 3px; background: var(--c); flex: none; transform: translateY(-2px); }
+  .linkbtn { background: none; border: 0; padding: 0; color: var(--sea); text-decoration: underline; cursor: pointer; font-weight: 800; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--sea); color: #fff; border: 0; border-radius: 12px;
+    padding: 11px 16px; font-weight: 800; cursor: pointer; text-decoration: none;
+  }
+  .btn:hover { filter: brightness(1.12); }
+  .btn.ghost { background: transparent; color: var(--sea); box-shadow: inset 0 0 0 2px var(--sea); }
+  .btn.gold { background: var(--gold); color: #2e2116; }
+  .panel .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+
+  /* ---------- sections ---------- */
+  section.block { padding: 56px 0 8px; }
+  section.block > .wrap > h2 { font-size: clamp(28px, 3vw, 38px); margin: 0 0 6px; color: var(--sea); }
+  section.block > .wrap > .lede { color: var(--muted); margin: 0 0 22px; max-width: 72ch; }
+
+  /* planner */
+  .planner { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 22px; }
+  .planner form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; }
+  @media (max-width: 760px) { .planner form { grid-template-columns: 1fr; } }
+  .planner label { font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 900; color: var(--muted); display: block; margin-bottom: 4px; }
+  .planner select { width: 100%; padding: 11px 12px; border-radius: 12px; border: 1px solid #d6c5a2; background: #fff; color: var(--ink); }
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .presets span { font-size: 14.5px; color: var(--muted); align-self: center; margin-right: 4px; font-weight: 700; }
+  .chip { border: 1px solid #d6c5a2; background: #fff; border-radius: 999px; padding: 6px 13px; font-size: 14.5px; cursor: pointer; color: var(--ink); font-weight: 700; }
+  .chip:hover { border-color: var(--sea); color: var(--sea); }
+  .result { margin-top: 20px; }
+  .result:empty { display: none; }
+  .result .summary { font-weight: 800; margin: 0 0 12px; }
+  .leg { border-left: 8px dotted var(--c); padding: 4px 0 4px 16px; margin-left: 6px; }
+  .leg-head { font-weight: 800; margin-bottom: 4px; }
+  .leg-head .pill { margin-right: 6px; cursor: default; }
+  .leg ol { list-style: none; margin: 0; padding: 0; }
+  .leg ol li { padding: 6px 0; font-size: 15.5px; color: var(--muted); }
+  .leg ol li .linkbtn { color: var(--ink); }
+  .leg ol li .mon { color: #7b52b0; font-weight: 800; }
+  .change { margin: 8px 0 8px -4px; display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15.5px; }
+  .change::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--ink); background: #fff; flex: none; }
+  .arrive { margin-top: 10px; font-weight: 900; display: flex; align-items: center; gap: 10px; color: #9a5b00; }
+  .arrive::before { content: "✕"; color: var(--red); font-size: 20px; line-height: 1; }
+
+  /* routes */
+  .lines-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .line-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px 18px 16px; border-top: 8px solid var(--c); display: flex; flex-direction: column; }
+  .line-card h3 { margin: 0; font-size: 22px; color: var(--ink); }
+  .line-card .topic { font-size: 13px; letter-spacing: 1.3px; text-transform: uppercase; color: var(--muted); font-weight: 900; margin-bottom: 6px; }
+  .line-card p { margin: 0 0 10px; font-size: 16px; }
+  .line-card .beware { font-size: 14.5px; color: #6b4596; font-weight: 800; margin-bottom: 10px; }
+  .line-card .route { font-size: 14.5px; color: var(--muted); margin-bottom: 14px; flex: 1; }
+  .line-card .route b { color: var(--ink); }
+
+  /* treasure chest */
+  .chest { background: linear-gradient(180deg, #7a4a24, #5e3518); border-radius: var(--radius); padding: 26px; color: #fff; position: relative; }
+  .chest h3 { margin: 0 0 4px; font-size: 22px; }
+  .chest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-top: 8px; }
+  .gem { background: #fffaf0; color: var(--ink); border-radius: 14px; padding: 14px 14px 12px; border: 3px solid #e2a912; }
+  .gem label { display: block; font-family: Fredoka, sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 2px; }
+  .gem .hint { font-size: 14px; color: var(--muted); margin: 0 0 8px; }
+  .gem textarea { width: 100%; min-height: 110px; border: 1px dashed #c9b28a; border-radius: 10px; padding: 10px; background: #fff; color: var(--ink); resize: vertical; }
+  .chest .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
+  .chest .saved { font-size: 14px; opacity: .85; }
+  .chest .btn.ghost { color: #fff; box-shadow: inset 0 0 0 2px #fff; }
+
+  /* grown-ups */
+  .grownups { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .gu { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px; }
+  .gu h3 { margin: 0 0 6px; font-size: 20px; color: var(--sea); }
+  .gu p { margin: 0 0 8px; font-size: 16px; }
+  .gu p:last-child { margin-bottom: 0; }
+  .gu q { font-style: italic; font-weight: 700; }
+
+  /* poster capture */
+  .capture { background: var(--sea); color: #fff; border-radius: var(--radius); padding: 30px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: center; position: relative; overflow: hidden; }
+  @media (max-width: 860px) { .capture { grid-template-columns: 1fr; padding: 22px; } }
+  .capture h2 { margin: 0 0 8px; font-size: clamp(28px, 3vw, 38px); }
+  .capture p { margin: 0 0 10px; opacity: .92; }
+  .capture form { display: grid; gap: 10px; }
+  .capture input[type=text], .capture input[type=email] { width: 100%; padding: 12px 14px; border-radius: 12px; border: 0; color: var(--ink); }
+  .capture .small { font-size: 13.5px; opacity: .8; }
+  .capture .msg { min-height: 1.2em; font-size: 15px; }
+  .capture .unlocked { display: grid; gap: 10px; }
+  .capture .unlocked[hidden] { display: none; }
+  .capture .btn.gold { justify-self: start; }
+  .capture .stripe { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: linear-gradient(90deg, #e07a1f 0 12.5%, #d23b2e 12.5% 25%, #3d74b8 25% 37.5%, #c34b94 37.5% 50%, #5a46a0 50% 62.5%, #16867b 62.5% 75%, #3e8b3a 75% 87.5%, #e2a912 87.5% 100%); }
+
+  footer { margin-top: 56px; border-top: 1px solid var(--rule); padding: 26px 0 40px; font-size: 15px; color: var(--muted); }
+  footer strong { color: var(--ink); }
+  footer .crisis { background: #fff; border: 1px solid var(--rule); border-left: 6px solid var(--red); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; color: var(--ink); }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+  @media print {
+    @page { size: A3 landscape; margin: 8mm; }
+    body { background: #fff; }
+    body:not(.print-chest) > *:not(main), body:not(.print-chest) main > *:not(.mapsection), body:not(.print-chest) .panel, .map-tools, body:not(.print-chest) .intro { display: none !important; }
+    body:not(.print-chest) .mapwrap { display: block; }
+    body:not(.print-chest) .map-card { border: 0; box-shadow: none; }
+    body:not(.print-chest) .map-scroll { overflow: visible; aspect-ratio: auto; height: auto; }
+    body:not(.print-chest) #map { width: 100% !important; min-width: 0; }
+    body.print-chest > *:not(main), body.print-chest main > *:not(#chest), body.print-chest #chest .actions { display: none !important; }
+    body.print-chest { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <svg width="34" height="34" viewBox="-20 -20 40 40" aria-hidden="true">
+      <circle r="18" fill="#e2a912"/>
+      <path d="M-9 -9 L9 9 M9 -9 L-9 9" stroke="#c8322b" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <div class="brand">The Wobbly Seas <small>A treasure map for brave hearts</small></div>
+    <nav>
+      <a href="#map-section">Map</a>
+      <a href="#planner">Plan a voyage</a>
+      <a href="#routes">Routes</a>
+      <a href="#chest">My treasure chest</a>
+      <a href="#grownups">For grown-ups</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <h1>Every wobble is just an island.<br><span>Keep sailing and you will find the treasure.</span></h1>
+    <p>Worries, cross days, sad days, scary nights and big changes can all feel like stormy seas. On this map, every feeling is an island you can sail past, every sea monster can be tamed, and every route ends at treasure: feeling calm, loved, safe and secure. Tap an island or a monster to find out about it, or plan a voyage from where you are today.</p>
+  </div>
+
+  <div class="wrap mapsection" id="map-section">
+    <div class="mapwrap">
+      <div class="map-card">
+        <div class="map-tools">
+          <button type="button" class="wide" id="clearBtn" hidden>Show the whole map</button>
+          <button type="button" id="zoomOut" aria-label="Zoom out">−</button>
+          <button type="button" id="zoomIn" aria-label="Zoom in">+</button>
+        </div>
+        <div class="map-scroll" id="mapScroll">
+          <svg id="map" viewBox="0 0 1600 1100" role="img" aria-labelledby="mapTitle mapDesc">
+            <title id="mapTitle">The Wobbly Seas: a treasure map for brave hearts</title>
+            <desc id="mapDesc">A pirate treasure map where each sea route is a kind of wobble, such as worries, feeling cross, feeling sad, feeling left out, feeling scared, big changes and school worries. Each island is a feeling, friendly sea monsters stand for big feelings that can be tamed, and every route ends at a treasure island: Calm Cove, Loved Lagoon, Safe Harbour or Secure Shores. The Golden Current of helpers crosses every route.</desc>
+          </svg>
+        </div>
+      </div>
+      <aside class="panel" id="panel" aria-live="polite"></aside>
+    </div>
+  </div>
+
+  <section class="block" id="planner">
+    <div class="wrap">
+      <h2>Plan a voyage</h2>
+      <p class="lede">Pick the island you are on today and the treasure you want to find. Your ship will sail the shortest way there, and you will get a captain's tip for every island on the way.</p>
+      <div class="planner">
+        <form id="planForm">
+          <div>
+            <label for="fromSel">I am at</label>
+            <select id="fromSel"></select>
+          </div>
+          <div>
+            <label for="toSel">I want to sail to</label>
+            <select id="toSel"></select>
+          </div>
+          <button class="btn" type="submit">Set sail</button>
+        </form>
+        <div class="presets" id="presets"><span>Quick voyages:</span></div>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="routes">
+    <div class="wrap">
+      <h2>The sea routes</h2>
+      <p class="lede">Seven routes, one sea. Each one starts with a wobble, sails past a sea monster and ends at treasure. The Golden Current crosses every route, so you can hop on for help wherever you are.</p>
+      <div class="lines-grid" id="linesGrid"></div>
+    </div>
+  </section>
+
+  <section class="block" id="chest">
+    <div class="wrap">
+      <h2>Fill your own treasure chest</h2>
+      <p class="lede">Every captain needs their own treasure. Write or draw the things that help you feel calm, loved, safe and secure, then print it and keep it somewhere you can find it on a wobbly day. It saves on this device only, so nobody else can see it.</p>
+      <div class="chest">
+        <h3>My treasure chest</h3>
+        <div class="chest-grid" id="chestGrid"></div>
+        <div class="actions">
+          <button class="btn gold" type="button" id="printChest">Print my treasure chest</button>
+          <button class="btn ghost" type="button" id="clearChest">Start again</button>
+          <span class="saved" id="chestSaved" role="status"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="grownups">
+    <div class="wrap">
+      <h2>For grown-ups</h2>
+      <p class="lede">The map is built for children aged 8 to 13, but it works best with a grown-up alongside. Here is how to get the most from it at home or in class.</p>
+      <div class="grownups">
+        <div class="gu">
+          <h3>Ask where, not why</h3>
+          <p><q>Which island are you on today?</q> is far easier to answer than <q>Why are you upset?</q> Let them point. You do not need to fix anything straight away. Knowing where they are is the first step.</p>
+        </div>
+        <div class="gu">
+          <h3>Monsters make it talkable</h3>
+          <p>Turning a big feeling into a sea monster puts a little distance between the child and the feeling. <q>Is the Kraken grabbing you again?</q> lands very differently from <q>Stop worrying.</q> The child is the captain. The monster is just something on the voyage.</p>
+        </div>
+        <div class="gu">
+          <h3>Tame, never fight</h3>
+          <p>Every monster on the map gets tamed, not defeated. That is deliberate. Feelings are not enemies, and children who learn to calm a feeling cope far better than children who learn to hide it.</p>
+        </div>
+        <div class="gu">
+          <h3>Be the lighthouse</h3>
+          <p>The Trusted Grown-Up Lighthouse sits on the Golden Current because every route passes it. If a child seems stuck on the same island for more than a couple of weeks, or a wobble starts getting in the way of sleep, school or friendships, talk to their GP or school.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="poster">
+    <div class="wrap">
+      <div class="capture">
+        <div>
+          <h2>Take the map home</h2>
+          <p>Get the full-size treasure map, ready to print at A3, A2 or A1. Made for bedroom walls, classrooms, school wellbeing rooms and the back of the bathroom door.</p>
+          <p>We will also send the occasional "message in a bottle": one short, practical idea for helping a child through a single island. Nothing else.</p>
+        </div>
+        <div>
+          <form id="leadForm" novalidate>
+            <label class="sr-only" for="leadName">First name</label>
+            <input type="text" id="leadName" name="name" placeholder="First name" autocomplete="given-name" maxlength="80">
+            <label class="sr-only" for="leadEmail">Email</label>
+            <input type="email" id="leadEmail" name="email" placeholder="grown-up@example.com" autocomplete="email" required maxlength="200">
+            <button class="btn gold" type="submit" id="leadBtn">Send me the treasure map</button>
+            <div class="small">For grown-ups only, please. No spam. Unsubscribe whenever you like.</div>
+            <div class="msg" id="leadMsg" role="status"></div>
+          </form>
+          <div class="unlocked" id="unlocked" hidden>
+            <p><strong>Ahoy, you are on the list. Here is your map.</strong></p>
+            <button class="btn gold" type="button" id="dlSvg">Download the map (SVG, any size)</button>
+            <button class="btn ghost" type="button" id="printBtn" style="color:#fff;box-shadow:inset 0 0 0 2px #fff">Print or save as PDF</button>
+          </div>
+        </div>
+        <div class="stripe"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="crisis"><strong>If something is really worrying you</strong>, tell a grown-up you trust. You can also talk to <strong>Childline</strong> for free on <strong>0800 1111</strong>, any time, day or night, or chat online at <a href="https://www.childline.org.uk" rel="noopener">childline.org.uk</a>. If you are ever in danger, call <strong>999</strong>. Outside the UK, call your local emergency number.</div>
+    <p>The Wobbly Seas is a play and reflection tool for children and the grown-ups who look after them. It is not medical advice and it does not replace a GP, school nurse, counsellor or children's mental health service.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+'use strict';
+
+/* =====================================================================
+   SEA DATA
+   Coordinates sit on a 1600 x 1100 canvas. Routes are drawn as smooth
+   curves through their stops, so any position works; keep each route
+   flowing roughly west to east. `l` is where the label sits relative to
+   the island. Arrays in `stops` are waypoints (bends with no island).
+   ===================================================================== */
+
+const ROUTES = {
+  worry: {
+    name: 'Worry Waters', topic: 'Worries', color: '#E07A1F',
+    about: 'The choppiest water on the map. Worries make big waves out of things that have not even happened yet. Keep sailing and the sea gets smoother.',
+    stops: ['whatif', 'butterfly', 'kraken', 'midnight', 'nameit', 'calm']
+  },
+  grumble: {
+    name: 'Grumble Gulf', topic: 'Feeling cross', color: '#D23B2E',
+    about: 'Hot, stormy water where tempers flare. Every captain sails through here sometimes. The trick is to stop the storm from steering your ship.',
+    stops: ['unfair', 'volcano', 'dragon', 'stomp', 'topsy', 'sorry', 'breath', 'calm']
+  },
+  drizzle: {
+    name: 'Drizzly Deep', topic: 'Feeling sad', color: '#3D74B8',
+    about: 'A grey, rainy stretch of sea where everything feels heavy. The rain does stop. The sunshine on this route is closer than it looks.',
+    stops: ['raincloud', 'serpent', 'missingyou', 'topsy', 'hug', 'lighthouse', 'loved']
+  },
+  lonely: {
+    name: 'Lonely Lagoon', topic: 'Feeling lonely or left out', color: '#C34B94',
+    about: 'Quiet water where it feels like nobody else is sailing. They are. Lots of ships are out here, all looking for each other.',
+    stops: ['falls', 'leftout', 'whale', 'topsy', 'friendship', 'bottle', 'loved']
+  },
+  shadow: {
+    name: 'Shadow Sea', topic: 'Feeling scared', color: '#5A46A0',
+    about: 'The darkest water on the map, full of shapes that look much bigger than they really are. Bring a torch. Everything looks different in the light.',
+    stops: ['darkdeep', 'shark', 'nightmare', 'topsy', 'nightlight', 'brave', 'safe']
+  },
+  changes: {
+    name: 'Changing Tides', topic: 'Big changes', color: '#16867B',
+    about: 'Where the sea shifts under your boat: new schools, new homes, new families and goodbyes. The tide is strong here, but there are rocks you can hold on to.',
+    stops: ['moving', 'newschool', 'jelly', 'twohomes', 'topsy', 'steady', 'kind', 'secure']
+  },
+  school: {
+    name: 'Test Day Tempest', topic: 'School worries and mistakes', color: '#3E8B3A',
+    about: 'A blustery route full of tests, homework and the fear of getting things wrong. Every great sailor got lost loads of times while they were learning.',
+    stops: ['spelling', 'homework', 'puffer', 'mistake', 'haveago', 'kind', 'secure']
+  },
+  golden: {
+    name: 'The Golden Current', topic: 'Helpers that work anywhere', color: '#E2A912', text: '#2e2116', golden: true,
+    about: 'A warm, sparkly current that flows past every route on the map. Wherever you are, you can hop on. It is full of things that help with every kind of wobble.',
+    stops: ['spyglass', 'nameit', 'breath', 'lighthouse', 'bottle', 'brave', 'kind', 'treasure']
+  }
+};
+const ROUTE_ORDER = ['worry', 'grumble', 'drizzle', 'lonely', 'shadow', 'changes', 'school', 'golden'];
+
+const PLACES = {
+  /* ---- Worry Waters ---- */
+  whatif: { name: 'Whirlpool of What-Ifs', x: 560, y: 92, l: 's', icon: 'whirl',
+    feel: 'What if I get it wrong? What if they laugh? What if something bad happens? Round and round your thoughts go, faster and faster.',
+    tip: 'Swap your what-if for a what-then. What if it rains on sports day? Then we play inside. Once you know your what-then, the whirlpool slows right down.' },
+  butterfly: { name: 'Butterfly Bay', x: 690, y: 185, l: 's',
+    feel: 'A fluttery tummy, wobbly legs and sweaty hands. Your body has noticed that something new or big is coming.',
+    tip: 'Butterflies are your body switching on to help you, like an engine warming up. They do not mean something bad is going to happen. Put a hand on your tummy and say hello to them.' },
+  kraken: { name: 'The What-If Kraken', x: 840, y: 150, monster: 'kraken', art: [0, -48], l: { dx: 0, dy: 34, anchor: 'middle' },
+    feel: 'A giant squid that grabs one small worry and wraps it up in eight more. One tentacle says what if, the next says and then, and suddenly the worry looks enormous.',
+    tip: 'Krakens hate being counted. Write each worry on its own scrap of paper. Seen one at a time, they are much smaller than the Kraken made them look, and a grown-up can help you sort them out.' },
+  midnight: { name: 'Midnight Rocks', x: 990, y: 200, l: 's', icon: 'moon',
+    feel: 'Bedtime. The lights are off, the house is quiet, and your worries suddenly get very loud.',
+    tip: 'Worries love bedtime because there is nothing else to look at. Try a worry jar: write the worry down, pop it in, and agree to look at it in the morning with a grown-up. Morning worries are always smaller.' },
+
+  /* ---- Grumble Gulf ---- */
+  unfair: { name: 'Unfair Point', x: 80, y: 340, l: 'n',
+    feel: 'That is NOT fair! Your brother got the bigger slice, you got told off when they did not, and nobody is listening.',
+    tip: 'Sometimes things really are unfair, and you are allowed to say so. Saying it calmly gets you listened to much more than shouting does.' },
+  volcano: { name: 'Volcano Island', x: 215, y: 300, l: 's', icon: 'volcano',
+    feel: 'Hot face, tight fists, and words bubbling up that you might not really mean.',
+    tip: 'Volcanoes rumble before they erupt. Learn your rumbles (hot cheeks, clenched teeth, a thumping heart) and you can step away before the lava comes out.' },
+  dragon: { name: 'The Grumble Dragon', x: 400, y: 330, monster: 'dragon', art: [8, -44], l: { dx: 6, dy: 30, anchor: 'middle' },
+    feel: 'A fire-breathing dragon that wakes up when you feel cross. When it breathes fire, things get burnt: friendships, toys, and sometimes your own feelings too.',
+    tip: 'Dragons cool down when they breathe slowly. Breathe in through your nose like you are smelling hot pizza, then out through your mouth like you are blowing out birthday candles. Do it five times and the fire turns into smoke.' },
+  stomp: { name: 'Stomp-It-Out Shore', x: 565, y: 395, l: 'ne',
+    feel: 'Big, fizzy feelings in your arms and legs that need to go somewhere.',
+    tip: 'Cross energy needs a job to do. Jump, run, squeeze a cushion or stomp ten times. Moving your body lets the steam out without hurting anyone.' },
+  topsy: { name: 'Topsy-Turvy Island', x: 720, y: 600, big: true, icon: 'topsy', l: { dx: 0, dy: 50, anchor: 'middle' },
+    feel: 'The busiest island on the map. Lots of feelings arrive at once and everything feels upside down, even the palm tree.',
+    tip: 'Nearly every sailor stops here at some point. You do not have to sort out every feeling at once. Pick one, give it a name, and let the others wait their turn.' },
+  sorry: { name: 'Sorry Sands', x: 935, y: 375, l: 'n',
+    feel: 'The wobbly feeling after the storm, when you know you said or did something that hurt.',
+    tip: 'Everyone gets it wrong sometimes, even grown-ups. A good sorry says what you did and how you will put it right. Making up is one of the bravest things a captain can do.' },
+
+  /* ---- Drizzly Deep ---- */
+  raincloud: { name: 'Raincloud Rock', x: 80, y: 480, l: 's', icon: 'cloud',
+    feel: 'A grey cloud follows you around. Things that are normally fun feel a bit flat, and you are not sure why.',
+    tip: 'You do not always need a reason to feel sad. Clouds come and clouds go. Do one small thing you usually enjoy, even if you do not feel like it yet. Sunshine often sneaks in that way.' },
+  serpent: { name: 'Old Drizzle the Sea Serpent', x: 250, y: 470, monster: 'serpent', art: [2, -30], l: { dx: 0, dy: 32, anchor: 'middle' },
+    feel: 'A droopy grey sea serpent with its very own rain cloud. It whispers that nothing will ever be fun again.',
+    tip: 'Old Drizzle cannot stand sunshine or company. Sit with someone you love, get outside, or put on a happy song. It does not have to vanish completely. It just needs to know it is not in charge.' },
+  missingyou: { name: 'Missing You Marsh', x: 470, y: 500, l: 's',
+    feel: 'Missing someone or something so much it aches: a grandparent, a friend who moved away, a pet who died, or the way things used to be.',
+    tip: 'Missing someone shows how much you love them, and that love does not go anywhere. Draw them, talk about them, or make a memory box. It is fine to cry here. Tears are just feelings leaving through your eyes.' },
+  hug: { name: 'Hug Harbour', x: 935, y: 485, l: 'n',
+    feel: 'Arms around you. Someone who stays close and does not try to fix everything straight away.',
+    tip: 'Hugs really do help. They calm your heart and remind your body that you are not alone. You are allowed to ask for one. If hugs are not your thing, sitting close to someone works too.' },
+
+  /* ---- Lonely Lagoon ---- */
+  falls: { name: 'Fall-Out Falls', x: 80, y: 620, l: 's',
+    feel: 'You and your friend have fallen out, and it feels like a waterfall has crashed down on you.',
+    tip: 'Nearly all friends fall out sometimes, and most make up again. Give it a little time, then try saying: I miss playing with you. Can we start again?' },
+  leftout: { name: 'Left-Out Ledge', x: 240, y: 615, l: 's',
+    feel: 'Everyone else seems to be in the game, the group chat or the party, and you are on the outside looking in.',
+    tip: 'Feeling left out hurts, and it happens to everyone at some point, even the people who look popular. It does not mean there is anything wrong with you. Look around: someone else is probably on the ledge too.' },
+  whale: { name: 'The Lonely Whale', x: 430, y: 610, monster: 'whale', art: [0, -14], l: { dx: 0, dy: 40, anchor: 'middle' },
+    feel: 'A huge, gentle whale singing a song that nobody seems to hear. It feels like the only creature in the whole ocean.',
+    tip: 'Whales find each other by singing. Your song is how you reach out: say hi first, join a club, or ask someone to play. Somebody out there is listening for exactly your kind of song.' },
+  friendship: { name: 'Friendship Bay', x: 935, y: 590, l: 'n',
+    feel: 'A friend who saves you a seat, laughs at your jokes and sticks up for you.',
+    tip: 'The best way to find a good friend is to be one. One kind friend is worth more than a crowd of unkind ones.' },
+
+  /* ---- Shadow Sea ---- */
+  darkdeep: { name: 'Dark Night Deep', x: 80, y: 760, l: 'n', icon: 'stars',
+    feel: 'The lights go off, and every shadow in your room starts to look like something with teeth.',
+    tip: 'Your brain is brilliant at imagining, which is great in the daytime and a bit annoying at night. A night-light, a torch under the pillow or a cuddly toy on guard duty all help.' },
+  shark: { name: 'The Shadow Shark', x: 255, y: 770, monster: 'shark', art: [34, -6], l: { dx: 0, dy: 40, anchor: 'middle' },
+    feel: 'A giant shark shape under the water, so big and dark that you do not want to look at it.',
+    tip: 'Shine a torch on the Shadow Shark and you find a tiny fish with a very big shadow. Scary things usually shrink when you look at them in the light and talk about them out loud.' },
+  nightmare: { name: 'Bad Dream Rocks', x: 470, y: 735, l: 'se',
+    feel: 'Waking up with your heart thumping after a dream that felt really, really real.',
+    tip: 'Dreams are your brain tidying up, and they cannot hurt you. Try changing the ending: imagine the monster slipping on a banana skin. Then tell someone about it in the morning.' },
+  nightlight: { name: 'Night-Light Isle', x: 935, y: 690, l: 'n',
+    feel: 'A warm glow by the bed, a cosy blanket, and a grown-up just along the landing.',
+    tip: 'Make your bedroom a safe harbour. Choose something cosy to hold, think of three good things from today, and remember that someone who loves you is close by.' },
+
+  /* ---- Changing Tides ---- */
+  moving: { name: 'Moving Day Bay', x: 80, y: 890, l: 'n',
+    feel: 'Boxes everywhere, a new bedroom that does not feel like yours yet, and a long way from everything you knew.',
+    tip: 'New places take time to feel like home. Unpack your favourite things first. You can feel sad about the old place and excited about the new one at the same time.' },
+  newschool: { name: 'New School Strait', x: 230, y: 905, l: 's',
+    feel: 'New corridors, new teachers, new faces, and no idea where the toilets are.',
+    tip: 'Everybody was new once, even the teachers. Learn one name a day, ask one question, and give it a few weeks. It gets easier faster than you think.' },
+  jelly: { name: 'The Wibble-Wobble Jellyfish', x: 400, y: 870, monster: 'jelly', art: [0, -10], l: { dx: 0, dy: 50, anchor: 'middle' },
+    feel: 'A wobbly jellyfish that drifts wherever the sea pushes it. When things change, it makes you feel as if nothing is solid any more.',
+    tip: 'Jellyfish cannot steer, but you can hold on to the things that stay the same: your name, your teddy, your bedtime story and the people who love you. Make a list of your steady things and keep it close.' },
+  twohomes: { name: 'Two Homes Islands', x: 560, y: 830, l: 'e', icon: 'twin',
+    feel: 'When grown-ups decide to live apart. Two bedrooms, two toothbrushes, and a lot of big feelings.',
+    tip: 'When grown-ups separate, it is never the child\'s fault. Not even a tiny bit. You are allowed to love everyone in your family, and to ask questions about what happens next.' },
+  steady: { name: 'Steady Rock', x: 935, y: 800, l: 'n',
+    feel: 'Something solid under your feet again. Routines, familiar faces, the same old jokes.',
+    tip: 'Routines are like rocks in a changing sea. Same bedtime, same breakfast, same Friday film night. Little things that stay the same help the big changes feel smaller.' },
+
+  /* ---- Test Day Tempest ---- */
+  spelling: { name: 'Spelling Test Squall', x: 330, y: 1010, l: 's',
+    feel: 'Tests, quizzes and that feeling when the teacher says, "Pens down, please."',
+    tip: 'A test only checks what you know today. It does not measure how clever or how good you are. Read the question twice, start with one you can answer, and breathe out slowly if your mind goes blank.' },
+  homework: { name: 'Homework Mountain', x: 500, y: 960, l: 'n', icon: 'mountain',
+    feel: 'A pile of homework so tall you cannot see the top. Where do you even start?',
+    tip: 'Nobody climbs a mountain in one step. Pick the smallest piece, set a timer for ten minutes, and just begin. Climbing is easier once you are moving.' },
+  puffer: { name: 'The Perfect Pufferfish', x: 640, y: 1005, monster: 'puffer', art: [0, -6], l: { dx: 0, dy: 46, anchor: 'middle' },
+    feel: 'A spiky fish that puffs up huge whenever you might make a mistake. It tells you that everything has to be perfect, or else.',
+    tip: 'Pufferfish only puff up when they feel unsafe. Let yours know that mistakes are how brains grow, and every expert was once a beginner who got things wrong a lot. Watch it shrink back down.' },
+  mistake: { name: 'Mistake Marsh', x: 790, y: 960, l: 'n',
+    feel: 'Squelch. You got it wrong, your face has gone hot, and you want to hide.',
+    tip: 'Mistakes do not mean you are bad at something. They prove you are trying. Ask yourself what this mistake can teach you, then have another go.' },
+  haveago: { name: 'Have-a-Go Harbour', x: 950, y: 905, l: 's',
+    feel: 'Putting your hand up even though you are not totally sure. Trying the new thing anyway.',
+    tip: 'Having a go is the whole secret. You do not have to be the best. You just have to be brave enough to try, and then try again.' },
+
+  /* ---- The Golden Current ---- */
+  spyglass: { name: 'Spyglass Point', x: 1170, y: 72, l: 'e', icon: 'spyglass',
+    feel: 'Stopping for a moment to look through your spyglass. How am I feeling right now? Where am I on the map?',
+    tip: 'A captain cannot steer if they do not know where the ship is. Noticing your feelings is the first step on every single voyage.' },
+  nameit: { name: 'Name-It Narrows', x: 1180, y: 190, l: 'e',
+    feel: 'Saying your feeling out loud. I feel worried. I feel cross. I feel left out.',
+    tip: 'Name it to tame it! Putting a feeling into words really does calm it down, because it helps the thinking part of your brain switch back on.' },
+  breath: { name: 'Big Breath Island', x: 1165, y: 305, l: 'e',
+    feel: 'In through your nose for four. Hold for four. Out through your mouth for six.',
+    tip: 'Slow breaths are like dropping an anchor. They tell your heart it can slow down and your body that you are safe. Try blowing out pretend birthday candles, nice and slowly.' },
+  lighthouse: { name: 'Trusted Grown-Up Lighthouse', x: 1180, y: 425, l: { dx: 16, dy: 22, anchor: 'start' }, icon: 'lighthouse', help: true,
+    feel: 'A parent, carer, teacher, grandparent or another grown-up you trust. Their light helps you find your way home.',
+    tip: 'You never have to sail through big feelings on your own. Telling a grown-up you trust is one of the bravest things any captain can do. If the first grown-up does not listen, keep telling until someone does.' },
+  bottle: { name: 'Message in a Bottle Bay', x: 1165, y: 545, l: 'e', icon: 'bottle',
+    feel: 'Writing or drawing how you feel, and sending it out of your head.',
+    tip: 'Feelings on paper are much easier to look at than feelings swirling round your head. Write it or draw it, then choose: share it with someone, or scrunch it up and throw it away.' },
+  brave: { name: 'Brave Steps Beach', x: 1180, y: 670, l: 'e',
+    feel: 'Doing a small brave thing while you still feel a little bit scared.',
+    tip: 'Brave does not mean not scared. Brave means scared and doing it anyway, one tiny step at a time. Every brave step makes the next one easier.' },
+  kind: { name: 'Kind Words Cove', x: 1165, y: 800, l: 'e',
+    feel: 'Talking to yourself the way you would talk to your best friend.',
+    tip: 'If your best friend made a mistake, you would not call them silly. Be that kind to yourself too. Try saying: I am doing my best, and my best is enough.' },
+  treasure: { name: 'Treasure Island', x: 1170, y: 985, big: true, kind: 'x', l: { dx: -62, dy: 6, anchor: 'end' },
+    feel: 'X marks the spot. Dig down through the sand and there it is: the biggest treasure chest on the whole map.',
+    tip: 'Open the chest and you will find calm, love, safety and feeling secure. Here is the secret: they were never really lost. They live inside you and in the people around you. Sometimes the fog just hides them for a while.' },
+
+  /* ---- Treasure islands ---- */
+  calm: { name: 'Calm Cove', x: 1392, y: 245, kind: 'treasure', treasure: 'Calm', l: 'e',
+    feel: 'Still, clear water. Your breathing is slow, your shoulders are soft, and your thoughts float by gently.',
+    tip: 'Worries and grumbles will still visit sometimes, but now you know the way back here. The more often you sail to Calm Cove, the quicker the trip gets.' },
+  loved: { name: 'Loved Lagoon', x: 1392, y: 485, kind: 'treasure', treasure: 'Loved', l: 'e',
+    feel: 'Warm water, and the feeling that you matter just as you are, wobbles and all.',
+    tip: 'You do not have to earn being loved. You are loved on good days and grumpy days. Make a list of the people who love you and read it when the drizzle comes back.' },
+  safe: { name: 'Safe Harbour', x: 1392, y: 680, kind: 'treasure', treasure: 'Safe', l: 'e',
+    feel: 'The harbour walls are strong, the lights are on, and the people around you will look after you.',
+    tip: 'Safe means your body can relax. Find your safe harbours in real life: a person, a room, a cosy blanket, a place where you can just be you.' },
+  secure: { name: 'Secure Shores', x: 1392, y: 865, kind: 'treasure', treasure: 'Secure', l: 'e',
+    feel: 'Solid ground under your feet. You know who you are, and you know you can cope, even when things change.',
+    tip: 'Feeling secure comes from knowing that people care about you and that you have got through hard things before. Look back at this map. Look how far you have sailed.' }
+};
+
+const PRESETS = [
+  ['Bedtime worries', 'midnight', 'calm'],
+  ['Feeling cross', 'volcano', 'calm'],
+  ['Missing someone', 'missingyou', 'loved'],
+  ['Left out', 'leftout', 'loved'],
+  ['Scared of the dark', 'darkdeep', 'safe'],
+  ['Moving house', 'moving', 'secure'],
+  ['Test nerves', 'spelling', 'secure'],
+  ['Everything is too much', 'topsy', 'treasure']
+];
+
+const CHEST = [
+  ['calm', 'Calm', 'I feel calm when...', 'A song, a place, a smell, a slow breath, a cuddle with the dog...'],
+  ['loved', 'Loved', 'I feel loved when...', 'The people who love me, and the things they do that show it...'],
+  ['safe', 'Safe', 'I feel safe when...', 'Places, people and cosy things that help my body relax...'],
+  ['secure', 'Secure', 'I know I can cope because...', 'Hard things I have already got through, and what I am good at...']
+];
+
+/* ---------- derive membership ---------- */
+for (const [id, p] of Object.entries(PLACES)) { p.id = id; p.routes = []; }
+for (const id of ROUTE_ORDER) {
+  const r = ROUTES[id];
+  r.id = id;
+  r.points = r.stops.map(s => typeof s === 'string' ? [PLACES[s].x, PLACES[s].y] : s);
+  r.stations = r.stops.filter(s => typeof s === 'string');
+  for (const sid of r.stations) {
+    if (!PLACES[sid]) throw new Error('Unknown place ' + sid);
+    PLACES[sid].routes.push(id);
+  }
+}
+
+/* =====================================================================
+   DRAWING
+   ===================================================================== */
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map');
+const FONT = 'Nunito, \'Trebuchet MS\', sans-serif';
+const TITLE_FONT = '\'Pirata One\', Georgia, serif';
+const INK = '#3a2a18';
+const HALO = '#fbf3dc';
+const DIRS = { n: [0, -1], s: [0, 1], e: [1, 0], w: [-1, 0], ne: [1, -1], nw: [-1, -1], se: [1, 1], sw: [-1, 1] };
+
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function text(parent, x, y, str, attrs) {
+  const t = el('text', Object.assign({ x, y, 'font-family': FONT, fill: INK }, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+const P = (parent, d, attrs) => el('path', Object.assign({ d }, attrs), parent);
+const halo = { stroke: HALO, 'stroke-width': 4.5, 'stroke-linejoin': 'round', 'paint-order': 'stroke' };
+
+/* tiny seeded random, so the map looks the same every time */
+function rng(seed) {
+  let s = 0;
+  for (const c of String(seed)) s = (s * 31 + c.charCodeAt(0)) >>> 0;
+  return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+}
+
+/* Catmull-Rom spline through points, as cubic bezier segments */
+function segments(pts) {
+  const out = [];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+    const t = 0.18;
+    const c1 = [p1[0] + (p2[0] - p0[0]) * t, p1[1] + (p2[1] - p0[1]) * t];
+    const c2 = [p2[0] - (p3[0] - p1[0]) * t, p2[1] - (p3[1] - p1[1]) * t];
+    out.push(`C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0]} ${p2[1]}`);
+  }
+  return out;
+}
+function routePath(route, i = 0, j = route.points.length - 1) {
+  const segs = route.segs || (route.segs = segments(route.points));
+  const p = route.points[i];
+  return `M${p[0]} ${p[1]} ` + segs.slice(i, j).join(' ');
+}
+function blobPath(cx, cy, r, seed, n = 9) {
+  const rand = rng(seed);
+  const pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 + rand() * 0.3;
+    const rr = r * (0.78 + rand() * 0.4);
+    pts.push([cx + Math.cos(a) * rr * 1.25, cy + Math.sin(a) * rr]);
+  }
+  let d = '';
+  for (let i = 0; i < n; i++) {
+    const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+    if (i === 0) d = `M${p1[0].toFixed(1)} ${p1[1].toFixed(1)}`;
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += ` C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+  }
+  return d + 'Z';
+}
+
+/* ---------- little pictures ---------- */
+const ART = {
+  palm(g, x, y, s = 1, flip = false) {
+    const t = el('g', { transform: `translate(${x} ${y}) scale(${s}) ${flip ? 'rotate(180)' : ''}` }, g);
+    P(t, 'M0 0 C2 -10 1 -20 -3 -30', { fill: 'none', stroke: '#8a5a2b', 'stroke-width': 4, 'stroke-linecap': 'round' });
+    const leaf = { fill: '#3f9a4a', stroke: '#2b6e33', 'stroke-width': 1 };
+    P(t, 'M-3 -30 C-14 -36 -22 -30 -26 -22 C-18 -28 -10 -28 -3 -30Z', leaf);
+    P(t, 'M-3 -30 C8 -38 18 -34 22 -26 C14 -30 6 -30 -3 -30Z', leaf);
+    P(t, 'M-3 -30 C-10 -42 -4 -48 4 -48 C-2 -42 -3 -36 -3 -30Z', leaf);
+    P(t, 'M-3 -30 C4 -42 14 -44 18 -40 C10 -38 4 -34 -3 -30Z', leaf);
+    el('circle', { cx: -4, cy: -27, r: 2.2, fill: '#7a4a1f' }, t);
+    el('circle', { cx: 0, cy: -28, r: 2.2, fill: '#7a4a1f' }, t);
+  },
+  chest(g, x, y, s = 1) {
+    const t = el('g', { transform: `translate(${x} ${y}) scale(${s})` }, g);
+    P(t, 'M-13 -10 C-13 -20 13 -20 13 -10 Z', { fill: '#9c5b25', stroke: '#5b3212', 'stroke-width': 1.6 });
+    el('circle', { cx: -6, cy: -12, r: 2.6, fill: '#ffd34d' }, t);
+    el('circle', { cx: 4, cy: -13, r: 2.6, fill: '#ffd34d' }, t);
+    el('circle', { cx: 0, cy: -10, r: 2.6, fill: '#ffe680' }, t);
+    el('rect', { x: -13, y: -10, width: 26, height: 14, rx: 2, fill: '#b06a2d', stroke: '#5b3212', 'stroke-width': 1.6 }, t);
+    el('rect', { x: -2.5, y: -10, width: 5, height: 14, fill: '#e2a912', stroke: '#8a5d00', 'stroke-width': 1 }, t);
+    el('rect', { x: -2, y: -5, width: 4, height: 4, rx: 1, fill: '#5b3212' }, t);
+  },
+  ship(g, x, y, s = 1) {
+    const t = el('g', { transform: `translate(${x} ${y}) scale(${s})` }, g);
+    const b = el('g', { class: 'bob' }, t);
+    P(b, 'M-19 2 L19 2 L13 12 L-13 12 Z', { fill: '#8a522a', stroke: '#4d2a10', 'stroke-width': 1.5, 'stroke-linejoin': 'round' });
+    P(b, 'M-15 6 L15 6', { stroke: '#e2a912', 'stroke-width': 1.5 });
+    P(b, 'M0 2 L0 -26', { stroke: '#4d2a10', 'stroke-width': 2 });
+    P(b, 'M2 -23 C13 -19 13 -5 2 -1 Z', { fill: '#fffaf0', stroke: '#8a7a60', 'stroke-width': 1 });
+    P(b, 'M-2 -20 C-11 -16 -11 -4 -2 -1 Z', { fill: '#fffaf0', stroke: '#8a7a60', 'stroke-width': 1 });
+    P(b, 'M0 -26 L10 -23 L0 -20 Z', { fill: '#c8322b' });
+    return t;
+  },
+  volcano(g, x, y) {
+    const t = el('g', { transform: `translate(${x} ${y})` }, g);
+    P(t, 'M-16 6 L-5 -12 L5 -12 L16 6 Z', { fill: '#8b6a4f', stroke: '#5a4030', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
+    P(t, 'M-5 -12 L-2 -6 L1 -10 L5 -12 Z', { fill: '#e8501f' });
+    P(t, 'M0 -14 C-6 -20 2 -24 -2 -30 C6 -26 4 -20 8 -18', { fill: 'none', stroke: '#9aa0a6', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
+  },
+  lighthouse(g, x, y) {
+    const t = el('g', { transform: `translate(${x} ${y})` }, g);
+    el('path', { d: 'M0 -30 L44 -40 L44 -20 Z', fill: '#fff0a0', opacity: .5 }, t);
+    P(t, 'M-6 4 L-4 -24 L4 -24 L6 4 Z', { fill: '#fff', stroke: '#5a4030', 'stroke-width': 1.4 });
+    el('rect', { x: -5, y: -16, width: 10, height: 5, fill: '#c8322b' }, t);
+    el('rect', { x: -5.5, y: -6, width: 11, height: 5, fill: '#c8322b' }, t);
+    el('rect', { x: -4.5, y: -32, width: 9, height: 8, fill: '#ffd34d', stroke: '#5a4030', 'stroke-width': 1.2 }, t);
+    P(t, 'M-6 -32 L0 -38 L6 -32 Z', { fill: '#c8322b', stroke: '#5a4030', 'stroke-width': 1.2 });
+  },
+  cloud(g, x, y, s = 1) {
+    const t = el('g', { transform: `translate(${x} ${y}) scale(${s})` }, g);
+    for (let i = 0; i < 4; i++) P(t, `M${-9 + i * 6} 6 l-3 7`, { stroke: '#5f86b0', 'stroke-width': 2, 'stroke-linecap': 'round' });
+    P(t, 'M-16 4 C-22 4 -22 -6 -15 -6 C-15 -14 -4 -16 -1 -9 C2 -14 12 -13 12 -5 C19 -5 19 4 13 4 Z', { fill: '#a9b3bd', stroke: '#6f7b87', 'stroke-width': 1.4 });
+  },
+  moon(g, x, y) {
+    P(g, `M${x + 4} ${y - 10} A10 10 0 1 0 ${x + 4} ${y + 10} A8 8 0 1 1 ${x + 4} ${y - 10} Z`, { fill: '#ffe680', stroke: '#c79a12', 'stroke-width': 1.2 });
+  },
+  stars(g, x, y) {
+    [[0, 0, 4], [12, -8, 3], [-10, -10, 2.5]].forEach(([dx, dy, r]) => star(g, x + dx, y + dy, r, '#ffe680'));
+  },
+  whirl(g, x, y) {
+    P(g, `M${x} ${y} m-2 0 a3 3 0 1 1 5 2 a7 7 0 1 1 -10 -6 a11 11 0 1 1 16 10`, { fill: 'none', stroke: '#f2f7f8', 'stroke-width': 2.2, 'stroke-linecap': 'round', opacity: .9 });
+  },
+  mountain(g, x, y) {
+    P(g, `M${x - 16} ${y + 4} L${x - 4} ${y - 18} L${x + 3} ${y - 8} L${x + 8} ${y - 14} L${x + 18} ${y + 4} Z`, { fill: '#a58a6a', stroke: '#5a4030', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
+    P(g, `M${x - 4} ${y - 18} L${x - 8} ${y - 11} L${x - 4} ${y - 13} L${x} ${y - 11} Z`, { fill: '#fff' });
+  },
+  spyglass(g, x, y) {
+    const t = el('g', { transform: `translate(${x} ${y}) rotate(-25)` }, g);
+    el('rect', { x: -14, y: -3.5, width: 14, height: 7, rx: 1.5, fill: '#b06a2d', stroke: '#5b3212', 'stroke-width': 1.2 }, t);
+    el('rect', { x: 0, y: -4.5, width: 10, height: 9, rx: 1.5, fill: '#e2a912', stroke: '#8a5d00', 'stroke-width': 1.2 }, t);
+  },
+  bottle(g, x, y) {
+    const t = el('g', { transform: `translate(${x} ${y}) rotate(-30)` }, g);
+    P(t, 'M-10 -5 L5 -5 L9 -2 L14 -2 L14 2 L9 2 L5 5 L-10 5 Z', { fill: '#a8d8c8', stroke: '#3c7a68', 'stroke-width': 1.3, 'fill-opacity': .9 });
+    el('rect', { x: -7, y: -2.5, width: 9, height: 5, fill: '#fff6dc', stroke: '#b89a5b', 'stroke-width': .8 }, t);
+    el('rect', { x: 14, y: -2, width: 3, height: 4, fill: '#8a5a2b' }, t);
+  },
+  twin(g, x, y) {
+    ART.palm(g, x + 22, y + 2, .55);
+  }
+};
+function star(g, x, y, r, fill, cls) {
+  const pts = [];
+  for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4 - Math.PI / 2; const rr = i % 2 ? r * .4 : r; pts.push(`${(x + Math.cos(a) * rr).toFixed(1)},${(y + Math.sin(a) * rr).toFixed(1)}`); }
+  return el('polygon', Object.assign({ points: pts.join(' '), fill }, cls ? { class: cls } : {}), g);
+}
+function waves(g, x, y, w, color = '#ffffff', op = .8) {
+  let d = `M${x - w / 2} ${y}`;
+  for (let i = 0; i < w / 12; i++) d += ' q3 -4 6 0 t6 0';
+  P(g, d, { fill: 'none', stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round', opacity: op });
+}
+
+/* ---------- sea monsters (friendly ones) ---------- */
+const eye = (g, x, y, r = 5, look = [1, 0], lid) => {
+  el('circle', { cx: x, cy: y, r, fill: '#fff', stroke: '#2b1d12', 'stroke-width': 1.3 }, g);
+  el('circle', { cx: x + look[0] * r * .35, cy: y + look[1] * r * .35, r: r * .5, fill: '#2b1d12' }, g);
+  el('circle', { cx: x + look[0] * r * .35 + r * .18, cy: y + look[1] * r * .35 - r * .2, r: r * .16, fill: '#fff' }, g);
+  if (lid) P(g, `M${x - r - 1} ${y - r * .1} A${r + 1} ${r + 1} 0 0 1 ${x + r + 1} ${y - r * .1} Z`, { fill: lid, stroke: '#2b1d12', 'stroke-width': 1.2 });
+};
+const MONSTERS = {
+  kraken(g) {
+    const body = '#9a67c4', dark = '#5f3a86';
+    const tent = { fill: 'none', stroke: body, 'stroke-width': 9, 'stroke-linecap': 'round' };
+    const edge = { fill: 'none', stroke: dark, 'stroke-width': 11, 'stroke-linecap': 'round' };
+    const T = ['M-18 14 C-42 6 -62 22 -54 38 C-50 46 -40 44 -42 36', 'M18 14 C42 6 62 22 54 38 C50 46 40 44 42 36',
+      'M-22 0 C-48 -6 -62 -34 -46 -46 C-38 -52 -30 -44 -36 -40', 'M22 0 C48 -6 62 -34 46 -46 C38 -52 30 -44 36 -40',
+      'M-8 18 C-16 30 -10 42 2 40', 'M8 18 C18 30 22 40 14 46'];
+    T.forEach(d => P(g, d, edge));
+    T.forEach(d => P(g, d, tent));
+    [[-50, -40], [50, -40], [-52, 32], [52, 32]].forEach(([x, y]) => el('circle', { cx: x, cy: y, r: 1.8, fill: '#e7d3f5' }, g));
+    P(g, 'M-28 18 C-34 -18 -22 -50 0 -50 C22 -50 34 -18 28 18 Z', { fill: body, stroke: dark, 'stroke-width': 2.2 });
+    [[-12, -36, 4], [10, -40, 3], [16, -28, 2.5], [-18, -22, 2.5]].forEach(([x, y, r]) => el('circle', { cx: x, cy: y, r, fill: '#c19be0' }, g));
+    eye(g, -10, -6, 8, [0, -.6]); eye(g, 10, -6, 8, [0, -.6]);
+    P(g, 'M-19 -18 L-4 -14 M19 -18 L4 -14', { stroke: '#2b1d12', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
+    P(g, 'M-6 9 C-2 6 2 6 6 9', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 2, 'stroke-linecap': 'round' });
+    text(g, 30, -46, '?', { 'font-size': 18, 'font-weight': 900, fill: '#5f3a86' });
+    text(g, -40, -54, '?', { 'font-size': 14, 'font-weight': 900, fill: '#5f3a86' });
+    waves(g, 0, 22, 96);
+  },
+  dragon(g) {
+    const body = '#d4513b', dark = '#8e2a1c', belly = '#f6b36b';
+    const bodyS = { fill: 'none', stroke: dark, 'stroke-width': 15, 'stroke-linecap': 'round' };
+    const bodyF = { fill: 'none', stroke: body, 'stroke-width': 12, 'stroke-linecap': 'round' };
+    const humps = ['M8 26 C8 -4 38 -4 38 26', 'M48 26 C48 6 68 6 68 26', 'M76 26 C80 10 88 6 96 2'];
+    humps.forEach(d => P(g, d, bodyS)); humps.forEach(d => P(g, d, bodyF));
+    P(g, 'M96 2 l8 -10 l-1 13 z', { fill: body, stroke: dark, 'stroke-width': 1.5 });
+    [[16, 1], [23, -3], [30, 1], [54, 9], [61, 9]].forEach(([x, y]) => P(g, `M${x - 3} ${y} l3 -7 l3 7 z`, { fill: '#f5a524', stroke: dark, 'stroke-width': 1 }));
+    P(g, 'M-2 26 C-4 6 -8 -8 -18 -16', bodyS); P(g, 'M-2 26 C-4 6 -8 -8 -18 -16', bodyF);
+    P(g, 'M-8 -30 C4 -32 8 -20 2 -12 C-4 -6 -16 -8 -24 -10 L-42 -12 C-50 -12 -50 -24 -42 -26 L-26 -28 C-22 -32 -14 -32 -8 -30 Z', { fill: body, stroke: dark, 'stroke-width': 2 });
+    P(g, 'M-40 -12 C-30 -8 -18 -8 -6 -12', { fill: 'none', stroke: belly, 'stroke-width': 3, 'stroke-linecap': 'round' });
+    P(g, 'M-6 -30 l4 -14 l5 12 z M2 -28 l8 -10 l0 13 z', { fill: '#f5a524', stroke: dark, 'stroke-width': 1.2 });
+    P(g, 'M6 -18 C16 -26 24 -22 26 -14 C18 -18 12 -16 6 -12 Z', { fill: '#f08a4b', stroke: dark, 'stroke-width': 1.2 });
+    eye(g, -14, -22, 5, [-.8, .2]);
+    P(g, 'M-22 -30 L-8 -26', { stroke: '#2b1d12', 'stroke-width': 2.6, 'stroke-linecap': 'round' });
+    el('circle', { cx: -44, cy: -21, r: 1.6, fill: '#2b1d12' }, g);
+    P(g, 'M-50 -18 C-60 -30 -68 -14 -82 -24 C-76 -12 -86 -4 -74 0 C-66 -8 -58 -8 -50 -14 Z', { fill: '#ffc93c', stroke: '#e0601c', 'stroke-width': 1.5 });
+    P(g, 'M-52 -17 C-58 -22 -64 -14 -72 -16 C-66 -10 -60 -10 -52 -14 Z', { fill: '#ff8a2a' });
+    waves(g, 30, 28, 150);
+  },
+  serpent(g) {
+    const body = '#7f9cbb', dark = '#4a6585';
+    const s1 = { fill: 'none', stroke: dark, 'stroke-width': 14, 'stroke-linecap': 'round' };
+    const s2 = { fill: 'none', stroke: body, 'stroke-width': 11, 'stroke-linecap': 'round' };
+    const humps = ['M-46 22 C-46 4 -24 4 -24 22', 'M-14 22 C-14 0 10 0 10 22'];
+    humps.forEach(d => P(g, d, s1)); humps.forEach(d => P(g, d, s2));
+    P(g, 'M20 22 C22 2 26 -8 36 -10', s1); P(g, 'M20 22 C22 2 26 -8 36 -10', s2);
+    P(g, 'M30 -16 C42 -22 56 -16 58 -4 C60 6 52 10 44 6 C38 4 32 0 30 -6 Z', { fill: body, stroke: dark, 'stroke-width': 2 });
+    eye(g, 42, -8, 5, [.2, .7], '#7f9cbb');
+    P(g, 'M48 2 C50 0 54 0 56 2', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.8, 'stroke-linecap': 'round', transform: 'rotate(180 52 1.5)' });
+    P(g, 'M44 4 C44 8 43 10 42 12', { fill: 'none', stroke: '#6fb6ff', 'stroke-width': 2.2, 'stroke-linecap': 'round' });
+    ART.cloud(g, 46, -40, 1.1);
+    waves(g, -6, 24, 120);
+  },
+  whale(g) {
+    const body = '#4f7fc0', dark = '#2c5288', belly = '#bcd7f2';
+    P(g, 'M-56 6 C-58 -22 -20 -32 16 -24 C30 -20 40 -12 48 -14 L60 -28 C64 -18 62 -8 56 0 C64 4 68 12 64 20 L50 8 C40 18 18 24 -6 22 C-36 20 -54 18 -56 6 Z', { fill: body, stroke: dark, 'stroke-width': 2.2 });
+    P(g, 'M-54 10 C-40 22 -6 24 20 16 C2 14 -30 14 -54 10 Z', { fill: belly });
+    eye(g, -34, -4, 4, [0, .2]);
+    P(g, 'M-44 6 C-40 10 -34 10 -30 7', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.8, 'stroke-linecap': 'round' });
+    el('circle', { cx: -26, cy: 4, r: 3, fill: '#f6a2b8', opacity: .8 }, g);
+    P(g, 'M-28 -30 C-30 -40 -38 -44 -44 -40 M-28 -30 C-26 -40 -18 -44 -12 -40 M-28 -30 L-28 -44', { fill: 'none', stroke: '#9fd3ff', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
+    text(g, 4, -36, '♪', { 'font-size': 18, fill: '#2c5288', 'font-weight': 800 });
+    text(g, 22, -46, '♫', { 'font-size': 16, fill: '#2c5288', 'font-weight': 800 });
+    waves(g, 0, 22, 130);
+  },
+  shark(g) {
+    P(g, 'M-70 0 C-50 -18 -10 -26 30 -18 L40 -42 L52 -16 C60 -14 66 -10 72 -6 L90 -24 L86 0 L90 20 L72 6 C52 16 0 18 -40 12 L-50 24 L-46 10 C-58 8 -66 4 -70 0 Z', { fill: '#1f2648', opacity: .42 });
+    el('circle', { cx: -50, cy: -4, r: 3, fill: '#fff', opacity: .7 }, g);
+    P(g, 'M-128 -18 L-92 -6 L-92 6 L-128 14 Z', { fill: '#fff3a0', opacity: .7 });
+    el('rect', { x: -138, y: -20, width: 12, height: 8, rx: 2, fill: '#5a46a0', transform: 'rotate(15 -132 -16)' }, g);
+    P(g, 'M-90 0 C-84 -7 -74 -7 -70 0 C-74 7 -84 7 -90 0 Z', { fill: '#ff9a3c', stroke: '#b5571a', 'stroke-width': 1.2 });
+    P(g, 'M-70 0 L-63 -6 L-63 6 Z', { fill: '#ff9a3c', stroke: '#b5571a', 'stroke-width': 1.2 });
+    el('circle', { cx: -84, cy: -1.5, r: 1.6, fill: '#2b1d12' }, g);
+    waves(g, 0, 26, 140, '#ffffff', .6);
+  },
+  jelly(g) {
+    const pink = '#ef9fcc', dark = '#b3528c';
+    [-14, -5, 4, 13].forEach((x, i) => P(g, `M${x} 6 q${i % 2 ? 6 : -6} 9 0 18 t0 18`, { fill: 'none', stroke: dark, 'stroke-width': 2.4, 'stroke-linecap': 'round', opacity: .8 }));
+    P(g, 'M-26 6 C-28 -30 28 -30 26 6 C18 10 10 3 0 8 C-10 3 -18 10 -26 6 Z', { fill: pink, stroke: dark, 'stroke-width': 2, 'fill-opacity': .92 });
+    P(g, 'M-14 -14 C-10 -20 -4 -21 0 -20', { fill: 'none', stroke: '#fff', 'stroke-width': 2.5, 'stroke-linecap': 'round', opacity: .8 });
+    eye(g, -8, -4, 4.2, [-.5, .3]); eye(g, 8, -4, 4.2, [.5, .3]);
+    P(g, 'M-4 4 q2 -2 4 0 q2 2 4 0', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.6, 'stroke-linecap': 'round' });
+    P(g, 'M-34 -12 q-4 6 0 12 M34 -12 q4 6 0 12', { fill: 'none', stroke: dark, 'stroke-width': 2, 'stroke-linecap': 'round', opacity: .7 });
+  },
+  puffer(g) {
+    const body = '#f6c945', dark = '#b0790f';
+    for (let i = 0; i < 14; i++) {
+      const a = (i / 14) * Math.PI * 2;
+      const x1 = Math.cos(a) * 22, y1 = Math.sin(a) * 22, x2 = Math.cos(a) * 31, y2 = Math.sin(a) * 31;
+      const px = -Math.sin(a) * 4, py = Math.cos(a) * 4;
+      P(g, `M${(x1 + px).toFixed(1)} ${(y1 + py).toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)} L${(x1 - px).toFixed(1)} ${(y1 - py).toFixed(1)} Z`, { fill: '#e8b02a', stroke: dark, 'stroke-width': 1 });
+    }
+    P(g, 'M22 0 L40 -12 L36 0 L40 12 Z', { fill: '#e8b02a', stroke: dark, 'stroke-width': 1.5 });
+    el('circle', { cx: 0, cy: 0, r: 25, fill: body, stroke: dark, 'stroke-width': 2 }, g);
+    P(g, 'M-20 8 C-10 22 10 22 20 8 C8 14 -8 14 -20 8 Z', { fill: '#fff3c4' });
+    eye(g, -10, -6, 7, [-.4, 0]); eye(g, 6, -7, 7, [-.4, 0]);
+    P(g, 'M-17 -16 L-5 -14 M0 -16 L12 -17', { stroke: '#2b1d12', 'stroke-width': 1.8, 'stroke-linecap': 'round' });
+    el('ellipse', { cx: -20, cy: 6, rx: 3, ry: 2.5, fill: '#2b1d12' }, g);
+    text(g, 26, -26, '!', { 'font-size': 18, 'font-weight': 900, fill: '#b0790f' });
+    waves(g, 0, 34, 90);
+  }
+};
+
+/* layers */
+const L = {};
+['bg', 'decor', 'islands', 'routes', 'route', 'stations', 'labels', 'marker'].forEach(n => L[n] = el('g', { id: n + 'Layer' }, svg));
+
+/* ---------- sea, parchment and weather ---------- */
+(function drawSea() {
+  const defs = el('defs', {}, L.bg);
+  const lg = el('linearGradient', { id: 'seaGrad', x1: 0, y1: 0, x2: 1, y2: 0 }, defs);
+  el('stop', { offset: 0, 'stop-color': '#8fa9b4' }, lg);
+  el('stop', { offset: .38, 'stop-color': '#a3cbd0' }, lg);
+  el('stop', { offset: .75, 'stop-color': '#b2e2dd' }, lg);
+  el('stop', { offset: 1, 'stop-color': '#c4eee0' }, lg);
+  const f = el('filter', { id: 'paper', x: 0, y: 0, width: '100%', height: '100%' }, defs);
+  el('feTurbulence', { type: 'fractalNoise', baseFrequency: .9, numOctaves: 2, seed: 7, result: 'n' }, f);
+  el('feColorMatrix', { in: 'n', type: 'matrix', values: '0 0 0 0 .45  0 0 0 0 .32  0 0 0 0 .18  0 0 0 .09 0' }, f);
+
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: '#f1dfb6' }, L.bg);
+  el('rect', { x: 14, y: 14, width: 1572, height: 1072, rx: 10, fill: 'url(#seaGrad)' }, L.bg);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, filter: 'url(#paper)' }, L.bg);
+  el('rect', { x: 14, y: 14, width: 1572, height: 1072, rx: 10, fill: 'none', stroke: '#8a6a3a', 'stroke-width': 3 }, L.bg);
+  el('rect', { x: 22, y: 22, width: 1556, height: 1056, rx: 7, fill: 'none', stroke: '#8a6a3a', 'stroke-width': 1, 'stroke-dasharray': '2 5' }, L.bg);
+
+  // scattered wave marks, kept away from islands and labels
+  const rand = rng('waves');
+  const places = Object.values(PLACES);
+  for (let i = 0, n = 0; i < 900 && n < 120; i++) {
+    const x = 60 + rand() * 1480, y = 60 + rand() * 980;
+    if (x < 500 && y < 270) continue;
+    if (places.some(p => Math.abs(p.x - x) < 90 && Math.abs(p.y - y) < 40)) continue;
+    waves(L.bg, x, y, 24, '#ffffff', .45); n++;
+  }
+})();
+
+/* ---------- islands under every place ---------- */
+for (const p of Object.values(PLACES)) {
+  if (p.monster) continue;
+  const g = el('g', { class: 'isl', 'data-id': p.id }, L.islands);
+  const r = p.kind === 'x' ? 44 : p.kind === 'treasure' ? 30 : p.big ? 30 : p.routes.length > 1 ? 19 : 15;
+  P(g, blobPath(p.x, p.y + 2, r + 4, p.id + 'shallow'), { fill: '#d9f1ea', opacity: .7 });
+  P(g, blobPath(p.x, p.y, r, p.id), { fill: '#efdba6', stroke: '#a88848', 'stroke-width': 1.6 });
+  if (r > 18) P(g, blobPath(p.x + 2, p.y - 2, r * .55, p.id + 'g'), { fill: '#9cc56f', opacity: .9 });
+  const icon = p.icon;
+  if (icon === 'volcano') ART.volcano(g, p.x + 4, p.y - 12);
+  if (icon === 'lighthouse') ART.lighthouse(g, p.x + 8, p.y - 6);
+  if (icon === 'cloud') ART.cloud(g, p.x + 2, p.y - 30, .9);
+  if (icon === 'moon') ART.moon(g, p.x + 20, p.y - 22);
+  if (icon === 'stars') ART.stars(g, p.x + 26, p.y - 30);
+  if (icon === 'whirl') ART.whirl(g, p.x - 30, p.y - 4);
+  if (icon === 'mountain') ART.mountain(g, p.x + 30, p.y - 4);
+  if (icon === 'spyglass') ART.spyglass(g, p.x - 22, p.y - 14);
+  if (icon === 'bottle') ART.bottle(g, p.x - 30, p.y + 18);
+  if (icon === 'twin') { P(g, blobPath(p.x - 22, p.y + 18, 11, 'twin2'), { fill: '#efdba6', stroke: '#a88848', 'stroke-width': 1.6 }); }
+  if (icon === 'topsy') ART.palm(g, p.x - 14, p.y - 12, .8, true);
+  if (p.kind === 'treasure') { ART.palm(g, p.x - 12, p.y - 6, .75); ART.chest(g, p.x + 12, p.y - 4, .8); }
+  if (p.kind === 'x') {
+    ART.palm(g, p.x - 26, p.y - 10, .9); ART.palm(g, p.x + 30, p.y - 4, .7);
+    P(g, `M${p.x - 14} ${p.y - 14} L${p.x + 14} ${p.y + 14} M${p.x + 14} ${p.y - 14} L${p.x - 14} ${p.y + 14}`, { stroke: '#c8322b', 'stroke-width': 7, 'stroke-linecap': 'round' });
+  }
+}
+
+/* ---------- routes ---------- */
+function strokeRoute(parent, route, d) {
+  if (route.golden) {
+    el('path', { d, fill: 'none', stroke: '#fff5d6', 'stroke-width': 20, 'stroke-linecap': 'round', opacity: .75 }, parent);
+    el('path', { d, fill: 'none', stroke: route.color, 'stroke-width': 12, 'stroke-linecap': 'round' }, parent);
+    el('path', { d, fill: 'none', stroke: '#fff3c4', 'stroke-width': 2.5, 'stroke-dasharray': '2 9', 'stroke-linecap': 'round' }, parent);
+  } else {
+    el('path', { d, fill: 'none', stroke: HALO, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: .85 }, parent);
+    el('path', { d, fill: 'none', stroke: route.color, 'stroke-width': 5.5, 'stroke-linecap': 'round', 'stroke-dasharray': '11 8' }, parent);
+  }
+}
+const routeGroups = {};
+for (const id of ROUTE_ORDER) {
+  const r = ROUTES[id];
+  const g = el('g', { class: 'rt', 'data-route': id }, L.routes);
+  routeGroups[id] = g;
+  strokeRoute(g, r, routePath(r));
+}
+// golden sparkles along the current
+(function sparkles() {
+  const g = routeGroups.golden;
+  const path = g.querySelector('path:nth-child(2)');
+  const len = path.getTotalLength();
+  for (let s = 40, i = 0; s < len - 40; s += 70, i++) {
+    const p = path.getPointAtLength(s);
+    const st = star(g, p.x + (i % 2 ? 14 : -14), p.y, 4, '#fff7c2', 'sparkle');
+    st.style.animationDelay = (i * .35) + 's';
+  }
+})();
+
+/* ---------- places, monsters and labels ---------- */
+function labelAttrs(p) {
+  if (typeof p.l === 'object') return { x: p.x + p.l.dx, y: p.y + p.l.dy, anchor: p.l.anchor };
+  const [dx, dy] = DIRS[p.l];
+  const pad = p.kind === 'treasure' ? 40 : p.big ? 34 : p.routes.length > 1 ? 24 : 20;
+  const n = dx && dy ? pad * .8 : pad;
+  const base = dy < 0 ? 0 : dy > 0 ? 10 : 5;
+  return { x: p.x + dx * n, y: p.y + dy * n + base, anchor: dx > 0 ? 'start' : dx < 0 ? 'end' : 'middle' };
+}
+const stationEls = {};
+for (const p of Object.values(PLACES)) {
+  const g = el('g', { class: 'stn' + (p.monster ? ' monster' : ''), 'data-id': p.id, tabindex: 0, role: 'button', 'aria-label': p.name }, L.stations);
+  stationEls[p.id] = g;
+  if (p.monster) {
+    const a = el('g', { transform: `translate(${p.x + p.art[0]} ${p.y + p.art[1]})` }, g);
+    const inner = el('g', { class: 'art' }, a);
+    MONSTERS[p.monster](inner);
+    el('circle', { class: 'hit', cx: p.x, cy: p.y, r: 16, fill: 'transparent' }, g);
+    el('rect', { x: p.x + p.art[0] - 60, y: p.y + p.art[1] - 50, width: 120, height: 90, fill: 'transparent' }, g);
+  } else {
+    const ix = p.routes.length > 1;
+    el('circle', { class: 'hit', cx: p.x, cy: p.y, r: p.kind ? 34 : ix ? 18 : 15, fill: 'transparent' }, g);
+    if (p.kind === 'x') { /* the big red X is the marker */ }
+    else if (p.kind === 'treasure') {
+      el('circle', { cx: p.x, cy: p.y, r: 9, fill: '#fff', stroke: '#c27a00', 'stroke-width': 3.5 }, g);
+      star(g, p.x, p.y, 6, '#e2a912');
+    } else if (ix) {
+      el('circle', { cx: p.x, cy: p.y, r: p.big ? 13 : 9, fill: '#fff', stroke: '#3a2a18', 'stroke-width': p.big ? 4 : 3.4 }, g);
+      if (p.big) el('circle', { cx: p.x, cy: p.y, r: 4, fill: '#3a2a18' }, g);
+    } else {
+      el('circle', { cx: p.x, cy: p.y, r: 6.5, fill: '#fff', stroke: ROUTES[p.routes[0]].color, 'stroke-width': 3.6 }, g);
+    }
+  }
+  const la = labelAttrs(p);
+  const big = p.big || p.kind;
+  const t = text(g, la.x, la.y, p.name, Object.assign({
+    class: 'lbl', 'text-anchor': la.anchor,
+    'font-size': big ? 17 : p.monster ? 13 : 14,
+    'font-weight': big ? 900 : 800,
+    'font-style': p.monster ? 'italic' : 'normal',
+    fill: p.monster ? '#5b3a86' : INK
+  }, halo));
+  if (p.kind === 'treasure' || p.kind === 'x') {
+    const word = p.kind === 'x' ? 'X MARKS THE SPOT' : 'TREASURE: ' + p.treasure.toUpperCase();
+    text(g, la.x, la.y + 18, word, Object.assign({ 'text-anchor': la.anchor, 'font-size': 11.5, 'font-weight': 900, fill: '#a35f00', 'letter-spacing': 1.4 }, halo));
+  }
+  g.addEventListener('click', () => { if (!dragMoved()) selectPlace(p.id); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectPlace(p.id); } });
+}
+
+/* ---------- decoration: title, compass, key, legend ---------- */
+(function drawDecor() {
+  const D = L.decor;
+  // title scroll
+  const sc = el('g', { transform: 'translate(36 34)' }, D);
+  P(sc, 'M14 0 L430 0 C440 0 446 8 446 16 L446 196 C446 206 440 212 430 212 L14 212 C4 212 -2 206 -2 196 L-2 16 C-2 8 4 0 14 0 Z', { fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 2 });
+  P(sc, 'M-2 16 C-14 16 -14 0 0 0 M446 196 C458 196 458 212 444 212', { fill: 'none', stroke: '#8a6a3a', 'stroke-width': 2 });
+  text(sc, 22, 58, 'The Wobbly Seas', { 'font-family': TITLE_FONT, 'font-size': 52, fill: '#7a2e12' });
+  text(sc, 24, 84, 'A TREASURE MAP FOR BRAVE HEARTS', { 'font-size': 13, 'font-weight': 900, fill: '#b5651d', 'letter-spacing': 2.6 });
+  text(sc, 24, 116, 'Every wobble is just an island.', { 'font-size': 19, 'font-weight': 900 });
+  text(sc, 24, 139, 'Keep sailing. The treasure is waiting.', { 'font-size': 19, 'font-weight': 600 });
+  ['Every route starts with a wobble and ends with treasure.', 'Tame the sea monsters, swap routes at the white ports,', 'and hop on the Golden Current whenever you need help.']
+    .forEach((s, i) => text(sc, 24, 166 + i * 17, s, { 'font-size': 13.5, 'font-weight': 600, fill: '#6a5a48' }));
+
+  // compass rose
+  const c = el('g', { transform: 'translate(1505 112)' }, D);
+  el('circle', { r: 46, fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 2, opacity: .92 }, c);
+  el('circle', { r: 38, fill: 'none', stroke: '#8a6a3a', 'stroke-width': 1, 'stroke-dasharray': '2 3' }, c);
+  P(c, 'M0 -40 L7 -7 L40 0 L7 7 L0 40 L-7 7 L-40 0 L-7 -7 Z', { fill: '#e2a912', stroke: '#8a5d00', 'stroke-width': 1.2 });
+  P(c, 'M0 -40 L7 -7 L0 0 Z M40 0 L7 7 L0 0 Z M0 40 L-7 7 L0 0 Z M-40 0 L-7 -7 L0 0 Z', { fill: '#b57d0a' });
+  P(c, 'M0 -26 L4 -4 L0 0 L-4 -4 Z', { fill: '#c8322b' });
+  el('circle', { r: 4, fill: '#fbf0d4', stroke: '#8a5d00', 'stroke-width': 1.2 }, c);
+  text(c, 0, -50, 'N', { 'text-anchor': 'middle', 'font-family': TITLE_FONT, 'font-size': 20, fill: '#7a2e12' });
+
+  // sun over the treasure islands
+  const sun = el('g', { transform: 'translate(1535 375)' }, D);
+  for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; P(sun, `M${Math.cos(a) * 24} ${Math.sin(a) * 24} L${Math.cos(a) * 34} ${Math.sin(a) * 34}`, { stroke: '#f0b51c', 'stroke-width': 3, 'stroke-linecap': 'round' }); }
+  el('circle', { r: 19, fill: '#ffd34d', stroke: '#e09a10', 'stroke-width': 2 }, sun);
+  P(sun, 'M-8 3 C-4 9 4 9 8 3', { fill: 'none', stroke: '#8a5d00', 'stroke-width': 2, 'stroke-linecap': 'round' });
+  el('circle', { cx: -6, cy: -4, r: 2, fill: '#8a5d00' }, sun); el('circle', { cx: 6, cy: -4, r: 2, fill: '#8a5d00' }, sun);
+
+  // storm clouds over the wobbly west
+  ART.cloud(D, 790, 290, 1.3);
+  ART.cloud(D, 160, 690, 1.0);
+  P(D, 'M802 310 l-6 12 l6 0 l-6 12', { fill: 'none', stroke: '#f5c400', 'stroke-width': 2.6, 'stroke-linejoin': 'round' });
+
+  // region names
+  const region = { 'font-family': TITLE_FONT, 'font-size': 30, fill: '#466d7d', opacity: .55, 'letter-spacing': 1 };
+  text(D, 60, 1050, 'Wobbly Waters', region);
+  text(D, 1505, 442, 'Sunny Seas', Object.assign({}, region, { 'font-size': 26, 'text-anchor': 'middle', fill: '#2f8a7c', opacity: .6 }));
+  text(D, 640, 262, 'Here be dragons', { 'font-family': TITLE_FONT, 'font-size': 22, fill: '#8e2a1c', opacity: .8, 'text-anchor': 'middle', 'font-style': 'italic' });
+
+  // a little ship heading east
+  const sh = el('g', { opacity: .9 }, D);
+  ART.ship(sh, 1040, 1035, 1.1);
+})();
+
+(function drawLegend() {
+  const D = L.decor;
+  const lg = el('g', { transform: 'translate(1250 932)' }, D);
+  P(lg, 'M0 0 L320 0 L320 140 L0 140 Z', { fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 1.6, opacity: .95 });
+  text(lg, 12, 20, 'SEA ROUTES', { 'font-size': 11.5, 'font-weight': 900, 'letter-spacing': 2.4, fill: '#6a5a48' });
+  text(lg, 308, 20, 'tap one to follow it', { 'font-size': 11, 'font-style': 'italic', fill: '#8a7a60', 'text-anchor': 'end' });
+  ROUTE_ORDER.forEach((id, i) => {
+    const r = ROUTES[id];
+    const col = i < 4 ? 0 : 1, row = i % 4;
+    const g = el('g', { class: 'lg', 'data-route': id, transform: `translate(${12 + col * 154} ${42 + row * 26})`, role: 'button', tabindex: 0, 'aria-label': 'Follow ' + r.name }, lg);
+    el('rect', { x: -4, y: -12, width: 150, height: 24, fill: 'transparent' }, g);
+    if (r.golden) el('line', { x1: 0, y1: 0, x2: 26, y2: 0, stroke: r.color, 'stroke-width': 9, 'stroke-linecap': 'round' }, g);
+    else el('line', { x1: 0, y1: 0, x2: 26, y2: 0, stroke: r.color, 'stroke-width': 5, 'stroke-dasharray': '7 4' }, g);
+    text(g, 34, 4.5, r.name, { 'font-size': 12.5, 'font-weight': 800 });
+    g.addEventListener('click', () => focusRoute(id));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusRoute(id); } });
+  });})();
+
+(function drawFootnote() {
+  text(L.decor, 800, 1080, 'Something really worrying you? Tell a grown-up you trust, or call Childline free on 0800 1111.', { 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 700, fill: '#5a4a38' });
+})();
+
+/* ---------- ship marker ---------- */
+const shipG = el('g', { 'pointer-events': 'none' }, L.marker);
+shipG.style.display = 'none';
+ART.ship(shipG, 0, 0, 1.15);
+function shipAt(x, y, faceLeft) {
+  shipG.style.display = '';
+  shipG.setAttribute('transform', `translate(${x.toFixed(1)} ${(y - 12).toFixed(1)}) scale(${faceLeft ? -1 : 1} 1)`);
+}
+
+/* =====================================================================
+   INTERACTION
+   ===================================================================== */
+const panel = document.getElementById('panel');
+const clearBtn = document.getElementById('clearBtn');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function pill(id, asButton) {
+  const r = ROUTES[id];
+  const style = `--c:${r.color};--t:${r.text || '#fff'}`;
+  return asButton
+    ? `<button type="button" class="pill" style="${style}" data-route="${id}">${esc(r.name)}</button>`
+    : `<span class="pill" style="${style}">${esc(r.name)}</span>`;
+}
+
+let sailing = null;
+function stopSailing() { if (sailing) cancelAnimationFrame(sailing); sailing = null; }
+
+function clearFocus() {
+  stopSailing();
+  svg.classList.remove('focus');
+  svg.querySelectorAll('.on').forEach(n => n.classList.remove('on'));
+  L.route.replaceChildren();
+  clearBtn.hidden = true;
+}
+function lightPlace(sid) {
+  stationEls[sid].classList.add('on');
+  const isl = L.islands.querySelector(`[data-id="${sid}"]`);
+  if (isl) isl.classList.add('on');
+}
+
+function setMarker(sid) {
+  if (!sid) { shipG.style.display = 'none'; return; }
+  const p = PLACES[sid];
+  if (p.monster) { shipAt(p.x - 64, p.y + 4, false); return; }
+  const ld = typeof p.l === 'string' ? DIRS[p.l] : [Math.sign(p.l.dx), Math.sign(p.l.dy)];
+  const off = p.kind ? 40 : p.big ? 34 : 24;
+  let sx = -ld[0], sy = -ld[1];
+  if (!sx && !sy) sx = -1;
+  shipAt(p.x + sx * off, p.y + sy * off * .7, sx < 0);
+}
+
+function focusRoute(id) {
+  clearFocus();
+  setMarker(null);
+  svg.classList.add('focus');
+  routeGroups[id].classList.add('on');
+  for (const sid of ROUTES[id].stations) lightPlace(sid);
+  clearBtn.hidden = false;
+  showRoute(id);
+}
+
+function nextStops(sid) {
+  return PLACES[sid].routes.map(rid => {
+    const st = ROUTES[rid].stations, i = st.indexOf(sid), out = [];
+    if (i < st.length - 1) out.push({ rid, toward: st[st.length - 1], next: st[i + 1] });
+    if (i > 0 && !ROUTES[rid].golden) { /* routes sail one way: towards the treasure */ }
+    if (i > 0 && ROUTES[rid].golden) out.push({ rid, toward: st[0], next: st[i - 1] });
+    return out;
+  }).flat();
+}
+
+function showIntro() {
+  panel.innerHTML = `
+    <p class="kicker">Ahoy, captain</p>
+    <h2>Where are you today?</h2>
+    <p>Tap any island to find out what it feels like and get a captain's tip. Tap a sea monster to learn how to tame it. Tap a route in the key to follow it all the way to the treasure.</p>
+    <h3>How to read the map</h3>
+    <p>Each dotted route starts with a wobble in the stormy west and ends at a treasure island in the sunny east. The white circles are ports, where you can swap to a different route. The Golden Current crosses every route, so you can hop on for help from anywhere.</p>
+    <div class="actions">
+      <button class="btn" type="button" data-go="topsy">Start at Topsy-Turvy Island</button>
+      <a class="btn ghost" href="#planner">Plan a voyage</a>
+    </div>`;
+}
+
+function showPlace(sid) {
+  const p = PLACES[sid];
+  const dirs = nextStops(sid).map(d => {
+    const r = ROUTES[d.rid];
+    return `<li style="--c:${r.color}"><span class="swatch"></span><span>${esc(r.name)} towards <b>${esc(PLACES[d.toward].name)}</b>: next stop <button type="button" class="linkbtn" data-go="${d.next}">${esc(PLACES[d.next].name)}</button></span></li>`;
+  }).join('');
+  let kicker = 'Island', h1 = 'What it feels like', h2 = 'Captain\'s tip', cls = 'tip';
+  if (p.monster) { kicker = 'Sea monster'; h1 = 'What it does'; h2 = 'How to tame it'; cls = 'tip tame'; }
+  else if (p.kind === 'treasure') { kicker = 'Treasure island · ' + p.treasure; h1 = 'What you find here'; h2 = 'Keep your treasure safe'; cls = 'tip treasure'; }
+  else if (p.kind === 'x') { kicker = 'X marks the spot'; h1 = 'What you find here'; h2 = 'The secret'; cls = 'tip treasure'; }
+  else if (p.routes.length > 1) kicker = `Port · ${p.routes.length} routes`;
+  if (p.routes.includes('golden') && !p.kind) kicker += ' · Golden Current';
+  panel.innerHTML = `
+    <p class="kicker">${esc(kicker)}</p>
+    <h2>${esc(p.name)}</h2>
+    <div class="pills">${p.routes.map(id => pill(id, true)).join('')}</div>
+    <h3>${h1}</h3>
+    <p>${esc(p.feel)}</p>
+    <h3>${h2}</h3>
+    <p class="${cls}">${esc(p.tip)}</p>
+    ${p.help ? `<p class="help">If something is really worrying you and you cannot tell anyone at home or at school, you can talk to <strong>Childline</strong> for free on <strong>0800 1111</strong>, any time. If you are ever in danger, call <strong>999</strong>.</p>` : ''}
+    ${dirs ? `<h3>Sail on from here</h3><ul class="dirs">${dirs}</ul>` : ''}
+    <div class="actions">
+      ${p.kind ? `<button class="btn" type="button" data-plan-to="${sid}">Plan a voyage here</button>` : `<button class="btn" type="button" data-plan-from="${sid}">Plan a voyage from here</button>`}
+    </div>`;
+}
+
+function showRoute(id) {
+  const r = ROUTES[id];
+  const st = r.stations;
+  const mon = st.find(s => PLACES[s].monster);
+  panel.innerHTML = `
+    <p class="kicker">${esc(r.topic)}</p>
+    <h2>${esc(r.name)}</h2>
+    <p>${esc(r.about)}</p>
+    ${mon ? `<p class="tip tame" style="margin-top:12px">Beware: <button type="button" class="linkbtn" data-go="${mon}">${esc(PLACES[mon].name)}</button> lives on this route.</p>` : ''}
+    <h3>Islands, in order</h3>
+    <ul class="dirs">${st.map(sid => `<li style="--c:${r.color}"><span class="swatch"></span><button type="button" class="linkbtn" data-go="${sid}">${esc(PLACES[sid].name)}</button>${PLACES[sid].routes.length > 1 ? ' <span style="color:#8a7a60;font-size:13px">port</span>' : ''}</li>`).join('')}</ul>
+    <div class="actions">
+      <button class="btn" type="button" data-plan-pair="${st[0]}|${st[st.length - 1]}">Sail it end to end</button>
+    </div>`;
+}
+
+function selectPlace(sid, keepRoute) {
+  if (!keepRoute) {
+    clearFocus();
+    svg.classList.add('focus');
+    lightPlace(sid);
+    for (const rid of PLACES[sid].routes) {
+      routeGroups[rid].classList.add('on');
+      for (const other of ROUTES[rid].stations) lightPlace(other);
+    }
+    clearBtn.hidden = false;
+  }
+  setMarker(sid);
+  showPlace(sid);
+  if (window.innerWidth <= 1100 && !keepRoute) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+panel.addEventListener('click', e => {
+  const go = e.target.closest('[data-go]');
+  if (go) return selectPlace(go.dataset.go);
+  const rt = e.target.closest('[data-route]');
+  if (rt) return focusRoute(rt.dataset.route);
+  const pf = e.target.closest('[data-plan-from]');
+  if (pf) { fromSel.value = pf.dataset.planFrom; document.getElementById('planner').scrollIntoView({ behavior: 'smooth' }); toSel.focus({ preventScroll: true }); return; }
+  const pt = e.target.closest('[data-plan-to]');
+  if (pt) { toSel.value = pt.dataset.planTo; document.getElementById('planner').scrollIntoView({ behavior: 'smooth' }); fromSel.focus({ preventScroll: true }); return; }
+  const pp = e.target.closest('[data-plan-pair]');
+  if (pp) { const [a, b] = pp.dataset.planPair.split('|'); runPlan(a, b, true); }
+});
+clearBtn.addEventListener('click', () => { clearFocus(); setMarker(null); showIntro(); });
+
+/* ---------- zoom and drag ---------- */
+const scroller = document.getElementById('mapScroll');
+let zoom = 1;
+function setZoom(z) {
+  const cx = (scroller.scrollLeft + scroller.clientWidth / 2) / scroller.scrollWidth;
+  const cy = (scroller.scrollTop + scroller.clientHeight / 2) / scroller.scrollHeight;
+  zoom = Math.max(1, Math.min(3, z));
+  svg.style.width = zoom === 1 ? '' : (zoom * 100) + '%';
+  svg.style.minWidth = zoom === 1 ? '' : (1050 * zoom) + 'px';
+  scroller.scrollLeft = cx * scroller.scrollWidth - scroller.clientWidth / 2;
+  scroller.scrollTop = cy * scroller.scrollHeight - scroller.clientHeight / 2;
+}
+document.getElementById('zoomIn').addEventListener('click', () => setZoom(zoom + 0.5));
+document.getElementById('zoomOut').addEventListener('click', () => setZoom(zoom - 0.5));
+
+let drag = null;
+function dragMoved() { return drag && drag.moved; }
+scroller.addEventListener('pointerdown', e => {
+  if (e.pointerType !== 'mouse' || e.button !== 0) return;
+  drag = { x: e.clientX, y: e.clientY, sl: scroller.scrollLeft, st: scroller.scrollTop, moved: false };
+});
+window.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if (!drag.moved && Math.abs(dx) + Math.abs(dy) > 5) { drag.moved = true; scroller.classList.add('dragging'); }
+  if (drag.moved) { scroller.scrollLeft = drag.sl - dx; scroller.scrollTop = drag.st - dy; }
+});
+window.addEventListener('pointerup', () => { scroller.classList.remove('dragging'); setTimeout(() => { drag = null; }, 0); });
+
+/* =====================================================================
+   VOYAGE PLANNER
+   Dijkstra over (place, route) states. Sea routes only sail one way,
+   towards their treasure (nobody needs directions back to a wobble);
+   the Golden Current runs both ways. A hop costs 1, swapping routes 3.
+   ===================================================================== */
+function plan(from, to) {
+  if (from === to) return [];
+  const key = (s, r) => s + '|' + r;
+  const dist = new Map(), prev = new Map(), queue = [];
+  for (const r of PLACES[from].routes) { dist.set(key(from, r), 0); queue.push([0, from, r]); }
+  let end = null;
+  while (queue.length) {
+    queue.sort((a, b) => a[0] - b[0]);
+    const [d, s, r] = queue.shift();
+    const k = key(s, r);
+    if (d > dist.get(k)) continue;
+    if (s === to) { end = k; break; }
+    const st = ROUTES[r].stations, i = st.indexOf(s), nb = [];
+    if (i < st.length - 1) nb.push([st[i + 1], r, 1]);
+    if (i > 0 && ROUTES[r].golden) nb.push([st[i - 1], r, 1]);
+    for (const r2 of PLACES[s].routes) if (r2 !== r) nb.push([s, r2, 3]);
+    for (const [s2, r2, c] of nb) {
+      const k2 = key(s2, r2), nd = d + c;
+      if (nd < (dist.has(k2) ? dist.get(k2) : Infinity)) { dist.set(k2, nd); prev.set(k2, k); queue.push([nd, s2, r2]); }
+    }
+  }
+  if (!end) return null;
+  const states = [];
+  for (let k = end; k; k = prev.get(k)) states.unshift(k.split('|'));
+  const legs = [];
+  for (const [s, r] of states) {
+    const last = legs[legs.length - 1];
+    if (last && last.route === r) last.stations.push(s);
+    else legs.push({ route: r, stations: [s] });
+  }
+  return legs.filter(leg => leg.stations.length > 1);
+}
+
+function legPath(leg) {
+  const r = ROUTES[leg.route];
+  const i = r.stops.indexOf(leg.stations[0]), j = r.stops.indexOf(leg.stations[leg.stations.length - 1]);
+  return { d: routePath(r, Math.min(i, j), Math.max(i, j)), reverse: j < i };
+}
+
+function drawRoute(legs, from, to) {
+  clearFocus();
+  svg.classList.add('focus');
+  clearBtn.hidden = false;
+  const onRoute = new Set([from]);
+  const paths = [];
+  for (const leg of legs) {
+    const g = el('g', {}, L.route);
+    const lp = legPath(leg);
+    strokeRoute(g, ROUTES[leg.route], lp.d);
+    const probe = el('path', { d: lp.d, fill: 'none', stroke: 'none' }, g);
+    paths.push({ el: probe, len: probe.getTotalLength(), reverse: lp.reverse });
+    leg.stations.forEach(sid => onRoute.add(sid));
+  }
+  onRoute.forEach(lightPlace);
+  sail(paths, to);
+}
+
+function sail(paths, to) {
+  const total = paths.reduce((n, p) => n + p.len, 0);
+  if (reduceMotion || !total) { setMarker(to); return; }
+  const duration = Math.min(7000, Math.max(1800, total * 5));
+  const t0 = performance.now();
+  let lastX = null;
+  const step = now => {
+    let dist = Math.min(1, (now - t0) / duration);
+    dist = (1 - Math.cos(dist * Math.PI)) / 2 * total;
+    let seg = paths[0];
+    for (const p of paths) { seg = p; if (dist <= p.len) break; dist -= p.len; }
+    const at = seg.reverse ? seg.len - Math.min(dist, seg.len) : Math.min(dist, seg.len);
+    const pt = seg.el.getPointAtLength(at);
+    const left = lastX !== null ? pt.x < lastX - .01 : false;
+    shipAt(pt.x, pt.y, left);
+    lastX = pt.x;
+    if (now - t0 < duration) sailing = requestAnimationFrame(step);
+    else { sailing = null; setMarker(to); }
+  };
+  sailing = requestAnimationFrame(step);
+}
+
+const fromSel = document.getElementById('fromSel');
+const toSel = document.getElementById('toSel');
+const result = document.getElementById('result');
+const sorted = Object.values(PLACES).sort((a, b) => a.name.replace(/^The /, '').localeCompare(b.name.replace(/^The /, '')));
+const opt = p => `<option value="${p.id}">${esc(p.name)}</option>`;
+fromSel.innerHTML = sorted.filter(p => !p.kind).map(opt).join('');
+toSel.innerHTML = `<optgroup label="Treasure">${sorted.filter(p => p.kind).map(opt).join('')}</optgroup><optgroup label="Islands">${sorted.filter(p => !p.kind && !p.monster).map(opt).join('')}</optgroup>`;
+fromSel.value = 'whatif'; toSel.value = 'calm';
+
+const firstSentence = t => (t.match(/^.*?[.!?](\s|$)/) || [t])[0].trim();
+
+function runPlan(from, to, scrollToMap) {
+  if (!PLACES[from] || !PLACES[to]) return;
+  fromSel.value = from; toSel.value = to;
+  if (from === to) {
+    result.innerHTML = `<p class="summary">You are already at ${esc(PLACES[from].name)}. Drop anchor and enjoy it for a while.</p>`;
+    selectPlace(from);
+    return;
+  }
+  const legs = plan(from, to);
+  if (!legs) {
+    result.innerHTML = `<p class="summary">The routes from ${esc(PLACES[from].name)} only sail towards treasure, so they do not reach ${esc(PLACES[to].name)}. Try choosing one of the treasure islands instead.</p>`;
+    return;
+  }
+  const stops = legs.reduce((n, l) => n + l.stations.length - 1, 0);
+  const changes = legs.length - 1;
+  let html = `<p class="summary">${esc(PLACES[from].name)} to ${esc(PLACES[to].name)}: ${stops} island${stops === 1 ? '' : 's'}, ${changes === 0 ? 'no route swaps' : changes + ' route swap' + (changes === 1 ? '' : 's')}. Some voyages are quick and some take a while. Both are fine.</p><div class="legs">`;
+  legs.forEach((leg, li) => {
+    const r = ROUTES[leg.route];
+    const st = r.stations;
+    const forward = st.indexOf(leg.stations[1]) > st.indexOf(leg.stations[0]);
+    const toward = forward ? st[st.length - 1] : st[0];
+    if (li > 0) html += `<div class="change">Swap at ${esc(PLACES[leg.stations[0]].name)} onto ${esc(r.name)}</div>`;
+    html += `<div class="leg" style="--c:${r.color}">
+      <div class="leg-head">${pill(leg.route)} towards ${esc(PLACES[toward].name)} · ${leg.stations.length - 1} island${leg.stations.length === 2 ? '' : 's'}</div>
+      <ol>${leg.stations.map((sid, i) => {
+        const p = PLACES[sid];
+        const lead = p.monster ? '<span class="mon">Tame it:</span> ' : '';
+        return `<li><button type="button" class="linkbtn" data-route-stn="${sid}">${esc(p.name)}</button>${i === 0 && li === 0 ? ' · you start here' : ''}<br>${lead}${esc(firstSentence(p.tip))}</li>`;
+      }).join('')}</ol>
+    </div>`;
+  });
+  html += `</div><div class="arrive">Land ho! You have reached ${esc(PLACES[to].name)}.</div>`;
+  result.innerHTML = html;
+  drawRoute(legs, from, to);
+  showPlace(from);
+  if (scrollToMap) document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.getElementById('planForm').addEventListener('submit', e => { e.preventDefault(); runPlan(fromSel.value, toSel.value); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); });
+result.addEventListener('click', e => {
+  const b = e.target.closest('[data-route-stn]');
+  if (b) { stopSailing(); setMarker(b.dataset.routeStn); showPlace(b.dataset.routeStn); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); }
+});
+const presetsEl = document.getElementById('presets');
+PRESETS.forEach(([label, a, b]) => {
+  const btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'chip'; btn.textContent = label;
+  btn.addEventListener('click', () => runPlan(a, b, true));
+  presetsEl.appendChild(btn);
+});
+
+/* ---------- route cards ---------- */
+document.getElementById('linesGrid').innerHTML = ROUTE_ORDER.map(id => {
+  const r = ROUTES[id], st = r.stations;
+  const mon = st.find(s => PLACES[s].monster);
+  return `<article class="line-card" style="--c:${r.color}">
+    <div class="topic">${esc(r.topic)}</div>
+    <h3>${esc(r.name)}</h3>
+    <p>${esc(r.about)}</p>
+    ${mon ? `<div class="beware">Sea monster: ${esc(PLACES[mon].name)}</div>` : ''}
+    <div class="route"><b>${esc(PLACES[st[0]].name)}</b> → ${st.slice(1, -1).map(s => esc(PLACES[s].name)).join(' → ')} → <b>${esc(PLACES[st[st.length - 1]].name)}</b></div>
+    <div><button class="btn ghost" type="button" data-show-route="${id}">Show on the map</button></div>
+  </article>`;
+}).join('');
+document.getElementById('linesGrid').addEventListener('click', e => {
+  const b = e.target.closest('[data-show-route]');
+  if (b) { focusRoute(b.dataset.showRoute); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); }
+});
+
+/* ---------- my treasure chest ---------- */
+const chestGrid = document.getElementById('chestGrid');
+const chestSaved = document.getElementById('chestSaved');
+const CHEST_KEY = 'wobbly-seas-chest';
+let chestData = {};
+try { chestData = JSON.parse(localStorage.getItem(CHEST_KEY) || '{}') || {}; } catch (e) { chestData = {}; }
+chestGrid.innerHTML = CHEST.map(([id, title, prompt, hint]) => `
+  <div class="gem">
+    <label for="chest-${id}">${esc(title)}</label>
+    <p class="hint">${esc(prompt)}</p>
+    <textarea id="chest-${id}" data-chest="${id}" maxlength="600" placeholder="${esc(hint)}"></textarea>
+  </div>`).join('');
+let saveTimer = null;
+chestGrid.querySelectorAll('textarea').forEach(t => {
+  t.value = chestData[t.dataset.chest] || '';
+  t.addEventListener('input', () => {
+    chestData[t.dataset.chest] = t.value;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try { localStorage.setItem(CHEST_KEY, JSON.stringify(chestData)); chestSaved.textContent = 'Saved on this device.'; }
+      catch (e) { chestSaved.textContent = 'This browser cannot save it, so print it before you go.'; }
+    }, 400);
+  });
+});
+document.getElementById('clearChest').addEventListener('click', () => {
+  if (!confirm('Empty your treasure chest and start again?')) return;
+  chestData = {};
+  chestGrid.querySelectorAll('textarea').forEach(t => { t.value = ''; });
+  try { localStorage.removeItem(CHEST_KEY); } catch (e) { /* storage unavailable */ }
+  chestSaved.textContent = '';
+});
+document.getElementById('printChest').addEventListener('click', () => {
+  document.body.classList.add('print-chest');
+  window.print();
+});
+window.addEventListener('afterprint', () => document.body.classList.remove('print-chest'));
+
+/* ---------- poster capture ---------- */
+const leadForm = document.getElementById('leadForm');
+const leadMsg = document.getElementById('leadMsg');
+const unlocked = document.getElementById('unlocked');
+function unlock() {
+  leadForm.hidden = true; unlocked.hidden = false;
+  try { localStorage.setItem('wobbly-seas-unlocked', '1'); } catch (e) { /* storage unavailable */ }
+}
+try { if (localStorage.getItem('wobbly-seas-unlocked') === '1') unlock(); } catch (e) { /* storage unavailable */ }
+
+leadForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = document.getElementById('leadEmail').value.trim();
+  const name = document.getElementById('leadName').value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { leadMsg.textContent = 'That email address does not look quite right.'; return; }
+  const btn = document.getElementById('leadBtn');
+  btn.disabled = true; leadMsg.textContent = 'Sending…';
+  try {
+    const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name, source: 'wobbly-seas' }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) throw new Error(j.error || 'Something went wrong. Please try again in a minute.');
+    leadMsg.textContent = '';
+    unlock();
+  } catch (err) {
+    leadMsg.textContent = err.message && !/fetch|JSON/i.test(err.message) ? err.message : 'We could not reach the server. Please try again in a minute.';
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+function downloadSVG() {
+  const clone = svg.cloneNode(true);
+  clone.removeAttribute('class');
+  clone.removeAttribute('style');
+  clone.querySelector('#routeLayer').replaceChildren();
+  clone.querySelector('#markerLayer').replaceChildren();
+  clone.querySelectorAll('[tabindex]').forEach(n => n.removeAttribute('tabindex'));
+  clone.querySelectorAll('.sparkle, .bob').forEach(n => n.removeAttribute('class'));
+  clone.setAttribute('xmlns', NS);
+  clone.setAttribute('width', '1600');
+  clone.setAttribute('height', '1100');
+  const style = document.createElementNS(NS, 'style');
+  style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Pirata+One&display=swap');";
+  clone.insertBefore(style, clone.firstChild);
+  const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'wobbly-seas-treasure-map.svg';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+document.getElementById('dlSvg').addEventListener('click', downloadSVG);
+document.getElementById('printBtn').addEventListener('click', () => { clearFocus(); setMarker(null); setZoom(1); document.body.classList.remove('print-chest'); window.print(); });
+
+/* ---------- start ---------- */
+showIntro();
+if (scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) * 0.3;
+})();
+</script>
+</body>
+</html>
