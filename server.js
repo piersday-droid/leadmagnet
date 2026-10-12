@@ -1,4 +1,4 @@
-// Zero-dependency server for Mind the Map.
+// Zero-dependency server for The Road Home.
 // Serves ./public and collects poster sign-ups at POST /api/subscribe.
 //
 // Env:
@@ -74,7 +74,7 @@ async function subscribe(req, res) {
   const name = String(data.name || '').trim().slice(0, 80);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json(res, 400, { ok: false, error: 'That email address does not look quite right.' });
 
-  const record = { email, name, source: String(data.source || 'mind-the-map').slice(0, 60), at: new Date().toISOString() };
+  const record = { email, name, source: String(data.source || 'the-road-home').slice(0, 60), at: new Date().toISOString() };
   try {
     await fs.promises.appendFile(SUBSCRIBERS, JSON.stringify(record) + '\n');
   } catch (err) {
@@ -122,4 +122,4 @@ const server = http.createServer((req, res) => {
   serveStatic(req, res);
 });
 
-server.listen(PORT, () => console.log(`Mind the Map running on http://localhost:${PORT}`));
+server.listen(PORT, () => console.log(`The Road Home running on http://localhost:${PORT}`));

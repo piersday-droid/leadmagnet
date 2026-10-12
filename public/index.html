@@ -3,303 +3,265 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mind the Map · The Inner Underground</title>
-<meta name="description" content="An underground map of the hard feelings everyone passes through. Anxiety, low mood, pressure, traffic, love and family all run on one network, and every line keeps moving.">
-<meta property="og:title" content="Mind the Map · The Inner Underground">
-<meta property="og:description" content="Every feeling is a stop. None of them is the end of the line.">
+<title>The Road Home · A motorway map for hard days</title>
+<meta name="description" content="A night-time motorway map of the hard feelings everyone drives through. Anxiety, low mood, pressure, traffic, love, family and the urge to escape are all motorways, and every one of them leads home.">
+<meta property="og:title" content="The Road Home">
+<meta property="og:description" content="Every hard feeling is a junction. All roads lead home.">
+<meta name="theme-color" content="#0a0e19">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Overpass+Mono:wght@600;700&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1b1b1a;
-    --muted: #5d5a54;
-    --paper: #f6f3ec;
-    --card: #fffdf8;
-    --rule: #e3ddd0;
-    --navy: #1c3f94;
-    --orange: #ee7c0e;
-    --red: #dc241f;
-    --radius: 14px;
+    --bg: #0a0e19;
+    --card: #121a2e;
+    --rule: #233150;
+    --ink: #eef2fa;
+    --muted: #9aa8c4;
+    --amber: #ffc24b;
+    --blue: #1d5bbf;
+    --brown: #7b4a22;
+    --green: #17703a;
+    --red: #ff4f5e;
+    --radius: 16px;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--paper);
+    background: var(--bg);
     color: var(--ink);
-    font-family: Cabin, "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    font-family: Overpass, "Helvetica Neue", Arial, sans-serif;
     font-size: 17px;
     line-height: 1.55;
   }
-  a { color: var(--navy); }
+  a { color: var(--amber); }
   button, input, select { font: inherit; }
+  .wrap { max-width: 1500px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
 
-  /* ---------- header ---------- */
-  .top {
-    background: var(--navy);
-    color: #fff;
-  }
-  .top-inner {
-    max-width: 1480px;
-    margin: 0 auto;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .top .brand { font-weight: 700; font-size: 20px; letter-spacing: .3px; }
-  .top .brand small { font-weight: 500; opacity: .75; font-size: 14px; margin-left: 8px; letter-spacing: 1.5px; text-transform: uppercase; }
-  .top nav { margin-left: auto; display: flex; gap: 18px; font-size: 15px; }
-  .top nav a { color: #fff; text-decoration: none; opacity: .85; }
-  .top nav a:hover { opacity: 1; text-decoration: underline; }
-  @media (max-width: 640px) { .top nav { display: none; } .top .brand small { display: none; } }
+  /* header */
+  .top { border-bottom: 1px solid var(--rule); background: rgba(10,14,25,.9); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px); }
+  .top-inner { display: flex; align-items: center; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
+  .shield { display: inline-flex; align-items: center; justify-content: center; background: var(--blue); color: #fff; font-weight: 800; border: 2px solid #fff; border-radius: 5px; padding: 1px 8px; font-size: 14px; letter-spacing: .5px; }
+  .brand { font-weight: 800; font-size: 19px; letter-spacing: .2px; }
+  .top nav { margin-left: auto; display: flex; gap: 20px; font-size: 15px; }
+  .top nav a { color: var(--muted); text-decoration: none; }
+  .top nav a:hover { color: var(--ink); }
+  @media (max-width: 680px) { .top nav { display: none; } }
 
-  .wrap { max-width: 1480px; margin: 0 auto; padding: 0 16px; }
+  /* hero */
+  .hero { padding-top: 44px; padding-bottom: 26px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: end; }
+  .hero h1 { margin: 0; font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 600; font-size: clamp(40px, 6vw, 78px); line-height: 1; letter-spacing: -1px; }
+  .hero h1 span { color: var(--amber); }
+  .hero .kick { text-transform: uppercase; letter-spacing: 3px; font-size: 13px; color: var(--muted); font-weight: 700; margin: 0 0 14px; }
+  .hero p.lead { margin: 0; color: var(--muted); max-width: 62ch; }
+  @media (max-width: 880px) { .hero { grid-template-columns: 1fr; gap: 16px; padding-top: 28px; } }
 
-  /* ---------- intro ---------- */
-  .intro { padding-top: 36px; padding-bottom: 22px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: end; }
-  .intro h1 { font-size: clamp(30px, 4.2vw, 50px); line-height: 1.08; margin: 0; letter-spacing: -.5px; }
-  .intro h1 span { color: var(--orange); }
-  .intro p { margin: 0; color: var(--muted); max-width: 60ch; }
-  @media (max-width: 860px) { .intro { grid-template-columns: 1fr; gap: 14px; } }
-
-  /* ---------- map ---------- */
-  .mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 350px; gap: 18px; align-items: start; }
-  @media (max-width: 1100px) { .mapwrap { grid-template-columns: 1fr; } }
-  .map-card {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 12px 30px -18px rgba(28,63,148,.25);
-  }
-  .map-scroll {
-    overflow: auto;
-    aspect-ratio: 16 / 11;
-    cursor: grab;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-  }
+  /* map */
+  .mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
+  @media (max-width: 1120px) { .mapwrap { grid-template-columns: 1fr; } }
+  .map-card { position: relative; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; background: #070a13; box-shadow: 0 30px 80px -40px rgba(255,194,75,.25); }
+  .map-scroll { overflow: auto; aspect-ratio: 4 / 3; cursor: grab; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
   .map-scroll.dragging { cursor: grabbing; user-select: none; }
-  #map { display: block; width: 100%; height: auto; min-width: 1050px; }
-  @media (max-width: 700px) { .map-scroll { aspect-ratio: auto; height: 70vh; } }
-
-  .map-tools {
-    position: absolute; right: 12px; top: 12px; z-index: 2;
-    display: flex; gap: 6px;
-  }
-  .map-tools button {
-    width: 38px; height: 38px; border-radius: 10px;
-    border: 1px solid var(--rule); background: rgba(255,253,248,.95);
-    color: var(--ink); font-size: 20px; line-height: 1; cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,.08);
-  }
-  .map-tools button.wide { width: auto; padding: 0 12px; font-size: 14px; font-weight: 600; }
-  .map-tools button:hover { background: #fff; }
+  #map { display: block; width: 100%; height: auto; min-width: 1000px; }
+  @media (max-width: 700px) { .map-scroll { aspect-ratio: auto; height: 72vh; } }
+  .map-tools { position: absolute; right: 12px; top: 12px; z-index: 3; display: flex; gap: 6px; }
+  .map-tools button { min-width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--rule); background: rgba(18,26,46,.92); color: var(--ink); font-size: 20px; line-height: 1; cursor: pointer; padding: 0 12px; }
+  .map-tools button.wide { font-size: 14px; font-weight: 700; }
+  .map-tools button:hover { border-color: var(--amber); }
   .map-tools button[hidden] { display: none; }
 
+  .satnav {
+    position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 3;
+    width: min(560px, calc(100% - 24px));
+    background: rgba(8,12,22,.94); border: 1px solid #2c3b60; border-radius: 14px;
+    padding: 12px 16px; display: flex; gap: 14px; align-items: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,.5);
+  }
+  .satnav[hidden] { display: none; }
+  .satnav .badge { flex: none; min-width: 46px; height: 46px; border-radius: 10px; background: var(--blue); border: 2px solid #fff; display: grid; place-items: center; font-weight: 800; font-size: 15px; padding: 0 6px; }
+  .satnav .badge.brown { background: var(--brown); }
+  .satnav .badge.green { background: var(--green); color: #ffe14d; }
+  .satnav .badge.home { background: var(--amber); color: #1a1206; border-color: #ffe7b0; }
+  .satnav .what { font-weight: 800; font-size: 17px; line-height: 1.2; }
+  .satnav .why { font-family: Fraunces, Georgia, serif; font-style: italic; color: var(--amber); font-size: 16px; line-height: 1.25; }
+  .satnav .stop { margin-left: auto; flex: none; background: none; border: 1px solid #2c3b60; color: var(--muted); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px; }
+
   /* svg interaction */
-  #map .stn { cursor: pointer; }
-  #map .stn:focus { outline: none; }
-  #map .stn:hover text, #map .stn:focus-visible text { font-weight: 700; }
-  #map .stn:focus-visible .hit { stroke: var(--navy); stroke-width: 2; stroke-dasharray: 3 3; }
-  #map .ln, #map .stn, #map .river { transition: opacity .25s ease; }
-  #map.focus .ln:not(.on) { opacity: .1; }
-  #map.focus .stn:not(.on) { opacity: .2; }
-  #map.focus .river { opacity: .45; }
+  #map .sign, #map .node, #map .sos, #map .home { cursor: pointer; }
+  #map .sign:focus, #map .home:focus, #map .sos:focus { outline: none; }
+  #map .sign:hover .plate, #map .sign:focus-visible .plate { stroke: var(--amber); }
+  #map .rd, #map .sign, #map .node, #map .post { transition: opacity .3s ease; }
+  #map.focus .rd:not(.on) { opacity: .12; }
+  #map.focus .sign:not(.on), #map.focus .post:not(.on) { opacity: .18; }
+  #map.focus .node:not(.on) { opacity: .25; }
+  #map .sign.lit .plate { stroke: var(--amber); stroke-width: 3; }
+  #map .sign.lit { filter: drop-shadow(0 0 10px rgba(255,194,75,.9)); }
   #map .lg { cursor: pointer; }
   #map .lg:hover text { text-decoration: underline; }
-  #map .river { cursor: pointer; }
-  @keyframes pulse { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(2.2); opacity: 0; } }
-  #map .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 1.6s ease-out infinite; }
+  @keyframes homepulse { 0%, 100% { opacity: .55; } 50% { opacity: .95; } }
+  #map .homeglow { animation: homepulse 4s ease-in-out infinite; }
+  #map.arrived .homeglow { animation: none; opacity: 1; }
+  #map .reveal-sign { opacity: 0; transition: opacity .6s ease; }
+  #map .reveal-sign.in { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { #map .homeglow { animation: none; } }
 
-  /* ---------- panel ---------- */
-  .panel {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
-    padding: 22px 22px 20px;
-    position: sticky; top: 16px;
-    max-height: calc(100vh - 32px);
-    overflow: auto;
-  }
-  @media (max-width: 1100px) { .panel { position: static; max-height: none; } }
-  .panel .kicker { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 6px; }
-  .panel h2 { font-size: 30px; line-height: 1.1; margin: 0 0 12px; }
-  .panel h3 { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; margin: 18px 0 4px; color: var(--muted); }
+  /* panel */
+  .panel { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 22px; position: sticky; top: 74px; max-height: calc(100vh - 90px); overflow: auto; }
+  @media (max-width: 1120px) { .panel { position: static; max-height: none; } }
+  .panel .kicker { font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 0 0 8px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .panel h2 { font-size: 30px; line-height: 1.1; margin: 0 0 6px; font-weight: 800; }
+  .panel .reframe { font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 600; color: var(--amber); font-size: 22px; line-height: 1.2; margin: 0 0 6px; }
+  .panel h3 { font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase; margin: 20px 0 6px; color: var(--muted); }
   .panel p { margin: 0; }
-  .panel .gap { background: #fff7e8; border-left: 4px solid var(--orange); padding: 10px 12px; border-radius: 0 8px 8px 0; margin-top: 6px; }
-  .panel .help { background: #fdecec; border-left: 4px solid var(--red); padding: 10px 12px; border-radius: 0 8px 8px 0; margin-top: 14px; font-size: 15px; }
-  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-  .pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--c); color: var(--t, #fff);
-    font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
-    border: 0; cursor: pointer; white-space: nowrap;
-  }
-  .pill.growth { background: var(--orange); box-shadow: inset 0 0 0 2px var(--orange), inset 0 0 0 3px #fff; }
-  .dirs { list-style: none; margin: 6px 0 0; padding: 0; font-size: 15px; }
-  .dirs li { padding: 7px 0; border-top: 1px solid var(--rule); display: flex; gap: 10px; align-items: baseline; }
-  .dirs li > span:last-child, .dirs li > button { flex: 1; text-align: left; }
-  .dirs li:first-child { border-top: 0; }
-  .dirs .swatch { width: 14px; height: 6px; border-radius: 3px; background: var(--c); flex: none; transform: translateY(-2px); }
-  .linkbtn { background: none; border: 0; padding: 0; color: var(--navy); text-decoration: underline; cursor: pointer; font-weight: 600; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    background: var(--navy); color: #fff; border: 0; border-radius: 10px;
-    padding: 11px 16px; font-weight: 600; cursor: pointer; text-decoration: none;
-  }
-  .btn:hover { filter: brightness(1.1); }
-  .btn.ghost { background: transparent; color: var(--navy); box-shadow: inset 0 0 0 2px var(--navy); }
-  .btn.orange { background: var(--orange); }
-  .panel .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .panel .gap { background: rgba(255,194,75,.08); border-left: 4px solid var(--amber); padding: 10px 12px; border-radius: 0 10px 10px 0; }
+  .panel .help { background: rgba(255,79,94,.1); border-left: 4px solid var(--red); padding: 10px 12px; border-radius: 0 10px 10px 0; margin-top: 14px; font-size: 15px; }
+  .tag { display: inline-flex; align-items: center; font-size: 12px; font-weight: 800; padding: 1px 8px; border-radius: 4px; border: 2px solid #fff; background: var(--blue); color: #fff; letter-spacing: .4px; }
+  .tag.ring { background: #2a2416; border-color: #fff1cf; color: #fff1cf; }
+  .tag.link { background: var(--green); color: #ffe14d; }
+  .roads { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .roads li { padding: 8px 0; border-top: 1px solid var(--rule); display: flex; gap: 10px; align-items: baseline; }
+  .roads li:first-child { border-top: 0; }
+  .roads .sw { flex: none; width: 16px; height: 6px; border-radius: 3px; background: var(--c); transform: translateY(-3px); }
+  .linkbtn { background: none; border: 0; padding: 0; color: var(--amber); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; font-weight: 700; text-align: left; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--amber); color: #1a1206; border: 0; border-radius: 10px; padding: 11px 16px; font-weight: 800; cursor: pointer; text-decoration: none; }
+  .btn:hover { filter: brightness(1.08); }
+  .btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px #3a4a72; }
+  .btn.ghost:hover { box-shadow: inset 0 0 0 2px var(--amber); }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
 
-  /* ---------- sections ---------- */
-  section.block { padding: 56px 0 8px; }
-  section.block > .wrap > h2 { font-size: clamp(26px, 3vw, 36px); margin: 0 0 6px; }
-  section.block > .wrap > .lede { color: var(--muted); margin: 0 0 22px; max-width: 70ch; }
+  /* sections */
+  section.block { padding-top: 64px; }
+  section.block h2.sec { font-size: clamp(28px, 3.4vw, 42px); margin: 0 0 6px; font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 600; }
+  section.block .lede { color: var(--muted); margin: 0 0 22px; max-width: 70ch; }
 
-  /* planner */
   .planner { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 22px; }
   .planner form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; }
-  @media (max-width: 760px) { .planner form { grid-template-columns: 1fr; } }
-  .planner label { font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 600; color: var(--muted); display: block; margin-bottom: 4px; }
-  .planner select {
-    width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid #cfc7b6; background: #fff; color: var(--ink);
-  }
-  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-  .presets span { font-size: 14px; color: var(--muted); align-self: center; margin-right: 4px; }
-  .chip { border: 1px solid #cfc7b6; background: #fff; border-radius: 999px; padding: 6px 12px; font-size: 14px; cursor: pointer; color: var(--ink); }
-  .chip:hover { border-color: var(--navy); color: var(--navy); }
-  .result { margin-top: 20px; }
+  @media (max-width: 780px) { .planner form { grid-template-columns: 1fr; } }
+  .planner label { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 700; color: var(--muted); display: block; margin-bottom: 5px; }
+  .planner select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #33456e; background: #0b1222; color: var(--ink); }
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; align-items: center; }
+  .presets span { font-size: 14px; color: var(--muted); margin-right: 4px; }
+  .chip { border: 1px solid #33456e; background: #0b1222; color: var(--ink); border-radius: 999px; padding: 6px 13px; font-size: 14px; cursor: pointer; }
+  .chip:hover { border-color: var(--amber); color: var(--amber); }
+  .result { margin-top: 22px; }
   .result:empty { display: none; }
-  .result .summary { font-weight: 600; margin: 0 0 12px; }
-  .legs { list-style: none; margin: 0; padding: 0; }
-  .leg { border-left: 8px solid var(--c); padding: 4px 0 4px 16px; margin-left: 6px; }
-  .leg.growth { border-left-color: var(--orange); }
-  .leg-head { font-weight: 700; margin-bottom: 4px; }
-  .leg-head .pill { margin-right: 6px; cursor: default; }
+  .result .summary { font-weight: 700; margin: 0 0 14px; }
+  .leg { border-left: 6px solid var(--c); padding: 2px 0 2px 16px; margin-left: 8px; }
+  .leg-head { font-weight: 800; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .leg ol { list-style: none; margin: 0; padding: 0; }
-  .leg ol li { padding: 6px 0; font-size: 15px; color: var(--muted); }
-  .leg ol li b { color: var(--ink); }
-  .change { margin: 8px 0 8px -4px; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
-  .change::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--ink); background: #fff; flex: none; }
-  .arrive { margin-top: 10px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-  .arrive::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--orange); flex: none; }
+  .leg li { padding: 6px 0; font-size: 15px; color: var(--muted); }
+  .leg li .rf { font-family: Fraunces, Georgia, serif; font-style: italic; color: var(--amber); }
+  .turn { margin: 10px 0 10px -2px; font-weight: 700; font-size: 15px; display: flex; gap: 10px; align-items: center; }
+  .turn::before { content: "↱"; width: 22px; height: 22px; border-radius: 6px; background: var(--blue); border: 2px solid #fff; color: #fff; display: grid; place-items: center; font-size: 13px; flex: none; }
+  .arrive { margin-top: 12px; font-weight: 800; display: flex; gap: 10px; align-items: center; }
+  .arrive::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 12px var(--amber); flex: none; }
 
-  /* lines */
-  .lines-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
-  .line-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px 18px 16px; border-top: 8px solid var(--c); display: flex; flex-direction: column; }
-  .line-card.growth { border-top-color: var(--orange); }
-  .line-card h3 { margin: 0; font-size: 21px; }
-  .line-card .topic { font-size: 13px; letter-spacing: 1.3px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
-  .line-card p { margin: 0 0 12px; font-size: 15.5px; }
-  .line-card .route { font-size: 14px; color: var(--muted); margin-bottom: 14px; flex: 1; }
-  .line-card .route b { color: var(--ink); font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 14px; }
+  .road-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px; border-top: 6px solid var(--c); display: flex; flex-direction: column; }
+  .road-card .hd { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+  .road-card h3 { margin: 0; font-size: 21px; }
+  .road-card p { margin: 0 0 12px; font-size: 15.5px; color: #cdd6ea; }
+  .road-card .path { font-size: 14px; color: var(--muted); margin-bottom: 14px; flex: 1; }
+  .road-card .path b { color: var(--ink); }
 
-  /* poster capture */
-  .capture { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 30px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: center; position: relative; overflow: hidden; }
-  @media (max-width: 860px) { .capture { grid-template-columns: 1fr; padding: 22px; } }
-  .capture h2 { margin: 0 0 8px; font-size: clamp(26px, 3vw, 36px); }
-  .capture p { margin: 0 0 10px; opacity: .9; }
+  .capture { background: linear-gradient(135deg, #16244a, #0f1730); border: 1px solid #2a3b66; border-radius: var(--radius); padding: 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: center; }
+  @media (max-width: 880px) { .capture { grid-template-columns: 1fr; padding: 22px; } }
+  .capture h2 { margin: 0 0 10px; font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 600; font-size: clamp(28px, 3.4vw, 40px); }
+  .capture p { margin: 0 0 10px; color: #cdd6ea; }
   .capture form { display: grid; gap: 10px; }
-  .capture input[type=text], .capture input[type=email] { width: 100%; padding: 12px 14px; border-radius: 10px; border: 0; color: var(--ink); }
-  .capture .small { font-size: 13px; opacity: .75; }
+  .capture input { width: 100%; padding: 13px 14px; border-radius: 10px; border: 1px solid #33456e; background: #0b1222; color: var(--ink); }
+  .capture .small { font-size: 13px; color: var(--muted); }
   .capture .msg { min-height: 1.2em; font-size: 15px; }
   .capture .unlocked { display: grid; gap: 10px; }
-  .capture .unlocked[hidden] { display: none; }
-  .capture .btn.orange { justify-self: start; }
-  .capture .stripe { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: linear-gradient(90deg, #f5c400 0 12.5%, #1c3f94 12.5% 25%, #dc241f 25% 37.5%, #8d969e 37.5% 50%, #e0699a 50% 62.5%, #00843d 62.5% 75%, #7b3f98 75% 87.5%, #ee7c0e 87.5% 100%); }
+  .capture .unlocked[hidden], .capture form[hidden] { display: none; }
+  .capture .btn { justify-self: start; }
 
-  footer { margin-top: 56px; border-top: 1px solid var(--rule); padding: 26px 0 40px; font-size: 14.5px; color: var(--muted); }
+  footer { margin-top: 64px; border-top: 1px solid var(--rule); padding-top: 26px; padding-bottom: 40px; font-size: 14.5px; color: var(--muted); }
   footer strong { color: var(--ink); }
-  footer .crisis { background: #fff; border: 1px solid var(--rule); border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; color: var(--ink); }
-
+  footer .crisis { background: var(--card); border: 1px solid var(--rule); border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; color: var(--ink); }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
   @media print {
-    @page { size: A3 landscape; margin: 8mm; }
-    body { background: #fff; }
-    body > *:not(main), main > *:not(.mapsection), .panel, .map-tools, .intro { display: none !important; }
+    @page { size: A3 landscape; margin: 6mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body > *:not(main), main > *:not(.mapsection), .panel, .map-tools, .satnav { display: none !important; }
     .mapwrap { display: block; }
     .map-card { border: 0; box-shadow: none; }
     .map-scroll { overflow: visible; aspect-ratio: auto; height: auto; }
-    #map { width: 100% !important; min-width: 0; }
+    #map { width: 100% !important; min-width: 0 !important; }
   }
 </style>
 </head>
 <body>
 
 <header class="top">
-  <div class="top-inner">
-    <svg width="34" height="34" viewBox="0 0 80 80" aria-hidden="true">
-      <circle cx="40" cy="40" r="28" fill="none" stroke="#ee7c0e" stroke-width="12" stroke-dasharray="150 26" transform="rotate(-60 40 40)"/>
-      <rect x="4" y="31" width="72" height="18" rx="2" fill="#fff"/>
-    </svg>
-    <div class="brand">Mind the Map <small>The Inner Underground</small></div>
+  <div class="wrap top-inner">
+    <span class="shield">M∞</span>
+    <span class="brand">The Road Home</span>
     <nav>
       <a href="#map-section">Map</a>
-      <a href="#planner">Journey planner</a>
-      <a href="#lines">Lines</a>
+      <a href="#satnav">Satnav</a>
+      <a href="#roads">The roads</a>
       <a href="#poster">Get the poster</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <div class="wrap intro">
-    <h1>Every feeling is a stop.<br><span>None of them is the end of the line.</span></h1>
-    <p>Anxiety, grey days, exam pressure, an hour stuck on the ring road, a toddler flat out on the supermarket floor. They feel like separate problems. On this map they are stations on one network, with interchanges between them and trains that keep moving. Tap any station to see what it feels like and the way through, or plan a journey from where you are to where you would like to be.</p>
+  <div class="wrap hero">
+    <div>
+      <p class="kick">A motorway map for hard days</p>
+      <h1>Every hard feeling is a junction.<br><span>All roads lead home.</span></h1>
+    </div>
+    <p class="lead">Anxiety at 3am. A grey morning you cannot get out of bed for. Exams, deadlines, an inbox with teeth. Two hours nose to tail on the ring road with a meltdown in the back seat. They feel like separate problems. On this map they are motorways, and every one of them is driving you somewhere. Tap a sign to read it, or put your junction into the satnav and watch the road take you home.</p>
   </div>
 
   <div class="wrap mapsection" id="map-section">
     <div class="mapwrap">
       <div class="map-card">
         <div class="map-tools">
-          <button type="button" class="wide" id="clearBtn" hidden>Show all lines</button>
+          <button type="button" class="wide" id="clearBtn" hidden>Show all roads</button>
           <button type="button" id="zoomOut" aria-label="Zoom out">−</button>
           <button type="button" id="zoomIn" aria-label="Zoom in">+</button>
         </div>
         <div class="map-scroll" id="mapScroll">
-          <svg id="map" viewBox="0 0 1600 1100" role="img" aria-labelledby="mapTitle mapDesc">
-            <title id="mapTitle">Mind the Map: The Inner Underground</title>
-            <desc id="mapDesc">An underground style map where each line is an area of life, such as anxiety, low mood, pressure, traffic, relationships, family and escape, and each station is a feeling. All lines connect to the orange Growth Overground.</desc>
+          <svg id="map" viewBox="0 0 1600 1200" role="img" aria-labelledby="mapTitle mapDesc">
+            <title id="mapTitle">The Road Home</title>
+            <desc id="mapDesc">A night-time motorway map. Seven motorways named after hard feelings, such as anxiety, low mood, pressure, traffic, relationships, family and escape, run from the edges of the map through junctions to a ring road called the Kindness Orbital, and all of them end at Home in the centre.</desc>
           </svg>
+        </div>
+        <div class="satnav" id="satnav-bar" hidden aria-live="polite">
+          <div class="badge" id="snBadge">J1</div>
+          <div><div class="what" id="snWhat"></div><div class="why" id="snWhy"></div></div>
+          <button type="button" class="stop" id="snStop">Stop</button>
         </div>
       </div>
       <aside class="panel" id="panel" aria-live="polite"></aside>
     </div>
   </div>
 
-  <section class="block" id="planner">
+  <section class="block" id="satnav">
     <div class="wrap">
-      <h2>Journey planner</h2>
-      <p class="lede">Pick where you are today and where you would like to end up. The planner finds the route with the fewest stops and changes, and tells you what each station has to teach on the way.</p>
+      <h2 class="sec">Satnav</h2>
+      <p class="lede">Tell it where you are today. It finds the route with the fewest junctions and changes, reads you every sign on the way, and then drives it with you on the map.</p>
       <div class="planner">
         <form id="planForm">
-          <div>
-            <label for="fromSel">I am at</label>
-            <select id="fromSel"></select>
-          </div>
-          <div>
-            <label for="toSel">I want to get to</label>
-            <select id="toSel"></select>
-          </div>
-          <button class="btn" type="submit">Plan my journey</button>
+          <div><label for="fromSel">I am at</label><select id="fromSel"></select></div>
+          <div><label for="toSel">Take me to</label><select id="toSel"></select></div>
+          <button class="btn" type="submit">Plan and drive</button>
         </form>
-        <div class="presets" id="presets"><span>Popular journeys:</span></div>
+        <div class="presets" id="presets"><span>Common starting points:</span></div>
         <div class="result" id="result"></div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="lines">
+  <section class="block" id="roads">
     <div class="wrap">
-      <h2>The lines</h2>
-      <p class="lede">Eight lines, one network. Every coloured line starts somewhere hard and ends somewhere better, and every one of them meets the orange Growth Overground on the way.</p>
-      <div class="lines-grid" id="linesGrid"></div>
+      <h2 class="sec">The roads</h2>
+      <p class="lede">Seven motorways, four A-road shortcuts and one ring road. Blue signs are the hard junctions. Brown signs are the places worth visiting. Every motorway crosses the Kindness Orbital before it reaches Home.</p>
+      <div class="grid" id="roadGrid"></div>
     </div>
   </section>
 
@@ -307,27 +269,26 @@
     <div class="wrap">
       <div class="capture">
         <div>
-          <h2>Take the map home</h2>
-          <p>Get the full size poster file, ready to print at A2 or A1. Made for classrooms, staffrooms, therapy rooms, student halls and the back of the bathroom door.</p>
-          <p>We will also send you the occasional "next stop": one short, practical note about a single station. Nothing else.</p>
+          <h2>Put the road on your wall</h2>
+          <p>Get the full size poster file. It prints sharp at A2 or A1 for a classroom, a staffroom, a therapy room, a student bedroom or the back of the loo door.</p>
+          <p>We will also send the occasional note from the road: one junction, one practical way through. Nothing else.</p>
         </div>
         <div>
           <form id="leadForm" novalidate>
             <label class="sr-only" for="leadName">First name</label>
-            <input type="text" id="leadName" name="name" placeholder="First name" autocomplete="given-name" maxlength="80">
+            <input type="text" id="leadName" placeholder="First name" autocomplete="given-name" maxlength="80">
             <label class="sr-only" for="leadEmail">Email</label>
-            <input type="email" id="leadEmail" name="email" placeholder="you@example.com" autocomplete="email" required maxlength="200">
-            <button class="btn orange" type="submit" id="leadBtn">Send me the poster</button>
+            <input type="email" id="leadEmail" placeholder="you@example.com" autocomplete="email" required maxlength="200">
+            <button class="btn" type="submit" id="leadBtn">Send me the poster</button>
             <div class="small">No spam. Unsubscribe whenever you like.</div>
             <div class="msg" id="leadMsg" role="status"></div>
           </form>
           <div class="unlocked" id="unlocked" hidden>
             <p><strong>You are on the list. Here is your poster.</strong></p>
-            <button class="btn orange" type="button" id="dlSvg">Download poster (SVG, any size)</button>
-            <button class="btn ghost" type="button" id="printBtn" style="color:#fff;box-shadow:inset 0 0 0 2px #fff">Print or save as PDF</button>
+            <button class="btn" type="button" id="dlSvg">Download poster (SVG, prints any size)</button>
+            <button class="btn ghost" type="button" id="printBtn">Print or save as PDF</button>
           </div>
         </div>
-        <div class="stripe"></div>
       </div>
     </div>
   </section>
@@ -335,8 +296,8 @@
 
 <footer>
   <div class="wrap">
-    <div class="crisis"><strong>If you are in crisis right now</strong>, please talk to someone today. In the UK and Ireland call Samaritans free on <strong>116 123</strong>, day or night, or text <strong>SHOUT</strong> to <strong>85258</strong>. If you are in danger, call <strong>999</strong>. Outside the UK, call your local emergency number.</div>
-    <p>Mind the Map is a reflection tool. It is not medical advice and it does not replace a GP, therapist or counsellor. If any station on this map feels like home for more than a couple of weeks, that is a good reason to book an appointment.</p>
+    <div class="crisis"><strong>If you are in crisis right now</strong>, please talk to someone today. In the UK and Ireland, call Samaritans free on <strong>116 123</strong>, day or night, or text <strong>SHOUT</strong> to <strong>85258</strong>. If you are in danger, call <strong>999</strong>. Outside the UK, call your local emergency number.</div>
+    <p>The Road Home is a reflection tool. It is not medical advice and it does not replace a GP, therapist or counsellor. If any junction on this map has felt like home for more than a couple of weeks, that is a good reason to book an appointment.</p>
   </div>
 </footer>
 
@@ -345,308 +306,300 @@
 'use strict';
 
 /* =====================================================================
-   NETWORK DATA
-   Coordinates sit on a 1600 x 1100 canvas. Every segment between two
-   consecutive stops is horizontal, vertical or 45 degrees, like the
-   real thing. `l` is where the label sits relative to the station.
+   THE NETWORK
+   Canvas is 1600 x 1200. Home sits at the centre, ringed by the
+   Kindness Orbital. Every motorway runs from a hard place on the edge,
+   through its junctions, onto the Orbital and into Home.
+   `sub` is the reframe printed on the sign itself.
    ===================================================================== */
+const W = 1600, H = 1200;
+const C = { x: 800, y: 600 }, R = 185;
+const polar = a => { const r = a * Math.PI / 180; return [C.x + R * Math.sin(r), C.y - R * Math.cos(r)]; };
 
-const LINES = {
-  worry: {
-    tag: 'anxiety', name: 'Worry Line', topic: 'Anxiety', color: '#F5C400', text: '#1b1b1a',
-    about: 'The fastest trains on the network, mostly heading for places that do not exist. Runs all night.',
-    stops: ['whatif', 'racing', 'tightchest', 'doomscroll', 'sleepless', 'overwhelm', 'nameit', 'talk', 'grounding', 'breathe', 'calm']
-  },
-  low: {
-    tag: 'low mood', name: 'Low Line', topic: 'Depression and low mood', color: '#1C3F94',
-    about: 'The deepest line on the network. Trains are slow and the lights flicker, but they are still running, and every one of them is heading for First Light.',
-    stops: ['heavymornings', 'greydays', 'numb', 'sleepless', 'runningempty', 'isolation', 'guilt', 'rockbottom', 'talk', 'smallsteps', 'boundaries', 'selfcompassion', 'firstlight']
-  },
-  pressure: {
-    tag: 'exams and work', name: 'Pressure Line', topic: 'Exams, study and work', color: '#DC241F',
-    about: 'School, university and the office. A rush hour line: packed, hot, and convinced everyone else got a seat.',
-    stops: ['deadline', 'examhall', 'procrastination', 'allnighter', 'imposter', 'runningempty', 'overwhelm', 'burnout', 'boundaries', 'rest', 'enough']
-  },
-  gridlock: {
-    tag: 'traffic and waiting', name: 'Gridlock Line', topic: 'Traffic, commuting and waiting', color: '#8D969E', text: '#1b1b1a',
-    about: 'Every jam, queue and red light on the network. Slow and stop start, and excellent practice for everything else.',
-    stops: ['trafficjam', 'hornlane', 'roadrage', 'argument', 'clenchedjaw', 'runninglate', 'perspective', 'lettinggo', 'openroad']
-  },
-  heart: {
-    tag: 'relationships', name: 'Heart Line', topic: 'Relationships', color: '#E0699A',
-    about: 'Love, friendship, loss and longing. The line that runs through everyone\'s map sooner or later.',
-    stops: ['loneliness', 'argument', 'jealousy', 'heartbreak', 'isolation', 'overwhelm', 'honesttalk', [980, 320], 'beingseen', 'forgiveness', 'connection']
-  },
-  family: {
-    tag: 'parenting', name: 'Family Line', topic: 'Children and parenting', color: '#00843D',
-    about: 'The most rewarding line on the network. Also the one with the fewest seats and the most raisins on the floor.',
-    stops: ['tantrum', 'schoolrun', 'runninglate', 'nevertime', 'guilt', 'overwhelm', 'touchedout', [760, 300], [820, 240], 'village', 'patience', 'littlejoys']
-  },
-  escape: {
-    tag: 'needing out', name: 'Escape Line', topic: 'When you need a way out', color: '#7B3F98',
-    about: 'For when everything is too much. The early stops numb you. Stay on and the later ones fill you back up.',
-    stops: ['getout', 'procrastination', 'avoidance', 'doomscroll', 'numb', [690, 150], 'longwalks', 'makingthings', 'stillness', 'wonder']
-  },
-  growth: {
-    tag: 'healing', name: 'Growth Overground', topic: 'Healing, from anywhere', color: '#EE7C0E', overground: true,
-    about: 'Connects with every line on the network. You can board it from wherever you are, and it runs in both directions.',
-    stops: ['awareness', 'stillness', 'patience', 'forgiveness', 'selfcompassion', 'acceptance', 'rest', 'courage', 'breathe', 'resilience', 'lettinggo', 'becoming']
-  }
-};
-const LINE_ORDER = ['worry', 'low', 'pressure', 'gridlock', 'heart', 'family', 'escape', 'growth'];
+const NODES = {
+  home: { name: 'Home', sub: 'who you are underneath it all', type: 'home', x: C.x, y: C.y,
+    feel: 'The porch light on. The kettle. The person you were before the hard miles, and the one the miles made.',
+    gap: 'Every road on this map ends here. You do not need the shortest route, only to keep driving. Same address, different person.' },
 
-const STATIONS = {
-  /* ---- Worry Line ---- */
-  whatif: { name: 'What If?', x: 120, y: 380, l: 's',
-    feel: 'Two small words that can keep you up all night. Every answer opens three new questions.',
-    gap: 'You cannot think your way out of a what if. Swap it for an even if: even if that happens, what would I do? You usually know the answer.' },
-  racing: { name: 'Racing Thoughts', x: 230, y: 380, l: 's',
-    feel: 'Forty tabs open in your head, and one of them is playing music you cannot find.',
-    gap: 'Get it out of your head and onto paper. Thoughts written down slow to walking pace.' },
-  tightchest: { name: 'Tight Chest', x: 340, y: 380, l: 's',
-    feel: 'Shallow breaths, tight shoulders, a heart that will not slow down.',
-    gap: 'Your body is running a fire drill. It feels awful and it will pass. Long, slow out-breaths tell it the drill is over.' },
-  doomscroll: { name: 'Doom Scroll', x: 460, y: 380, l: 'se',
-    feel: '1am. Your thumb is still moving, and every swipe makes you feel a little worse.',
-    gap: 'The feed is built never to end, so you have to end it. Tonight, try charging your phone in another room.' },
-  sleepless: { name: 'Sleepless', x: 600, y: 380, l: 'ne',
-    feel: '3am, the ceiling, and a full replay of every mistake you have made since school.',
-    gap: 'Nothing looks its real size at 3am. Get up, keep the lights low, read something dull, then try again. Tomorrow does not get decided tonight.' },
-  overwhelm: { name: 'Overwhelm Central', x: 760, y: 540, l: { dx: 18, dy: -13, anchor: 'start' }, big: true,
-    feel: 'The busiest station on the network. Everything arrives at once and every platform is shouting your name.',
-    gap: 'Nearly everyone changes here at some point. You do not have to catch every train. Pick one platform, one next step, and let the rest wait.' },
-  nameit: { name: 'Name It', x: 840, y: 620, l: 'ne',
-    feel: 'Saying the feeling out loud. I am anxious. I am scared. I am at the end of my rope.',
-    gap: 'Putting a feeling into words turns the volume down. Psychologists call it affect labelling. Your nan called it getting it off your chest.' },
-  talk: { name: 'Talk to Someone', x: 920, y: 700, l: 'se',
-    feel: 'Telling a friend, your GP, a counsellor or a helpline the thing you swore you could handle alone.',
-    gap: 'Shared weight is lighter. This is the interchange most people walk straight past, and the one that changes the most journeys.' },
-  grounding: { name: 'Grounding', x: 1060, y: 700, l: 'n',
-    feel: 'Five things you can see. Four you can touch. Three you can hear. Two you can smell. One you can taste.',
-    gap: 'Anxiety lives in the future. Your senses only work in the present, so use them to climb back into it.' },
-  breathe: { name: 'Breathe', x: 1220, y: 700, l: 'ne',
-    feel: 'In for four. Hold for four. Out for six.',
-    gap: 'Breath is the one part of your nervous system you can steer by hand. Make the out-breath longer than the in-breath and the brakes come on.' },
-  calm: { name: 'Calm', x: 1380, y: 700, l: 'e',
-    feel: 'Worry still turns up sometimes. It just does not get to drive any more.',
-    gap: 'Calm is a skill you build with practice. Every time you ride this line to the end, the trip gets a little shorter.' },
-
-  /* ---- Low Line ---- */
-  heavymornings: { name: 'Heavy Mornings', x: 600, y: 80, l: 'w',
-    feel: 'The alarm goes off and your body feels like wet sand.',
-    gap: 'Forget the whole day. Feet on the floor is the only job right now. Then the kettle. Then the next small thing.' },
-  greydays: { name: 'Grey Days', x: 600, y: 160, l: 'w',
-    feel: 'Colours fade. Food tastes of cardboard. Things you used to love feel like paperwork.',
-    gap: 'Grey days are a symptom, and they do not get to write the verdict on your life. Keep doing small things you used to enjoy, even when they feel empty. Feeling tends to follow action.' },
-  numb: { name: 'Numb', x: 600, y: 240, l: 'e',
-    feel: 'Not sad, not happy. Just flat grey static where your feelings used to be.',
-    gap: 'Numbness is your mind pulling the emergency brake to protect you. Feeling comes back slowly, usually through small doors first: a song, a smell, sun on your face.' },
-  runningempty: { name: 'Running on Empty', x: 600, y: 540, l: 'nw',
-    feel: 'Still turning up. Still smiling in meetings. Nothing left in the tank.',
-    gap: 'You cannot study, work or parent on fumes. Refuelling is part of the job, so put it in the diary like everything else.' },
-  isolation: { name: 'Isolation', x: 680, y: 620, l: 'w',
-    feel: 'You cancel the plans, then feel hurt that nobody calls.',
-    gap: 'Low mood tells you that you are a burden. It is lying. Send one message today. "Thinking of you" counts.' },
-  guilt: { name: 'Guilt', x: 760, y: 700, l: 'e',
-    feel: 'Every bedtime story you rushed, every snapped word, every "not now, darling".',
-    gap: 'Guilt is proof you care. Let it point you towards one repair, then put it down. Children need parents who come back and make things right far more than they need perfect ones.' },
-  rockbottom: { name: 'Rock Bottom', x: 840, y: 780, l: 's', crisis: true,
-    feel: 'The lowest point on the network. From here it feels impossible that anything could get better.',
-    gap: 'Look at the map: from Rock Bottom the line only goes up. Nobody is meant to make this climb alone.' },
-  smallsteps: { name: 'Small Steps', x: 1000, y: 620, l: 'se',
-    feel: 'A shower. A walk to the shop. One email answered.',
-    gap: 'Small wins are bigger than they look. Each one proves to your brain that doing things still works.' },
-  boundaries: { name: 'Boundaries', x: 1080, y: 540, l: 'se',
-    feel: 'Saying no without writing a three paragraph apology.',
-    gap: 'Every yes to something is a no to something else. Make sure you are not always the thing getting the no.' },
-  selfcompassion: { name: 'Self-Compassion', x: 1220, y: 400, l: 'ne',
-    feel: 'Talking to yourself the way you would talk to a friend having a rough week.',
-    gap: 'Being harsh with yourself rarely gets you moving. Kindness does, and it lasts longer.' },
-  firstlight: { name: 'First Light', x: 1380, y: 400, l: 'e',
-    feel: 'The morning you notice the birds again.',
-    gap: 'Recovery rarely runs in a straight line. First light still comes, and it keeps coming back after the cloudy days.' },
-
-  /* ---- Pressure Line ---- */
-  deadline: { name: 'Deadline', x: 120, y: 540, l: 'n',
-    feel: 'The date on the calendar that has been quietly growing teeth.',
-    gap: 'Break the task down until the first step is almost embarrassingly small. Then take that step.' },
-  examhall: { name: 'Exam Hall', x: 210, y: 540, l: 'n',
-    feel: 'Rows of desks, a loud clock and a mind that has gone perfectly blank.',
-    gap: 'The knowledge is still in there; stress has just locked the door. Breathe out slowly, start with a question you can answer, and the door starts to open.' },
-  procrastination: { name: 'Procrastination', x: 300, y: 540, l: 'se',
-    feel: 'The essay is due tomorrow and you have just alphabetised the spice rack.',
-    gap: 'Procrastination is usually fear in a clever disguise. Ask what you are scared of, then set a timer for ten minutes. Just ten.' },
-  allnighter: { name: 'All-Nighter', x: 400, y: 540, l: 'n',
-    feel: 'Coffee, panic and a highlighter at 4am.',
-    gap: 'Sleep is when your brain saves what you learned. A full night beats three extra hours of panic revision every time.' },
-  imposter: { name: 'Imposter Syndrome', x: 500, y: 540, l: 's',
-    feel: 'Everyone here knows what they are doing. Any minute now they will find out you do not.',
-    gap: 'Most of the room feels exactly the same way. Feeling out of your depth is often a sign you are growing into something bigger.' },
-  burnout: { name: 'Burnout', x: 920, y: 540, l: 's',
-    feel: 'Beyond tired. Hollow. You have stopped caring about things that used to matter.',
-    gap: 'A weekend off will not fix burnout. Changing the load will. Something has to come off the pile, and you are allowed to choose what.' },
-  rest: { name: 'Rest', x: 1220, y: 540, l: 'ne',
+  /* ---- Kindness Orbital (brown signs: places worth visiting) ---- */
+  rest: { name: 'Rest', sub: 'how you finish', type: 'orbital', ang: 0,
     feel: 'Rest you do not have to earn, schedule to the minute or feel guilty about.',
     gap: 'Rest is part of the work. It is how you finish, so stop waiting until you have finished to take it.' },
-  enough: { name: 'Enough', x: 1380, y: 540, l: 'e',
-    feel: 'Good enough marks. Good enough work. A good enough day.',
-    gap: 'The job, the course and the inbox will never tell you when it is enough. You have to choose it yourself.' },
-
-  /* ---- Gridlock Line ---- */
-  trafficjam: { name: 'Traffic Jam', x: 120, y: 860, l: 's',
-    feel: 'Brake lights to the horizon, and the satnav keeps adding minutes.',
-    gap: 'You cannot move the traffic. You can choose what happens inside the car: a podcast, a call to your mum, or five minutes of simply sitting.' },
-  hornlane: { name: 'Horn Lane', x: 230, y: 860, l: 's',
-    feel: 'Everyone else on the road is an idiot and you are the last competent driver on Earth.',
-    gap: 'Traffic anger is usually anger about something else that found a handy target. Ask what it is really about.' },
-  roadrage: { name: 'Road Rage', x: 340, y: 860, l: 's',
-    feel: 'White knuckles on the wheel, shouting at someone who cannot hear you.',
-    gap: 'The chemical rush of anger peaks and fades in about ninety seconds if you stop feeding it. Count it out.' },
-  argument: { name: 'Argument', x: 440, y: 860, l: 'nw',
-    feel: 'Two people, one car, one wrong turn, and both of you are right.',
-    gap: 'Most arguments are two tired people asking to be understood. Lower your voice first. It works more often than winning.' },
-  clenchedjaw: { name: 'Clenched Jaw', x: 600, y: 860, l: 's',
-    feel: 'You did not even notice you were doing it.',
-    gap: 'Drop your shoulders. Unclench your jaw. Loosen your grip. Your body has been carrying the traffic for you.' },
-  runninglate: { name: 'Running Late', x: 760, y: 860, l: 'se',
-    feel: 'Shoes on the wrong feet, a missing book bag, and the 8:15 already gone.',
-    gap: 'Late is a problem with a fix. Send the text and arrive calm. Ten minutes late and calm beats on time and furious.' },
-  perspective: { name: 'Perspective', x: 980, y: 860, l: 's',
-    feel: 'Will this jam matter in a year? In a week? By dinner?',
-    gap: 'Zoom out. Most stuck moments shrink once you look at the whole map.' },
-  lettinggo: { name: 'Letting Go', x: 1220, y: 860, l: 'ne',
-    feel: 'Releasing what you cannot control, one red light at a time.',
-    gap: 'Letting go means putting your energy where it can actually move something. Giving up is a different station entirely.' },
-  openroad: { name: 'Open Road', x: 1380, y: 860, l: 'e',
-    feel: 'The traffic clears, the windows go down and the right song comes on.',
-    gap: 'It always clears in the end. The trick is to arrive still feeling like yourself.' },
-
-  /* ---- Heart Line ---- */
-  loneliness: { name: 'Loneliness', x: 300, y: 1000, l: 's',
-    feel: 'Surrounded by people, or by nobody at all, and still feeling unseen.',
-    gap: 'Loneliness is a hunger signal, as natural as thirst. It is telling you to reach towards people. It says nothing about your worth.' },
-  jealousy: { name: 'Jealousy', x: 520, y: 780, l: 'se',
-    feel: 'Scrolling through someone else\'s life and feeling yours shrink.',
-    gap: 'Jealousy is a map of what you want. Read it, then stop comparing your behind the scenes with their highlight reel.' },
-  heartbreak: { name: 'Heartbreak', x: 600, y: 700, l: 'se',
-    feel: 'The real, physical ache of a love that ended or changed shape.',
-    gap: 'It hurts this much because you loved this much. That capacity is still yours, and it will find somewhere to go again.' },
-  honesttalk: { name: 'Honest Talk', x: 880, y: 420, l: 'se',
-    feel: 'Saying the true thing, gently, while your voice shakes.',
-    gap: 'Relationships rarely break from conflict. They break from the conversations that never happen.' },
-  beingseen: { name: 'Being Seen', x: 1090, y: 320, l: 'n',
-    feel: 'Letting someone see the messy, uncertain, real you.',
-    gap: 'Vulnerability is the ticket price for connection. There is no cheaper fare and no back door.' },
-  forgiveness: { name: 'Forgiveness', x: 1220, y: 320, l: 'ne',
+  breathe: { name: 'Breathe', sub: 'out longer than in', type: 'orbital', ang: 40,
+    feel: 'In for four. Hold for four. Out for six.',
+    gap: 'Breath is the one part of your nervous system you can steer by hand. Make the out-breath longer than the in-breath and the brakes come on.' },
+  outofhands: { name: 'Out of Your Hands', sub: 'steer what you can', type: 'orbital', ang: 85,
+    feel: 'The jam, the weather, other people\'s driving. None of it is yours to control.',
+    gap: 'Grip the wheel you actually have and let the rest go by. Your energy goes further on the things you can steer.' },
+  forgiveness: { name: 'Forgiveness', sub: 'put the bag down', type: 'orbital', ang: 130,
     feel: 'Putting down a bag you have carried for years, including the one with your own name on it.',
     gap: 'Forgiving does not mean it was okay. It means it no longer gets to drive your life.' },
-  connection: { name: 'Connection', x: 1380, y: 320, l: 'e',
-    feel: 'Being known, and loved anyway.',
-    gap: 'This is where most of the other lines were heading all along.' },
-
-  /* ---- Family Line ---- */
-  tantrum: { name: 'Tantrum Terrace', x: 760, y: 1050, l: 'e',
-    feel: 'Screaming in the supermarket. Theirs first, then very nearly yours.',
-    gap: 'A meltdown is a small nervous system overloaded. It says nothing about your parenting. Stay calm and close: you are their brakes until they grow their own.' },
-  schoolrun: { name: 'School Run', x: 760, y: 955, l: 'e',
-    feel: 'Teeth, shoes, lunchbox, permission slip. Where is your other shoe?',
-    gap: 'Mornings go better with a plan made the night before. Prepared beats perfect.' },
-  nevertime: { name: 'Never Enough Time', x: 760, y: 780, l: 'w',
-    feel: 'Work wants you. The kids want you. You want a hot cup of tea.',
-    gap: 'Children remember presence more than hours. Ten minutes on the floor with your phone away fills them up more than a distracted afternoon.' },
-  touchedout: { name: 'Touched Out', x: 760, y: 400, l: 'e',
-    feel: 'Someone has been climbing on you since 6am and you need one hour where nobody touches you.',
-    gap: 'Needing space is part of loving people well. Ask for a tap out, take it, and come back fuller.' },
-  village: { name: 'It Takes a Village', x: 960, y: 240, l: 'n',
-    feel: 'Grandparents, friends, neighbours, the parent at the school gate who gets it.',
-    gap: 'Nobody was ever meant to raise children alone. Asking for help is how humans have always done this.' },
-  patience: { name: 'Patience', x: 1220, y: 240, l: 'ne',
-    feel: 'Counting to ten. Then to twenty. Then laughing about it later.',
-    gap: 'Patience means coming back to calm, again and again, a little faster each time. Endless calm was never the goal.' },
-  littlejoys: { name: 'Little Joys', x: 1380, y: 240, l: 'e',
-    feel: 'Sticky kisses, terrible jokes and the bedtime question you did not see coming.',
-    gap: 'The days are long but the years are short. The small moments turn out to be the big ones.' },
-
-  /* ---- Escape Line ---- */
-  getout: { name: 'Get Me Out of Here', x: 180, y: 660, l: 'w',
-    feel: 'The urge to be anywhere but here. Your chest says run; your calendar says stay.',
-    gap: 'Wanting to escape is a signal that something needs to change. Listen to it, then choose a better exit than the first one you see.' },
-  avoidance: { name: 'Avoidance', x: 380, y: 460, l: 'se',
-    feel: 'Unopened letters. Unanswered messages. The thing you are not thinking about fills the whole room.',
-    gap: 'Avoidance buys calm today and charges interest tomorrow. Pick the smallest thing you have been avoiding and touch it once.' },
-  longwalks: { name: 'Long Walks', x: 820, y: 150, l: 'n',
-    feel: 'Your feet are moving and, for the first time today, your head is quiet.',
-    gap: 'The best escapes take you towards something. Walking is the oldest therapy we have, and it is free.' },
-  makingthings: { name: 'Making Things', x: 980, y: 150, l: 'n',
-    feel: 'Clay, cake, code, a chord progression. Hours pass and you never noticed.',
-    gap: 'Making something puts you in charge of a small world. That feeling of control leaks back into the big one.' },
-  stillness: { name: 'Stillness', x: 1220, y: 150, l: 'ne',
+  services: { name: 'Kindness Services', sub: 'tea, a chat, no judgement', type: 'services', ang: 180,
+    feel: 'Lukewarm tea, a sausage roll and ten minutes of not being on the road.',
+    gap: 'Motorway services exist because nobody can drive forever. Pull in. Eat something. Text someone. The road will still be there when you are ready.' },
+  reachout: { name: 'Reach Out', sub: 'shared weight is lighter', type: 'orbital', ang: 230,
+    feel: 'Telling a friend, your GP, a counsellor or a helpline the thing you swore you could handle alone.',
+    gap: 'This is the junction most people drive straight past, and the one that changes the most journeys. One message. One call. That is the whole manoeuvre.' },
+  stillness: { name: 'Stillness', sub: 'nothing left to flee', type: 'orbital', ang: 275,
     feel: 'Sitting quietly with nothing to escape from at all.',
     gap: 'Ten minutes a day of doing nothing on purpose. It is harder than it sounds, and it gets easier every time.' },
-  wonder: { name: 'Wonder', x: 1380, y: 150, l: 'e',
-    feel: 'Stars, the sea, a child\'s question, a cathedral ceiling. You feel small in the best way.',
-    gap: 'Wonder shrinks problems back to their real size. Go looking for it on purpose.' },
+  patience: { name: 'Patience', sub: 'back to calm, faster each time', type: 'orbital', ang: 320,
+    feel: 'Counting to ten. Then to twenty. Then laughing about it later.',
+    gap: 'Patience means coming back to calm, again and again, a little faster each time. Endless calm was never the goal.' },
 
-  /* ---- Growth Overground ---- */
-  awareness: { name: 'Awareness', x: 1220, y: 70, l: 'e',
-    feel: 'Noticing where you are on the map.',
-    gap: 'You cannot change trains until you know which station you are at. Every recovery starts here.' },
-  acceptance: { name: 'Acceptance', x: 1220, y: 470, l: 'e',
-    feel: 'This is how it is right now. Not forever. Right now.',
-    gap: 'Acceptance is the solid ground you push off from. Fighting reality only keeps you on the platform.' },
-  courage: { name: 'Courage', x: 1220, y: 620, l: 'e',
-    feel: 'Doing the thing while you are still scared.',
-    gap: 'Fear does not have to leave before you move. Courage is deciding something else matters more.' },
-  resilience: { name: 'Resilience', x: 1220, y: 775, l: 'e',
-    feel: 'Bending without breaking. Falling, then getting up a little faster than last time.',
-    gap: 'Resilience is built at the hard stations. Every line you have ridden has added to it.' },
-  becoming: { name: 'Becoming', x: 1220, y: 970, l: 'e',
-    feel: 'Who you are after travelling through all of it.',
-    gap: 'Nobody arrives here by avoiding the hard stations. You become someone new by going through them.' }
+  /* ---- Spaghetti Junction ---- */
+  overwhelm: { name: 'Spaghetti Junction', sub: 'Overwhelm · one exit at a time', type: 'knot', x: 800, y: 250,
+    feel: 'Every road arrives at once. Work, children and worry, all merging into the same lane at the same moment.',
+    gap: 'Nobody takes every exit at once. Pick one road and one next step, and let the rest of the traffic wait. The knot looks impossible from inside and simple from above.' },
+
+  /* ---- M1 Anxiety ---- */
+  whatif: { name: 'What If?', sub: 'try "even if" instead', type: 'origin', x: 80, y: 300,
+    feel: 'Two small words that can keep you up all night. Every answer opens three new questions.',
+    gap: 'You cannot think your way out of a what if. Swap it for an even if: even if that happens, what would I do? You usually know the answer.' },
+  racing: { name: 'Racing Thoughts', sub: 'a pen is slower than a head', type: 'j', x: 240, y: 320,
+    feel: 'Forty tabs open in your head, and one of them is playing music you cannot find.',
+    gap: 'Get it out of your head and onto paper. Thoughts written down slow to walking pace.' },
+  tightchest: { name: 'Tight Chest', sub: 'the body\'s fire drill', type: 'j', x: 400, y: 305,
+    feel: 'Shallow breaths, tight shoulders, a heart that will not slow down.',
+    gap: 'Your body is running a fire drill. It feels awful and it will pass. Long, slow out-breaths tell it the drill is over.' },
+  spiral: { name: 'Spiralling', sub: 'name it to tame it', type: 'j', x: 570, y: 282,
+    feel: 'One worry links to the next and the next, until you are planning for a disaster that has not happened.',
+    gap: 'Say it out loud: I am spiralling. Naming the pattern pulls you out of the loop and back into the driving seat.' },
+
+  /* ---- M2 Low Mood ---- */
+  heavymornings: { name: 'Heavy Mornings', sub: 'feet on the floor first', type: 'origin', x: 80, y: 780,
+    feel: 'The alarm goes off and your body feels like wet sand.',
+    gap: 'Forget the whole day. Feet on the floor is the only job right now. Then the kettle. Then the next small thing.' },
+  greydays: { name: 'Grey Days', sub: 'act first, feeling follows', type: 'j', x: 190, y: 860,
+    feel: 'Colours fade. Food tastes of cardboard. Things you used to love feel like paperwork.',
+    gap: 'Grey days are a symptom, and they do not get to write the verdict on your life. Keep doing small things you used to enjoy, even when they feel empty. Feeling tends to follow action.' },
+  numb: { name: 'Numb', sub: 'the mind\'s handbrake', type: 'j', x: 310, y: 950,
+    feel: 'Not sad, not happy. Just flat grey static where your feelings used to be.',
+    gap: 'Numbness is your mind pulling the handbrake to protect you. Feeling comes back slowly, usually through small doors first: a song, a smell, sun on your face.' },
+  rockbottom: { name: 'Rock Bottom', sub: 'the road turns here', type: 'j', x: 450, y: 1015, crisis: true,
+    feel: 'The lowest point of the road. From down here it is hard to believe it climbs.',
+    gap: 'Look at the map: from Rock Bottom the road only goes up. Nobody is meant to make this climb alone.' },
+  smallsteps: { name: 'Small Steps', sub: 'tiny wins still count', type: 'j', x: 555, y: 880,
+    feel: 'A shower. A walk to the shop. One email answered.',
+    gap: 'Small wins are bigger than they look. Each one proves to your brain that doing things still works.' },
+
+  /* ---- M3 Pressure ---- */
+  deadline: { name: 'Deadline', sub: 'make step one tiny', type: 'origin', x: 330, y: 60,
+    feel: 'The date on the calendar that has been quietly growing teeth.',
+    gap: 'Break the task down until the first step is almost embarrassingly small. Then take that step.' },
+  examhall: { name: 'Exam Hall', sub: 'the answers are still in there', type: 'j', x: 455, y: 100,
+    feel: 'Rows of desks, a loud clock and a mind that has gone perfectly blank.',
+    gap: 'Stress has locked the door, and the knowledge is behind it. Breathe out slowly, start with a question you can answer, and the door starts to open.' },
+  imposter: { name: 'Imposter Syndrome', sub: 'half the room feels it too', type: 'j', x: 585, y: 145,
+    feel: 'Everyone here knows what they are doing. Any minute now they will find out you do not.',
+    gap: 'Most of the room feels exactly the same way. Feeling out of your depth is often a sign you are growing into something bigger.' },
+  burnout: { name: 'Burnout', sub: 'change the load', type: 'j', x: 700, y: 198,
+    feel: 'Beyond tired. Hollow. You have stopped caring about things that used to matter.',
+    gap: 'A weekend off will not fix burnout. Changing the load will. Something has to come off the pile, and you are allowed to choose what.' },
+
+  /* ---- M4 Gridlock ---- */
+  trafficjam: { name: 'Traffic Jam', sub: 'you choose the inside of the car', type: 'origin', x: 1530, y: 560,
+    feel: 'Brake lights to the horizon, and the satnav keeps adding minutes.',
+    gap: 'You cannot move the traffic. You can choose what happens inside the car: a podcast, a call to your mum, or five minutes of simply sitting.' },
+  runninglate: { name: 'Running Late', sub: 'late and calm beats furious', type: 'j', x: 1410, y: 600,
+    feel: 'Shoes on the wrong feet, a missing book bag, and the 8:15 already gone.',
+    gap: 'Late is a problem with a fix. Send the text and arrive calm. Ten minutes late and calm beats on time and furious.' },
+  roadrage: { name: 'Road Rage', sub: 'ninety seconds, then it fades', type: 'j', x: 1290, y: 572,
+    feel: 'White knuckles on the wheel, shouting at someone who cannot hear you.',
+    gap: 'Traffic anger is usually anger about something else that found a handy target. Ask what it is really about.' },
+  clenchedjaw: { name: 'Clenched Jaw', sub: 'drop your shoulders', type: 'j', x: 1150, y: 592,
+    feel: 'You did not even notice you were doing it.',
+    gap: 'Drop your shoulders. Unclench your jaw. Loosen your grip. Your body has been carrying the traffic for you.' },
+
+  /* ---- M5 Heart ---- */
+  loneliness: { name: 'Loneliness', sub: 'a signal to reach', type: 'origin', x: 1520, y: 780,
+    feel: 'Surrounded by people, or by nobody at all, and still feeling unseen.',
+    gap: 'Loneliness is a hunger signal, as natural as thirst. It is telling you to reach towards people. It says nothing about your worth.' },
+  jealousy: { name: 'Jealousy', sub: 'a map of what you want', type: 'j', x: 1410, y: 860,
+    feel: 'Scrolling through someone else\'s life and feeling yours shrink.',
+    gap: 'Jealousy is a map of what you want. Read it, then stop comparing your behind the scenes with their highlight reel.' },
+  argument: { name: 'The Argument', sub: 'lower your voice first', type: 'j', x: 1290, y: 950,
+    feel: 'Two people, one car, one wrong turn, and both of you are right.',
+    gap: 'Most arguments are two tired people asking to be understood. Lower your voice first. It works more often than winning.' },
+  heartbreak: { name: 'Heartbreak', sub: 'proof that you loved', type: 'j', x: 1150, y: 1015, crisis: true,
+    feel: 'The real, physical ache of a love that ended or changed shape.',
+    gap: 'It hurts this much because you loved this much. That capacity is still yours, and it will find somewhere to go again.' },
+  honesttalk: { name: 'Honest Talk', sub: 'say the true thing, gently', type: 'j', x: 1045, y: 880,
+    feel: 'Saying the true thing, gently, while your voice shakes.',
+    gap: 'Relationships rarely break from conflict. They break from the conversations that never happen.' },
+
+  /* ---- M6 Family ---- */
+  meltdown: { name: 'Back Seat Meltdown', sub: 'be their brakes', type: 'origin', x: 1520, y: 90,
+    feel: 'Screaming from the back seat with nowhere to pull over. Theirs first, then very nearly yours.',
+    gap: 'A meltdown is a small nervous system overloaded. It says nothing about your parenting. Stay calm and close: you are their brakes until they grow their own.' },
+  nearlythere: { name: 'Are We Nearly There?', sub: 'this bit of the road counts', type: 'j', x: 1350, y: 130,
+    feel: 'The fourth time in ten minutes. If you are honest, you ask it about your own life too.',
+    gap: 'Children ask because they live for the destination. Adults do it too. Look out of the window for a minute. This stretch of road is part of the trip.' },
+  nevertime: { name: 'Never Enough Time', sub: 'presence beats hours', type: 'j', x: 1170, y: 170,
+    feel: 'Work wants you. The kids want you. You want a hot cup of tea.',
+    gap: 'Children remember presence more than hours. Ten minutes on the floor with your phone away fills them up more than a distracted afternoon.' },
+  guilt: { name: 'Parent Guilt', sub: 'repair, then release', type: 'j', x: 990, y: 212,
+    feel: 'Every bedtime story you rushed, every snapped word, every "not now, darling".',
+    gap: 'Guilt is proof you care. Let it point you towards one repair, then put it down. Children need parents who come back and make things right far more than they need perfect ones.' },
+
+  /* ---- M7 Escape ---- */
+  getout: { name: 'Get Me Out of Here', sub: 'listen to the signal', type: 'origin', x: 70, y: 590,
+    feel: 'The urge to be anywhere but here. Your chest says run; your calendar says stay.',
+    gap: 'Wanting to escape is a signal that something needs to change. Listen to it, then choose a better exit than the first one you see.' },
+  doomscroll: { name: 'Doom Scroll', sub: 'you have to end it', type: 'j', x: 210, y: 580,
+    feel: '1am. Your thumb is still moving, and every swipe makes you feel a little worse.',
+    gap: 'The feed is built never to end, so you have to end it. Tonight, try charging your phone in another room.' },
+  avoidance: { name: 'Avoidance', sub: 'calm now, interest later', type: 'j', x: 340, y: 600,
+    feel: 'Unopened letters. Unanswered messages. The thing you are not thinking about fills the whole room.',
+    gap: 'Avoidance buys calm today and charges interest tomorrow. Pick the smallest thing you have been avoiding and touch it once.' },
+  runningaway: { name: 'Running Away', sub: 'you always come too', type: 'j', x: 480, y: 590,
+    feel: 'New job, new city, new start. Somehow the same feelings arrive a week later.',
+    gap: 'Running can buy you space, and space has value. The work travels with you, though, so pack something kind for the trip.' },
+
+  /* ---- A-road links ---- */
+  sleepless: { name: 'Sleepless', sub: 'smaller by morning', type: 'link', x: 225, y: 450,
+    feel: '3am, the ceiling, and a full replay of every mistake you have made since school.',
+    gap: 'Nothing looks its real size at 3am. Get up, keep the lights low, read something dull, then try again. Tomorrow does not get decided tonight.' },
+  isolation: { name: 'Isolation', sub: 'send one message', type: 'link', x: 330, y: 775,
+    feel: 'You cancel the plans, then feel hurt that nobody calls.',
+    gap: 'Low mood tells you that you are a burden. It is lying. Send one message today. "Thinking of you" counts.' },
+  schoolrun: { name: 'School Run', sub: 'prepared beats perfect', type: 'link', x: 1380, y: 365,
+    feel: 'Teeth, shoes, lunchbox, permission slip, and the gate closes at 8:50.',
+    gap: 'Mornings go better with a plan made the night before. Everybody forgets a PE kit sometimes.' },
+  shortfuse: { name: 'Short Fuse', sub: 'count to ninety', type: 'link', x: 1290, y: 760,
+    feel: 'Snapping at the person in the passenger seat about something the traffic did.',
+    gap: 'Anger peaks and fades in about ninety seconds if you stop feeding it. Count it out before you say the thing.' }
 };
 
-const RIVER = {
-  name: 'River of Tears',
-  feel: 'Sometimes it all comes out at once, in the car, in the shower, in the middle of the biscuit aisle.',
-  gap: 'Crying is the body\'s pressure valve. Every line on this map crosses the river at some point. That is normal, and the trains always reach the other side.'
+const ROADS = {
+  a3am:  { num: 'A3AM',  name: 'Sleepless link',  kind: 'link', color: '#7f90b3', flow: 9,  pts: ['racing', 'sleepless', 'doomscroll'] },
+  a1one: { num: 'A1ONE', name: 'Isolation link',  kind: 'link', color: '#7f90b3', flow: 12, pts: ['avoidance', 'isolation', 'numb'] },
+  a830:  { num: 'A830',  name: 'School Run link', kind: 'link', color: '#7f90b3', flow: 7,  pts: ['nearlythere', 'schoolrun', 'runninglate'] },
+  a90:   { num: 'A90',   name: 'Short Fuse link', kind: 'link', color: '#7f90b3', flow: 5,  pts: ['roadrage', 'shortfuse', 'argument'] },
+  m1: { num: 'M1', name: 'Anxiety', topic: 'Anxiety and worry', color: '#FFE14D', flow: 3.2,
+    about: 'The fastest road on the map, mostly heading for places that do not exist. Traffic runs all night.',
+    pts: ['whatif', 'racing', 'tightchest', 'spiral', 'overwhelm', [885, 335], 'breathe', 'home'] },
+  m2: { num: 'M2', name: 'Low Mood', topic: 'Depression and low mood', color: '#4D8DFF', flow: 16,
+    about: 'A slow road through fog. It dips all the way down to Rock Bottom, and then it climbs. Keep your lights on.',
+    pts: ['heavymornings', 'greydays', 'numb', 'rockbottom', 'smallsteps', 'reachout', 'home'] },
+  m3: { num: 'M3', name: 'Pressure', topic: 'Exams, study and work', color: '#FF4F5E', flow: 4.5,
+    about: 'Exams, revision, deadlines and the office. Rush hour all day, and everyone else seems to be in the fast lane.',
+    pts: ['deadline', 'examhall', 'imposter', 'burnout', 'overwhelm', 'rest', 'home'] },
+  m4: { num: 'M4', name: 'Gridlock', topic: 'Traffic, commuting and waiting', color: '#FF8A3D', flow: 20, jam: true,
+    about: 'Jams, commutes, queues and red lights. Stop start all the way, and excellent practice for everything else on this map.',
+    pts: ['trafficjam', 'runninglate', 'roadrage', 'clenchedjaw', 'outofhands', 'home'] },
+  m5: { num: 'M5', name: 'Heart', topic: 'Relationships', color: '#FF7EB6', flow: 9,
+    about: 'Love, friendship, arguments and heartbreak. Everybody drives it sooner or later, and like Low Mood it dips before it climbs.',
+    pts: ['loneliness', 'jealousy', 'argument', 'heartbreak', 'honesttalk', 'forgiveness', 'home'] },
+  m6: { num: 'M6', name: 'Family', topic: 'Children and parenting', color: '#3DDC84', flow: 7,
+    about: 'Children and parenting. The most rewarding road on the map, with the most crumbs in the footwell.',
+    pts: ['meltdown', 'nearlythere', 'nevertime', 'guilt', 'overwhelm', [715, 335], 'patience', 'home'] },
+  m7: { num: 'M7', name: 'Escape', topic: 'When you need a way out', color: '#A97BFF', flow: 6,
+    about: 'For when everything is too much. The early junctions numb you. Stay on, and the road leads somewhere still.',
+    pts: ['getout', 'doomscroll', 'avoidance', 'runningaway', 'stillness', 'home'] },
+  orbital: { num: 'M∞', name: 'Kindness Orbital', topic: 'Healing, from anywhere', color: '#FFF1CF', flow: 10, ring: true,
+    about: 'Rings Home and meets every motorway. Join it from anywhere, and go round as many times as you need.',
+    pts: ['rest', 'breathe', 'outofhands', 'forgiveness', 'services', 'reachout', 'stillness', 'patience'] }
 };
+const MOTORWAYS = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7'];
+const DRAW_ORDER = ['a3am', 'a1one', 'a830', 'a90', 'm2', 'm5', 'm7', 'm4', 'm1', 'm6', 'm3', 'orbital'];
+const CARD_ORDER = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'orbital'];
 
-const PRESETS = [
-  ['3am worry', 'sleepless', 'calm'],
-  ['Exam stress', 'examhall', 'enough'],
-  ['Rock bottom', 'rockbottom', 'firstlight'],
-  ['Stuck in traffic', 'trafficjam', 'openroad'],
-  ['Toddler meltdown', 'tantrum', 'littlejoys'],
-  ['Heartbreak', 'heartbreak', 'connection'],
-  ['Doom scrolling', 'doomscroll', 'wonder'],
-  ['Overwhelmed', 'overwhelm', 'becoming']
+const VMS = [
+  ['TIREDNESS IS A SIGNAL', 'TAKE A BREAK'],
+  ['QUEUE AHEAD', 'IT WILL PASS'],
+  ['YOU ARE DOING BETTER', 'THAN YOU THINK'],
+  ['ONE LANE', 'AT A TIME'],
+  ['FOG IN YOUR HEAD?', 'SLOW DOWN. LIGHTS ON'],
+  ['DO NOT DRIVE', 'ON EMPTY'],
+  ['NO SPEED LIMIT', 'ON GETTING BETTER']
 ];
 
-/* ---------- derive membership ---------- */
-for (const id of LINE_ORDER) {
-  const line = LINES[id];
-  line.id = id;
-  line.points = line.stops.map(s => typeof s === 'string' ? [STATIONS[s].x, STATIONS[s].y] : s);
-  line.isStation = line.stops.map(s => typeof s === 'string');
-  line.stations = line.stops.filter(s => typeof s === 'string');
-  for (const sid of line.stations) {
-    const st = STATIONS[sid];
-    if (!st) throw new Error('Unknown station ' + sid);
-    (st.lines = st.lines || []).push(id);
+const PRESETS = [
+  ['3am worry', 'sleepless'], ['Exam stress', 'examhall'], ['Rock bottom', 'rockbottom'], ['Stuck in traffic', 'trafficjam'],
+  ['Back seat meltdown', 'meltdown'], ['Heartbreak', 'heartbreak'], ['Doom scrolling', 'doomscroll'], ['Overwhelmed', 'overwhelm']
+];
+
+/* ---------- derive ---------- */
+for (const [id, n] of Object.entries(NODES)) {
+  n.id = id; n.roads = [];
+  if (n.ang !== undefined) [n.x, n.y] = polar(n.ang);
+}
+for (const [rid, r] of Object.entries(ROADS)) {
+  r.id = rid;
+  r.nodes = r.pts.filter(p => typeof p === 'string');
+  r.nodes.forEach((nid, i) => {
+    const n = NODES[nid];
+    if (!n) throw new Error('Unknown node ' + nid);
+    n.roads.push(rid);
+    if (!r.ring && !r.kind && n.type === 'j') n.j = i;
+    if (!r.ring && !r.kind && n.type === 'origin') n.origin = rid;
+  });
+}
+
+/* =====================================================================
+   GEOMETRY
+   Roads are smooth Catmull-Rom curves through their points. Each pair
+   of neighbouring junctions owns a list of segments, so the satnav can
+   stitch any route together and drive it.
+   ===================================================================== */
+const P = p => typeof p === 'string' ? [NODES[p].x, NODES[p].y] : p;
+function catmull(pts) {
+  const segs = [];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+    segs.push({ t: 'C', a: p1, c1: [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6], c2: [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6], b: p2 });
+  }
+  return segs;
+}
+const rev = s => s.t === 'C' ? { t: 'C', a: s.b, c1: s.c2, c2: s.c1, b: s.a } : { t: 'A', a: s.b, b: s.a, sweep: 1 - s.sweep };
+const f = n => +n.toFixed(1);
+function segsToD(segs) {
+  let d = `M${f(segs[0].a[0])} ${f(segs[0].a[1])}`;
+  for (const s of segs) {
+    if (s.t === 'C') d += ` C${f(s.c1[0])} ${f(s.c1[1])} ${f(s.c2[0])} ${f(s.c2[1])} ${f(s.b[0])} ${f(s.b[1])}`;
+    else d += ` A${R} ${R} 0 0 ${s.sweep} ${f(s.b[0])} ${f(s.b[1])}`;
+  }
+  return d;
+}
+
+const EDGES = new Map();
+const ADJ = {};
+for (const id in NODES) ADJ[id] = [];
+for (const r of Object.values(ROADS)) {
+  if (r.ring) {
+    const n = r.nodes;
+    n.forEach((u, i) => {
+      const v = n[(i + 1) % n.length];
+      const seg = { t: 'A', a: P(u), b: P(v), sweep: 1 };
+      EDGES.set(u + '|' + v, { road: r.id, segs: [seg] });
+      EDGES.set(v + '|' + u, { road: r.id, segs: [rev(seg)] });
+      ADJ[u].push([v, r.id]); ADJ[v].push([u, r.id]);
+    });
+    r.d = `M${C.x} ${C.y - R} A${R} ${R} 0 1 1 ${C.x} ${C.y + R} A${R} ${R} 0 1 1 ${C.x} ${C.y - R}`;
+    continue;
+  }
+  const segs = catmull(r.pts.map(P));
+  r.d = segsToD(segs);
+  const idx = r.pts.map((p, i) => typeof p === 'string' ? i : -1).filter(i => i >= 0);
+  for (let k = 0; k < idx.length - 1; k++) {
+    const u = r.pts[idx[k]], v = r.pts[idx[k + 1]];
+    const part = segs.slice(idx[k], idx[k + 1]);
+    EDGES.set(u + '|' + v, { road: r.id, segs: part });
+    EDGES.set(v + '|' + u, { road: r.id, segs: part.slice().reverse().map(rev) });
+    ADJ[u].push([v, r.id]); ADJ[v].push([u, r.id]);
   }
 }
-for (const [id, s] of Object.entries(STATIONS)) s.id = id;
 
 /* =====================================================================
    DRAWING
    ===================================================================== */
 const NS = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('map');
-const FONT = 'Cabin, \'Gill Sans\', \'Gill Sans MT\', Calibri, sans-serif';
-const BG = '#FFFDF8';
-const INK = '#1b1b1a';
-const LINE_W = 9;
-const DIRS = { n: [0, -1], s: [0, 1], e: [1, 0], w: [-1, 0], ne: [1, -1], nw: [-1, -1], se: [1, 1], sw: [-1, 1] };
+const FONT = 'Overpass, \'Helvetica Neue\', Arial, sans-serif';
+const SERIF = 'Fraunces, Georgia, serif';
+const MONO = '\'Overpass Mono\', \'Courier New\', monospace';
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function el(tag, attrs, parent) {
   const e = document.createElementNS(NS, tag);
@@ -654,191 +607,265 @@ function el(tag, attrs, parent) {
   if (parent) parent.appendChild(e);
   return e;
 }
-function text(parent, x, y, str, attrs) {
-  const t = el('text', Object.assign({ x, y, 'font-family': FONT, fill: INK }, attrs), parent);
-  t.textContent = str;
+function txt(parent, x, y, s, attrs) {
+  const t = el('text', Object.assign({ x, y, 'font-family': FONT, fill: '#fff' }, attrs), parent);
+  t.textContent = s;
   return t;
 }
 
-/* Expand any non-octilinear hop into diagonal + straight, then round
-   the corners at waypoints. Corners at stations stay crisp. */
-function linePath(points, isStation) {
-  const v = [], st = [];
-  points.forEach((p, i) => {
-    if (i > 0) {
-      const [ax, ay] = points[i - 1], [bx, by] = p;
-      const dx = bx - ax, dy = by - ay;
-      if (dx && dy && Math.abs(dx) !== Math.abs(dy)) {
-        const d = Math.min(Math.abs(dx), Math.abs(dy));
-        v.push([ax + Math.sign(dx) * d, ay + Math.sign(dy) * d]); st.push(false);
+const L = {};
+L.defs = el('defs', {}, svg);
+['bg', 'decor', 'roads', 'nodes', 'route', 'posts', 'signs', 'car'].forEach(n => L[n] = el('g', { id: n + 'Layer' }, svg));
+
+L.defs.innerHTML = `
+  <radialGradient id="sky" cx="50%" cy="50%" r="75%">
+    <stop offset="0" stop-color="#18213b"/><stop offset=".55" stop-color="#0c1222"/><stop offset="1" stop-color="#05070e"/>
+  </radialGradient>
+  <radialGradient id="homeGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#ffd27a" stop-opacity=".95"/><stop offset=".35" stop-color="#ffb347" stop-opacity=".35"/><stop offset="1" stop-color="#ff9a2f" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
+`;
+
+el('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#sky)' }, L.bg);
+(function stars() {
+  let s = 7;
+  const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < 140; i++) {
+    const x = rnd() * W, y = rnd() * H, r = rnd() * 1.1 + .3;
+    if (Math.hypot(x - C.x, y - C.y) < 330) continue;
+    el('circle', { cx: f(x), cy: f(y), r: f(r), fill: '#c9d6ff', 'fill-opacity': f(.12 + rnd() * .35) }, L.bg);
+  }
+})();
+el('circle', { class: 'homeglow', cx: C.x, cy: C.y, r: 300, fill: 'url(#homeGlow)' }, L.bg);
+
+/* roads */
+const roadEls = {};
+function drawRoad(r) {
+  const g = el('g', { class: 'rd', 'data-road': r.id }, L.roads);
+  roadEls[r.id] = g;
+  const link = r.kind === 'link';
+  el('path', { d: r.d, fill: 'none', stroke: r.color, 'stroke-width': link ? 14 : 26, 'stroke-opacity': link ? .12 : .28, filter: 'url(#glow)', 'stroke-linecap': 'round' }, g);
+  el('path', { class: 'edge', d: r.d, fill: 'none', stroke: r.color, 'stroke-width': link ? 10 : 15, 'stroke-linecap': 'round', 'stroke-opacity': link ? .7 : 1 }, g);
+  el('path', { d: r.d, fill: 'none', stroke: '#141a2b', 'stroke-width': link ? 6 : 9.5, 'stroke-linecap': 'round' }, g);
+  if (!link) el('path', { d: r.d, fill: 'none', stroke: '#ffffff', 'stroke-opacity': .45, 'stroke-width': 1.1, 'stroke-dasharray': '7 9' }, g);
+  // moving lights: headlights always flowing towards Home
+  const pattern = r.jam ? [2.4, 4, 2.4, 4, 2.4, 4, 2.4, 4, 2.4, 70] : link ? [2, 44] : [2.6, 34];
+  const period = pattern.reduce((a, b) => a + b, 0);
+  const lights = el('path', { d: r.d, fill: 'none', stroke: '#fff4cc', 'stroke-width': link ? 2.4 : 3.4, 'stroke-linecap': 'round', 'stroke-dasharray': pattern.join(' ') }, g);
+  if (!reduceMotion) el('animate', { attributeName: 'stroke-dashoffset', from: 0, to: f(-period * 6), dur: r.flow + 's', repeatCount: 'indefinite' }, lights);
+}
+DRAW_ORDER.forEach(id => drawRoad(ROADS[id]));
+
+/* Spaghetti Junction: slip-road loops around the knot */
+(function knot() {
+  const n = NODES.overwhelm, g = el('g', { class: 'knotloops' }, L.roads);
+  const loops = [[-34, -6, 30, 18, -25], [30, -14, 26, 16, 30], [4, 26, 34, 14, 8], [-14, 18, 22, 22, -40], [22, 16, 18, 26, 55]];
+  loops.forEach(([dx, dy, rx, ry, rot]) => {
+    const t = `rotate(${rot} ${n.x + dx} ${n.y + dy})`;
+    el('ellipse', { cx: n.x + dx, cy: n.y + dy, rx, ry, transform: t, fill: 'none', stroke: '#9aa8c4', 'stroke-opacity': .55, 'stroke-width': 6 }, g);
+    el('ellipse', { cx: n.x + dx, cy: n.y + dy, rx, ry, transform: t, fill: 'none', stroke: '#141a2b', 'stroke-width': 3 }, g);
+  });
+  L.roads.insertBefore(g, roadEls.m1);
+})();
+
+/* junction dots */
+const nodeEls = {};
+for (const n of Object.values(NODES)) {
+  if (n.type === 'home') continue;
+  const g = el('g', { class: 'node', 'data-id': n.id }, L.nodes);
+  nodeEls[n.id] = g;
+  if (n.type === 'knot') el('circle', { cx: n.x, cy: n.y, r: 13, fill: '#141a2b', stroke: '#fff', 'stroke-width': 3.5 }, g);
+  else if (n.type === 'orbital' || n.type === 'services') el('circle', { cx: n.x, cy: n.y, r: 8, fill: '#fff1cf', stroke: '#141a2b', 'stroke-width': 3 }, g);
+  else el('circle', { cx: n.x, cy: n.y, r: n.type === 'link' ? 5 : 6.5, fill: '#fff', stroke: '#141a2b', 'stroke-width': 2.5 }, g);
+  el('circle', { cx: n.x, cy: n.y, r: 16, fill: 'transparent' }, g);
+  g.addEventListener('click', () => { if (!dragMoved()) select(n.id); });
+}
+
+/* Home */
+(function home() {
+  const g = el('g', { class: 'home', 'data-id': 'home', tabindex: 0, role: 'button', 'aria-label': 'Home' }, L.nodes);
+  el('circle', { cx: C.x, cy: C.y, r: 62, fill: '#1d1608', stroke: '#ffd27a', 'stroke-width': 3 }, g);
+  el('circle', { cx: C.x, cy: C.y, r: 54, fill: 'none', stroke: '#ffd27a', 'stroke-opacity': .35, 'stroke-width': 1.5 }, g);
+  el('path', { d: `M${C.x - 22} ${C.y - 4} L${C.x} ${C.y - 26} L${C.x + 22} ${C.y - 4} L${C.x + 16} ${C.y - 4} L${C.x + 16} ${C.y + 14} L${C.x - 16} ${C.y + 14} L${C.x - 16} ${C.y - 4} Z`, fill: '#ffd27a' }, g);
+  el('rect', { x: C.x - 6, y: C.y - 2, width: 12, height: 10, fill: '#fff7d9' }, g);
+  el('rect', { x: C.x - 6, y: C.y - 2, width: 12, height: 10, fill: '#fff2b8', filter: 'url(#soft)' }, g);
+  txt(g, C.x, C.y + 34, 'HOME', { 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, 'letter-spacing': 4, fill: '#ffd27a' });
+  g.addEventListener('click', () => { if (!dragMoved()) select('home'); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select('home'); } });
+})();
+
+/* ---------- decor: title gantry, VMS, hazards, SOS, legend ---------- */
+const reserved = []; // rectangles the signs must avoid
+const reserve = (x, y, w, h) => reserved.push({ x, y, w, h });
+
+function drawDecor() {
+  const D = L.decor;
+
+  // Title gantry below Home
+  const gx = 590, gy = 905, gw = 420, gh = 170;
+  reserve(gx - 10, gy - 30, gw + 20, gh + 60);
+  el('rect', { x: gx + 40, y: gy + gh, width: 8, height: 60, fill: '#3a4357' }, D);
+  el('rect', { x: gx + gw - 48, y: gy + gh, width: 8, height: 60, fill: '#3a4357' }, D);
+  el('rect', { x: gx, y: gy, width: gw, height: gh, rx: 8, fill: '#1d5bbf', stroke: '#fff', 'stroke-width': 3 }, D);
+  el('rect', { x: gx + 7, y: gy + 7, width: gw - 14, height: gh - 14, rx: 5, fill: 'none', stroke: '#fff', 'stroke-opacity': .25, 'stroke-width': 1 }, D);
+  el('path', { d: `M${gx + 52} ${gy + 120} L${gx + 52} ${gy + 52} M${gx + 32} ${gy + 72} L${gx + 52} ${gy + 48} L${gx + 72} ${gy + 72}`, fill: 'none', stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, D);
+  txt(D, gx + 98, gy + 66, 'The Road Home', { 'font-family': SERIF, 'font-style': 'italic', 'font-weight': 600, 'font-size': 40 });
+  txt(D, gx + 100, gy + 98, 'ALL ROADS LEAD HERE', { 'font-size': 16, 'font-weight': 800, 'letter-spacing': 2.6, fill: '#ffe14d' });
+  txt(D, gx + 100, gy + 126, 'Every hard feeling is a junction.', { 'font-size': 14.5, fill: '#d9e6ff' });
+  txt(D, gx + 100, gy + 146, 'None of them is the end of the road.', { 'font-size': 14.5, fill: '#d9e6ff' });
+
+  // Variable message sign
+  const vx = 1100, vy = 262, vw = 250, vh = 84;
+  reserve(vx - 6, vy - 6, vw + 12, vh + 70);
+  el('rect', { x: vx + vw / 2 - 4, y: vy + vh, width: 8, height: 56, fill: '#3a4357' }, D);
+  el('rect', { x: vx, y: vy, width: vw, height: vh, rx: 6, fill: '#0b0b0b', stroke: '#3a4357', 'stroke-width': 4 }, D);
+  const vg = el('g', { style: 'transition: opacity .35s' }, D);
+  const vt = { 'text-anchor': 'middle', 'font-family': MONO, 'font-weight': 700, 'font-size': 15, fill: '#ffb000', 'letter-spacing': .5 };
+  const l1 = txt(vg, vx + vw / 2, vy + 36, VMS[0][0], vt);
+  const l2 = txt(vg, vx + vw / 2, vy + 62, VMS[0][1], vt);
+  // LED grid: thin dark lines over the text so it reads as a dot-matrix board
+  for (let gx2 = vx + 3; gx2 < vx + vw; gx2 += 3) el('line', { x1: gx2, y1: vy + 4, x2: gx2, y2: vy + vh - 4, stroke: '#0b0b0b', 'stroke-width': .8 }, D);
+  for (let gy2 = vy + 3; gy2 < vy + vh; gy2 += 3) el('line', { x1: vx + 4, y1: gy2, x2: vx + vw - 4, y2: gy2, stroke: '#0b0b0b', 'stroke-width': .8 }, D);
+  let vi = 0;
+  if (!reduceMotion) setInterval(() => {
+    vi = (vi + 1) % VMS.length;
+    vg.setAttribute('opacity', 0);
+    setTimeout(() => { l1.textContent = VMS[vi][0]; l2.textContent = VMS[vi][1]; vg.setAttribute('opacity', 1); }, 350);
+  }, 4200);
+
+  // Hazard signs
+  function hazard(x, y, glyph, plate) {
+    const g = el('g', {}, D);
+    reserve(x - 50, y - 34, 100, 82);
+    el('rect', { x: x - 3, y: y + 14, width: 6, height: 34, fill: '#3a4357' }, g);
+    el('path', { d: `M${x} ${y - 30} L${x + 30} ${y + 20} L${x - 30} ${y + 20} Z`, fill: '#fff', stroke: '#e0202f', 'stroke-width': 6, 'stroke-linejoin': 'round' }, g);
+    txt(g, x, y + 12, glyph, { 'text-anchor': 'middle', 'font-size': glyph.length > 1 ? 11 : 24, 'font-weight': 800, fill: '#111' });
+    const p = txt(g, x, y + 40, plate, { 'text-anchor': 'middle', 'font-size': 11.5, 'font-weight': 700, fill: '#111' });
+    const pw = p.getComputedTextLength() + 14;
+    g.insertBefore(el('rect', { x: x - pw / 2, y: y + 27, width: pw, height: 18, rx: 2, fill: '#fff', stroke: '#111', 'stroke-width': 1.5 }), p);
+  }
+  hazard(185, 960, 'FOG', 'Lights on, go slow');
+  hazard(300, 175, '!', 'Under construction');
+
+  // Emergency phones
+  [[450, 1072], [1150, 1072], [455, 395]].forEach(([x, y]) => {
+    reserve(x - 18, y - 16, 36, 32);
+    const g = el('g', { class: 'sos', tabindex: 0, role: 'button', 'aria-label': 'Emergency phone: get help' }, D);
+    el('rect', { x: x - 15, y: y - 13, width: 30, height: 26, rx: 4, fill: '#ff7a00', stroke: '#fff', 'stroke-width': 1.6 }, g);
+    txt(g, x, y + 4.5, 'SOS', { 'text-anchor': 'middle', 'font-size': 11, 'font-weight': 800 });
+    g.addEventListener('click', () => { if (!dragMoved()) showSOS(); });
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showSOS(); } });
+  });
+
+  // Legend, bottom left
+  const lx = 24, ly = 1032;
+  reserve(lx - 6, ly - 8, 340, 170);
+  el('rect', { x: lx, y: ly, width: 328, height: 156, rx: 10, fill: '#0b1020', 'fill-opacity': .85, stroke: '#26324f' }, D);
+  txt(D, lx + 14, ly + 22, 'MOTORWAYS', { 'font-size': 11, 'font-weight': 800, 'letter-spacing': 2.4, fill: '#9aa8c4' });
+  MOTORWAYS.concat('orbital').forEach((id, i) => {
+    const r = ROADS[id];
+    const x = lx + 14 + Math.floor(i / 4) * 160, y = ly + 44 + (i % 4) * 28;
+    const g = el('g', { class: 'lg', 'data-road': id, role: 'button', tabindex: 0, 'aria-label': 'Show ' + r.num + ' ' + r.name }, D);
+    el('rect', { x: x - 4, y: y - 14, width: 156, height: 24, fill: 'transparent' }, g);
+    el('line', { x1: x, y1: y - 2, x2: x + 22, y2: y - 2, stroke: r.color, 'stroke-width': 7, 'stroke-linecap': 'round' }, g);
+    txt(g, x + 30, y + 2.5, id === 'orbital' ? 'Kindness Orbital' : r.num + ' ' + r.name, { 'font-size': 13, 'font-weight': 700 });
+    g.addEventListener('click', () => focusRoad(id));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusRoad(id); } });
+  });
+
+  // Sign key, bottom right
+  const kx = 1268, ky = 1032;
+  reserve(kx - 6, ky - 8, 330, 170);
+  el('rect', { x: kx, y: ky, width: 318, height: 156, rx: 10, fill: '#0b1020', 'fill-opacity': .85, stroke: '#26324f' }, D);
+  txt(D, kx + 14, ky + 22, 'READING THE SIGNS', { 'font-size': 11, 'font-weight': 800, 'letter-spacing': 2.4, fill: '#9aa8c4' });
+  [['#1d5bbf', '#fff', 'Blue', 'a hard junction'], ['#7b4a22', '#fff', 'Brown', 'a place worth visiting'], ['#17703a', '#ffe14d', 'Green', 'an A-road shortcut'], ['#ff7a00', '#fff', 'SOS', 'help, never far away']]
+    .forEach(([bg, fg, label, what], i) => {
+      const y = ky + 40 + i * 28;
+      el('rect', { x: kx + 14, y: y - 4, width: 52, height: 22, rx: 3, fill: bg, stroke: '#fff', 'stroke-width': 1.5 }, D);
+      txt(D, kx + 40, y + 11.5, label, { 'text-anchor': 'middle', 'font-size': 11.5, 'font-weight': 800, fill: fg });
+      txt(D, kx + 78, y + 11.5, what, { 'font-size': 13.5, fill: '#d9e1f2' });
+    });
+
+  txt(D, W / 2, H - 10, 'In crisis? Samaritans 116 123 (UK and ROI, free, 24/7) · or your local emergency number', { 'text-anchor': 'middle', 'font-size': 12, fill: '#6f7c99' });
+  reserve(W / 2 - 300, H - 26, 600, 24);
+}
+
+/* ---------- signs ---------- */
+const SIGN_BG = { j: '#1d5bbf', origin: '#1d5bbf', knot: '#1d5bbf', services: '#1d5bbf', orbital: '#7b4a22', link: '#17703a' };
+const SIGN_SUB = { j: '#d6e4ff', origin: '#d6e4ff', knot: '#ffe14d', services: '#d6e4ff', orbital: '#f6dfc2', link: '#e3f5e9' };
+const signEls = {}, postEls = {};
+
+function buildSign(n) {
+  const g = el('g', { class: 'sign', 'data-id': n.id, tabindex: 0, role: 'button', 'aria-label': `${n.name}: ${n.sub}` }, L.signs);
+  const plate = el('rect', { class: 'plate', x: 0, y: 0, width: 10, height: 10, rx: 6, fill: SIGN_BG[n.type], stroke: '#fff', 'stroke-width': 2 }, g);
+  const badges = [];
+  if (n.type === 'j') badges.push(['J' + n.j, '#111', '#fff', '#111']);
+  if (n.type === 'origin') badges.push([ROADS[n.origin].num, '#1d5bbf', '#fff', '#fff']);
+  if (n.type === 'knot') n.roads.forEach(rid => badges.push([ROADS[rid].num, '#1d5bbf', '#fff', '#fff']));
+  if (n.type === 'link') badges.push([ROADS[n.roads[0]].num, '#17703a', '#ffe14d', '#ffe14d']);
+  const top = 11;
+  let x = 11;
+  for (const [label, bg, fg, stroke] of badges) {
+    const t = txt(g, 0, 0, label, { 'font-size': 12.5, 'font-weight': 800, fill: fg, 'text-anchor': 'middle' });
+    const w = Math.max(26, t.getComputedTextLength() + 12);
+    g.insertBefore(el('rect', { x, y: top, width: w, height: 21, rx: 3, fill: bg, stroke, 'stroke-width': 1.4 }), t);
+    t.setAttribute('x', x + w / 2); t.setAttribute('y', top + 15);
+    x += w + 6;
+  }
+  const tx = badges.length ? x + 2 : 13;
+  const name = txt(g, tx, top + 16, n.name, { 'font-size': n.type === 'knot' ? 18 : 16, 'font-weight': 800 });
+  const sub = txt(g, tx, top + 36, n.sub, { 'font-family': SERIF, 'font-style': 'italic', 'font-weight': 500, 'font-size': 13.5, fill: SIGN_SUB[n.type] });
+  const w = Math.max(tx + name.getComputedTextLength(), tx + sub.getComputedTextLength(), x) + 13;
+  const h = 56;
+  plate.setAttribute('width', f(w)); plate.setAttribute('height', h);
+  g.addEventListener('click', () => { if (!dragMoved()) select(n.id); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(n.id); } });
+  signEls[n.id] = g;
+  return { g, w, h };
+}
+
+/* Greedy placement: try eight directions at four distances and keep the
+   spot that covers the fewest roads, junctions, signs and furniture. */
+function placeSigns() {
+  const samples = [];
+  L.roads.querySelectorAll('.rd > path.edge').forEach(p => {
+    const len = p.getTotalLength();
+    for (let s = 0; s <= len; s += 7) { const q = p.getPointAtLength(s); samples.push([q.x, q.y]); }
+  });
+  const nodePts = Object.values(NODES).map(n => [n.x, n.y]);
+  const placed = reserved.slice();
+  const rank = { knot: 0, orbital: 1, services: 1, origin: 2, link: 3, j: 4 };
+  const order = Object.values(NODES).filter(n => n.type !== 'home').sort((a, b) => rank[a.type] - rank[b.type]);
+  for (const n of order) {
+    const { g, w, h } = buildSign(n);
+    let best = null;
+    for (const gap of [14, 30, 52, 80]) {
+      for (const [ux, uy] of [[0, -1], [0, 1], [1, 0], [-1, 0], [1, -1], [-1, -1], [1, 1], [-1, 1]]) {
+        const k = ux && uy ? .55 : 1;
+        const cx = n.x + ux * (w / 2 + gap * k), cy = n.y + uy * (h / 2 + gap * k);
+        const rx = cx - w / 2, ry = cy - h / 2;
+        let score = gap * 1.2 + (ux && uy ? 6 : 0);
+        if (rx < 8 || ry < 8 || rx + w > W - 8 || ry + h > H - 8) score += 1e6;
+        for (const r of placed) {
+          const ox = Math.max(0, Math.min(rx + w + 6, r.x + r.w) - Math.max(rx - 6, r.x));
+          const oy = Math.max(0, Math.min(ry + h + 6, r.y + r.h) - Math.max(ry - 6, r.y));
+          score += ox * oy * 4;
+        }
+        for (const [px, py] of samples) if (px > rx - 9 && px < rx + w + 9 && py > ry - 9 && py < ry + h + 9) score += 60;
+        for (const [px, py] of nodePts) if (px > rx - 14 && px < rx + w + 14 && py > ry - 14 && py < ry + h + 14) score += 400;
+        if (!best || score < best.score) best = { score, rx, ry };
       }
     }
-    v.push(p); st.push(isStation ? isStation[i] : false);
-  });
-  let d = `M${v[0][0]} ${v[0][1]}`;
-  for (let i = 1; i < v.length - 1; i++) {
-    const [px, py] = v[i - 1], [cx, cy] = v[i], [nx, ny] = v[i + 1];
-    const l1 = Math.hypot(cx - px, cy - py), l2 = Math.hypot(nx - cx, ny - cy);
-    const u1 = [(cx - px) / l1, (cy - py) / l1], u2 = [(nx - cx) / l2, (ny - cy) / l2];
-    const cross = u1[0] * u2[1] - u1[1] * u2[0];
-    if (Math.abs(cross) < 1e-6 || st[i]) { d += ` L${cx} ${cy}`; continue; }
-    const r = Math.min(30, l1 / 2, l2 / 2);
-    d += ` L${(cx - u1[0] * r).toFixed(1)} ${(cy - u1[1] * r).toFixed(1)} Q${cx} ${cy} ${(cx + u2[0] * r).toFixed(1)} ${(cy + u2[1] * r).toFixed(1)}`;
+    g.setAttribute('transform', `translate(${f(best.rx)} ${f(best.ry)})`);
+    placed.push({ x: best.rx, y: best.ry, w, h });
+    const qx = Math.max(best.rx, Math.min(n.x, best.rx + w)), qy = Math.max(best.ry, Math.min(n.y, best.ry + h));
+    if (Math.hypot(qx - n.x, qy - n.y) > 10) {
+      postEls[n.id] = el('line', { class: 'post', x1: n.x, y1: n.y, x2: f(qx), y2: f(qy), stroke: '#c7d2ea', 'stroke-opacity': .55, 'stroke-width': 2, 'stroke-dasharray': '1 4', 'stroke-linecap': 'round' }, L.posts);
+    }
   }
-  const last = v[v.length - 1];
-  return d + ` L${last[0]} ${last[1]}`;
 }
-
-function strokeLine(parent, line, d) {
-  el('path', { d, fill: 'none', stroke: BG, 'stroke-width': LINE_W + 7, 'stroke-linejoin': 'round' }, parent);
-  el('path', { d, fill: 'none', stroke: line.color, 'stroke-width': LINE_W, 'stroke-linejoin': 'round' }, parent);
-  if (line.overground) el('path', { d, fill: 'none', stroke: '#fff', 'stroke-width': 2.6, 'stroke-linejoin': 'round' }, parent);
-}
-
-function dirAt(line, sid) {
-  const k = line.stops.indexOf(sid), P = line.points;
-  const a = P[Math.max(0, k - 1)], b = P[Math.min(P.length - 1, k + 1)];
-  const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1;
-  return [dx / L, dy / L];
-}
-
-function drawTick(parent, sid, lid) {
-  const s = STATIONS[sid], line = LINES[lid];
-  const [ux, uy] = dirAt(line, sid);
-  let px = -uy, py = ux;
-  const ld = typeof s.l === 'string' ? DIRS[s.l] : [s.l.dx, s.l.dy];
-  if (px * ld[0] + py * ld[1] < 0) { px = -px; py = -py; }
-  const k = line.stops.indexOf(sid);
-  const terminus = k === 0 || k === line.stops.length - 1;
-  const a = terminus ? -11 : 0, b = terminus ? 11 : 10.5;
-  el('line', { x1: s.x + px * a, y1: s.y + py * a, x2: s.x + px * b, y2: s.y + py * b, stroke: line.color, 'stroke-width': 6 }, parent);
-}
-
-function labelAttrs(s) {
-  if (typeof s.l === 'object') return { x: s.x + s.l.dx, y: s.y + s.l.dy, anchor: s.l.anchor };
-  const [dx, dy] = DIRS[s.l];
-  const d = s.lines.length > 1 ? 13 : 15;
-  const n = dx && dy ? d * 0.75 : d;
-  const base = dy < 0 ? 0 : dy > 0 ? 10 : 4.5;
-  return { x: s.x + dx * n, y: s.y + dy * n + base, anchor: dx > 0 ? 'start' : dx < 0 ? 'end' : 'middle' };
-}
-
-const halo = { stroke: BG, 'stroke-width': 4.5, 'stroke-linejoin': 'round', 'paint-order': 'stroke' };
-
-/* layers */
-const L = {};
-['bg', 'decor', 'river', 'lines', 'route', 'stations', 'marker'].forEach(n => L[n] = el('g', { id: n + 'Layer' }, svg));
-
-el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: BG }, L.bg);
-
-/* river */
-(function drawRiver() {
-  const g = el('g', { class: 'river', role: 'button', tabindex: 0, 'aria-label': RIVER.name }, L.river);
-  const d = 'M-30 760 L440 760 Q460 760 474 774 L506 806 Q520 820 540 820 L1630 820';
-  el('path', { d, fill: 'none', stroke: '#D6ECF5', 'stroke-width': 30, 'stroke-linecap': 'round' }, g);
-  text(g, 38, 765.5, 'River of Tears', { 'font-size': 13, 'font-style': 'italic', fill: '#4E8FB0', 'font-weight': 500, 'letter-spacing': .6 });
-  text(g, 1440, 825.5, 'River of Tears', { 'font-size': 13, 'font-style': 'italic', fill: '#4E8FB0', 'font-weight': 500, 'letter-spacing': .6 });
-  g.addEventListener('click', () => { if (!dragMoved()) showRiver(); });
-  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showRiver(); } });
-})();
-
-/* lines */
-const lineGroups = {};
-for (const id of LINE_ORDER) {
-  const line = LINES[id];
-  const g = el('g', { class: 'ln', 'data-line': id }, L.lines);
-  lineGroups[id] = g;
-  strokeLine(g, line, linePath(line.points, line.isStation));
-  for (const sid of line.stations) if (STATIONS[sid].lines.length === 1) drawTick(g, sid, id);
-}
-
-/* stations */
-const stationEls = {};
-for (const s of Object.values(STATIONS)) {
-  const g = el('g', { class: 'stn', 'data-id': s.id, tabindex: 0, role: 'button', 'aria-label': s.name }, L.stations);
-  stationEls[s.id] = g;
-  const ix = s.lines.length > 1;
-  el('circle', { class: 'hit', cx: s.x, cy: s.y, r: ix ? 15 : 13, fill: 'transparent' }, g);
-  if (ix) {
-    const r = s.big ? 12.5 : 8.5;
-    el('circle', { cx: s.x, cy: s.y, r, fill: '#fff', stroke: INK, 'stroke-width': s.big ? 4 : 3.2 }, g);
-  }
-  const la = labelAttrs(s);
-  const t = text(g, la.x, la.y, s.name, Object.assign({
-    'text-anchor': la.anchor,
-    'font-size': s.big ? 16 : 13.5,
-    'font-weight': s.big ? 700 : 500,
-  }, halo));
-  if (s.crisis) t.setAttribute('font-weight', 700);
-  g.addEventListener('click', () => { if (!dragMoved()) selectStation(s.id); });
-  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectStation(s.id); } });
-}
-
-/* ---------- decoration: title, key, legend, notes ---------- */
-(function drawDecor() {
-  const D = L.decor;
-  // emblem: an open ring (the gap you mind) crossed by a bar
-  const em = el('g', { transform: 'translate(78 92)' }, D);
-  el('circle', { cx: 0, cy: 0, r: 33, fill: 'none', stroke: '#EE7C0E', 'stroke-width': 14, 'stroke-dasharray': '178 30', transform: 'rotate(-62)' }, em);
-  el('rect', { x: -44, y: -11, width: 88, height: 22, rx: 2, fill: '#1C3F94' }, em);
-  text(em, 0, 5, 'MIND', { 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 700, fill: '#fff', 'letter-spacing': 3 });
-
-  text(D, 132, 92, 'Mind the Map', { 'font-size': 44, 'font-weight': 700, fill: '#1C3F94', 'letter-spacing': -.5 });
-  text(D, 134, 120, 'THE INNER UNDERGROUND', { 'font-size': 14, 'font-weight': 600, fill: '#C25F00', 'letter-spacing': 3.2 });
-  text(D, 44, 182, 'Every feeling is a stop.', { 'font-size': 22, 'font-weight': 600 });
-  text(D, 44, 210, 'None of them is the end of the line.', { 'font-size': 22, 'font-weight': 400 });
-  const blurb = [
-    'Anxiety, low mood, pressure, traffic, love and family',
-    'all run on the same network. Change at the white',
-    'circles. The orange Overground meets every line, so',
-    'you can start growing from wherever you are today.'
-  ];
-  blurb.forEach((line, i) => text(D, 44, 250 + i * 19, line, { 'font-size': 14, fill: '#5d5a54' }));
-
-  // key, bottom left
-  const k = el('g', { transform: 'translate(28 902)' }, D);
-  el('rect', { x: 0, y: 0, width: 230, height: 172, rx: 10, fill: '#fff', stroke: '#e3ddd0' }, k);
-  el('rect', { x: 0, y: 0, width: 230, height: 34, rx: 10, fill: INK }, k);
-  el('rect', { x: 0, y: 24, width: 230, height: 10, fill: INK }, k);
-  text(k, 115, 23, 'MIND THE GAP', { 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 700, fill: '#F5C400', 'letter-spacing': 3 });
-  text(k, 115, 53, 'between how you feel and who you are', { 'text-anchor': 'middle', 'font-size': 12, 'font-style': 'italic', fill: '#5d5a54' });
-  // station tick
-  el('line', { x1: 16, y1: 80, x2: 50, y2: 80, stroke: '#1C3F94', 'stroke-width': 9 }, k);
-  el('line', { x1: 33, y1: 80, x2: 33, y2: 69, stroke: '#1C3F94', 'stroke-width': 6 }, k);
-  text(k, 62, 84.5, 'A feeling (station)', { 'font-size': 13 });
-  // interchange
-  el('line', { x1: 16, y1: 110, x2: 50, y2: 110, stroke: '#DC241F', 'stroke-width': 9 }, k);
-  el('circle', { cx: 33, cy: 110, r: 8.5, fill: '#fff', stroke: INK, 'stroke-width': 3.2 }, k);
-  text(k, 62, 114.5, 'Change lines here', { 'font-size': 13 });
-  // terminus
-  el('line', { x1: 16, y1: 140, x2: 44, y2: 140, stroke: '#00843D', 'stroke-width': 9 }, k);
-  el('line', { x1: 44, y1: 129, x2: 44, y2: 151, stroke: '#00843D', 'stroke-width': 6 }, k);
-  text(k, 62, 144.5, 'End of the line (for now)', { 'font-size': 13 });
-
-  // note by the bottom of the Low Line
-  const n = el('g', { transform: 'translate(905 930)' }, D);
-  text(n, 0, 0, 'Look at the Low Line.', { 'font-size': 15, 'font-weight': 700, fill: '#1C3F94' });
-  text(n, 0, 21, 'From Rock Bottom, the only', { 'font-size': 15, 'font-style': 'italic' });
-  text(n, 0, 41, 'way the track goes is up.', { 'font-size': 15, 'font-style': 'italic' });
-
-  // legend, bottom right
-  const lg = el('g', { transform: 'translate(1340 900)' }, D);
-  text(lg, 0, 0, 'LINES', { 'font-size': 12, 'font-weight': 700, 'letter-spacing': 2.5, fill: '#5d5a54' });
-  LINE_ORDER.forEach((id, i) => {
-    const line = LINES[id];
-    const row = el('g', { class: 'lg', 'data-line': id, transform: `translate(0 ${16 + i * 21})`, role: 'button', tabindex: 0, 'aria-label': 'Show ' + line.name }, lg);
-    el('rect', { x: -4, y: -8, width: 250, height: 20, fill: 'transparent' }, row);
-    el('line', { x1: 0, y1: 2, x2: 30, y2: 2, stroke: line.color, 'stroke-width': 8 }, row);
-    if (line.overground) el('line', { x1: 0, y1: 2, x2: 30, y2: 2, stroke: '#fff', 'stroke-width': 2.4 }, row);
-    text(row, 40, 6.5, line.name, { 'font-size': 13, 'font-weight': 600 });
-    const nameW = line.name.length * 6.9;
-    text(row, 44 + nameW, 6.5, line.tag, { 'font-size': 11.5, fill: '#6f6b63' });
-    row.addEventListener('click', () => focusLine(id));
-    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusLine(id); } });
-  });
-
-  text(D, 800, 1088, 'In crisis? Samaritans 116 123 (UK and ROI, free, 24/7) or your local emergency number.', { 'text-anchor': 'middle', 'font-size': 12, fill: '#8a857b' });
-})();
 
 /* =====================================================================
    INTERACTION
@@ -846,140 +873,108 @@ for (const s of Object.values(STATIONS)) {
 const panel = document.getElementById('panel');
 const clearBtn = document.getElementById('clearBtn');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-
-function pill(id, asButton) {
-  const line = LINES[id];
-  const style = `--c:${line.color};--t:${line.text || '#fff'}`;
-  const cls = 'pill' + (line.overground ? ' growth' : '');
-  return asButton
-    ? `<button type="button" class="${cls}" style="${style}" data-line="${id}">${esc(line.name)}</button>`
-    : `<span class="${cls}" style="${style}">${esc(line.name)}</span>`;
-}
+const roadTag = id => { const r = ROADS[id]; return `<span class="tag${r.ring ? ' ring' : r.kind ? ' link' : ''}">${esc(r.num)}</span>`; };
+const roadName = id => { const r = ROADS[id]; return r.ring ? 'Kindness Orbital' : `${r.num} ${r.name}`; };
 
 function clearFocus() {
-  svg.classList.remove('focus');
-  svg.querySelectorAll('.on').forEach(n => n.classList.remove('on'));
-  L.route.replaceChildren();
+  svg.classList.remove('focus', 'arrived');
+  svg.querySelectorAll('.on, .lit').forEach(e => e.classList.remove('on', 'lit'));
   clearBtn.hidden = true;
 }
-
-function setMarker(sid) {
-  L.marker.replaceChildren();
-  if (!sid) return;
-  const s = STATIONS[sid];
-  el('circle', { class: 'pulse', cx: s.x, cy: s.y, r: 16, fill: 'none', stroke: '#DC241F', 'stroke-width': 3 }, L.marker);
-  el('circle', { cx: s.x, cy: s.y, r: 4.5, fill: '#DC241F', 'pointer-events': 'none' }, L.marker);
-}
-
-function focusLine(id) {
-  clearFocus();
-  setMarker(null);
+function light(id) { [signEls[id], postEls[id], nodeEls[id]].forEach(e => e && e.classList.add('on')); }
+function focusRoad(id) {
+  stopDrive(); clearFocus();
   svg.classList.add('focus');
-  lineGroups[id].classList.add('on');
-  for (const sid of LINES[id].stations) stationEls[sid].classList.add('on');
+  roadEls[id].classList.add('on');
+  ROADS[id].nodes.forEach(light);
   clearBtn.hidden = false;
-  showLine(id);
+  showRoad(id);
+}
+function select(id) {
+  stopDrive(); clearFocus();
+  if (id !== 'home') {
+    svg.classList.add('focus');
+    light(id);
+    NODES[id].roads.forEach(rid => { roadEls[rid].classList.add('on'); ROADS[rid].nodes.forEach(light); });
+    clearBtn.hidden = false;
+  }
+  showNode(id);
+  if (window.innerWidth <= 1120) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function nextStops(sid) {
-  return STATIONS[sid].lines.map(lid => {
-    const line = LINES[lid], st = line.stations, i = st.indexOf(sid), out = [];
-    if (i < st.length - 1) out.push({ lid, toward: st[st.length - 1], next: st[i + 1] });
-    if (i > 0) out.push({ lid, toward: st[0], next: st[i - 1] });
-    return out;
-  }).flat();
+function kicker(n) {
+  if (n.type === 'home') return 'Your destination';
+  if (n.type === 'knot') return `${n.roads.map(roadTag).join(' ')} Interchange`;
+  if (n.type === 'orbital') return `${roadTag('orbital')} A place worth visiting`;
+  if (n.type === 'services') return `${roadTag('orbital')} Services`;
+  if (n.type === 'link') return `${roadTag(n.roads[0])} A-road shortcut`;
+  if (n.type === 'origin') return `${roadTag(n.origin)} Start of the ${esc(ROADS[n.origin].name)} motorway`;
+  return `${roadTag(n.roads.find(r => MOTORWAYS.includes(r)))} Junction ${n.j}`;
 }
+const onward = id => ADJ[id].map(([v, rid]) => `<li style="--c:${ROADS[rid].color}"><span class="sw"></span><span>${esc(roadName(rid))} to <button type="button" class="linkbtn" data-go="${v}">${esc(NODES[v].name)}</button></span></li>`).join('');
+const crisisBox = () => `<p class="help">If you are here right now, please talk to someone today. In the UK and Ireland, Samaritans are free on <strong>116 123</strong>, any time, or text <strong>SHOUT</strong> to <strong>85258</strong>. If you are in danger, call <strong>999</strong>.</p>`;
 
+function showNode(id) {
+  const n = NODES[id];
+  panel.innerHTML = `
+    <p class="kicker">${kicker(n)}</p>
+    <h2>${esc(n.name)}</h2>
+    <p class="reframe">${esc(n.sub)}</p>
+    <h3>What it feels like</h3>
+    <p>${esc(n.feel)}</p>
+    <h3>The way through</h3>
+    <p class="gap">${esc(n.gap)}</p>
+    ${n.crisis ? crisisBox() : ''}
+    ${id === 'home' ? '' : `<h3>Roads from here</h3><ul class="roads">${onward(id)}</ul>`}
+    <div class="actions">
+      ${id === 'home' ? `<a class="btn" href="#satnav">Plan a route here</a>` : `<button class="btn" type="button" data-drive="${id}">Drive home from here</button>`}
+    </div>`;
+}
+function showRoad(id) {
+  const r = ROADS[id];
+  panel.innerHTML = `
+    <p class="kicker">${roadTag(id)} ${esc(r.topic || 'A-road')}</p>
+    <h2>${esc(roadName(id))}</h2>
+    <p>${esc(r.about || '')}</p>
+    <h3>${r.ring ? 'Around the Orbital' : 'Junctions, in order'}</h3>
+    <ul class="roads">${r.nodes.map(nid => `<li style="--c:${r.color}"><span class="sw"></span><span><button type="button" class="linkbtn" data-go="${nid}">${esc(NODES[nid].name)}</button> · <i style="color:#9aa8c4">${esc(NODES[nid].sub)}</i></span></li>`).join('')}</ul>
+    ${r.ring ? '' : `<div class="actions"><button class="btn" type="button" data-road-drive="${id}">Drive it end to end</button></div>`}`;
+}
+function showSOS() {
+  stopDrive(); clearFocus();
+  panel.innerHTML = `
+    <p class="kicker"><span class="tag" style="background:#ff7a00">SOS</span> Emergency phone</p>
+    <h2>Help is never far away</h2>
+    <p class="reframe">breaking down is expected</p>
+    <h3>Why it is on the map</h3>
+    <p>On a real motorway there is an emergency phone every mile, because breakdowns are expected. The same goes for people.</p>
+    ${crisisBox()}
+    <p style="margin-top:12px;color:#9aa8c4;font-size:15px">Not urgent, but not okay? Your GP is a good first call. In England you can also refer yourself to NHS Talking Therapies without seeing a GP.</p>`;
+  if (window.innerWidth <= 1120) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 function showIntro() {
   panel.innerHTML = `
     <p class="kicker">You are here</p>
-    <h2>Find your station</h2>
-    <p>Tap any station on the map to see what it feels like and the way through it. Tap a line in the key to follow it end to end.</p>
-    <h3>How to read the map</h3>
-    <p>Every coloured line starts somewhere hard and ends somewhere better. The white circles are interchanges, where one feeling leads into another. The orange Growth Overground crosses every line, so you can step onto it from wherever you are.</p>
+    <h2>Find your junction</h2>
+    <p class="reframe">then follow the signs home</p>
+    <p>Every blue sign is a hard junction, with a reframe written underneath it. Tap one to read what it feels like and the way through.</p>
+    <h3>How the roads work</h3>
+    <p>Seven motorways start somewhere hard at the edge of the map. Three of them tangle at Spaghetti Junction. A-road shortcuts swap traffic between them. All seven cross the Kindness Orbital and finish at Home. The little lights on the roads are always heading inward.</p>
     <div class="actions">
-      <button class="btn" type="button" data-go="overwhelm">Start at Overwhelm Central</button>
-      <a class="btn ghost" href="#planner">Plan a journey</a>
+      <button class="btn" type="button" data-drive="overwhelm">Drive home from Spaghetti Junction</button>
+      <a class="btn ghost" href="#satnav">Open the satnav</a>
     </div>`;
-}
-
-function showStation(sid) {
-  const s = STATIONS[sid];
-  const dirs = nextStops(sid).map(d => {
-    const line = LINES[d.lid];
-    return `<li style="--c:${line.color}"><span class="swatch"></span><span>${esc(line.name)} towards <b>${esc(STATIONS[d.toward].name)}</b>: next stop <button type="button" class="linkbtn" data-go="${d.next}">${esc(STATIONS[d.next].name)}</button></span></li>`;
-  }).join('');
-  const ix = s.lines.length > 1 ? `<p class="kicker">Interchange · ${s.lines.length} lines</p>` : `<p class="kicker">Station</p>`;
-  panel.innerHTML = `
-    ${ix}
-    <h2>${esc(s.name)}</h2>
-    <div class="pills">${s.lines.map(id => pill(id, true)).join('')}</div>
-    <h3>What it feels like</h3>
-    <p>${esc(s.feel)}</p>
-    <h3>Mind the gap</h3>
-    <p class="gap">${esc(s.gap)}</p>
-    ${s.crisis ? `<p class="help">If you are here right now, please talk to someone today. In the UK and Ireland, Samaritans are free on <strong>116 123</strong>, any time. If you are in danger, call <strong>999</strong>.</p>` : ''}
-    <h3>Trains from here</h3>
-    <ul class="dirs">${dirs}</ul>
-    <div class="actions">
-      <button class="btn" type="button" data-plan-from="${sid}">Plan a journey from here</button>
-    </div>`;
-}
-
-function showLine(id) {
-  const line = LINES[id];
-  const st = line.stations;
-  panel.innerHTML = `
-    <p class="kicker">${esc(line.topic)}</p>
-    <h2>${esc(line.name)}</h2>
-    <p>${esc(line.about)}</p>
-    <h3>Stations, in order</h3>
-    <ul class="dirs">${st.map(sid => `<li style="--c:${line.color}"><span class="swatch"></span><button type="button" class="linkbtn" data-go="${sid}">${esc(STATIONS[sid].name)}</button>${STATIONS[sid].lines.length > 1 ? ' <span style="color:#8a857b;font-size:13px">change here</span>' : ''}</li>`).join('')}</ul>
-    <div class="actions">
-      <button class="btn" type="button" data-plan-pair="${st[0]}|${st[st.length - 1]}">Ride it end to end</button>
-    </div>`;
-}
-
-function showRiver() {
-  clearFocus();
-  setMarker(null);
-  panel.innerHTML = `
-    <p class="kicker">Landmark</p>
-    <h2>${esc(RIVER.name)}</h2>
-    <h3>What it feels like</h3>
-    <p>${esc(RIVER.feel)}</p>
-    <h3>Mind the gap</h3>
-    <p class="gap">${esc(RIVER.gap)}</p>`;
-  if (window.innerWidth <= 1100) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function selectStation(sid, keepRoute) {
-  if (!keepRoute) {
-    clearFocus();
-    svg.classList.add('focus');
-    stationEls[sid].classList.add('on');
-    for (const lid of STATIONS[sid].lines) {
-      lineGroups[lid].classList.add('on');
-      for (const other of LINES[lid].stations) stationEls[other].classList.add('on');
-    }
-    clearBtn.hidden = false;
-  }
-  setMarker(sid);
-  showStation(sid);
-  if (window.innerWidth <= 1100 && !keepRoute) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 panel.addEventListener('click', e => {
   const go = e.target.closest('[data-go]');
-  if (go) return selectStation(go.dataset.go);
-  const ln = e.target.closest('[data-line]');
-  if (ln) return focusLine(ln.dataset.line);
-  const pf = e.target.closest('[data-plan-from]');
-  if (pf) { fromSel.value = pf.dataset.planFrom; document.getElementById('planner').scrollIntoView({ behavior: 'smooth' }); toSel.focus({ preventScroll: true }); return; }
-  const pp = e.target.closest('[data-plan-pair]');
-  if (pp) { const [a, b] = pp.dataset.planPair.split('|'); runPlan(a, b, true); }
+  if (go) return select(go.dataset.go);
+  const rd = e.target.closest('[data-road-drive]');
+  if (rd) { const r = ROADS[rd.dataset.roadDrive]; return runPlan(r.nodes[0], r.nodes[r.nodes.length - 1], true, r.id); }
+  const dv = e.target.closest('[data-drive]');
+  if (dv) return runPlan(dv.dataset.drive, 'home', true);
 });
-clearBtn.addEventListener('click', () => { clearFocus(); setMarker(null); showIntro(); });
+clearBtn.addEventListener('click', () => { stopDrive(); clearFocus(); showIntro(); });
 
 /* ---------- zoom and drag ---------- */
 const scroller = document.getElementById('mapScroll');
@@ -988,14 +983,13 @@ function setZoom(z) {
   const cx = (scroller.scrollLeft + scroller.clientWidth / 2) / scroller.scrollWidth;
   const cy = (scroller.scrollTop + scroller.clientHeight / 2) / scroller.scrollHeight;
   zoom = Math.max(1, Math.min(3, z));
-  svg.style.width = zoom === 1 ? '' : (zoom * 100) + '%';
-  svg.style.minWidth = zoom === 1 ? '' : (1050 * zoom) + 'px';
+  svg.style.width = zoom === 1 ? '' : zoom * 100 + '%';
+  svg.style.minWidth = zoom === 1 ? '' : 1000 * zoom + 'px';
   scroller.scrollLeft = cx * scroller.scrollWidth - scroller.clientWidth / 2;
   scroller.scrollTop = cy * scroller.scrollHeight - scroller.clientHeight / 2;
 }
-document.getElementById('zoomIn').addEventListener('click', () => setZoom(zoom + 0.5));
-document.getElementById('zoomOut').addEventListener('click', () => setZoom(zoom - 0.5));
-
+document.getElementById('zoomIn').addEventListener('click', () => setZoom(zoom + .5));
+document.getElementById('zoomOut').addEventListener('click', () => setZoom(zoom - .5));
 let drag = null;
 function dragMoved() { return drag && drag.moved; }
 scroller.addEventListener('pointerdown', e => {
@@ -1011,192 +1005,228 @@ window.addEventListener('pointermove', e => {
 window.addEventListener('pointerup', () => { scroller.classList.remove('dragging'); setTimeout(() => { drag = null; }, 0); });
 
 /* =====================================================================
-   JOURNEY PLANNER
-   Dijkstra over (station, line) states. A stop costs 1, a change costs 3,
-   so the planner prefers staying on a line over hopping about.
+   SATNAV
+   Dijkstra over (junction, road) states: each junction costs 1 and a
+   change of road costs 2, so routes prefer to stay on one road.
    ===================================================================== */
-function plan(from, to) {
-  if (from === to) return [];
-  const key = (s, l) => s + '|' + l;
-  const dist = new Map(), prev = new Map(), queue = [];
-  for (const l of STATIONS[from].lines) { dist.set(key(from, l), 0); queue.push([0, from, l]); }
+function plan(from, to, via) {
+  if (from === to) return null;
+  const key = (n, r) => n + '|' + r;
+  const dist = new Map(), prev = new Map(), q = [];
+  for (const r of via ? [via] : NODES[from].roads) { dist.set(key(from, r), 0); q.push([0, from, r]); }
   let end = null;
-  while (queue.length) {
-    queue.sort((a, b) => a[0] - b[0]);
-    const [d, s, l] = queue.shift();
-    const k = key(s, l);
-    if (d > dist.get(k)) continue;
-    if (s === to) { end = k; break; }
-    const st = LINES[l].stations, i = st.indexOf(s), nb = [];
-    if (i > 0) nb.push([st[i - 1], l, 1]);
-    if (i < st.length - 1) nb.push([st[i + 1], l, 1]);
-    for (const l2 of STATIONS[s].lines) if (l2 !== l) nb.push([s, l2, 3]);
-    for (const [s2, l2, c] of nb) {
-      const k2 = key(s2, l2), nd = d + c;
-      if (nd < (dist.has(k2) ? dist.get(k2) : Infinity)) { dist.set(k2, nd); prev.set(k2, k); queue.push([nd, s2, l2]); }
+  while (q.length) {
+    q.sort((a, b) => a[0] - b[0]);
+    const [d, n, r] = q.shift();
+    if (d > dist.get(key(n, r))) continue;
+    if (n === to) { end = key(n, r); break; }
+    const nb = ADJ[n].filter(([, rid]) => rid === r).map(([v]) => [v, r, 1]);
+    if (!via) for (const r2 of NODES[n].roads) if (r2 !== r) nb.push([n, r2, 2]);
+    for (const [v, r2, c] of nb) {
+      const k = key(v, r2), nd = d + c;
+      if (nd < (dist.has(k) ? dist.get(k) : Infinity)) { dist.set(k, nd); prev.set(k, key(n, r)); q.push([nd, v, r2]); }
     }
   }
   if (!end) return null;
   const states = [];
   for (let k = end; k; k = prev.get(k)) states.unshift(k.split('|'));
   const legs = [];
-  for (const [s, l] of states) {
+  for (const [n, r] of states) {
     const last = legs[legs.length - 1];
-    if (last && last.line === l) last.stations.push(s);
-    else legs.push({ line: l, stations: [s] });
+    if (last && last.road === r) last.nodes.push(n);
+    else legs.push({ road: r, nodes: [n] });
   }
-  return legs.filter(leg => leg.stations.length > 1);
+  return legs.filter(l => l.nodes.length > 1);
 }
 
-function legPath(leg) {
-  const line = LINES[leg.line];
-  let i = line.stops.indexOf(leg.stations[0]), j = line.stops.indexOf(leg.stations[leg.stations.length - 1]);
-  const lo = Math.min(i, j), hi = Math.max(i, j);
-  return linePath(line.points.slice(lo, hi + 1), line.isStation.slice(lo, hi + 1));
+const bar = document.getElementById('satnav-bar');
+const snBadge = document.getElementById('snBadge'), snWhat = document.getElementById('snWhat'), snWhy = document.getElementById('snWhy');
+let driving = null;
+function stopDrive() {
+  if (driving) { cancelAnimationFrame(driving.raf); driving = null; }
+  L.route.replaceChildren(); L.car.replaceChildren();
+  bar.hidden = true;
+}
+document.getElementById('snStop').addEventListener('click', stopDrive);
+
+function badgeFor(n) {
+  snBadge.className = 'badge' + (n.type === 'orbital' ? ' brown' : n.type === 'link' ? ' green' : n.type === 'home' ? ' home' : '');
+  snBadge.textContent = n.type === 'j' ? 'J' + n.j : n.type === 'home' ? '⌂' : n.type === 'orbital' ? '✿' : n.type === 'link' ? ROADS[n.roads[0]].num : n.type === 'origin' ? ROADS[n.origin].num : n.type === 'services' ? 'S' : '∞';
 }
 
-function drawRoute(legs, from) {
-  clearFocus();
+function drive(legs, from) {
+  stopDrive(); clearFocus();
   svg.classList.add('focus');
   clearBtn.hidden = false;
-  const onRoute = new Set([from]);
-  for (const leg of legs) {
-    const g = el('g', {}, L.route);
-    strokeLine(g, LINES[leg.line], legPath(leg));
-    leg.stations.forEach(sid => {
-      onRoute.add(sid);
-      if (STATIONS[sid].lines.length === 1) drawTick(g, sid, leg.line);
-    });
+  const nodes = [from];
+  legs.forEach(l => { nodes.push(...l.nodes.slice(1)); roadEls[l.road].classList.add('on'); });
+  nodes.forEach(light);
+
+  const hops = [];
+  let total = 0, allSegs = [];
+  for (let i = 0; i < nodes.length - 1; i++) {
+    const e = EDGES.get(nodes[i] + '|' + nodes[i + 1]);
+    const p = el('path', { d: segsToD(e.segs), fill: 'none', stroke: 'none' }, L.route);
+    const len = p.getTotalLength();
+    hops.push({ to: nodes[i + 1], start: total, len, path: p });
+    total += len;
+    allSegs = allSegs.concat(e.segs);
   }
-  onRoute.forEach(sid => stationEls[sid].classList.add('on'));
+  const trail = el('path', { d: segsToD(allSegs), fill: 'none', stroke: '#ffd27a', 'stroke-width': 5, 'stroke-linecap': 'round', filter: 'url(#soft)', 'stroke-dasharray': `${f(total)} ${f(total + 10)}`, 'stroke-dashoffset': f(total) }, L.route);
+  const car = el('g', {}, L.car);
+  el('circle', { r: 18, fill: '#ffd27a', 'fill-opacity': .4, filter: 'url(#glow)' }, car);
+  el('circle', { r: 7, fill: '#fff7d9', stroke: '#ffb347', 'stroke-width': 2.5 }, car);
+  const placeCar = (x, y) => car.setAttribute('transform', `translate(${f(x)} ${f(y)})`);
+  placeCar(NODES[from].x, NODES[from].y);
+
+  const SPEED = 210, PAUSE = reduceMotion ? 900 : 1600;
+  bar.hidden = false;
+  const last = nodes[nodes.length - 1];
+  const announce = id => {
+    const n = NODES[id];
+    badgeFor(n);
+    snWhat.textContent = id === last && id === 'home' ? 'You made it home.' : n.name;
+    snWhy.textContent = id === 'home' ? 'Same address, different person.' : n.sub;
+    Object.values(signEls).forEach(s => s.classList.remove('lit'));
+    if (signEls[id]) signEls[id].classList.add('lit');
+    if (id === 'home') svg.classList.add('arrived');
+    showNode(id);
+  };
+  announce(from);
+
+  let hop = 0, moving = false, t0 = performance.now();
+  const step = now => {
+    if (!driving) return;
+    if (!moving) {
+      if (now - t0 >= PAUSE) {
+        if (hop >= hops.length) { driving = null; return; }
+        moving = true; t0 = now;
+      }
+    } else {
+      const h = hops[hop];
+      const k = reduceMotion ? 1 : Math.min(1, (now - t0) / (h.len / SPEED * 1000));
+      const e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      const q = h.path.getPointAtLength(h.len * e);
+      placeCar(q.x, q.y);
+      trail.setAttribute('stroke-dashoffset', f(total - (h.start + h.len * e)));
+      if (k >= 1) { hop++; moving = false; t0 = now; announce(h.to); }
+    }
+    driving.raf = requestAnimationFrame(step);
+  };
+  driving = { raf: requestAnimationFrame(step) };
 }
 
-const fromSel = document.getElementById('fromSel');
-const toSel = document.getElementById('toSel');
-const result = document.getElementById('result');
-const sorted = Object.values(STATIONS).sort((a, b) => a.name.localeCompare(b.name));
-const opts = sorted.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
-fromSel.innerHTML = opts; toSel.innerHTML = opts;
-fromSel.value = 'overwhelm'; toSel.value = 'becoming';
+const fromSel = document.getElementById('fromSel'), toSel = document.getElementById('toSel'), result = document.getElementById('result');
+const opts = Object.values(NODES).filter(n => n.type !== 'home').sort((a, b) => a.name.localeCompare(b.name)).map(n => `<option value="${n.id}">${esc(n.name)}</option>`).join('');
+fromSel.innerHTML = opts;
+toSel.innerHTML = `<option value="home">Home</option>` + opts;
+fromSel.value = 'overwhelm'; toSel.value = 'home';
 
-const firstSentence = t => (t.match(/^.*?[.!?](\s|$)/) || [t])[0].trim();
-
-function runPlan(from, to, scrollToMap) {
+function runPlan(from, to, scrollToMap, via) {
   fromSel.value = from; toSel.value = to;
-  if (from === to) {
-    result.innerHTML = `<p class="summary">You are already at ${esc(STATIONS[from].name)}. Sometimes the work is staying put for a while.</p>`;
-    selectStation(from);
-    return;
-  }
-  const legs = plan(from, to);
-  if (!legs) { result.innerHTML = '<p class="summary">No route found.</p>'; return; }
-  const stops = legs.reduce((n, l) => n + l.stations.length - 1, 0);
+  if (from === to) { result.innerHTML = `<p class="summary">You are already at ${esc(NODES[from].name)}. Sometimes the work is staying put for a while.</p>`; return; }
+  const legs = plan(from, to, via);
+  if (!legs || !legs.length) { result.innerHTML = `<p class="summary">No route found.</p>`; return; }
+  const hops = legs.reduce((a, l) => a + l.nodes.length - 1, 0);
   const changes = legs.length - 1;
-  let html = `<p class="summary">${esc(STATIONS[from].name)} to ${esc(STATIONS[to].name)}: ${stops} stop${stops === 1 ? '' : 's'}, ${changes === 0 ? 'no changes' : changes + ' change' + (changes === 1 ? '' : 's')}. Journey time varies. Feelings do not run to a timetable.</p><div class="legs">`;
-  legs.forEach((leg, li) => {
-    const line = LINES[leg.line];
-    const st = line.stations;
-    const forward = st.indexOf(leg.stations[1]) > st.indexOf(leg.stations[0]);
-    const toward = forward ? st[st.length - 1] : st[0];
-    if (li > 0) html += `<div class="change">Change at ${esc(STATIONS[leg.stations[0]].name)} for the ${esc(line.name)}</div>`;
-    html += `<div class="leg${line.overground ? ' growth' : ''}" style="--c:${line.color}">
-      <div class="leg-head">${pill(leg.line)} towards ${esc(STATIONS[toward].name)} · ${leg.stations.length - 1} stop${leg.stations.length === 2 ? '' : 's'}</div>
-      <ol>${leg.stations.map((sid, i) => `<li><button type="button" class="linkbtn" data-route-stn="${sid}">${esc(STATIONS[sid].name)}</button>${i === 0 && li === 0 ? ' · start here' : ''}<br>${esc(firstSentence(STATIONS[sid].gap))}</li>`).join('')}</ol>
-    </div>`;
+  let html = `<p class="summary">${esc(NODES[from].name)} to ${esc(NODES[to].name)}: ${hops} junction${hops === 1 ? '' : 's'}, ${changes ? changes + ' change' + (changes === 1 ? '' : 's') + ' of road' : 'no changes'}. Journey time varies. Feelings do not drive to a timetable.</p>`;
+  legs.forEach((leg, i) => {
+    const r = ROADS[leg.road];
+    html += i === 0
+      ? `<div class="turn">Start at ${esc(NODES[from].name)} and join the ${esc(roadName(leg.road))}</div>`
+      : `<div class="turn">At ${esc(NODES[leg.nodes[0]].name)}, ${r.ring ? 'join the Kindness Orbital' : 'take the ' + esc(roadName(leg.road))}</div>`;
+    html += `<div class="leg" style="--c:${r.color}"><div class="leg-head">${roadTag(leg.road)} ${esc(roadName(leg.road))} · ${leg.nodes.length - 1} junction${leg.nodes.length === 2 ? '' : 's'}</div><ol>` +
+      leg.nodes.slice(1).map(id => `<li><b style="color:#eef2fa">${esc(NODES[id].name)}</b> · <span class="rf">${esc(NODES[id].sub)}</span></li>`).join('') + `</ol></div>`;
   });
-  html += `</div><div class="arrive">Arrive at ${esc(STATIONS[to].name)}</div>`;
+  html += `<div class="arrive">Arrive at ${esc(NODES[to].name)}</div><div class="actions"><button class="btn" type="button" id="replay">Drive it again</button></div>`;
   result.innerHTML = html;
-  drawRoute(legs, from);
-  setMarker(from);
-  showStation(from);
-  if (scrollToMap) document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('replay').addEventListener('click', () => { document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); drive(legs, from); });
+  if (scrollToMap !== false) document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+  drive(legs, from);
 }
-
 document.getElementById('planForm').addEventListener('submit', e => { e.preventDefault(); runPlan(fromSel.value, toSel.value); });
-result.addEventListener('click', e => {
-  const b = e.target.closest('[data-route-stn]');
-  if (b) { setMarker(b.dataset.routeStn); showStation(b.dataset.routeStn); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); }
-});
-const presetsEl = document.getElementById('presets');
-PRESETS.forEach(([label, a, b]) => {
-  const btn = document.createElement('button');
-  btn.type = 'button'; btn.className = 'chip'; btn.textContent = label;
-  btn.addEventListener('click', () => runPlan(a, b));
-  presetsEl.appendChild(btn);
+const presetEl = document.getElementById('presets');
+PRESETS.forEach(([label, id]) => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'chip'; b.textContent = label;
+  b.addEventListener('click', () => runPlan(id, 'home'));
+  presetEl.appendChild(b);
 });
 
-/* ---------- line cards ---------- */
-document.getElementById('linesGrid').innerHTML = LINE_ORDER.map(id => {
-  const line = LINES[id], st = line.stations;
-  return `<article class="line-card${line.overground ? ' growth' : ''}" style="--c:${line.color}">
-    <div class="topic">${esc(line.topic)}</div>
-    <h3>${esc(line.name)}</h3>
-    <p>${esc(line.about)}</p>
-    <div class="route"><b>${esc(STATIONS[st[0]].name)}</b> → ${st.slice(1, -1).map(s => esc(STATIONS[s].name)).join(' → ')} → <b>${esc(STATIONS[st[st.length - 1]].name)}</b></div>
-    <div><button class="btn ghost" type="button" data-show-line="${id}">Show on the map</button></div>
+/* road cards */
+document.getElementById('roadGrid').innerHTML = CARD_ORDER.map(id => {
+  const r = ROADS[id], n = r.nodes;
+  const path = r.ring ? n.map(x => esc(NODES[x].name)).join(' · ') : `<b>${esc(NODES[n[0]].name)}</b> → ${n.slice(1, -1).map(x => esc(NODES[x].name)).join(' → ')} → <b>Home</b>`;
+  return `<article class="road-card" style="--c:${r.color}">
+    <div class="hd">${roadTag(id)}<h3>${esc(r.ring ? 'Kindness Orbital' : r.name)}</h3></div>
+    <p>${esc(r.about)}</p>
+    <div class="path">${path}</div>
+    <div><button class="btn ghost" type="button" data-show="${id}">Show on the map</button></div>
   </article>`;
 }).join('');
-document.getElementById('linesGrid').addEventListener('click', e => {
-  const b = e.target.closest('[data-show-line]');
-  if (b) { focusLine(b.dataset.showLine); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); }
+document.getElementById('roadGrid').addEventListener('click', e => {
+  const b = e.target.closest('[data-show]');
+  if (b) { focusRoad(b.dataset.show); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); }
 });
 
-/* ---------- poster capture ---------- */
-const leadForm = document.getElementById('leadForm');
-const leadMsg = document.getElementById('leadMsg');
-const unlocked = document.getElementById('unlocked');
+/* poster capture */
+const leadForm = document.getElementById('leadForm'), leadMsg = document.getElementById('leadMsg'), unlocked = document.getElementById('unlocked');
 function unlock() {
   leadForm.hidden = true; unlocked.hidden = false;
-  try { localStorage.setItem('mtm-unlocked', '1'); } catch (e) { /* storage unavailable */ }
+  try { localStorage.setItem('trh-unlocked', '1'); } catch (e) { /* storage unavailable */ }
 }
-try { if (localStorage.getItem('mtm-unlocked') === '1') unlock(); } catch (e) { /* storage unavailable */ }
-
+try { if (localStorage.getItem('trh-unlocked') === '1') unlock(); } catch (e) { /* storage unavailable */ }
 leadForm.addEventListener('submit', async e => {
   e.preventDefault();
-  const email = document.getElementById('leadEmail').value.trim();
-  const name = document.getElementById('leadName').value.trim();
+  const email = document.getElementById('leadEmail').value.trim(), name = document.getElementById('leadName').value.trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { leadMsg.textContent = 'That email address does not look quite right.'; return; }
   const btn = document.getElementById('leadBtn');
   btn.disabled = true; leadMsg.textContent = 'Sending…';
   try {
-    const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name, source: 'mind-the-map' }) });
+    const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name, source: 'the-road-home' }) });
     const j = await r.json().catch(() => ({}));
     if (!r.ok || !j.ok) throw new Error(j.error || 'Something went wrong. Please try again in a minute.');
-    leadMsg.textContent = '';
-    unlock();
+    leadMsg.textContent = ''; unlock();
   } catch (err) {
     leadMsg.textContent = err.message && !/fetch|JSON/i.test(err.message) ? err.message : 'We could not reach the server. Please try again in a minute.';
-  } finally {
-    btn.disabled = false;
-  }
+  } finally { btn.disabled = false; }
 });
-
 function downloadSVG() {
+  stopDrive(); clearFocus();
   const clone = svg.cloneNode(true);
-  clone.removeAttribute('class');
-  clone.removeAttribute('style');
-  clone.querySelector('#routeLayer').replaceChildren();
-  clone.querySelector('#markerLayer').replaceChildren();
+  clone.removeAttribute('class'); clone.removeAttribute('style');
   clone.querySelectorAll('[tabindex]').forEach(n => n.removeAttribute('tabindex'));
-  clone.setAttribute('xmlns', NS);
-  clone.setAttribute('width', '1600');
-  clone.setAttribute('height', '1100');
+  clone.querySelectorAll('.reveal-sign').forEach(n => n.classList.remove('reveal-sign', 'in'));
+  clone.setAttribute('xmlns', NS); clone.setAttribute('width', W); clone.setAttribute('height', H);
   const style = document.createElementNS(NS, 'style');
-  style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');";
+  style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Overpass+Mono:wght@600;700&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap');";
   clone.insertBefore(style, clone.firstChild);
   const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' });
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'mind-the-map-poster.svg';
+  a.href = URL.createObjectURL(blob); a.download = 'the-road-home-poster.svg';
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
 document.getElementById('dlSvg').addEventListener('click', downloadSVG);
-document.getElementById('printBtn').addEventListener('click', () => { clearFocus(); setMarker(null); setZoom(1); window.print(); });
+document.getElementById('printBtn').addEventListener('click', () => { stopDrive(); clearFocus(); setZoom(1); window.print(); });
 
-/* ---------- start ---------- */
-showIntro();
-if (scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) * 0.4;
+/* =====================================================================
+   START: wait for the fonts so sign widths measure correctly, then
+   place the signs and light them up from the edges inwards.
+   ===================================================================== */
+const fontsReady = document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2500))]) : Promise.resolve();
+fontsReady.then(() => {
+  drawDecor();
+  placeSigns();
+  if (!reduceMotion) {
+    const signs = Object.values(signEls);
+    const dist = s => Math.hypot(NODES[s.dataset.id].x - C.x, NODES[s.dataset.id].y - C.y);
+    signs.forEach(s => s.classList.add('reveal-sign'));
+    signs.sort((a, b) => dist(b) - dist(a)).forEach((s, i) => setTimeout(() => s.classList.add('in'), 150 + i * 35));
+  }
+  showIntro();
+  if (scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) / 2;
+});
 })();
 </script>
 </body>
