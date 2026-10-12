@@ -9,7 +9,7 @@
 <meta property="og:description" content="Every wobble is just an island. Keep sailing and you will find the treasure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Pirata+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Luckiest+Guy&family=Nunito:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Pirata+One&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #2e2116;
@@ -36,11 +36,12 @@
   a { color: var(--sea); }
   button, input, select, textarea { font: inherit; }
   h1, h2, h3 { font-family: Fredoka, Nunito, sans-serif; }
+  .fun { font-family: "Luckiest Guy", Fredoka, sans-serif; font-weight: 400; letter-spacing: .5px; }
 
   /* ---------- header ---------- */
-  .top { background: var(--sea); color: #fff; }
+  .top { background: #0b2a47; color: #fff; position: relative; z-index: 2; }
   .top-inner { max-width: 1480px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
-  .top .brand { font-family: "Pirata One", Fredoka, serif; font-size: 27px; letter-spacing: .5px; line-height: 1; }
+  .top .brand { font-size: 24px; letter-spacing: 1px; line-height: 1; color: #ffd34d; }
   .top .brand small { font-family: Nunito, sans-serif; font-weight: 700; opacity: .8; font-size: 13px; margin-left: 10px; letter-spacing: 1.6px; text-transform: uppercase; }
   .top nav { margin-left: auto; display: flex; gap: 18px; font-size: 15px; font-weight: 700; }
   .top nav a { color: #fff; text-decoration: none; opacity: .85; }
@@ -49,20 +50,36 @@
 
   .wrap { max-width: 1480px; margin: 0 auto; padding: 0 16px; }
 
-  /* ---------- intro ---------- */
-  .intro { padding-top: 34px; padding-bottom: 22px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 32px; align-items: end; }
-  .intro h1 { font-size: clamp(30px, 4.2vw, 50px); line-height: 1.08; margin: 0; font-weight: 700; color: var(--sea); }
-  .intro h1 span { color: #c27a00; }
-  .intro p { margin: 0; color: var(--muted); max-width: 62ch; }
-  @media (max-width: 860px) { .intro { grid-template-columns: 1fr; gap: 14px; } }
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative; overflow: hidden; color: #fff;
+    background:
+      radial-gradient(circle at 88% 18%, rgba(255, 226, 120, .45), transparent 32%),
+      radial-gradient(circle at 8% 30%, rgba(10, 20, 45, .7), transparent 45%),
+      linear-gradient(180deg, #0b2a47 0%, #13506f 55%, #1b7b8f 100%);
+    padding: 34px 0 96px;
+  }
+  .hero .intro { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 36px; align-items: center; position: relative; z-index: 1; }
+  .hero h1 { font-family: "Luckiest Guy", Fredoka, sans-serif; font-weight: 400; font-size: clamp(36px, 5.2vw, 66px); line-height: 1.02; margin: 0; letter-spacing: 1px; color: #ffd34d; text-shadow: 0 4px 0 #7a3b00, 0 10px 24px rgba(0,0,0,.35); }
+  .hero h1 span { display: block; color: #fff; font-size: .62em; margin-top: 10px; text-shadow: 0 3px 0 #0b2a47, 0 8px 20px rgba(0,0,0,.3); }
+  .hero p { margin: 0 0 18px; color: #d9eef8; font-size: 18.5px; max-width: 58ch; }
+  .hero .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero .btn.ghost { color: #fff; box-shadow: inset 0 0 0 2px #fff, 0 4px 0 rgba(0,0,0,.25); }
+  .hero-art { position: absolute; right: 4%; bottom: 46px; width: 150px; opacity: .95; z-index: 0; }
+  .hero-waves { position: absolute; left: 0; bottom: -1px; width: 200%; height: 70px; animation: drift 14s linear infinite; }
+  @keyframes drift { to { transform: translateX(-50%); } }
+  .hero .bolt { position: absolute; left: 3%; top: 10px; width: 42px; animation: flash 6s infinite; }
+  @media (max-width: 860px) { .hero .intro { grid-template-columns: 1fr; gap: 14px; } .hero-art { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .hero-waves, .hero .bolt { animation: none; } }
 
   /* ---------- map ---------- */
   .mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
   @media (max-width: 1100px) { .mapwrap { grid-template-columns: 1fr; } }
+  .mapsection { margin-top: -54px; position: relative; z-index: 1; }
   .map-card {
-    background: #f3e3bf;
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
+    background: repeating-linear-gradient(90deg, #4a2d16 0 3px, #573519 3px 9px, #4e3017 9px 14px), #4e3017;
+    border: 6px solid #3a2210;
+    border-radius: 20px;
     overflow: hidden;
     position: relative;
     box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 14px 32px -18px rgba(18,70,107,.35);
@@ -75,13 +92,15 @@
     -webkit-overflow-scrolling: touch;
   }
   .map-scroll.dragging { cursor: grabbing; user-select: none; }
-  #map { display: block; width: 100%; height: auto; min-width: 1050px; }
+  .map-stage { position: relative; width: 100%; min-width: 1050px; }
+  #mapBg { position: absolute; inset: 0; width: 100%; height: 100%; will-change: transform; }
+  #map { position: relative; display: block; width: 100%; height: auto; }
   @media (max-width: 700px) { .map-scroll { aspect-ratio: auto; height: 70vh; } }
 
   .map-tools { position: absolute; right: 12px; top: 12px; z-index: 2; display: flex; gap: 6px; }
   .map-tools button {
-    width: 40px; height: 40px; border-radius: 12px;
-    border: 1px solid var(--rule); background: rgba(255,252,244,.95);
+    width: 42px; height: 42px; border-radius: 12px;
+    border: 2px solid #8a6a3a; background: #fbf0d4;
     color: var(--ink); font-size: 21px; line-height: 1; cursor: pointer; font-weight: 800;
     box-shadow: 0 2px 8px rgba(0,0,0,.1);
   }
@@ -92,7 +111,7 @@
   /* svg interaction */
   #map .stn { cursor: pointer; }
   #map .stn:focus { outline: none; }
-  #map .stn:hover .lbl, #map .stn:focus-visible .lbl { fill: #9a3412; }
+  #map .stn:hover .lbl, #map .stn:focus-visible .lbl { fill: #b5300c; }
   #map .stn:focus-visible .hit { stroke: var(--sea); stroke-width: 2.5; stroke-dasharray: 4 3; }
   #map .stn.monster:hover .art { transform: scale(1.06); }
   #map .art { transform-box: fill-box; transform-origin: center; transition: transform .2s ease; }
@@ -100,13 +119,43 @@
   #map.focus .rt:not(.on) { opacity: .12; }
   #map.focus .stn:not(.on) { opacity: .28; }
   #map.focus .isl:not(.on) { opacity: .45; }
+  #map.focus #underLayer, #map.focus #decorLayer { opacity: .5; transition: opacity .25s ease; }
+  #map #dimLayer rect { opacity: 0; transition: opacity .25s ease; }
+  #map.focus #dimLayer rect { opacity: .3; }
   #map .lg { cursor: pointer; }
   #map .lg:hover text { text-decoration: underline; }
   @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-3px) rotate(3deg); } }
+  @keyframes bobm { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  #map .bobm { animation: bobm 3.2s ease-in-out infinite; }
+  @keyframes spin { to { transform: rotate(-360deg); } }
+  #map .spin, #map .sunrays { transform-box: fill-box; transform-origin: center; animation: spin 7s linear infinite; }
+  #map .sunrays { animation-duration: 40s; animation-direction: reverse; }
+  @keyframes flow { to { stroke-dashoffset: -40; } }
+  #map .flow.gold { animation: flow 1.6s linear infinite; }
+  #map.focus .rt.on .flow, #map #routeLayer .flow { animation: flow 1.1s linear infinite; }
+  @keyframes flash { 0%, 86%, 100% { opacity: 0; } 87% { opacity: 1; } 88.5% { opacity: .15; } 90% { opacity: 1; } 92% { opacity: 0; } }
+  #map .flash { animation: flash 6s infinite; }
+  @keyframes glow { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
+  #map .glow { animation: glow 2.6s ease-in-out infinite; }
+  @keyframes beam { 0%, 100% { transform: rotate(-24deg); } 50% { transform: rotate(24deg); } }
+  #map .beam { transform-box: view-box; animation: beam 5s ease-in-out infinite; }
+  @keyframes flutter { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(.45); } }
+  #map .flutter { transform-box: fill-box; transform-origin: center; animation: flutter .5s ease-in-out infinite; }
+  @keyframes rise { 0% { transform: translateY(0); opacity: .9; } 100% { transform: translateY(-8px); opacity: .35; } }
+  #map .smoke { animation: rise 2.4s ease-in-out infinite alternate; }
+  @keyframes leap { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(-6deg); } }
+  #map .leap { transform-box: fill-box; transform-origin: center; animation: leap 3s ease-in-out infinite; }
+  #map .fire { transform-box: fill-box; transform-origin: right center; animation: glow 1s ease-in-out infinite; }
+  @keyframes fall { to { stroke-dashoffset: -14; } }
+  #map .fall { animation: fall .6s linear infinite; }
+  #map .notes { animation: rise 2s ease-in-out infinite alternate; }
+  #map .wiggle { transform-box: fill-box; transform-origin: top center; animation: flutter 2.4s ease-in-out infinite; }
+  #map .stn .plate { transition: fill .2s ease; }
+  #map .stn:hover .plate, #map .stn:focus-visible .plate { fill: #fff; }
   #map .bob { transform-box: fill-box; transform-origin: 50% 80%; animation: bob 2.4s ease-in-out infinite; }
   @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
   #map .sparkle { animation: twinkle 2.8s ease-in-out infinite; }
-  @media (prefers-reduced-motion: reduce) { #map .bob, #map .sparkle { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { #map *, #map .flow { animation: none !important; } }
 
   /* ---------- panel ---------- */
   .panel {
@@ -120,7 +169,7 @@
   }
   @media (max-width: 1100px) { .panel { position: static; max-height: none; } }
   .panel .kicker { font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); font-weight: 800; margin: 0 0 6px; }
-  .panel h2 { font-size: 30px; line-height: 1.1; margin: 0 0 12px; color: var(--sea); }
+  .panel h2 { font-family: "Luckiest Guy", Fredoka, sans-serif; font-weight: 400; letter-spacing: .5px; font-size: 30px; line-height: 1.05; margin: 0 0 12px; color: var(--sea); }
   .panel h3 { font-family: Nunito, sans-serif; font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 18px 0 4px; color: var(--muted); font-weight: 900; }
   .panel p { margin: 0; }
   .panel .tip { background: var(--gold-soft); border-left: 5px solid var(--gold); padding: 10px 12px; border-radius: 0 10px 10px 0; margin-top: 6px; }
@@ -143,16 +192,20 @@
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     background: var(--sea); color: #fff; border: 0; border-radius: 12px;
-    padding: 11px 16px; font-weight: 800; cursor: pointer; text-decoration: none;
+    padding: 12px 18px; font-weight: 900; cursor: pointer; text-decoration: none;
+    box-shadow: 0 4px 0 #082640; transition: transform .08s ease, box-shadow .08s ease;
   }
   .btn:hover { filter: brightness(1.12); }
+  .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #082640; }
   .btn.ghost { background: transparent; color: var(--sea); box-shadow: inset 0 0 0 2px var(--sea); }
-  .btn.gold { background: var(--gold); color: #2e2116; }
+  .btn.gold { box-shadow: 0 4px 0 #9a6a00; }
+  .btn.big { font-size: 19px; padding: 14px 22px; }
+  .btn.gold { background: #ffcb2f; color: #2e2116; }
   .panel .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
 
   /* ---------- sections ---------- */
   section.block { padding: 56px 0 8px; }
-  section.block > .wrap > h2 { font-size: clamp(28px, 3vw, 38px); margin: 0 0 6px; color: var(--sea); }
+  section.block > .wrap > h2 { font-family: "Luckiest Guy", Fredoka, sans-serif; font-weight: 400; letter-spacing: 1px; font-size: clamp(30px, 3.4vw, 44px); margin: 0 0 6px; color: var(--sea); text-shadow: 0 3px 0 #ffd34d; }
   section.block > .wrap > .lede { color: var(--muted); margin: 0 0 22px; max-width: 72ch; }
 
   /* planner */
@@ -192,7 +245,7 @@
 
   /* treasure chest */
   .chest { background: linear-gradient(180deg, #7a4a24, #5e3518); border-radius: var(--radius); padding: 26px; color: #fff; position: relative; }
-  .chest h3 { margin: 0 0 4px; font-size: 22px; }
+  .chest h3 { margin: 0 0 4px; font-family: "Luckiest Guy", Fredoka, sans-serif; font-weight: 400; letter-spacing: 1px; font-size: 28px; color: #ffd34d; }
   .chest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-top: 8px; }
   .gem { background: #fffaf0; color: var(--ink); border-radius: 14px; padding: 14px 14px 12px; border: 3px solid #e2a912; }
   .gem label { display: block; font-family: Fredoka, sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 2px; }
@@ -213,7 +266,7 @@
   /* poster capture */
   .capture { background: var(--sea); color: #fff; border-radius: var(--radius); padding: 30px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: center; position: relative; overflow: hidden; }
   @media (max-width: 860px) { .capture { grid-template-columns: 1fr; padding: 22px; } }
-  .capture h2 { margin: 0 0 8px; font-size: clamp(28px, 3vw, 38px); }
+  .capture h2 { margin: 0 0 8px; font-family: "Luckiest Guy", Fredoka, sans-serif; font-weight: 400; letter-spacing: 1px; font-size: clamp(30px, 3.4vw, 42px); color: #ffd34d; }
   .capture p { margin: 0 0 10px; opacity: .92; }
   .capture form { display: grid; gap: 10px; }
   .capture input[type=text], .capture input[type=email] { width: 100%; padding: 12px 14px; border-radius: 12px; border: 0; color: var(--ink); }
@@ -237,7 +290,8 @@
     body:not(.print-chest) .mapwrap { display: block; }
     body:not(.print-chest) .map-card { border: 0; box-shadow: none; }
     body:not(.print-chest) .map-scroll { overflow: visible; aspect-ratio: auto; height: auto; }
-    body:not(.print-chest) #map { width: 100% !important; min-width: 0; }
+    body:not(.print-chest) .map-stage { width: 100% !important; min-width: 0 !important; }
+    body:not(.print-chest) .mapsection { margin-top: 0; }
     body.print-chest > *:not(main), body.print-chest main > *:not(#chest), body.print-chest #chest .actions { display: none !important; }
     body.print-chest { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -251,7 +305,7 @@
       <circle r="18" fill="#e2a912"/>
       <path d="M-9 -9 L9 9 M9 -9 L-9 9" stroke="#c8322b" stroke-width="5" stroke-linecap="round"/>
     </svg>
-    <div class="brand">The Wobbly Seas <small>A treasure map for brave hearts</small></div>
+    <div class="brand fun">The Wobbly Seas <small>A treasure map for brave hearts</small></div>
     <nav>
       <a href="#map-section">Map</a>
       <a href="#planner">Plan a voyage</a>
@@ -263,10 +317,26 @@
 </header>
 
 <main>
-  <div class="wrap intro">
-    <h1>Every wobble is just an island.<br><span>Keep sailing and you will find the treasure.</span></h1>
-    <p>Worries, cross days, sad days, scary nights and big changes can all feel like stormy seas. On this map, every feeling is an island you can sail past, every sea monster can be tamed, and every route ends at treasure: feeling calm, loved, safe and secure. Tap an island or a monster to find out about it, or plan a voyage from where you are today.</p>
-  </div>
+  <section class="hero">
+    <svg class="bolt" viewBox="0 0 30 50" aria-hidden="true"><path d="M18 0 L2 28 L13 28 L6 50 L28 18 L16 18 L24 0 Z" fill="#ffe14d" stroke="#c79a12" stroke-width="1.5"/></svg>
+    <div class="wrap intro">
+      <h1>Every wobble is just an island!<span>Keep sailing and you will find the treasure.</span></h1>
+      <div>
+        <p>Worries, cross days, sad days, scary nights and big changes can feel like stormy seas. On this map every feeling is an island you can sail past, every sea monster can be tamed, and every route ends in treasure: feeling calm, loved, safe and secure.</p>
+        <div class="cta">
+          <a class="btn gold big" href="#map-section">Set sail on the map</a>
+          <a class="btn ghost big" href="#planner">Plan a voyage</a>
+        </div>
+      </div>
+    </div>
+    <svg class="hero-art" viewBox="-45 -55 90 80" aria-hidden="true">
+      <g><path d="M-30 0 L32 0 L40 -6 C38 6 30 15 18 16 L-16 16 C-26 14 -30 8 -30 0 Z" fill="#8a4b22" stroke="#3f220c" stroke-width="1.8"/><path d="M-28 5 L34 5" stroke="#e2a912" stroke-width="2.4"/><path d="M-6 0 L-6 -46 M14 0 L14 -34" stroke="#3f220c" stroke-width="2.6"/><path d="M-21 -40 L9 -40 C11 -31 11 -22 9 -13 L-21 -13 C-19 -22 -19 -31 -21 -40 Z" fill="#fffaf0" stroke="#8a7a60"/><path d="M-6 -21.5 C-13.5 -27 -10.5 -32 -6 -27.8 C-1.5 -32 1.5 -27 -6 -21.5 Z" fill="#e0435a"/><path d="M3 -30 L25 -30 C26 -24 26 -17 25 -10 L3 -10 C4 -17 4 -24 3 -30 Z" fill="#fffaf0" stroke="#8a7a60"/><path d="M-6 -46 L10 -42 L-6 -38 Z" fill="#e0435a"/></g>
+    </svg>
+    <svg class="hero-waves" viewBox="0 0 2400 70" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 30 Q75 0 150 30 T300 30 T450 30 T600 30 T750 30 T900 30 T1050 30 T1200 30 T1350 30 T1500 30 T1650 30 T1800 30 T1950 30 T2100 30 T2250 30 T2400 30 V70 H0 Z" fill="#2a8ca0" opacity=".6"/>
+      <path d="M0 44 Q75 18 150 44 T300 44 T450 44 T600 44 T750 44 T900 44 T1050 44 T1200 44 T1350 44 T1500 44 T1650 44 T1800 44 T1950 44 T2100 44 T2250 44 T2400 44 V70 H0 Z" fill="#fbf4e4"/>
+    </svg>
+  </section>
 
   <div class="wrap mapsection" id="map-section">
     <div class="mapwrap">
@@ -277,10 +347,13 @@
           <button type="button" id="zoomIn" aria-label="Zoom in">+</button>
         </div>
         <div class="map-scroll" id="mapScroll">
+         <div class="map-stage" id="mapStage">
+          <svg id="mapBg" viewBox="0 0 1600 1100" aria-hidden="true" focusable="false"></svg>
           <svg id="map" viewBox="0 0 1600 1100" role="img" aria-labelledby="mapTitle mapDesc">
             <title id="mapTitle">The Wobbly Seas: a treasure map for brave hearts</title>
             <desc id="mapDesc">A pirate treasure map where each sea route is a kind of wobble, such as worries, feeling cross, feeling sad, feeling left out, feeling scared, big changes and school worries. Each island is a feeling, friendly sea monsters stand for big feelings that can be tamed, and every route ends at a treasure island: Calm Cove, Loved Lagoon, Safe Harbour or Secure Shores. The Golden Current of helpers crosses every route.</desc>
           </svg>
+         </div>
         </div>
       </div>
       <aside class="panel" id="panel" aria-live="polite"></aside>
@@ -396,7 +469,7 @@
 </footer>
 
 <script>
-(() => {
+(async () => {
 'use strict';
 
 /* =====================================================================
@@ -549,7 +622,7 @@ const PLACES = {
   spelling: { name: 'Spelling Test Squall', x: 330, y: 1010, l: 's',
     feel: 'Tests, quizzes and that feeling when the teacher says, "Pens down, please."',
     tip: 'A test only checks what you know today. It does not measure how clever or how good you are. Read the question twice, start with one you can answer, and breathe out slowly if your mind goes blank.' },
-  homework: { name: 'Homework Mountain', x: 500, y: 960, l: 'n', icon: 'mountain',
+  homework: { name: 'Homework Mountain', x: 500, y: 960, l: 's', icon: 'mountain',
     feel: 'A pile of homework so tall you cannot see the top. Where do you even start?',
     tip: 'Nobody climbs a mountain in one step. Pick the smallest piece, set a timer for ten minutes, and just begin. Climbing is easier once you are moving.' },
   puffer: { name: 'The Perfect Pufferfish', x: 640, y: 1005, monster: 'puffer', art: [0, -6], l: { dx: 0, dy: 46, anchor: 'middle' },
@@ -589,16 +662,16 @@ const PLACES = {
     tip: 'Open the chest and you will find calm, love, safety and feeling secure. Here is the secret: they were never really lost. They live inside you and in the people around you. Sometimes the fog just hides them for a while.' },
 
   /* ---- Treasure islands ---- */
-  calm: { name: 'Calm Cove', x: 1392, y: 245, kind: 'treasure', treasure: 'Calm', l: 'e',
+  calm: { name: 'Calm Cove', x: 1378, y: 245, kind: 'treasure', treasure: 'Calm', l: 'e',
     feel: 'Still, clear water. Your breathing is slow, your shoulders are soft, and your thoughts float by gently.',
     tip: 'Worries and grumbles will still visit sometimes, but now you know the way back here. The more often you sail to Calm Cove, the quicker the trip gets.' },
-  loved: { name: 'Loved Lagoon', x: 1392, y: 485, kind: 'treasure', treasure: 'Loved', l: 'e',
+  loved: { name: 'Loved Lagoon', x: 1378, y: 485, kind: 'treasure', treasure: 'Loved', l: 'e',
     feel: 'Warm water, and the feeling that you matter just as you are, wobbles and all.',
     tip: 'You do not have to earn being loved. You are loved on good days and grumpy days. Make a list of the people who love you and read it when the drizzle comes back.' },
-  safe: { name: 'Safe Harbour', x: 1392, y: 680, kind: 'treasure', treasure: 'Safe', l: 'e',
+  safe: { name: 'Safe Harbour', x: 1378, y: 680, kind: 'treasure', treasure: 'Safe', l: 'e',
     feel: 'The harbour walls are strong, the lights are on, and the people around you will look after you.',
     tip: 'Safe means your body can relax. Find your safe harbours in real life: a person, a room, a cosy blanket, a place where you can just be you.' },
-  secure: { name: 'Secure Shores', x: 1392, y: 865, kind: 'treasure', treasure: 'Secure', l: 'e',
+  secure: { name: 'Secure Shores', x: 1378, y: 865, kind: 'treasure', treasure: 'Secure', l: 'e',
     feel: 'Solid ground under your feet. You know who you are, and you know you can cope, even when things change.',
     tip: 'Feeling secure comes from knowing that people care about you and that you have got through hard things before. Look back at this map. Look how far you have sailed.' }
 };
@@ -636,14 +709,23 @@ for (const id of ROUTE_ORDER) {
 
 /* =====================================================================
    DRAWING
+   Two stacked SVGs: #mapBg holds the painted parchment and sea (heavy
+   filters, drawn once, never repainted), #map holds everything that
+   moves or can be tapped.
    ===================================================================== */
 const NS = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('map');
+const bgSvg = document.getElementById('mapBg');
 const FONT = 'Nunito, \'Trebuchet MS\', sans-serif';
-const TITLE_FONT = '\'Pirata One\', Georgia, serif';
+const FUN_FONT = '\'Luckiest Guy\', Fredoka, sans-serif';
+const OLD_FONT = '\'Pirata One\', Georgia, serif';
 const INK = '#3a2a18';
-const HALO = '#fbf3dc';
 const DIRS = { n: [0, -1], s: [0, 1], e: [1, 0], w: [-1, 0], ne: [1, -1], nw: [-1, -1], se: [1, 1], sw: [-1, 1] };
+
+await Promise.race([
+  Promise.all(['800 14px Nunito', '900 14px Nunito', 'italic 800 13px Nunito', '40px "Luckiest Guy"', '30px "Pirata One"'].map(f => document.fonts.load(f).catch(() => null))),
+  new Promise(r => setTimeout(r, 2500))
+]);
 
 function el(tag, attrs, parent) {
   const e = document.createElementNS(NS, tag);
@@ -657,7 +739,7 @@ function text(parent, x, y, str, attrs) {
   return t;
 }
 const P = (parent, d, attrs) => el('path', Object.assign({ d }, attrs), parent);
-const halo = { stroke: HALO, 'stroke-width': 4.5, 'stroke-linejoin': 'round', 'paint-order': 'stroke' };
+const G = (parent, x, y, extra) => el('g', Object.assign({ transform: `translate(${x} ${y})${extra ? ' ' + extra : ''}` }), parent);
 
 /* tiny seeded random, so the map looks the same every time */
 function rng(seed) {
@@ -683,13 +765,13 @@ function routePath(route, i = 0, j = route.points.length - 1) {
   const p = route.points[i];
   return `M${p[0]} ${p[1]} ` + segs.slice(i, j).join(' ');
 }
-function blobPath(cx, cy, r, seed, n = 9) {
+function blobPath(cx, cy, r, seed, n = 10, squash = 0.8) {
   const rand = rng(seed);
   const pts = [];
   for (let i = 0; i < n; i++) {
     const a = (i / n) * Math.PI * 2 + rand() * 0.3;
-    const rr = r * (0.78 + rand() * 0.4);
-    pts.push([cx + Math.cos(a) * rr * 1.25, cy + Math.sin(a) * rr]);
+    const rr = r * (0.8 + rand() * 0.36);
+    pts.push([cx + Math.cos(a) * rr * 1.15, cy + Math.sin(a) * rr * squash]);
   }
   let d = '';
   for (let i = 0; i < n; i++) {
@@ -701,280 +783,623 @@ function blobPath(cx, cy, r, seed, n = 9) {
   }
   return d + 'Z';
 }
-
-/* ---------- little pictures ---------- */
-const ART = {
-  palm(g, x, y, s = 1, flip = false) {
-    const t = el('g', { transform: `translate(${x} ${y}) scale(${s}) ${flip ? 'rotate(180)' : ''}` }, g);
-    P(t, 'M0 0 C2 -10 1 -20 -3 -30', { fill: 'none', stroke: '#8a5a2b', 'stroke-width': 4, 'stroke-linecap': 'round' });
-    const leaf = { fill: '#3f9a4a', stroke: '#2b6e33', 'stroke-width': 1 };
-    P(t, 'M-3 -30 C-14 -36 -22 -30 -26 -22 C-18 -28 -10 -28 -3 -30Z', leaf);
-    P(t, 'M-3 -30 C8 -38 18 -34 22 -26 C14 -30 6 -30 -3 -30Z', leaf);
-    P(t, 'M-3 -30 C-10 -42 -4 -48 4 -48 C-2 -42 -3 -36 -3 -30Z', leaf);
-    P(t, 'M-3 -30 C4 -42 14 -44 18 -40 C10 -38 4 -34 -3 -30Z', leaf);
-    el('circle', { cx: -4, cy: -27, r: 2.2, fill: '#7a4a1f' }, t);
-    el('circle', { cx: 0, cy: -28, r: 2.2, fill: '#7a4a1f' }, t);
-  },
-  chest(g, x, y, s = 1) {
-    const t = el('g', { transform: `translate(${x} ${y}) scale(${s})` }, g);
-    P(t, 'M-13 -10 C-13 -20 13 -20 13 -10 Z', { fill: '#9c5b25', stroke: '#5b3212', 'stroke-width': 1.6 });
-    el('circle', { cx: -6, cy: -12, r: 2.6, fill: '#ffd34d' }, t);
-    el('circle', { cx: 4, cy: -13, r: 2.6, fill: '#ffd34d' }, t);
-    el('circle', { cx: 0, cy: -10, r: 2.6, fill: '#ffe680' }, t);
-    el('rect', { x: -13, y: -10, width: 26, height: 14, rx: 2, fill: '#b06a2d', stroke: '#5b3212', 'stroke-width': 1.6 }, t);
-    el('rect', { x: -2.5, y: -10, width: 5, height: 14, fill: '#e2a912', stroke: '#8a5d00', 'stroke-width': 1 }, t);
-    el('rect', { x: -2, y: -5, width: 4, height: 4, rx: 1, fill: '#5b3212' }, t);
-  },
-  ship(g, x, y, s = 1) {
-    const t = el('g', { transform: `translate(${x} ${y}) scale(${s})` }, g);
-    const b = el('g', { class: 'bob' }, t);
-    P(b, 'M-19 2 L19 2 L13 12 L-13 12 Z', { fill: '#8a522a', stroke: '#4d2a10', 'stroke-width': 1.5, 'stroke-linejoin': 'round' });
-    P(b, 'M-15 6 L15 6', { stroke: '#e2a912', 'stroke-width': 1.5 });
-    P(b, 'M0 2 L0 -26', { stroke: '#4d2a10', 'stroke-width': 2 });
-    P(b, 'M2 -23 C13 -19 13 -5 2 -1 Z', { fill: '#fffaf0', stroke: '#8a7a60', 'stroke-width': 1 });
-    P(b, 'M-2 -20 C-11 -16 -11 -4 -2 -1 Z', { fill: '#fffaf0', stroke: '#8a7a60', 'stroke-width': 1 });
-    P(b, 'M0 -26 L10 -23 L0 -20 Z', { fill: '#c8322b' });
-    return t;
-  },
-  volcano(g, x, y) {
-    const t = el('g', { transform: `translate(${x} ${y})` }, g);
-    P(t, 'M-16 6 L-5 -12 L5 -12 L16 6 Z', { fill: '#8b6a4f', stroke: '#5a4030', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
-    P(t, 'M-5 -12 L-2 -6 L1 -10 L5 -12 Z', { fill: '#e8501f' });
-    P(t, 'M0 -14 C-6 -20 2 -24 -2 -30 C6 -26 4 -20 8 -18', { fill: 'none', stroke: '#9aa0a6', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
-  },
-  lighthouse(g, x, y) {
-    const t = el('g', { transform: `translate(${x} ${y})` }, g);
-    el('path', { d: 'M0 -30 L44 -40 L44 -20 Z', fill: '#fff0a0', opacity: .5 }, t);
-    P(t, 'M-6 4 L-4 -24 L4 -24 L6 4 Z', { fill: '#fff', stroke: '#5a4030', 'stroke-width': 1.4 });
-    el('rect', { x: -5, y: -16, width: 10, height: 5, fill: '#c8322b' }, t);
-    el('rect', { x: -5.5, y: -6, width: 11, height: 5, fill: '#c8322b' }, t);
-    el('rect', { x: -4.5, y: -32, width: 9, height: 8, fill: '#ffd34d', stroke: '#5a4030', 'stroke-width': 1.2 }, t);
-    P(t, 'M-6 -32 L0 -38 L6 -32 Z', { fill: '#c8322b', stroke: '#5a4030', 'stroke-width': 1.2 });
-  },
-  cloud(g, x, y, s = 1) {
-    const t = el('g', { transform: `translate(${x} ${y}) scale(${s})` }, g);
-    for (let i = 0; i < 4; i++) P(t, `M${-9 + i * 6} 6 l-3 7`, { stroke: '#5f86b0', 'stroke-width': 2, 'stroke-linecap': 'round' });
-    P(t, 'M-16 4 C-22 4 -22 -6 -15 -6 C-15 -14 -4 -16 -1 -9 C2 -14 12 -13 12 -5 C19 -5 19 4 13 4 Z', { fill: '#a9b3bd', stroke: '#6f7b87', 'stroke-width': 1.4 });
-  },
-  moon(g, x, y) {
-    P(g, `M${x + 4} ${y - 10} A10 10 0 1 0 ${x + 4} ${y + 10} A8 8 0 1 1 ${x + 4} ${y - 10} Z`, { fill: '#ffe680', stroke: '#c79a12', 'stroke-width': 1.2 });
-  },
-  stars(g, x, y) {
-    [[0, 0, 4], [12, -8, 3], [-10, -10, 2.5]].forEach(([dx, dy, r]) => star(g, x + dx, y + dy, r, '#ffe680'));
-  },
-  whirl(g, x, y) {
-    P(g, `M${x} ${y} m-2 0 a3 3 0 1 1 5 2 a7 7 0 1 1 -10 -6 a11 11 0 1 1 16 10`, { fill: 'none', stroke: '#f2f7f8', 'stroke-width': 2.2, 'stroke-linecap': 'round', opacity: .9 });
-  },
-  mountain(g, x, y) {
-    P(g, `M${x - 16} ${y + 4} L${x - 4} ${y - 18} L${x + 3} ${y - 8} L${x + 8} ${y - 14} L${x + 18} ${y + 4} Z`, { fill: '#a58a6a', stroke: '#5a4030', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
-    P(g, `M${x - 4} ${y - 18} L${x - 8} ${y - 11} L${x - 4} ${y - 13} L${x} ${y - 11} Z`, { fill: '#fff' });
-  },
-  spyglass(g, x, y) {
-    const t = el('g', { transform: `translate(${x} ${y}) rotate(-25)` }, g);
-    el('rect', { x: -14, y: -3.5, width: 14, height: 7, rx: 1.5, fill: '#b06a2d', stroke: '#5b3212', 'stroke-width': 1.2 }, t);
-    el('rect', { x: 0, y: -4.5, width: 10, height: 9, rx: 1.5, fill: '#e2a912', stroke: '#8a5d00', 'stroke-width': 1.2 }, t);
-  },
-  bottle(g, x, y) {
-    const t = el('g', { transform: `translate(${x} ${y}) rotate(-30)` }, g);
-    P(t, 'M-10 -5 L5 -5 L9 -2 L14 -2 L14 2 L9 2 L5 5 L-10 5 Z', { fill: '#a8d8c8', stroke: '#3c7a68', 'stroke-width': 1.3, 'fill-opacity': .9 });
-    el('rect', { x: -7, y: -2.5, width: 9, height: 5, fill: '#fff6dc', stroke: '#b89a5b', 'stroke-width': .8 }, t);
-    el('rect', { x: 14, y: -2, width: 3, height: 4, fill: '#8a5a2b' }, t);
-  },
-  twin(g, x, y) {
-    ART.palm(g, x + 22, y + 2, .55);
+const heartD = (x, y, s) => `M${x} ${y + s * .9} C${x - s * 1.5} ${y - s * .1} ${x - s * .9} ${y - s * 1.1} ${x} ${y - s * .35} C${x + s * .9} ${y - s * 1.1} ${x + s * 1.5} ${y - s * .1} ${x} ${y + s * .9} Z`;
+function spiralD(turns, r0, r1, phase = 0) {
+  let d = '';
+  for (let i = 0; i <= 80; i++) {
+    const t = i / 80, a = phase + t * turns * Math.PI * 2, r = r0 + (r1 - r0) * t;
+    d += (i ? ' L' : 'M') + (Math.cos(a) * r).toFixed(1) + ' ' + (Math.sin(a) * r).toFixed(1);
   }
-};
-function star(g, x, y, r, fill, cls) {
+  return d;
+}
+function star(g, x, y, r, fill, cls, inner = .42) {
   const pts = [];
-  for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4 - Math.PI / 2; const rr = i % 2 ? r * .4 : r; pts.push(`${(x + Math.cos(a) * rr).toFixed(1)},${(y + Math.sin(a) * rr).toFixed(1)}`); }
+  for (let i = 0; i < 10; i++) { const a = i * Math.PI / 5 - Math.PI / 2; const rr = i % 2 ? r * inner : r; pts.push(`${(x + Math.cos(a) * rr).toFixed(1)},${(y + Math.sin(a) * rr).toFixed(1)}`); }
   return el('polygon', Object.assign({ points: pts.join(' '), fill }, cls ? { class: cls } : {}), g);
 }
-function waves(g, x, y, w, color = '#ffffff', op = .8) {
+function twinkle(g, x, y, r, delay) {
+  const s = el('path', { d: `M${x} ${y - r} Q${x} ${y} ${x + r} ${y} Q${x} ${y} ${x} ${y + r} Q${x} ${y} ${x - r} ${y} Q${x} ${y} ${x} ${y - r} Z`, fill: '#fffbe0', class: 'sparkle' }, g);
+  s.style.animationDelay = delay + 's';
+  return s;
+}
+function waves(g, x, y, w, color = '#ffffff', op = .8, sw = 2) {
   let d = `M${x - w / 2} ${y}`;
   for (let i = 0; i < w / 12; i++) d += ' q3 -4 6 0 t6 0';
-  P(g, d, { fill: 'none', stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round', opacity: op });
+  P(g, d, { fill: 'none', stroke: color, 'stroke-width': sw, 'stroke-linecap': 'round', opacity: op });
 }
+
+/* =====================================================================
+   SCENERY: the little pictures on and around each island
+   ===================================================================== */
+const ART = {
+  palm(g, x, y, s = 1, flip = false) {
+    const t = G(g, x, y, `scale(${s})${flip ? ' rotate(180)' : ''}`);
+    P(t, 'M0 0 C3 -10 2 -22 -3 -32', { fill: 'none', stroke: '#6e4420', 'stroke-width': 6, 'stroke-linecap': 'round' });
+    P(t, 'M0 0 C3 -10 2 -22 -3 -32', { fill: 'none', stroke: '#a8743d', 'stroke-width': 3.5, 'stroke-linecap': 'round', 'stroke-dasharray': '3 3' });
+    const leaf = { fill: '#3fa44a', stroke: '#22692b', 'stroke-width': 1.2 };
+    P(t, 'M-3 -32 C-16 -40 -26 -32 -30 -22 C-20 -30 -11 -30 -3 -32Z', leaf);
+    P(t, 'M-3 -32 C10 -41 21 -36 25 -27 C16 -32 7 -32 -3 -32Z', leaf);
+    P(t, 'M-3 -32 C-11 -45 -4 -52 5 -52 C-2 -45 -3 -38 -3 -32Z', leaf);
+    P(t, 'M-3 -32 C5 -45 16 -47 21 -42 C11 -40 4 -36 -3 -32Z', leaf);
+    P(t, 'M-3 -32 C-14 -44 -22 -44 -26 -38 C-16 -38 -9 -36 -3 -32Z', leaf);
+    el('circle', { cx: -5, cy: -29, r: 2.8, fill: '#6b3f17' }, t);
+    el('circle', { cx: 0, cy: -30, r: 2.8, fill: '#7a4a1f' }, t);
+  },
+  chest(g, x, y, s = 1) {
+    const t = G(g, x, y, `scale(${s})`);
+    P(t, 'M-14 -10 L-12 -27 C-6 -33 6 -33 12 -27 L14 -10 Z', { fill: '#86491c', stroke: '#45240b', 'stroke-width': 1.6 });
+    P(t, 'M-2 -10 L-1.5 -32 L1.5 -32 L2 -10 Z', { fill: '#e2a912' });
+    el('ellipse', { cx: 0, cy: -10, rx: 13, ry: 4, fill: '#fff3a6' }, t);
+    [[-8, -12], [-3, -15], [3, -14], [8, -12], [0, -18], [-5, -19]].forEach(([cx, cy]) => el('circle', { cx, cy, r: 3.3, fill: '#ffd34d', stroke: '#b07a00', 'stroke-width': .9 }, t));
+    el('circle', { cx: 5, cy: -20, r: 2.4, fill: '#e0435a', stroke: '#8a1d2c', 'stroke-width': .7 }, t);
+    el('circle', { cx: -1, cy: -22, r: 2.2, fill: '#3d8be0', stroke: '#1d4f8a', 'stroke-width': .7 }, t);
+    el('rect', { x: -14, y: -10, width: 28, height: 15, rx: 2.5, fill: '#b06a2d', stroke: '#45240b', 'stroke-width': 1.6 }, t);
+    el('rect', { x: -10, y: -10, width: 3, height: 15, fill: '#e2a912' }, t);
+    el('rect', { x: 7, y: -10, width: 3, height: 15, fill: '#e2a912' }, t);
+    el('rect', { x: -2.5, y: -7, width: 5, height: 6, rx: 1, fill: '#ffd34d', stroke: '#8a5d00', 'stroke-width': .8 }, t);
+  },
+  ship(g, x, y, s = 1) {
+    const t = G(g, x, y, `scale(${s})`);
+    const b = el('g', { class: 'bob' }, t);
+    P(b, 'M-36 16 q6 -5 12 0 t12 0 t12 0 t12 0 t12 0 t12 0', { fill: 'none', stroke: '#ffffff', 'stroke-width': 2.4, 'stroke-linecap': 'round', opacity: .9 });
+    P(b, 'M-30 0 L32 0 L40 -6 C38 6 30 15 18 16 L-16 16 C-26 14 -30 8 -30 0 Z', { fill: '#8a4b22', stroke: '#3f220c', 'stroke-width': 1.8, 'stroke-linejoin': 'round' });
+    P(b, 'M-28 5 L34 5', { stroke: '#e2a912', 'stroke-width': 2.4 });
+    [-14, 0, 14].forEach(cx => el('circle', { cx, cy: 10, r: 2.2, fill: '#3f220c' }, b));
+    P(b, 'M-6 0 L-6 -46 M14 0 L14 -34', { stroke: '#3f220c', 'stroke-width': 2.6 });
+    P(b, 'M-21 -40 L9 -40 C11 -31 11 -22 9 -13 L-21 -13 C-19 -22 -19 -31 -21 -40 Z', { fill: '#fffaf0', stroke: '#8a7a60', 'stroke-width': 1.2 });
+    P(b, heartD(-6, -26, 5), { fill: '#e0435a' });
+    P(b, 'M3 -30 L25 -30 C26 -24 26 -17 25 -10 L3 -10 C4 -17 4 -24 3 -30 Z', { fill: '#fffaf0', stroke: '#8a7a60', 'stroke-width': 1.2 });
+    P(b, 'M-6 -46 L10 -42 L-6 -38 Z', { fill: '#e0435a' });
+    P(b, 'M14 -34 L24 -32 L14 -30 Z', { fill: '#e2a912' });
+    return t;
+  },
+  cloud(g, x, y, s = 1, dark = false) {
+    const t = G(g, x, y, `scale(${s})`);
+    for (let i = 0; i < 5; i++) P(t, `M${-14 + i * 7} 8 l-4 9`, { stroke: dark ? '#9fc0de' : '#5f86b0', 'stroke-width': 2.2, 'stroke-linecap': 'round' });
+    P(t, 'M-20 6 C-28 6 -28 -6 -19 -7 C-19 -17 -6 -20 -2 -11 C2 -18 15 -17 15 -7 C24 -7 24 6 16 6 Z', { fill: dark ? '#4f5866' : '#b3bcc6', stroke: dark ? '#2f3540' : '#6f7b87', 'stroke-width': 1.6 });
+    P(t, 'M-16 -6 C-14 -12 -8 -13 -5 -9', { fill: 'none', stroke: '#ffffff', 'stroke-width': 1.6, opacity: dark ? .35 : .7, 'stroke-linecap': 'round' });
+    return t;
+  },
+  bolt(g, x, y, s = 1) {
+    return P(g, `M${x} ${y} l${-8 * s} ${15 * s} l${7 * s} 0 l${-7 * s} ${15 * s} l${16 * s} ${-19 * s} l${-8 * s} 0 l${7 * s} ${-11 * s} Z`, { fill: '#ffe14d', stroke: '#c79a12', 'stroke-width': 1, class: 'flash' });
+  },
+  butterfly(g, x, y, c, rot) {
+    const t = G(g, x, y, `rotate(${rot})`);
+    const f = el('g', { class: 'flutter' }, t);
+    el('ellipse', { cx: -5, cy: -3, rx: 6, ry: 4.5, fill: c, stroke: '#5b3212', 'stroke-width': .8, transform: 'rotate(-30 -5 -3)' }, f);
+    el('ellipse', { cx: 5, cy: -3, rx: 6, ry: 4.5, fill: c, stroke: '#5b3212', 'stroke-width': .8, transform: 'rotate(30 5 -3)' }, f);
+    el('ellipse', { cx: -4, cy: 3, rx: 4, ry: 3, fill: c, stroke: '#5b3212', 'stroke-width': .8 }, f);
+    el('ellipse', { cx: 4, cy: 3, rx: 4, ry: 3, fill: c, stroke: '#5b3212', 'stroke-width': .8 }, f);
+    P(t, 'M0 -6 L0 6 M0 -6 l-3 -4 M0 -6 l3 -4', { stroke: '#3a2412', 'stroke-width': 1.5, 'stroke-linecap': 'round' });
+  },
+  footprint(g, x, y, rot, s = 1) {
+    const t = G(g, x, y, `rotate(${rot}) scale(${s})`);
+    el('ellipse', { cx: 0, cy: 2, rx: 4.2, ry: 6.5, fill: '#7a4a1f', opacity: .85 }, t);
+    [[-3.6, -5.5], [-1.2, -7], [1.4, -7], [3.8, -5.6]].forEach(([cx, cy]) => el('circle', { cx, cy, r: 1.5, fill: '#7a4a1f', opacity: .85 }, t));
+  },
+  house(g, x, y, roof) {
+    const t = G(g, x, y);
+    el('rect', { x: -7, y: -8, width: 14, height: 11, fill: '#fdf0d5', stroke: '#5a4030', 'stroke-width': 1.2 }, t);
+    P(t, 'M-9 -7 L0 -15 L9 -7 Z', { fill: roof, stroke: '#5a4030', 'stroke-width': 1.2, 'stroke-linejoin': 'round' });
+    el('rect', { x: -2, y: -3, width: 4, height: 6, fill: '#7a4a1f' }, t);
+    el('rect', { x: 3, y: -6, width: 3, height: 3, fill: '#ffd34d' }, t);
+  },
+  boat(g, x, y, s, sail) {
+    const t = G(g, x, y, `scale(${s})`);
+    P(t, 'M-12 0 L12 0 L8 6 L-8 6 Z', { fill: '#a0632e', stroke: '#4d2a10', 'stroke-width': 1.2 });
+    P(t, 'M0 0 L0 -18', { stroke: '#4d2a10', 'stroke-width': 1.4 });
+    P(t, 'M1 -17 L11 -2 L1 -2 Z', { fill: sail, stroke: '#8a7a60', 'stroke-width': .8 });
+  },
+  dolphin(g, x, y, flip) {
+    const t = G(g, x, y, flip ? 'scale(-1 1)' : '');
+    const b = el('g', { class: 'leap' }, t);
+    P(b, 'M-20 8 C-14 -10 8 -16 20 -4 L27 -8 L25 1 C16 -4 4 -6 -8 3 Z', { fill: '#5b8fc0', stroke: '#2f5d8a', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
+    P(b, 'M0 -9 L4 -18 L8 -8 Z', { fill: '#4a7fb2', stroke: '#2f5d8a', 'stroke-width': 1.2 });
+    P(b, 'M-14 4 C-6 -2 4 -3 12 -1', { fill: 'none', stroke: '#cfe4f6', 'stroke-width': 2, 'stroke-linecap': 'round' });
+    el('circle', { cx: 12, cy: -6, r: 1.4, fill: '#1d2b45' }, b);
+    P(t, 'M-24 12 q4 -4 8 0 t8 0 M-28 9 l-3 -4 M-24 8 l-1 -5', { fill: 'none', stroke: '#fff', 'stroke-width': 1.8, 'stroke-linecap': 'round' });
+  },
+  turtle(g, x, y) {
+    const t = G(g, x, y, 'rotate(-12)');
+    [[-10, -7], [10, -7], [-10, 7], [10, 7]].forEach(([cx, cy]) => el('ellipse', { cx, cy, rx: 5, ry: 3, fill: '#7cc46a', stroke: '#2f6a32', 'stroke-width': 1, transform: `rotate(${cx * cy > 0 ? 30 : -30} ${cx} ${cy})` }, t));
+    el('circle', { cx: 15, cy: 0, r: 4.2, fill: '#7cc46a', stroke: '#2f6a32', 'stroke-width': 1 }, t);
+    el('circle', { cx: 16.5, cy: -1.2, r: 1, fill: '#1d2b45' }, t);
+    el('ellipse', { cx: 0, cy: 0, rx: 12, ry: 9, fill: '#3f8f4e', stroke: '#245c30', 'stroke-width': 1.4 }, t);
+    P(t, 'M-6 -6 L0 -2 L6 -6 M-6 6 L0 2 L6 6 M0 -2 L0 2 M-11 0 L-6 -1 M11 0 L6 -1', { fill: 'none', stroke: '#8fd27a', 'stroke-width': 1.2 });
+  },
+  fish(g, x, y, c) {
+    const t = G(g, x, y, 'rotate(-35)');
+    P(t, 'M-8 0 C-4 -6 6 -6 9 0 C6 6 -4 6 -8 0 Z M-8 0 L-14 -5 L-14 5 Z', { fill: c, stroke: '#8a3b12', 'stroke-width': 1 });
+    el('circle', { cx: 5, cy: -1, r: 1.2, fill: '#1d2b45' }, t);
+  },
+  gulls(g, x, y) {
+    [[0, 0, 1], [18, -10, .8], [32, 4, .7]].forEach(([dx, dy, s]) => P(g, `M${x + dx} ${y + dy} q${5 * s} ${-6 * s} ${10 * s} 0 q${5 * s} ${-6 * s} ${10 * s} 0`, { fill: 'none', stroke: '#2f4050', 'stroke-width': 1.8, 'stroke-linecap': 'round' }));
+  }
+};
+
+/* scenery per place: drawn on (or instead of) the island */
+const SCENERY = {
+  whatif(g, p) {
+    const w = G(g, p.x, p.y, 'scale(1 .5)');
+    el('circle', { r: 46, fill: '#1c4766', opacity: .5 }, w);
+    el('circle', { r: 28, fill: '#123650', opacity: .6 }, w);
+    const s = el('g', { class: 'spin' }, w);
+    P(s, spiralD(3, 4, 44), { fill: 'none', stroke: '#e8f6fb', 'stroke-width': 3.4, 'stroke-linecap': 'round', opacity: .9 });
+    P(s, spiralD(2.5, 8, 36, Math.PI), { fill: 'none', stroke: '#9fd3ef', 'stroke-width': 2.2, 'stroke-linecap': 'round', opacity: .7 });
+    return true;
+  },
+  butterfly(g, p) { ART.butterfly(g, p.x + 26, p.y - 22, '#ff8a3d', -15); ART.butterfly(g, p.x + 44, p.y - 8, '#e75aa4', 20); ART.butterfly(g, p.x - 30, p.y - 16, '#ffd34d', 10); },
+  midnight(g, p) {
+    P(g, `M${p.x + 30} ${p.y - 40} A13 13 0 1 0 ${p.x + 30} ${p.y - 14} A10 10 0 1 1 ${p.x + 30} ${p.y - 40} Z`, { fill: '#ffe680', stroke: '#c79a12', 'stroke-width': 1.3 });
+    star(g, p.x + 46, p.y - 34, 4, '#ffe680'); star(g, p.x + 16, p.y - 44, 3, '#ffe680');
+    P(g, `M${p.x - 18} ${p.y + 2} l5 -14 l5 9 l4 -12 l6 17 Z`, { fill: '#6d6a74', stroke: '#3e3b44', 'stroke-width': 1.3, 'stroke-linejoin': 'round' });
+  },
+  unfair(g, p) {
+    P(g, `M${p.x - 6} ${p.y + 2} l6 -18 l5 10 l5 -14 l7 22 Z`, { fill: '#8d8a84', stroke: '#4f4b45', 'stroke-width': 1.3, 'stroke-linejoin': 'round' });
+    text(g, p.x - 26, p.y - 4, '!', { 'font-family': FUN_FONT, 'font-size': 22, fill: '#d23b2e', stroke: '#fff', 'stroke-width': 3, 'paint-order': 'stroke' });
+  },
+  volcano(g, p) {
+    const t = G(g, p.x + 2, p.y - 6);
+    P(t, 'M-24 10 L-7 -20 L7 -20 L24 10 Z', { fill: '#7d5a42', stroke: '#45301f', 'stroke-width': 1.6, 'stroke-linejoin': 'round' });
+    P(t, 'M-14 10 L-5 -10 L-2 10 Z', { fill: '#5d4230', opacity: .5 });
+    P(t, 'M-7 -20 L-5 -10 L-2 -15 L0 -4 L3 -14 L5 -8 L7 -20 Z', { fill: '#ff5a1f', stroke: '#b5300c', 'stroke-width': 1 });
+    el('ellipse', { cx: 0, cy: -20, rx: 7, ry: 2.4, fill: '#ffb21f' }, t);
+    const sm = el('g', { class: 'smoke' }, t);
+    [[0, -28, 5], [6, -37, 6.5], [0, -48, 8]].forEach(([cx, cy, r]) => el('circle', { cx, cy, r, fill: '#8f959c', stroke: '#6d7278', 'stroke-width': 1, opacity: .85 }, sm));
+    [[-10, -26], [11, -27], [-4, -33]].forEach(([cx, cy]) => el('circle', { cx, cy, r: 1.8, fill: '#ff8a1f' }, t));
+  },
+  stomp(g, p) {
+    ART.footprint(g, p.x - 8, p.y - 1, -15, 1.1); ART.footprint(g, p.x + 7, p.y + 3, 15, 1.1);
+    P(g, `M${p.x - 24} ${p.y - 10} q-4 6 0 12 M${p.x + 22} ${p.y - 10} q4 6 0 12`, { fill: 'none', stroke: '#7a4a1f', 'stroke-width': 1.8, 'stroke-linecap': 'round' });
+  },
+  topsy(g, p) {
+    ART.palm(g, p.x - 18, p.y - 44, .9, true);
+    P(g, `M${p.x + 18} ${p.y - 18} a10 10 0 1 1 -2 -14`, { fill: 'none', stroke: '#c8322b', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
+    P(g, `M${p.x + 14} ${p.y - 34} l2 3 l-4 1 Z`, { fill: '#c8322b' });
+    text(g, p.x + 30, p.y - 14, '?', { 'font-family': FUN_FONT, 'font-size': 18, fill: '#7a2e12', transform: `rotate(180 ${p.x + 35} ${p.y - 20})` });
+  },
+  sorry(g, p) {
+    P(g, `M${p.x + 18} ${p.y + 4} L${p.x + 18} ${p.y - 28}`, { stroke: '#6e4420', 'stroke-width': 2.2 });
+    P(g, `M${p.x + 18} ${p.y - 28} C${p.x + 26} ${p.y - 32} ${p.x + 30} ${p.y - 24} ${p.x + 38} ${p.y - 28} L${p.x + 38} ${p.y - 16} C${p.x + 30} ${p.y - 12} ${p.x + 26} ${p.y - 20} ${p.x + 18} ${p.y - 16} Z`, { fill: '#ffffff', stroke: '#9a958c', 'stroke-width': 1.2 });
+    P(g, heartD(p.x + 28, p.y - 21, 3.2), { fill: '#f47aa4' });
+  },
+  raincloud(g, p) {
+    P(g, `M${p.x - 14} ${p.y + 2} l6 -12 l8 6 l6 -9 l8 15 Z`, { fill: '#8d8a84', stroke: '#4f4b45', 'stroke-width': 1.3, 'stroke-linejoin': 'round' });
+    ART.cloud(g, p.x + 4, p.y - 36, 1.05);
+  },
+  missingyou(g, p) {
+    reeds(g, p.x - 16, p.y + 2);
+    P(g, heartD(p.x + 20, p.y - 20, 7), { fill: '#e75a8c', stroke: '#a32a58', 'stroke-width': 1.2 });
+    P(g, `M${p.x + 21} ${p.y - 26} l-2 5 l3 2 l-2 5`, { fill: 'none', stroke: '#fff', 'stroke-width': 1.4 });
+  },
+  hug(g, p) {
+    P(g, `M${p.x + 4} ${p.y - 20} A24 18 0 0 1 ${p.x + 4} ${p.y + 16}`, { fill: 'none', stroke: '#8d8a84', 'stroke-width': 7, 'stroke-linecap': 'round' });
+    P(g, `M${p.x + 4} ${p.y - 20} A24 18 0 0 1 ${p.x + 4} ${p.y + 16}`, { fill: 'none', stroke: '#b9b4aa', 'stroke-width': 7, 'stroke-dasharray': '5 3' });
+    P(g, heartD(p.x - 20, p.y - 22, 8), { fill: '#e75a8c', stroke: '#a32a58', 'stroke-width': 1.3 });
+  },
+  falls(g, p) {
+    const t = G(g, p.x - 2, p.y - 8);
+    P(t, 'M-16 10 L-14 -18 L14 -20 L16 10 Z', { fill: '#8b6b4a', stroke: '#4d3622', 'stroke-width': 1.5, 'stroke-linejoin': 'round' });
+    P(t, 'M-14 -18 C-6 -22 6 -24 14 -20 L14 -14 C4 -18 -6 -16 -14 -12 Z', { fill: '#78bb55' });
+    P(t, 'M-6 -16 L-7 10 M0 -17 L0 10 M6 -18 L7 10', { stroke: '#8fdcf5', 'stroke-width': 4, 'stroke-linecap': 'round' });
+    P(t, 'M-6 -16 L-7 10 M0 -17 L0 10 M6 -18 L7 10', { stroke: '#ffffff', 'stroke-width': 1.2, 'stroke-dasharray': '3 4', class: 'fall' });
+    [[-9, 11], [0, 13], [9, 11]].forEach(([cx, cy]) => el('circle', { cx, cy, r: 3.5, fill: '#fff', opacity: .9 }, t));
+  },
+  leftout(g, p) {
+    P(g, `M${p.x - 20} ${p.y + 2} L${p.x - 16} ${p.y - 14} L${p.x + 2} ${p.y - 16} L${p.x + 4} ${p.y + 2} Z`, { fill: '#8b6b4a', stroke: '#4d3622', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
+    ART.palm(g, p.x - 8, p.y - 15, .5);
+  },
+  friendship(g, p) { ART.boat(g, p.x - 26, p.y + 12, 1, '#ffd34d'); ART.boat(g, p.x - 6, p.y + 18, .85, '#e75aa4'); P(g, heartD(p.x - 16, p.y - 4, 4), { fill: '#e75a8c' }); },
+  darkdeep(g, p) {
+    star(g, p.x + 30, p.y - 30, 5, '#ffe680'); star(g, p.x + 46, p.y - 18, 3.4, '#ffe680'); star(g, p.x + 14, p.y - 40, 3, '#ffe680');
+    twinkle(g, p.x + 40, p.y - 42, 4, .4);
+  },
+  nightmare(g, p) {
+    P(g, `M${p.x - 18} ${p.y + 2} l5 -16 l5 9 l5 -13 l5 11 l5 -8 l4 17 Z`, { fill: '#5a4a72', stroke: '#2e2440', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
+    text(g, p.x + 14, p.y - 14, 'z', { 'font-family': FUN_FONT, 'font-size': 13, fill: '#5a46a0' });
+    text(g, p.x + 22, p.y - 24, 'Z', { 'font-family': FUN_FONT, 'font-size': 17, fill: '#5a46a0' });
+  },
+  nightlight(g, p) {
+    el('circle', { cx: p.x - 18, cy: p.y - 14, r: 18, fill: 'url(#lampGlow)', class: 'glow' }, g);
+    const t = G(g, p.x - 18, p.y - 12);
+    P(t, 'M-4 -12 A4 4 0 0 1 4 -12', { fill: 'none', stroke: '#3a2a18', 'stroke-width': 1.5 });
+    el('rect', { x: -6, y: -10, width: 12, height: 14, rx: 2, fill: '#ffe680', stroke: '#3a2a18', 'stroke-width': 1.5 }, t);
+    P(t, 'M-6 -3 L6 -3 M0 -10 L0 4', { stroke: '#3a2a18', 'stroke-width': 1 });
+    el('rect', { x: -7, y: 4, width: 14, height: 3, fill: '#3a2a18' }, t);
+  },
+  moving(g, p) {
+    const box = (x, y, w, h) => { el('rect', { x, y, width: w, height: h, fill: '#c99a5b', stroke: '#6e4a20', 'stroke-width': 1.2 }, g); P(g, `M${x + w / 2} ${y} L${x + w / 2} ${y + h}`, { stroke: '#e8d3a8', 'stroke-width': 2 }); };
+    box(p.x - 22, p.y - 14, 14, 12); box(p.x - 8, p.y - 12, 12, 10); box(p.x - 17, p.y - 25, 12, 11);
+  },
+  newschool(g, p) {
+    const t = G(g, p.x - 26, p.y - 8);
+    el('rect', { x: -12, y: -10, width: 24, height: 14, fill: '#f3e3c3', stroke: '#5a4030', 'stroke-width': 1.3 }, t);
+    P(t, 'M-14 -9 L0 -19 L14 -9 Z', { fill: '#c8322b', stroke: '#5a4030', 'stroke-width': 1.3, 'stroke-linejoin': 'round' });
+    el('rect', { x: -3, y: -26, width: 6, height: 8, fill: '#f3e3c3', stroke: '#5a4030', 'stroke-width': 1.1 }, t);
+    P(t, 'M-2 -21 A2 2 0 0 1 2 -21 L2 -19 L-2 -19 Z', { fill: '#e2a912' });
+    el('rect', { x: -2.5, y: -3, width: 5, height: 7, fill: '#7a4a1f' }, t);
+    [-8, 5].forEach(x => el('rect', { x, y: -6, width: 4, height: 4, fill: '#8fd3f0', stroke: '#5a4030', 'stroke-width': .6 }, t));
+  },
+  twohomes(g, p) { ART.house(g, p.x - 4, p.y - 6, '#3d74b8'); ART.house(g, p.x - 24, p.y + 16, '#e07a1f'); },
+  steady(g, p) {
+    const t = G(g, p.x - 2, p.y - 6);
+    P(t, 'M-16 8 C-18 -8 -6 -18 4 -16 C15 -14 19 -3 15 8 Z', { fill: '#a39d92', stroke: '#5c574f', 'stroke-width': 1.6 });
+    P(t, 'M-12 -6 C-8 -14 2 -16 8 -12 C2 -12 -6 -10 -12 -6 Z', { fill: '#78bb55' });
+    el('circle', { cx: -4, cy: -2, r: 1.6, fill: '#2b1d12' }, t); el('circle', { cx: 5, cy: -2, r: 1.6, fill: '#2b1d12' }, t);
+    P(t, 'M-4 3 Q0.5 7 5 3', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.5, 'stroke-linecap': 'round' });
+  },
+  spelling(g, p) {
+    const sheet = (x, y, r, plus) => {
+      const t = G(g, x, y, `rotate(${r})`);
+      el('rect', { x: -7, y: -9, width: 14, height: 18, fill: '#ffffff', stroke: '#8a7a60', 'stroke-width': 1 }, t);
+      P(t, 'M-4 -4 L4 -4 M-4 0 L4 0 M-4 4 L2 4', { stroke: '#8fb3d9', 'stroke-width': 1 });
+      if (plus) text(t, -5, 2, 'A+', { 'font-family': FUN_FONT, 'font-size': 9, fill: '#d23b2e' });
+    };
+    sheet(p.x - 30, p.y - 22, -20, true); sheet(p.x - 14, p.y - 36, 15); sheet(p.x + 26, p.y - 26, 30);
+    P(g, `M${p.x - 46} ${p.y - 34} q8 -4 16 0 M${p.x - 42} ${p.y - 42} q6 -3 12 0`, { fill: 'none', stroke: '#eaf6fb', 'stroke-width': 1.8, 'stroke-linecap': 'round' });
+  },
+  homework(g, p) {
+    const t = G(g, p.x + 30, p.y - 4);
+    P(t, 'M-22 6 L-6 -22 L2 -10 L8 -18 L22 6 Z', { fill: '#a58a6a', stroke: '#5a4030', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
+    P(t, 'M-6 -22 L-11 -13 L-6 -15 L-2 -13 Z', { fill: '#fff' });
+    const b = G(g, p.x - 26, p.y - 4);
+    [['#3d74b8', 0], ['#d23b2e', -5], ['#3e8b3a', -10], ['#e2a912', -15]].forEach(([c, y], i) => el('rect', { x: -9 + (i % 2) * 2, y, width: 18, height: 5, rx: 1, fill: c, stroke: '#3a2a18', 'stroke-width': .9 }, b));
+  },
+  mistake(g, p) {
+    el('ellipse', { cx: p.x + 8, cy: p.y + 4, rx: 12, ry: 5, fill: '#7a6a3a', opacity: .6 }, g);
+    reeds(g, p.x - 16, p.y + 2);
+    text(g, p.x + 20, p.y - 10, 'oops', { 'font-family': FUN_FONT, 'font-size': 11, fill: '#7a4a1f', transform: `rotate(-10 ${p.x + 20} ${p.y - 10})` });
+  },
+  haveago(g, p) {
+    P(g, `M${p.x + 14} ${p.y + 6} L${p.x + 14} ${p.y - 30}`, { stroke: '#6e4420', 'stroke-width': 2.2 });
+    P(g, `M${p.x + 14} ${p.y - 30} L${p.x + 36} ${p.y - 23} L${p.x + 14} ${p.y - 16} Z`, { fill: '#3e8b3a', stroke: '#245c30', 'stroke-width': 1.2 });
+    star(g, p.x + 21, p.y - 23, 4, '#ffd34d');
+  },
+  spyglass(g, p) {
+    const t = G(g, p.x - 26, p.y - 14, 'rotate(-28)');
+    el('rect', { x: -18, y: -4, width: 14, height: 8, rx: 1.5, fill: '#b06a2d', stroke: '#5b3212', 'stroke-width': 1.3 }, t);
+    el('rect', { x: -5, y: -5, width: 12, height: 10, rx: 1.5, fill: '#e2a912', stroke: '#8a5d00', 'stroke-width': 1.3 }, t);
+    el('rect', { x: 6, y: -6.5, width: 6, height: 13, rx: 1.5, fill: '#b06a2d', stroke: '#5b3212', 'stroke-width': 1.3 }, t);
+    el('ellipse', { cx: 12, cy: 0, rx: 1.6, ry: 5, fill: '#bfe9ff' }, t);
+  },
+  nameit(g, p) {
+    const t = G(g, p.x - 46, p.y - 26);
+    P(t, 'M-22 -10 Q-22 -16 -16 -16 L16 -16 Q22 -16 22 -10 L22 2 Q22 8 16 8 L6 8 L12 16 L-2 8 L-16 8 Q-22 8 -22 2 Z', { fill: '#ffffff', stroke: '#3a2a18', 'stroke-width': 1.5 });
+    text(t, 0, -0.5, 'I feel...', { 'font-size': 9.5, 'font-weight': 900, 'text-anchor': 'middle' });
+  },
+  breath(g, p) {
+    const t = G(g, p.x - 40, p.y - 22);
+    P(t, 'M-16 6 C-24 6 -24 -6 -15 -7 C-15 -17 -2 -19 2 -11 C6 -17 17 -15 16 -6 C23 -5 22 6 15 6 Z', { fill: '#ffffff', stroke: '#7a9bb0', 'stroke-width': 1.5 });
+    P(t, 'M-9 -3 q2 2 4 0 M2 -3 q2 2 4 0', { fill: 'none', stroke: '#3a2a18', 'stroke-width': 1.3, 'stroke-linecap': 'round' });
+    el('circle', { cx: 9, cy: 2, r: 2.2, fill: '#3a2a18' }, t);
+    P(t, 'M18 -2 q8 -3 16 0 M18 4 q10 2 20 -1 M17 -8 q7 -4 13 -3', { fill: 'none', stroke: '#ffffff', 'stroke-width': 2, 'stroke-linecap': 'round', class: 'blow' });
+  },
+  lighthouse(g, p) {
+    const lx = p.x + 8, ly = p.y - 40;
+    const beam = P(g, `M${lx} ${ly} L${lx + 70} ${ly - 18} L${lx + 70} ${ly + 18} Z`, { fill: '#fff3a0', opacity: .55, class: 'beam' });
+    beam.style.transformOrigin = `${lx}px ${ly}px`;
+    const t = G(g, p.x + 8, p.y - 4);
+    P(t, 'M-9 6 L-6 -30 L6 -30 L9 6 Z', { fill: '#ffffff', stroke: '#5a4030', 'stroke-width': 1.5 });
+    P(t, 'M-8.2 -4 L8.2 -4 L7.6 -11 L-7.6 -11 Z M-7 -18 L7 -18 L6.5 -25 L-6.5 -25 Z', { fill: '#d23b2e' });
+    el('rect', { x: -6, y: -40, width: 12, height: 10, fill: '#ffe14d', stroke: '#5a4030', 'stroke-width': 1.4 }, t);
+    P(t, 'M-8 -40 L0 -48 L8 -40 Z', { fill: '#d23b2e', stroke: '#5a4030', 'stroke-width': 1.4, 'stroke-linejoin': 'round' });
+    el('rect', { x: -2.5, y: -2, width: 5, height: 8, fill: '#7a4a1f' }, t);
+  },
+  bottle(g, p) {
+    const t = G(g, p.x - 40, p.y + 16, 'rotate(-25)');
+    const b = el('g', { class: 'bob' }, t);
+    P(b, 'M-13 -6 L6 -6 L11 -2.5 L17 -2.5 L17 2.5 L11 2.5 L6 6 L-13 6 Z', { fill: '#a8d8c8', stroke: '#3c7a68', 'stroke-width': 1.4, 'fill-opacity': .95 });
+    el('rect', { x: -9, y: -3, width: 12, height: 6, rx: 1, fill: '#fff6dc', stroke: '#b89a5b', 'stroke-width': .8 }, b);
+    el('rect', { x: 17, y: -2.5, width: 4, height: 5, fill: '#8a5a2b' }, b);
+    el('ellipse', { cx: p.x - 40, cy: p.y + 24, rx: 20, ry: 4, fill: 'none', stroke: '#ffffff', 'stroke-width': 1.4, opacity: .7 }, g);
+  },
+  brave(g, p) {
+    const t = G(g, p.x - 36, p.y - 18);
+    P(t, 'M-8 -14 L-2 0 L2 0 L-4 -14 Z', { fill: '#3d74b8' });
+    P(t, 'M8 -14 L2 0 L-2 0 L4 -14 Z', { fill: '#d23b2e' });
+    el('circle', { cx: 0, cy: 6, r: 9, fill: '#ffd34d', stroke: '#b07a00', 'stroke-width': 1.5 }, t);
+    star(t, 0, 6, 5.5, '#ffefa6');
+  },
+  kind(g, p) {
+    P(g, heartD(p.x - 38, p.y - 16, 10), { fill: '#f06a9b', stroke: '#a32a58', 'stroke-width': 1.5 });
+    P(g, `M${p.x - 44} ${p.y - 22} q2 -3 5 -3`, { fill: 'none', stroke: '#fff', 'stroke-width': 2, 'stroke-linecap': 'round' });
+    twinkle(g, p.x - 24, p.y - 30, 5, 1.1);
+  }
+};
+function reeds(g, x, y) {
+  [[0, -18, -6], [6, -22, 0], [12, -17, 6], [-5, -14, -10]].forEach(([dx, h, lean]) => {
+    P(g, `M${x + dx} ${y} q${lean / 2} ${h / 2} ${lean} ${h}`, { fill: 'none', stroke: '#4c7a2e', 'stroke-width': 1.6, 'stroke-linecap': 'round' });
+    el('ellipse', { cx: x + dx + lean, cy: y + h + 3, rx: 1.8, ry: 4, fill: '#7a4a1f', transform: `rotate(${lean * 2} ${x + dx + lean} ${y + h + 3})` }, g);
+  });
+}
+const TERRAIN = {
+  sand: { sand: '#f3dca0', edge: '#a9803f', grass: '#78bb55', gedge: '#4c8a35', hi: '#a5d878' },
+  rock: { sand: '#cfc8b8', edge: '#6f6a62', grass: '#8fae6a', gedge: '#5e7a44', hi: '#b6cc8e' },
+  dark: { sand: '#d9c9a6', edge: '#7a6a52', grass: '#5d8a6a', gedge: '#3b5e48', hi: '#7fae8a' },
+  marsh: { sand: '#d9cf96', edge: '#8a7a3a', grass: '#93a85a', gedge: '#66783a', hi: '#b5c97a' },
+  lush: { sand: '#ffe4a3', edge: '#b88a3a', grass: '#4fbf4f', gedge: '#2f8a35', hi: '#93e46a' }
+};
+const PLACE_TERRAIN = { unfair: 'rock', raincloud: 'rock', midnight: 'rock', nightmare: 'dark', darkdeep: 'dark', missingyou: 'marsh', mistake: 'marsh', steady: 'rock', falls: 'rock', leftout: 'rock' };
 
 /* ---------- sea monsters (friendly ones) ---------- */
 const eye = (g, x, y, r = 5, look = [1, 0], lid) => {
   el('circle', { cx: x, cy: y, r, fill: '#fff', stroke: '#2b1d12', 'stroke-width': 1.3 }, g);
-  el('circle', { cx: x + look[0] * r * .35, cy: y + look[1] * r * .35, r: r * .5, fill: '#2b1d12' }, g);
-  el('circle', { cx: x + look[0] * r * .35 + r * .18, cy: y + look[1] * r * .35 - r * .2, r: r * .16, fill: '#fff' }, g);
+  el('circle', { cx: x + look[0] * r * .35, cy: y + look[1] * r * .35, r: r * .52, fill: '#2b1d12' }, g);
+  el('circle', { cx: x + look[0] * r * .35 + r * .18, cy: y + look[1] * r * .35 - r * .2, r: r * .18, fill: '#fff' }, g);
   if (lid) P(g, `M${x - r - 1} ${y - r * .1} A${r + 1} ${r + 1} 0 0 1 ${x + r + 1} ${y - r * .1} Z`, { fill: lid, stroke: '#2b1d12', 'stroke-width': 1.2 });
+};
+const splash = (g, y, w) => {
+  el('ellipse', { cx: 0, cy: y + 2, rx: w / 2, ry: 7, fill: '#1c4766', opacity: .25 }, g);
+  waves(g, 0, y, w, '#ffffff', .95, 2.6);
+  waves(g, 6, y + 6, w * .7, '#ffffff', .6, 2);
 };
 const MONSTERS = {
   kraken(g) {
     const body = '#9a67c4', dark = '#5f3a86';
-    const tent = { fill: 'none', stroke: body, 'stroke-width': 9, 'stroke-linecap': 'round' };
-    const edge = { fill: 'none', stroke: dark, 'stroke-width': 11, 'stroke-linecap': 'round' };
     const T = ['M-18 14 C-42 6 -62 22 -54 38 C-50 46 -40 44 -42 36', 'M18 14 C42 6 62 22 54 38 C50 46 40 44 42 36',
       'M-22 0 C-48 -6 -62 -34 -46 -46 C-38 -52 -30 -44 -36 -40', 'M22 0 C48 -6 62 -34 46 -46 C38 -52 30 -44 36 -40',
       'M-8 18 C-16 30 -10 42 2 40', 'M8 18 C18 30 22 40 14 46'];
-    T.forEach(d => P(g, d, edge));
-    T.forEach(d => P(g, d, tent));
-    [[-50, -40], [50, -40], [-52, 32], [52, 32]].forEach(([x, y]) => el('circle', { cx: x, cy: y, r: 1.8, fill: '#e7d3f5' }, g));
-    P(g, 'M-28 18 C-34 -18 -22 -50 0 -50 C22 -50 34 -18 28 18 Z', { fill: body, stroke: dark, 'stroke-width': 2.2 });
-    [[-12, -36, 4], [10, -40, 3], [16, -28, 2.5], [-18, -22, 2.5]].forEach(([x, y, r]) => el('circle', { cx: x, cy: y, r, fill: '#c19be0' }, g));
-    eye(g, -10, -6, 8, [0, -.6]); eye(g, 10, -6, 8, [0, -.6]);
-    P(g, 'M-19 -18 L-4 -14 M19 -18 L4 -14', { stroke: '#2b1d12', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
-    P(g, 'M-6 9 C-2 6 2 6 6 9', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 2, 'stroke-linecap': 'round' });
-    text(g, 30, -46, '?', { 'font-size': 18, 'font-weight': 900, fill: '#5f3a86' });
-    text(g, -40, -54, '?', { 'font-size': 14, 'font-weight': 900, fill: '#5f3a86' });
-    waves(g, 0, 22, 96);
+    T.forEach(d => P(g, d, { fill: 'none', stroke: dark, 'stroke-width': 12, 'stroke-linecap': 'round' }));
+    T.forEach(d => P(g, d, { fill: 'none', stroke: body, 'stroke-width': 9, 'stroke-linecap': 'round' }));
+    T.forEach(d => P(g, d, { fill: 'none', stroke: '#e7d3f5', 'stroke-width': 2.2, 'stroke-linecap': 'round', 'stroke-dasharray': '0.1 7' }));
+    P(g, 'M-28 18 C-34 -18 -22 -52 0 -52 C22 -52 34 -18 28 18 Z', { fill: body, stroke: dark, 'stroke-width': 2.4 });
+    P(g, 'M-16 -40 C-10 -48 0 -50 6 -48', { fill: 'none', stroke: '#c9a6ea', 'stroke-width': 3, 'stroke-linecap': 'round' });
+    [[-12, -30, 4], [12, -38, 3], [17, -26, 2.5], [-19, -16, 2.5]].forEach(([x, y, r]) => el('circle', { cx: x, cy: y, r, fill: '#c19be0' }, g));
+    eye(g, -10, -6, 8.5, [0, -.6]); eye(g, 10, -6, 8.5, [0, -.6]);
+    P(g, 'M-19 -19 L-4 -15 M19 -19 L4 -15', { stroke: '#2b1d12', 'stroke-width': 2.6, 'stroke-linecap': 'round' });
+    P(g, 'M-6 9 C-2 6 2 6 6 9', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 2.2, 'stroke-linecap': 'round' });
+    el('circle', { cx: -16, cy: 4, r: 3.2, fill: '#f6a2b8', opacity: .8 }, g); el('circle', { cx: 16, cy: 4, r: 3.2, fill: '#f6a2b8', opacity: .8 }, g);
+    text(g, 30, -48, '?', { 'font-family': FUN_FONT, 'font-size': 20, fill: '#5f3a86' });
+    text(g, -42, -56, '?', { 'font-family': FUN_FONT, 'font-size': 15, fill: '#5f3a86' });
+    text(g, 50, -22, '?', { 'font-family': FUN_FONT, 'font-size': 12, fill: '#5f3a86' });
+    splash(g, 22, 110);
   },
   dragon(g) {
     const body = '#d4513b', dark = '#8e2a1c', belly = '#f6b36b';
-    const bodyS = { fill: 'none', stroke: dark, 'stroke-width': 15, 'stroke-linecap': 'round' };
-    const bodyF = { fill: 'none', stroke: body, 'stroke-width': 12, 'stroke-linecap': 'round' };
+    P(g, 'M12 -6 C2 -34 -10 -40 -16 -36 C-8 -30 -6 -24 -8 -18 C-2 -22 4 -18 6 -12 Z', { fill: '#f08a4b', stroke: dark, 'stroke-width': 1.6, 'stroke-linejoin': 'round' });
+    P(g, 'M12 -6 C20 -34 34 -42 42 -36 C32 -32 30 -24 30 -18 C24 -22 18 -16 16 -10 Z', { fill: '#f08a4b', stroke: dark, 'stroke-width': 1.6, 'stroke-linejoin': 'round' });
     const humps = ['M8 26 C8 -4 38 -4 38 26', 'M48 26 C48 6 68 6 68 26', 'M76 26 C80 10 88 6 96 2'];
-    humps.forEach(d => P(g, d, bodyS)); humps.forEach(d => P(g, d, bodyF));
-    P(g, 'M96 2 l8 -10 l-1 13 z', { fill: body, stroke: dark, 'stroke-width': 1.5 });
-    [[16, 1], [23, -3], [30, 1], [54, 9], [61, 9]].forEach(([x, y]) => P(g, `M${x - 3} ${y} l3 -7 l3 7 z`, { fill: '#f5a524', stroke: dark, 'stroke-width': 1 }));
-    P(g, 'M-2 26 C-4 6 -8 -8 -18 -16', bodyS); P(g, 'M-2 26 C-4 6 -8 -8 -18 -16', bodyF);
-    P(g, 'M-8 -30 C4 -32 8 -20 2 -12 C-4 -6 -16 -8 -24 -10 L-42 -12 C-50 -12 -50 -24 -42 -26 L-26 -28 C-22 -32 -14 -32 -8 -30 Z', { fill: body, stroke: dark, 'stroke-width': 2 });
+    humps.forEach(d => P(g, d, { fill: 'none', stroke: dark, 'stroke-width': 16, 'stroke-linecap': 'round' }));
+    humps.forEach(d => P(g, d, { fill: 'none', stroke: body, 'stroke-width': 12.5, 'stroke-linecap': 'round' }));
+    P(g, 'M12 22 C12 4 34 4 34 22', { fill: 'none', stroke: belly, 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-dasharray': '3 3' });
+    P(g, 'M96 2 l9 -11 l-1 14 z', { fill: body, stroke: dark, 'stroke-width': 1.5 });
+    [[16, 1], [23, -3], [30, 1], [54, 9], [61, 9]].forEach(([x, y]) => P(g, `M${x - 3} ${y} l3 -8 l3 8 z`, { fill: '#f5a524', stroke: dark, 'stroke-width': 1 }));
+    P(g, 'M-2 26 C-4 6 -8 -8 -18 -16', { fill: 'none', stroke: dark, 'stroke-width': 16, 'stroke-linecap': 'round' });
+    P(g, 'M-2 26 C-4 6 -8 -8 -18 -16', { fill: 'none', stroke: body, 'stroke-width': 12.5, 'stroke-linecap': 'round' });
+    P(g, 'M-8 -30 C4 -32 8 -20 2 -12 C-4 -6 -16 -8 -24 -10 L-42 -12 C-50 -12 -50 -24 -42 -26 L-26 -28 C-22 -32 -14 -32 -8 -30 Z', { fill: body, stroke: dark, 'stroke-width': 2.2 });
     P(g, 'M-40 -12 C-30 -8 -18 -8 -6 -12', { fill: 'none', stroke: belly, 'stroke-width': 3, 'stroke-linecap': 'round' });
-    P(g, 'M-6 -30 l4 -14 l5 12 z M2 -28 l8 -10 l0 13 z', { fill: '#f5a524', stroke: dark, 'stroke-width': 1.2 });
-    P(g, 'M6 -18 C16 -26 24 -22 26 -14 C18 -18 12 -16 6 -12 Z', { fill: '#f08a4b', stroke: dark, 'stroke-width': 1.2 });
-    eye(g, -14, -22, 5, [-.8, .2]);
-    P(g, 'M-22 -30 L-8 -26', { stroke: '#2b1d12', 'stroke-width': 2.6, 'stroke-linecap': 'round' });
-    el('circle', { cx: -44, cy: -21, r: 1.6, fill: '#2b1d12' }, g);
-    P(g, 'M-50 -18 C-60 -30 -68 -14 -82 -24 C-76 -12 -86 -4 -74 0 C-66 -8 -58 -8 -50 -14 Z', { fill: '#ffc93c', stroke: '#e0601c', 'stroke-width': 1.5 });
-    P(g, 'M-52 -17 C-58 -22 -64 -14 -72 -16 C-66 -10 -60 -10 -52 -14 Z', { fill: '#ff8a2a' });
-    waves(g, 30, 28, 150);
+    P(g, 'M-6 -30 l4 -15 l5 13 z M2 -28 l9 -11 l0 14 z', { fill: '#f5a524', stroke: dark, 'stroke-width': 1.2 });
+    eye(g, -14, -22, 5.5, [-.8, .2]);
+    P(g, 'M-23 -31 L-8 -26', { stroke: '#2b1d12', 'stroke-width': 2.8, 'stroke-linecap': 'round' });
+    el('circle', { cx: -44, cy: -21, r: 1.7, fill: '#2b1d12' }, g);
+    const fire = el('g', { class: 'fire' }, g);
+    P(fire, 'M-50 -18 C-60 -32 -70 -14 -86 -26 C-80 -12 -92 -4 -76 2 C-68 -8 -58 -8 -50 -14 Z', { fill: '#ffc93c', stroke: '#e0601c', 'stroke-width': 1.6 });
+    P(fire, 'M-52 -17 C-58 -23 -66 -14 -74 -17 C-68 -10 -60 -10 -52 -14 Z', { fill: '#ff7a1a' });
+    splash(g, 28, 160);
   },
   serpent(g) {
     const body = '#7f9cbb', dark = '#4a6585';
-    const s1 = { fill: 'none', stroke: dark, 'stroke-width': 14, 'stroke-linecap': 'round' };
-    const s2 = { fill: 'none', stroke: body, 'stroke-width': 11, 'stroke-linecap': 'round' };
-    const humps = ['M-46 22 C-46 4 -24 4 -24 22', 'M-14 22 C-14 0 10 0 10 22'];
-    humps.forEach(d => P(g, d, s1)); humps.forEach(d => P(g, d, s2));
-    P(g, 'M20 22 C22 2 26 -8 36 -10', s1); P(g, 'M20 22 C22 2 26 -8 36 -10', s2);
-    P(g, 'M30 -16 C42 -22 56 -16 58 -4 C60 6 52 10 44 6 C38 4 32 0 30 -6 Z', { fill: body, stroke: dark, 'stroke-width': 2 });
-    eye(g, 42, -8, 5, [.2, .7], '#7f9cbb');
-    P(g, 'M48 2 C50 0 54 0 56 2', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.8, 'stroke-linecap': 'round', transform: 'rotate(180 52 1.5)' });
-    P(g, 'M44 4 C44 8 43 10 42 12', { fill: 'none', stroke: '#6fb6ff', 'stroke-width': 2.2, 'stroke-linecap': 'round' });
-    ART.cloud(g, 46, -40, 1.1);
-    waves(g, -6, 24, 120);
+    const humps = ['M-46 22 C-46 4 -24 4 -24 22', 'M-14 22 C-14 0 10 0 10 22', 'M20 22 C22 2 26 -8 36 -10'];
+    humps.forEach(d => P(g, d, { fill: 'none', stroke: dark, 'stroke-width': 15, 'stroke-linecap': 'round' }));
+    humps.forEach(d => P(g, d, { fill: 'none', stroke: body, 'stroke-width': 11.5, 'stroke-linecap': 'round' }));
+    P(g, 'M-42 18 C-42 8 -28 8 -28 18 M-10 18 C-10 6 6 6 6 18', { fill: 'none', stroke: '#b7cde2', 'stroke-width': 2.4, 'stroke-linecap': 'round', 'stroke-dasharray': '2 4' });
+    P(g, 'M30 -16 C42 -22 56 -16 58 -4 C60 6 52 10 44 6 C38 4 32 0 30 -6 Z', { fill: body, stroke: dark, 'stroke-width': 2.2 });
+    P(g, 'M34 -18 l-4 -8 l8 5 M42 -20 l0 -9 l5 8', { fill: '#9fb8d2', stroke: dark, 'stroke-width': 1.3, 'stroke-linejoin': 'round' });
+    eye(g, 42, -8, 5.5, [.2, .7], body);
+    P(g, 'M48 4 Q52 1 56 4', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.8, 'stroke-linecap': 'round' });
+    P(g, 'M44 4 C44 8 43 10 42 13', { fill: 'none', stroke: '#6fb6ff', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
+    ART.cloud(g, 46, -40, 1.15, true);
+    splash(g, 24, 130);
   },
   whale(g) {
     const body = '#4f7fc0', dark = '#2c5288', belly = '#bcd7f2';
-    P(g, 'M-56 6 C-58 -22 -20 -32 16 -24 C30 -20 40 -12 48 -14 L60 -28 C64 -18 62 -8 56 0 C64 4 68 12 64 20 L50 8 C40 18 18 24 -6 22 C-36 20 -54 18 -56 6 Z', { fill: body, stroke: dark, 'stroke-width': 2.2 });
+    P(g, 'M-56 6 C-58 -22 -20 -32 16 -24 C30 -20 40 -12 48 -14 L60 -28 C64 -18 62 -8 56 0 C64 4 68 12 64 20 L50 8 C40 18 18 24 -6 22 C-36 20 -54 18 -56 6 Z', { fill: body, stroke: dark, 'stroke-width': 2.4 });
     P(g, 'M-54 10 C-40 22 -6 24 20 16 C2 14 -30 14 -54 10 Z', { fill: belly });
-    eye(g, -34, -4, 4, [0, .2]);
+    P(g, 'M-46 14 L-42 18 M-38 15 L-35 20 M-30 16 L-28 21 M-22 16 L-21 21', { stroke: '#8fb3d9', 'stroke-width': 1.4 });
+    P(g, 'M-20 -22 C-6 -28 8 -26 16 -22', { fill: 'none', stroke: '#7fa8dc', 'stroke-width': 3, 'stroke-linecap': 'round' });
+    eye(g, -34, -4, 4.5, [0, .2]);
     P(g, 'M-44 6 C-40 10 -34 10 -30 7', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.8, 'stroke-linecap': 'round' });
-    el('circle', { cx: -26, cy: 4, r: 3, fill: '#f6a2b8', opacity: .8 }, g);
-    P(g, 'M-28 -30 C-30 -40 -38 -44 -44 -40 M-28 -30 C-26 -40 -18 -44 -12 -40 M-28 -30 L-28 -44', { fill: 'none', stroke: '#9fd3ff', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
-    text(g, 4, -36, '♪', { 'font-size': 18, fill: '#2c5288', 'font-weight': 800 });
-    text(g, 22, -46, '♫', { 'font-size': 16, fill: '#2c5288', 'font-weight': 800 });
-    waves(g, 0, 22, 130);
+    el('circle', { cx: -26, cy: 4, r: 3.4, fill: '#f6a2b8', opacity: .85 }, g);
+    P(g, 'M-28 -30 C-30 -40 -38 -44 -44 -40 M-28 -30 C-26 -40 -18 -44 -12 -40 M-28 -30 L-28 -44', { fill: 'none', stroke: '#c4e8ff', 'stroke-width': 2.8, 'stroke-linecap': 'round' });
+    const notes = el('g', { class: 'notes' }, g);
+    text(notes, 4, -36, '♪', { 'font-size': 20, fill: '#2c5288', 'font-weight': 800 });
+    text(notes, 24, -48, '♫', { 'font-size': 17, fill: '#2c5288', 'font-weight': 800 });
+    splash(g, 22, 140);
   },
   shark(g) {
-    P(g, 'M-70 0 C-50 -18 -10 -26 30 -18 L40 -42 L52 -16 C60 -14 66 -10 72 -6 L90 -24 L86 0 L90 20 L72 6 C52 16 0 18 -40 12 L-50 24 L-46 10 C-58 8 -66 4 -70 0 Z', { fill: '#1f2648', opacity: .42 });
-    el('circle', { cx: -50, cy: -4, r: 3, fill: '#fff', opacity: .7 }, g);
-    P(g, 'M-128 -18 L-92 -6 L-92 6 L-128 14 Z', { fill: '#fff3a0', opacity: .7 });
-    el('rect', { x: -138, y: -20, width: 12, height: 8, rx: 2, fill: '#5a46a0', transform: 'rotate(15 -132 -16)' }, g);
-    P(g, 'M-90 0 C-84 -7 -74 -7 -70 0 C-74 7 -84 7 -90 0 Z', { fill: '#ff9a3c', stroke: '#b5571a', 'stroke-width': 1.2 });
-    P(g, 'M-70 0 L-63 -6 L-63 6 Z', { fill: '#ff9a3c', stroke: '#b5571a', 'stroke-width': 1.2 });
-    el('circle', { cx: -84, cy: -1.5, r: 1.6, fill: '#2b1d12' }, g);
-    waves(g, 0, 26, 140, '#ffffff', .6);
+    P(g, 'M-70 0 C-50 -18 -10 -26 30 -18 L40 -42 L52 -16 C60 -14 66 -10 72 -6 L90 -24 L86 0 L90 20 L72 6 C52 16 0 18 -40 12 L-50 24 L-46 10 C-58 8 -66 4 -70 0 Z', { fill: '#141a38', opacity: .5 });
+    el('circle', { cx: -50, cy: -4, r: 3, fill: '#fff', opacity: .6 }, g);
+    P(g, 'M-128 -18 L-92 -7 L-92 7 L-128 16 Z', { fill: '#fff3a0', opacity: .75 });
+    const torch = G(g, -134, -1, 'rotate(12)');
+    el('rect', { x: -10, y: -4, width: 14, height: 8, rx: 2, fill: '#5a46a0', stroke: '#2e2440', 'stroke-width': 1 }, torch);
+    el('rect', { x: 3, y: -5.5, width: 4, height: 11, rx: 1, fill: '#ffd34d', stroke: '#2e2440', 'stroke-width': 1 }, torch);
+    P(g, 'M-90 0 C-84 -8 -74 -8 -70 0 C-74 8 -84 8 -90 0 Z', { fill: '#ff9a3c', stroke: '#b5571a', 'stroke-width': 1.3 });
+    P(g, 'M-70 0 L-62 -7 L-62 7 Z', { fill: '#ff9a3c', stroke: '#b5571a', 'stroke-width': 1.3 });
+    el('circle', { cx: -84, cy: -1.5, r: 1.8, fill: '#2b1d12' }, g);
+    P(g, 'M-87 3 q2 1.5 4 0', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1, 'stroke-linecap': 'round' });
+    waves(g, 0, 26, 150, '#ffffff', .6);
   },
   jelly(g) {
     const pink = '#ef9fcc', dark = '#b3528c';
-    [-14, -5, 4, 13].forEach((x, i) => P(g, `M${x} 6 q${i % 2 ? 6 : -6} 9 0 18 t0 18`, { fill: 'none', stroke: dark, 'stroke-width': 2.4, 'stroke-linecap': 'round', opacity: .8 }));
-    P(g, 'M-26 6 C-28 -30 28 -30 26 6 C18 10 10 3 0 8 C-10 3 -18 10 -26 6 Z', { fill: pink, stroke: dark, 'stroke-width': 2, 'fill-opacity': .92 });
-    P(g, 'M-14 -14 C-10 -20 -4 -21 0 -20', { fill: 'none', stroke: '#fff', 'stroke-width': 2.5, 'stroke-linecap': 'round', opacity: .8 });
-    eye(g, -8, -4, 4.2, [-.5, .3]); eye(g, 8, -4, 4.2, [.5, .3]);
-    P(g, 'M-4 4 q2 -2 4 0 q2 2 4 0', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.6, 'stroke-linecap': 'round' });
-    P(g, 'M-34 -12 q-4 6 0 12 M34 -12 q4 6 0 12', { fill: 'none', stroke: dark, 'stroke-width': 2, 'stroke-linecap': 'round', opacity: .7 });
+    const tent = el('g', { class: 'wiggle' }, g);
+    [-15, -5, 5, 15].forEach((x, i) => P(tent, `M${x} 6 q${i % 2 ? 6 : -6} 9 0 18 t0 18`, { fill: 'none', stroke: dark, 'stroke-width': 2.6, 'stroke-linecap': 'round', opacity: .85 }));
+    P(g, 'M-28 6 C-30 -32 30 -32 28 6 C19 10 10 3 0 8 C-10 3 -19 10 -28 6 Z', { fill: pink, stroke: dark, 'stroke-width': 2.2, 'fill-opacity': .92 });
+    P(g, 'M-16 -14 C-12 -21 -5 -22 0 -21', { fill: 'none', stroke: '#fff', 'stroke-width': 2.8, 'stroke-linecap': 'round', opacity: .85 });
+    [[-18, -4], [16, -12], [8, -20]].forEach(([cx, cy]) => el('circle', { cx, cy, r: 2.2, fill: '#f8c7e2' }, g));
+    eye(g, -8, -4, 4.6, [-.5, .3]); eye(g, 8, -4, 4.6, [.5, .3]);
+    P(g, 'M-4 4 q2 -2 4 0 q2 2 4 0', { fill: 'none', stroke: '#2b1d12', 'stroke-width': 1.7, 'stroke-linecap': 'round' });
+    P(g, 'M-36 -12 q-4 6 0 12 M36 -12 q4 6 0 12 M-42 -16 q-6 10 0 20 M42 -16 q6 10 0 20', { fill: 'none', stroke: dark, 'stroke-width': 2, 'stroke-linecap': 'round', opacity: .6 });
   },
   puffer(g) {
     const body = '#f6c945', dark = '#b0790f';
-    for (let i = 0; i < 14; i++) {
-      const a = (i / 14) * Math.PI * 2;
-      const x1 = Math.cos(a) * 22, y1 = Math.sin(a) * 22, x2 = Math.cos(a) * 31, y2 = Math.sin(a) * 31;
+    for (let i = 0; i < 16; i++) {
+      const a = (i / 16) * Math.PI * 2;
+      const x1 = Math.cos(a) * 22, y1 = Math.sin(a) * 22, x2 = Math.cos(a) * 33, y2 = Math.sin(a) * 33;
       const px = -Math.sin(a) * 4, py = Math.cos(a) * 4;
-      P(g, `M${(x1 + px).toFixed(1)} ${(y1 + py).toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)} L${(x1 - px).toFixed(1)} ${(y1 - py).toFixed(1)} Z`, { fill: '#e8b02a', stroke: dark, 'stroke-width': 1 });
+      P(g, `M${(x1 + px).toFixed(1)} ${(y1 + py).toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)} L${(x1 - px).toFixed(1)} ${(y1 - py).toFixed(1)} Z`, { fill: '#e8b02a', stroke: dark, 'stroke-width': 1.1 });
     }
-    P(g, 'M22 0 L40 -12 L36 0 L40 12 Z', { fill: '#e8b02a', stroke: dark, 'stroke-width': 1.5 });
-    el('circle', { cx: 0, cy: 0, r: 25, fill: body, stroke: dark, 'stroke-width': 2 }, g);
-    P(g, 'M-20 8 C-10 22 10 22 20 8 C8 14 -8 14 -20 8 Z', { fill: '#fff3c4' });
-    eye(g, -10, -6, 7, [-.4, 0]); eye(g, 6, -7, 7, [-.4, 0]);
-    P(g, 'M-17 -16 L-5 -14 M0 -16 L12 -17', { stroke: '#2b1d12', 'stroke-width': 1.8, 'stroke-linecap': 'round' });
-    el('ellipse', { cx: -20, cy: 6, rx: 3, ry: 2.5, fill: '#2b1d12' }, g);
-    text(g, 26, -26, '!', { 'font-size': 18, 'font-weight': 900, fill: '#b0790f' });
-    waves(g, 0, 34, 90);
+    P(g, 'M22 0 L42 -14 L37 0 L42 14 Z', { fill: '#e8b02a', stroke: dark, 'stroke-width': 1.6 });
+    el('circle', { cx: 0, cy: 0, r: 26, fill: body, stroke: dark, 'stroke-width': 2.2 }, g);
+    P(g, 'M-21 8 C-10 23 10 23 21 8 C8 15 -8 15 -21 8 Z', { fill: '#fff3c4' });
+    [[-4, -16], [10, -12], [14, 2], [-14, -14]].forEach(([cx, cy]) => el('circle', { cx, cy, r: 2, fill: '#d99a1a' }, g));
+    eye(g, -10, -6, 7.5, [-.4, 0]); eye(g, 6, -7, 7.5, [-.4, 0]);
+    P(g, 'M-17 -17 L-5 -15 M0 -17 L12 -18', { stroke: '#2b1d12', 'stroke-width': 2, 'stroke-linecap': 'round' });
+    el('ellipse', { cx: -20, cy: 6, rx: 3.2, ry: 2.8, fill: '#2b1d12' }, g);
+    text(g, 28, -28, '!', { 'font-family': FUN_FONT, 'font-size': 20, fill: '#b0790f' });
+    text(g, 38, -16, '!', { 'font-family': FUN_FONT, 'font-size': 14, fill: '#b0790f' });
+    splash(g, 34, 96);
   }
 };
+const MONSTER_SCALE = { kraken: 1.3, dragon: 1.18, serpent: 1.22, whale: 1.2, shark: 1.12, jelly: 1.3, puffer: 1.25 };
 
-/* layers */
-const L = {};
-['bg', 'decor', 'islands', 'routes', 'route', 'stations', 'labels', 'marker'].forEach(n => L[n] = el('g', { id: n + 'Layer' }, svg));
+/* =====================================================================
+   PAINTED BACKGROUND (#mapBg)
+   ===================================================================== */
+(function paintBackground() {
+  const B = bgSvg;
+  const defs = el('defs', {}, B);
+  const lin = (id, stops, attrs) => { const g = el('linearGradient', Object.assign({ id }, attrs), defs); stops.forEach(([o, c, op]) => el('stop', { offset: o, 'stop-color': c, 'stop-opacity': op === undefined ? 1 : op }, g)); };
+  const rad = (id, stops, attrs) => { const g = el('radialGradient', Object.assign({ id }, attrs), defs); stops.forEach(([o, c, op]) => el('stop', { offset: o, 'stop-color': c, 'stop-opacity': op === undefined ? 1 : op }, g)); };
+  lin('bgSea', [[0, '#2a4a6c'], [.22, '#336d93'], [.5, '#3c9fbe'], [.78, '#4cc6c8'], [1, '#86e3cf']], { x1: 0, y1: 0, x2: 1, y2: 0 });
+  rad('bgStorm', [[0, '#141d33', .75], [.6, '#1d2b45', .25], [1, '#1d2b45', 0]], { cx: .12, cy: .45, r: .55 });
+  rad('bgSun', [[0, '#fff6c2', .75], [.5, '#fff6c2', .2], [1, '#fff6c2', 0]], { cx: .96, cy: .32, r: .42 });
+  rad('bgParch', [[0, '#f6e6bd'], [.7, '#ecd29c'], [1, '#c9985a']], { cx: .5, cy: .5, r: .75 });
+  lin('bgFade', [[0, '#fff'], [.3, '#fff', .8], [.55, '#fff', 0]], { x1: 0, y1: 0, x2: 1, y2: 0 });
+  const mask = el('mask', { id: 'bgRainMask' }, defs);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: 'url(#bgFade)' }, mask);
+  const pat = el('pattern', { id: 'bgRain', width: 22, height: 26, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(18)' }, defs);
+  el('line', { x1: 4, y1: 0, x2: 4, y2: 11, stroke: '#dbe7f3', 'stroke-width': 1.3, opacity: .55 }, pat);
+  el('line', { x1: 15, y1: 13, x2: 15, y2: 21, stroke: '#dbe7f3', 'stroke-width': 1.1, opacity: .4 }, pat);
+  const filt = (id, children, attrs) => { const f = el('filter', Object.assign({ id, x: '-5%', y: '-5%', width: '110%', height: '110%' }, attrs), defs); children(f); };
+  filt('bgRough', f => { el('feTurbulence', { type: 'fractalNoise', baseFrequency: .03, numOctaves: 3, seed: 4, result: 't' }, f); el('feDisplacementMap', { in: 'SourceGraphic', in2: 't', scale: 18, xChannelSelector: 'R', yChannelSelector: 'G' }, f); });
+  filt('bgRoughSoft', f => { el('feTurbulence', { type: 'fractalNoise', baseFrequency: .045, numOctaves: 2, seed: 9, result: 't' }, f); el('feDisplacementMap', { in: 'SourceGraphic', in2: 't', scale: 9, xChannelSelector: 'R', yChannelSelector: 'G' }, f); });
+  filt('bgBurn', f => { el('feTurbulence', { type: 'fractalNoise', baseFrequency: .03, numOctaves: 3, seed: 4, result: 't' }, f); el('feDisplacementMap', { in: 'SourceGraphic', in2: 't', scale: 18, xChannelSelector: 'R', yChannelSelector: 'G', result: 'd' }, f); el('feGaussianBlur', { in: 'd', stdDeviation: 7 }, f); });
+  filt('bgWash', f => { el('feTurbulence', { type: 'fractalNoise', baseFrequency: '.006 .011', numOctaves: 4, seed: 21 }, f); el('feColorMatrix', { type: 'matrix', values: '0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.5 -.62' }, f); }, { x: 0, y: 0, width: '100%', height: '100%' });
+  filt('bgDeep', f => { el('feTurbulence', { type: 'fractalNoise', baseFrequency: '.009 .006', numOctaves: 3, seed: 5 }, f); el('feColorMatrix', { type: 'matrix', values: '0 0 0 0 .05  0 0 0 0 .16  0 0 0 0 .3  0 0 0 1.6 -.7' }, f); }, { x: 0, y: 0, width: '100%', height: '100%' });
+  filt('bgGrain', f => { el('feTurbulence', { type: 'fractalNoise', baseFrequency: .85, numOctaves: 2, seed: 7, result: 'n' }, f); el('feColorMatrix', { in: 'n', type: 'matrix', values: '0 0 0 0 .4  0 0 0 0 .28  0 0 0 0 .15  0 0 0 .11 0' }, f); }, { x: 0, y: 0, width: '100%', height: '100%' });
+  const clip = el('clipPath', { id: 'bgSeaClip' }, defs);
+  el('rect', { x: 34, y: 34, width: 1532, height: 1032, rx: 24, filter: 'url(#bgRoughSoft)' }, clip);
 
-/* ---------- sea, parchment and weather ---------- */
-(function drawSea() {
-  const defs = el('defs', {}, L.bg);
-  const lg = el('linearGradient', { id: 'seaGrad', x1: 0, y1: 0, x2: 1, y2: 0 }, defs);
-  el('stop', { offset: 0, 'stop-color': '#8fa9b4' }, lg);
-  el('stop', { offset: .38, 'stop-color': '#a3cbd0' }, lg);
-  el('stop', { offset: .75, 'stop-color': '#b2e2dd' }, lg);
-  el('stop', { offset: 1, 'stop-color': '#c4eee0' }, lg);
-  const f = el('filter', { id: 'paper', x: 0, y: 0, width: '100%', height: '100%' }, defs);
-  el('feTurbulence', { type: 'fractalNoise', baseFrequency: .9, numOctaves: 2, seed: 7, result: 'n' }, f);
-  el('feColorMatrix', { in: 'n', type: 'matrix', values: '0 0 0 0 .45  0 0 0 0 .32  0 0 0 0 .18  0 0 0 .09 0' }, f);
+  // burnt parchment
+  el('rect', { x: 10, y: 10, width: 1580, height: 1080, rx: 16, fill: 'url(#bgParch)', filter: 'url(#bgRough)' }, B);
+  el('rect', { x: 12, y: 12, width: 1576, height: 1076, rx: 16, fill: 'none', stroke: '#4a2a10', 'stroke-width': 22, opacity: .75, filter: 'url(#bgBurn)' }, B);
 
-  el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: '#f1dfb6' }, L.bg);
-  el('rect', { x: 14, y: 14, width: 1572, height: 1072, rx: 10, fill: 'url(#seaGrad)' }, L.bg);
-  el('rect', { x: 0, y: 0, width: 1600, height: 1100, filter: 'url(#paper)' }, L.bg);
-  el('rect', { x: 14, y: 14, width: 1572, height: 1072, rx: 10, fill: 'none', stroke: '#8a6a3a', 'stroke-width': 3 }, L.bg);
-  el('rect', { x: 22, y: 22, width: 1556, height: 1056, rx: 7, fill: 'none', stroke: '#8a6a3a', 'stroke-width': 1, 'stroke-dasharray': '2 5' }, L.bg);
+  // painted sea
+  const sea = el('g', { 'clip-path': 'url(#bgSeaClip)' }, B);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: 'url(#bgSea)' }, sea);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, filter: 'url(#bgDeep)', opacity: .5 }, sea);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, filter: 'url(#bgWash)', opacity: .26 }, sea);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: 'url(#bgStorm)' }, sea);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: 'url(#bgSun)' }, sea);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, fill: 'url(#bgRain)', mask: 'url(#bgRainMask)' }, sea);
 
-  // scattered wave marks, kept away from islands and labels
-  const rand = rng('waves');
+  // light rays from the sun across the sunny side
+  const rays = el('g', { opacity: .16 }, sea);
+  for (let i = 0; i < 9; i++) {
+    const a = Math.PI * (0.62 + i * 0.065);
+    const x2 = 1540 + Math.cos(a) * 900, y2 = 360 + Math.sin(a) * 900;
+    const x3 = 1540 + Math.cos(a + .025) * 900, y3 = 360 + Math.sin(a + .025) * 900;
+    P(rays, `M1540 360 L${x2.toFixed(0)} ${y2.toFixed(0)} L${x3.toFixed(0)} ${y3.toFixed(0)} Z`, { fill: '#fffbe0' });
+  }
+
+  // waves: curling crests in the stormy west, soft ripples in the sunny east
+  const rand = rng('crests');
   const places = Object.values(PLACES);
-  for (let i = 0, n = 0; i < 900 && n < 120; i++) {
+  const crest = (x, y, s) => {
+    const t = G(sea, x, y, `scale(${s})`);
+    P(t, 'M-24 8 C-20 -5 -7 -15 6 -13 C15 -11 19 -2 15 4 C13 -2 7 -4 3 0 C1 4 5 8 9 8 Z', { fill: '#1d4466', opacity: .32 });
+    P(t, 'M-24 8 C-20 -5 -7 -15 6 -13 C15 -11 19 -2 15 4 C13 -2 7 -4 3 0', { fill: 'none', stroke: '#eaf6fb', 'stroke-width': 2.2, opacity: .55, 'stroke-linecap': 'round' });
+    P(t, 'M-30 9 L14 9', { stroke: '#eaf6fb', 'stroke-width': 1.6, opacity: .45, 'stroke-linecap': 'round' });
+  };
+  for (let i = 0, n = 0; i < 2000 && n < 95; i++) {
     const x = 60 + rand() * 1480, y = 60 + rand() * 980;
     if (x < 500 && y < 270) continue;
-    if (places.some(p => Math.abs(p.x - x) < 90 && Math.abs(p.y - y) < 40)) continue;
-    waves(L.bg, x, y, 24, '#ffffff', .45); n++;
+    if (x > 1270 && y > 910) continue;
+    if (places.some(p => Math.abs(p.x - x) < 95 && Math.abs(p.y - y) < 44)) continue;
+    if (x < 820) crest(x, y, .7 + rand() * .5);
+    else waves(sea, x, y, 30, '#ffffff', .5, 2);
+    n++;
   }
+
+  // coastline where the sea meets the parchment
+  el('rect', { x: 34, y: 34, width: 1532, height: 1032, rx: 24, fill: 'none', stroke: '#6b4a22', 'stroke-width': 3, filter: 'url(#bgRoughSoft)' }, B);
+  el('rect', { x: 44, y: 44, width: 1512, height: 1012, rx: 18, fill: 'none', stroke: '#ffffff', 'stroke-width': 1.4, opacity: .45, 'stroke-dasharray': '6 6', filter: 'url(#bgRoughSoft)' }, B);
+  el('rect', { x: 0, y: 0, width: 1600, height: 1100, filter: 'url(#bgGrain)' }, B);
 })();
 
-/* ---------- islands under every place ---------- */
+/* =====================================================================
+   THE LIVE MAP (#map)
+   ===================================================================== */
+const L = {};
+const defs = el('defs', {}, svg);
+['dim', 'under', 'islands', 'routes', 'route', 'decor', 'stations', 'marker', 'top'].forEach(n => L[n] = el('g', { id: n + 'Layer' }, svg));
+el('rect', { x: 34, y: 34, width: 1532, height: 1032, rx: 24, fill: '#0b2a47' }, L.dim);
+(function liveDefs() {
+  const rad = (id, stops) => { const g = el('radialGradient', { id }, defs); stops.forEach(([o, c, op]) => el('stop', { offset: o, 'stop-color': c, 'stop-opacity': op }, g)); };
+  rad('treasureGlow', [[0, '#fff7c2', .95], [.45, '#ffd34d', .55], [1, '#ffd34d', 0]]);
+  rad('lampGlow', [[0, '#fff3a6', .95], [1, '#fff3a6', 0]]);
+})();
+
+/* ---------- islands ---------- */
+function islandRadius(p) { return p.kind === 'x' ? 50 : p.kind === 'treasure' ? 34 : p.big ? 32 : p.routes.length > 1 ? 23 : 20; }
 for (const p of Object.values(PLACES)) {
   if (p.monster) continue;
   const g = el('g', { class: 'isl', 'data-id': p.id }, L.islands);
-  const r = p.kind === 'x' ? 44 : p.kind === 'treasure' ? 30 : p.big ? 30 : p.routes.length > 1 ? 19 : 15;
-  P(g, blobPath(p.x, p.y + 2, r + 4, p.id + 'shallow'), { fill: '#d9f1ea', opacity: .7 });
-  P(g, blobPath(p.x, p.y, r, p.id), { fill: '#efdba6', stroke: '#a88848', 'stroke-width': 1.6 });
-  if (r > 18) P(g, blobPath(p.x + 2, p.y - 2, r * .55, p.id + 'g'), { fill: '#9cc56f', opacity: .9 });
-  const icon = p.icon;
-  if (icon === 'volcano') ART.volcano(g, p.x + 4, p.y - 12);
-  if (icon === 'lighthouse') ART.lighthouse(g, p.x + 8, p.y - 6);
-  if (icon === 'cloud') ART.cloud(g, p.x + 2, p.y - 30, .9);
-  if (icon === 'moon') ART.moon(g, p.x + 20, p.y - 22);
-  if (icon === 'stars') ART.stars(g, p.x + 26, p.y - 30);
-  if (icon === 'whirl') ART.whirl(g, p.x - 30, p.y - 4);
-  if (icon === 'mountain') ART.mountain(g, p.x + 30, p.y - 4);
-  if (icon === 'spyglass') ART.spyglass(g, p.x - 22, p.y - 14);
-  if (icon === 'bottle') ART.bottle(g, p.x - 30, p.y + 18);
-  if (icon === 'twin') { P(g, blobPath(p.x - 22, p.y + 18, 11, 'twin2'), { fill: '#efdba6', stroke: '#a88848', 'stroke-width': 1.6 }); }
-  if (icon === 'topsy') ART.palm(g, p.x - 14, p.y - 12, .8, true);
-  if (p.kind === 'treasure') { ART.palm(g, p.x - 12, p.y - 6, .75); ART.chest(g, p.x + 12, p.y - 4, .8); }
+  const draw = SCENERY[p.id];
+  if (p.id === 'whatif') { draw(g, p); continue; }
+  const r = islandRadius(p);
+  const T = TERRAIN[p.kind ? 'lush' : PLACE_TERRAIN[p.id] || 'sand'];
+  if (p.kind) {
+    el('circle', { cx: p.x, cy: p.y - 4, r: p.kind === 'x' ? 105 : 72, fill: 'url(#treasureGlow)', class: 'glow' }, L.under);
+    const rays = el('g', { opacity: .45 }, L.under);
+    for (let i = 0; i < 12; i++) {
+      const a = i * Math.PI / 6 + .2, R = p.kind === 'x' ? 110 : 76;
+      P(rays, `M${p.x} ${p.y - 4} L${(p.x + Math.cos(a) * R).toFixed(1)} ${(p.y - 4 + Math.sin(a) * R).toFixed(1)} L${(p.x + Math.cos(a + .1) * R).toFixed(1)} ${(p.y - 4 + Math.sin(a + .1) * R).toFixed(1)} Z`, { fill: '#fff7c2' });
+    }
+  }
+  P(g, blobPath(p.x, p.y + 2, r + 18, p.id + 'o'), { fill: 'none', stroke: '#ffffff', 'stroke-width': 1.4, opacity: .45, 'stroke-dasharray': '5 5' });
+  P(g, blobPath(p.x, p.y + 2, r + 9, p.id + 's'), { fill: '#c9f3ec', opacity: .5 });
+  P(g, blobPath(p.x + 3, p.y + 5, r, p.id), { fill: '#0d2b40', opacity: .25 });
+  P(g, blobPath(p.x, p.y, r, p.id), { fill: T.sand, stroke: T.edge, 'stroke-width': 2 });
+  P(g, blobPath(p.x + 1, p.y - 2, r * .7, p.id + 'g'), { fill: T.grass, stroke: T.gedge, 'stroke-width': 1.2 });
+  P(g, blobPath(p.x - 2, p.y - 5, r * .32, p.id + 'h'), { fill: T.hi, opacity: .9 });
+  if (p.id === 'twohomes') {
+    P(g, blobPath(p.x - 24, p.y + 18, 13, 'twin2'), { fill: T.sand, stroke: T.edge, 'stroke-width': 2 });
+    P(g, blobPath(p.x - 24, p.y + 16, 8, 'twin2g'), { fill: T.grass });
+  }
+  if (draw) draw(g, p);
+  if (p.kind === 'treasure') {
+    ART.palm(g, p.x - 18, p.y - 4, .85); ART.palm(g, p.x - 4, p.y - 10, .6);
+    ART.chest(g, p.x + 14, p.y - 2, 1.05);
+    [[-30, -40, 0], [32, -34, .7], [6, -50, 1.4], [40, 6, 2.1]].forEach(([dx, dy, d]) => twinkle(g, p.x + dx, p.y + dy, 5, d));
+  }
   if (p.kind === 'x') {
-    ART.palm(g, p.x - 26, p.y - 10, .9); ART.palm(g, p.x + 30, p.y - 4, .7);
-    P(g, `M${p.x - 14} ${p.y - 14} L${p.x + 14} ${p.y + 14} M${p.x + 14} ${p.y - 14} L${p.x - 14} ${p.y + 14}`, { stroke: '#c8322b', 'stroke-width': 7, 'stroke-linecap': 'round' });
+    ART.palm(g, p.x - 30, p.y - 6, 1.05); ART.palm(g, p.x + 34, p.y - 2, .8); ART.palm(g, p.x - 12, p.y - 16, .65);
+    ART.chest(g, p.x + 22, p.y + 20, 1.1);
+    [[-56, -44, 0], [50, -50, .6], [0, -66, 1.2], [62, 10, 1.8], [-60, 20, 2.4]].forEach(([dx, dy, d]) => twinkle(g, p.x + dx, p.y + dy, 6, d));
   }
 }
+
+/* rainbow over Treasure Island */
+(function rainbow() {
+  const t = PLACES.treasure;
+  ['#e8453c', '#f39a2b', '#f7d23e', '#58b94a', '#3f8fd8', '#7b5bc4'].forEach((c, i) => {
+    const r = 128 - i * 7;
+    P(L.under, `M${t.x - r} ${t.y + 10} A${r} ${r} 0 0 1 ${t.x + r} ${t.y + 10}`, { fill: 'none', stroke: c, 'stroke-width': 7.5, opacity: .62 });
+  });
+})();
 
 /* ---------- routes ---------- */
 function strokeRoute(parent, route, d) {
   if (route.golden) {
-    el('path', { d, fill: 'none', stroke: '#fff5d6', 'stroke-width': 20, 'stroke-linecap': 'round', opacity: .75 }, parent);
-    el('path', { d, fill: 'none', stroke: route.color, 'stroke-width': 12, 'stroke-linecap': 'round' }, parent);
-    el('path', { d, fill: 'none', stroke: '#fff3c4', 'stroke-width': 2.5, 'stroke-dasharray': '2 9', 'stroke-linecap': 'round' }, parent);
+    el('path', { d, fill: 'none', stroke: '#fff3b0', 'stroke-width': 28, 'stroke-linecap': 'round', opacity: .45 }, parent);
+    el('path', { d, fill: 'none', stroke: '#b98a0c', 'stroke-width': 16, 'stroke-linecap': 'round' }, parent);
+    el('path', { d, fill: 'none', stroke: route.color, 'stroke-width': 13, 'stroke-linecap': 'round' }, parent);
+    el('path', { d, fill: 'none', stroke: '#ffe680', 'stroke-width': 5, 'stroke-linecap': 'round' }, parent);
+    el('path', { d, fill: 'none', stroke: '#fffdf0', 'stroke-width': 2.6, 'stroke-dasharray': '3 12', 'stroke-linecap': 'round', class: 'flow gold' }, parent);
   } else {
-    el('path', { d, fill: 'none', stroke: HALO, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: .85 }, parent);
-    el('path', { d, fill: 'none', stroke: route.color, 'stroke-width': 5.5, 'stroke-linecap': 'round', 'stroke-dasharray': '11 8' }, parent);
+    el('path', { d, fill: 'none', stroke: '#fdf3d7', 'stroke-width': 12, 'stroke-linecap': 'round', opacity: .9 }, parent);
+    el('path', { d, fill: 'none', stroke: route.color, 'stroke-width': 6.5, 'stroke-linecap': 'round', 'stroke-dasharray': '12 8', class: 'flow' }, parent);
   }
 }
 const routeGroups = {};
@@ -984,144 +1409,177 @@ for (const id of ROUTE_ORDER) {
   routeGroups[id] = g;
   strokeRoute(g, r, routePath(r));
 }
-// golden sparkles along the current
 (function sparkles() {
   const g = routeGroups.golden;
-  const path = g.querySelector('path:nth-child(2)');
+  const path = g.querySelector('path:nth-child(3)');
   const len = path.getTotalLength();
-  for (let s = 40, i = 0; s < len - 40; s += 70, i++) {
+  for (let s = 50, i = 0; s < len - 40; s += 64, i++) {
     const p = path.getPointAtLength(s);
-    const st = star(g, p.x + (i % 2 ? 14 : -14), p.y, 4, '#fff7c2', 'sparkle');
-    st.style.animationDelay = (i * .35) + 's';
+    twinkle(g, p.x + (i % 2 ? 15 : -15), p.y, 5, i * .35);
   }
+})();
+
+/* ---------- sea life, weather and the title ---------- */
+(function drawDecor() {
+  const D = L.decor, T = L.top;
+  // storm clouds over the wobbly west
+  const storm = (x, y, s, boltAt) => { ART.cloud(D, x, y, s, true); if (boltAt) { const b = ART.bolt(D, x + boltAt[0], y + boltAt[1], s * .9); b.style.animationDelay = boltAt[2] + 's'; } };
+  storm(790, 286, 1.7, [-2, 16, 0]);
+  storm(560, 34, 1.4, [16, 10, 2.6]);
+  storm(168, 690, 1.25, [4, 12, 4.4]);
+  storm(330, 405, 1.0);
+  text(D, 640, 262, 'Here be dragons', { 'font-family': OLD_FONT, 'font-size': 26, fill: '#ffe2c8', stroke: '#6b1d10', 'stroke-width': 4, 'paint-order': 'stroke', 'text-anchor': 'middle', 'letter-spacing': 1 });
+
+  // sunny side: sun, gulls, dolphins, a turtle and a jumping fish
+  const sun = G(D, 1535, 365);
+  const spin = el('g', { class: 'sunrays' }, sun);
+  for (let i = 0; i < 14; i++) { const a = i * Math.PI / 7; P(spin, `M${(Math.cos(a) * 26).toFixed(1)} ${(Math.sin(a) * 26).toFixed(1)} L${(Math.cos(a + .12) * 42).toFixed(1)} ${(Math.sin(a + .12) * 42).toFixed(1)} L${(Math.cos(a - .12) * 42).toFixed(1)} ${(Math.sin(a - .12) * 42).toFixed(1)} Z`, { fill: '#ffc53a' }); }
+  el('circle', { r: 24, fill: '#ffd84d', stroke: '#e09a10', 'stroke-width': 2.4 }, sun);
+  P(sun, 'M-10 4 C-5 11 5 11 10 4', { fill: 'none', stroke: '#8a5d00', 'stroke-width': 2.4, 'stroke-linecap': 'round' });
+  el('circle', { cx: -8, cy: -5, r: 2.6, fill: '#8a5d00' }, sun); el('circle', { cx: 8, cy: -5, r: 2.6, fill: '#8a5d00' }, sun);
+  el('circle', { cx: -15, cy: 3, r: 3.4, fill: '#ff9a7a', opacity: .7 }, sun); el('circle', { cx: 15, cy: 3, r: 3.4, fill: '#ff9a7a', opacity: .7 }, sun);
+  text(D, 1505, 444, 'Sunny Seas', { 'font-family': FUN_FONT, 'font-size': 22, 'text-anchor': 'middle', fill: '#fff6c8', stroke: '#2f8a7c', 'stroke-width': 4, 'paint-order': 'stroke', 'letter-spacing': 1 });
+  ART.gulls(D, 1450, 300);
+  ART.gulls(D, 1300, 140);
+  ART.dolphin(D, 1300, 372);
+  ART.dolphin(D, 1292, 612, true);
+  ART.turtle(D, 1062, 632);
+  ART.fish(D, 832, 862, '#ff9a3c');
+  ART.fish(D, 1040, 452, '#ffd34d');
+  waves(D, 832, 874, 26, '#fff', .9);
+  text(D, 62, 1000, 'Wobbly Waters', { 'font-family': FUN_FONT, 'font-size': 26, fill: '#d9ecf7', stroke: '#1d3a57', 'stroke-width': 4, 'paint-order': 'stroke', 'letter-spacing': 1, opacity: .9 });
+
+  // the good ship Brave Heart, waiting to sail
+  ART.ship(D, 884, 1036, 1.15);
+
+  // title scroll
+  const sc = G(T, 30, 30);
+  P(sc, 'M26 6 L430 6 L430 214 L26 214 Z', { fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 2 });
+  P(sc, 'M26 6 L430 6 L430 214 L26 214 Z', { fill: 'none', stroke: '#c9a66b', 'stroke-width': 1.2, transform: 'translate(0 0)', 'stroke-dasharray': '1 4' });
+  const roll = (x) => {
+    el('rect', { x: x - 12, y: 0, width: 24, height: 220, rx: 12, fill: '#e8cf98', stroke: '#8a6a3a', 'stroke-width': 2 }, sc);
+    el('rect', { x: x - 6, y: 4, width: 6, height: 212, rx: 3, fill: '#fff4d8', opacity: .7 }, sc);
+    el('ellipse', { cx: x, cy: 3, rx: 12, ry: 5, fill: '#d9b878', stroke: '#8a6a3a', 'stroke-width': 1.6 }, sc);
+    el('ellipse', { cx: x, cy: 217, rx: 12, ry: 5, fill: '#d9b878', stroke: '#8a6a3a', 'stroke-width': 1.6 }, sc);
+  };
+  roll(24); roll(432);
+  const title = text(sc, 228, 70, 'The Wobbly Seas', { 'font-family': FUN_FONT, 'font-size': 44, 'text-anchor': 'middle', fill: '#ffcf3f', stroke: '#6b2e12', 'stroke-width': 7, 'paint-order': 'stroke', 'stroke-linejoin': 'round', 'letter-spacing': 1 });
+  const tw = title.getBBox().width;
+  if (tw > 380) title.setAttribute('font-size', (44 * 380 / tw).toFixed(1));
+  P(sc, 'M58 82 L398 82 L388 94 L398 106 L58 106 L68 94 Z', { fill: '#d23b2e', stroke: '#7a1a14', 'stroke-width': 1.5 });
+  text(sc, 228, 99, 'A TREASURE MAP FOR BRAVE HEARTS', { 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 900, fill: '#fff', 'letter-spacing': 2 });
+  text(sc, 228, 134, 'Every wobble is just an island.', { 'text-anchor': 'middle', 'font-size': 18, 'font-weight': 900 });
+  text(sc, 228, 156, 'Keep sailing. The treasure is waiting!', { 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 700, fill: '#7a2e12' });
+  ['Tame the sea monsters, swap routes at the white ports', 'and ride the Golden Current whenever you need help.']
+    .forEach((s, i) => text(sc, 228, 184 + i * 17, s, { 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 700, fill: '#6a5a48' }));
+
+  // compass rose
+  const c = G(T, 1505, 112);
+  el('circle', { r: 50, fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 2.2 }, c);
+  el('circle', { r: 43, fill: 'none', stroke: '#8a6a3a', 'stroke-width': 1 }, c);
+  for (let i = 0; i < 32; i++) { const a = i * Math.PI / 16, r1 = i % 4 ? 39 : 35; P(c, `M${(Math.cos(a) * r1).toFixed(1)} ${(Math.sin(a) * r1).toFixed(1)} L${(Math.cos(a) * 43).toFixed(1)} ${(Math.sin(a) * 43).toFixed(1)}`, { stroke: '#8a6a3a', 'stroke-width': 1 }); }
+  P(c, 'M0 -30 L5 -5 L30 0 L5 5 L0 30 L-5 5 L-30 0 L-5 -5 Z', { fill: '#3d74b8', stroke: '#1d3a57', 'stroke-width': 1, transform: 'rotate(45)' });
+  P(c, 'M0 -40 L7 -7 L40 0 L7 7 L0 40 L-7 7 L-40 0 L-7 -7 Z', { fill: '#ffd34d', stroke: '#8a5d00', 'stroke-width': 1.2 });
+  P(c, 'M0 -40 L7 -7 L0 0 Z M40 0 L7 7 L0 0 Z M0 40 L-7 7 L0 0 Z M-40 0 L-7 -7 L0 0 Z', { fill: '#d99a10' });
+  P(c, 'M0 -40 L7 -7 L0 0 L-7 -7 Z', { fill: '#e0352b' });
+  el('circle', { r: 5, fill: '#fbf0d4', stroke: '#8a5d00', 'stroke-width': 1.4 }, c);
+  [['N', 0, -54], ['E', 60, 5], ['S', 0, 66], ['W', -60, 5]].forEach(([s, x, y]) => text(c, x, y, s, { 'text-anchor': 'middle', 'font-family': FUN_FONT, 'font-size': s === 'N' ? 20 : 14, fill: '#7a2e12', stroke: '#fbf0d4', 'stroke-width': 3, 'paint-order': 'stroke' }));
+
+  // legend scroll
+  const lg = G(T, 1272, 930);
+  P(lg, 'M0 0 L304 0 L304 142 L0 142 Z', { fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 2 });
+  el('rect', { x: -8, y: -4, width: 16, height: 150, rx: 8, fill: '#e8cf98', stroke: '#8a6a3a', 'stroke-width': 1.6 }, lg);
+  el('rect', { x: 296, y: -4, width: 16, height: 150, rx: 8, fill: '#e8cf98', stroke: '#8a6a3a', 'stroke-width': 1.6 }, lg);
+  text(lg, 18, 22, 'SEA ROUTES', { 'font-family': FUN_FONT, 'font-size': 14, 'letter-spacing': 1.5, fill: '#7a2e12' });
+  text(lg, 288, 21, 'tap one to follow it', { 'font-size': 11, 'font-style': 'italic', 'font-weight': 700, fill: '#8a7a60', 'text-anchor': 'end' });
+  ROUTE_ORDER.forEach((id, i) => {
+    const r = ROUTES[id];
+    const col = i < 4 ? 0 : 1, row = i % 4;
+    const g = el('g', { class: 'lg', 'data-route': id, transform: `translate(${18 + col * 140} ${44 + row * 26})`, role: 'button', tabindex: 0, 'aria-label': 'Follow ' + r.name }, lg);
+    el('rect', { x: -4, y: -12, width: 134, height: 24, fill: 'transparent' }, g);
+    if (r.golden) el('line', { x1: 0, y1: 0, x2: 24, y2: 0, stroke: r.color, 'stroke-width': 9, 'stroke-linecap': 'round' }, g);
+    else el('line', { x1: 0, y1: 0, x2: 24, y2: 0, stroke: r.color, 'stroke-width': 5.5, 'stroke-dasharray': '7 4' }, g);
+    text(g, 31, 4.5, r.name, { 'font-size': 12, 'font-weight': 800 });
+    g.addEventListener('click', () => focusRoute(id));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusRoute(id); } });
+  });
+
+  text(T, 800, 1086, 'Something really worrying you? Tell a grown-up you trust, or call Childline free on 0800 1111.', { 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 900, fill: '#fff4d8', stroke: '#3b2412', 'stroke-width': 3.5, 'paint-order': 'stroke' });
 })();
 
 /* ---------- places, monsters and labels ---------- */
 function labelAttrs(p) {
   if (typeof p.l === 'object') return { x: p.x + p.l.dx, y: p.y + p.l.dy, anchor: p.l.anchor };
   const [dx, dy] = DIRS[p.l];
-  const pad = p.kind === 'treasure' ? 40 : p.big ? 34 : p.routes.length > 1 ? 24 : 20;
+  const pad = p.kind === 'treasure' ? 50 : p.big ? 42 : p.routes.length > 1 ? 32 : 28;
   const n = dx && dy ? pad * .8 : pad;
   const base = dy < 0 ? 0 : dy > 0 ? 10 : 5;
   return { x: p.x + dx * n, y: p.y + dy * n + base, anchor: dx > 0 ? 'start' : dx < 0 ? 'end' : 'middle' };
+}
+function plate(g, texts, style) {
+  let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
+  texts.forEach(t => { const b = t.getBBox(); x1 = Math.min(x1, b.x); y1 = Math.min(y1, b.y); x2 = Math.max(x2, b.x + b.width); y2 = Math.max(y2, b.y + b.height); });
+  const r = el('rect', Object.assign({ x: (x1 - 7).toFixed(1), y: (y1 - 2.5).toFixed(1), width: (x2 - x1 + 14).toFixed(1), height: (y2 - y1 + 5).toFixed(1), rx: 7, class: 'plate' }, style), g);
+  g.insertBefore(r, texts[0]);
 }
 const stationEls = {};
 for (const p of Object.values(PLACES)) {
   const g = el('g', { class: 'stn' + (p.monster ? ' monster' : ''), 'data-id': p.id, tabindex: 0, role: 'button', 'aria-label': p.name }, L.stations);
   stationEls[p.id] = g;
   if (p.monster) {
-    const a = el('g', { transform: `translate(${p.x + p.art[0]} ${p.y + p.art[1]})` }, g);
-    const inner = el('g', { class: 'art' }, a);
-    MONSTERS[p.monster](inner);
+    const a = G(g, p.x + p.art[0], p.y + p.art[1]);
+    const bob = el('g', { class: 'bobm' }, a);
+    bob.style.animationDelay = (Object.keys(MONSTERS).indexOf(p.monster) * .45) + 's';
+    const hov = el('g', { class: 'art' }, bob);
+    MONSTERS[p.monster](el('g', { transform: `scale(${MONSTER_SCALE[p.monster]})` }, hov));
     el('circle', { class: 'hit', cx: p.x, cy: p.y, r: 16, fill: 'transparent' }, g);
-    el('rect', { x: p.x + p.art[0] - 60, y: p.y + p.art[1] - 50, width: 120, height: 90, fill: 'transparent' }, g);
+    el('rect', { x: p.x + p.art[0] - 70, y: p.y + p.art[1] - 60, width: 140, height: 105, fill: 'transparent' }, g);
   } else {
     const ix = p.routes.length > 1;
-    el('circle', { class: 'hit', cx: p.x, cy: p.y, r: p.kind ? 34 : ix ? 18 : 15, fill: 'transparent' }, g);
-    if (p.kind === 'x') { /* the big red X is the marker */ }
+    el('circle', { class: 'hit', cx: p.x, cy: p.y, r: p.kind ? 40 : ix ? 22 : 18, fill: 'transparent' }, g);
+    if (p.kind === 'x') {
+      const xd = `M${p.x - 15} ${p.y - 13} L${p.x + 15} ${p.y + 15} M${p.x + 15} ${p.y - 13} L${p.x - 15} ${p.y + 15}`;
+      P(g, xd, { stroke: '#7a1a14', 'stroke-width': 11, 'stroke-linecap': 'round' });
+      P(g, xd, { stroke: '#e0352b', 'stroke-width': 7.5, 'stroke-linecap': 'round' });
+    }
     else if (p.kind === 'treasure') {
-      el('circle', { cx: p.x, cy: p.y, r: 9, fill: '#fff', stroke: '#c27a00', 'stroke-width': 3.5 }, g);
-      star(g, p.x, p.y, 6, '#e2a912');
+      el('circle', { cx: p.x, cy: p.y, r: 10, fill: '#fff', stroke: '#c27a00', 'stroke-width': 3.6 }, g);
+      star(g, p.x, p.y, 7, '#e2a912');
     } else if (ix) {
-      el('circle', { cx: p.x, cy: p.y, r: p.big ? 13 : 9, fill: '#fff', stroke: '#3a2a18', 'stroke-width': p.big ? 4 : 3.4 }, g);
-      if (p.big) el('circle', { cx: p.x, cy: p.y, r: 4, fill: '#3a2a18' }, g);
+      el('circle', { cx: p.x, cy: p.y, r: p.big ? 14 : 10, fill: '#fff', stroke: '#3a2a18', 'stroke-width': p.big ? 4.4 : 3.6 }, g);
+      if (p.big) el('circle', { cx: p.x, cy: p.y, r: 4.5, fill: '#3a2a18' }, g);
     } else {
-      el('circle', { cx: p.x, cy: p.y, r: 6.5, fill: '#fff', stroke: ROUTES[p.routes[0]].color, 'stroke-width': 3.6 }, g);
+      el('circle', { cx: p.x, cy: p.y, r: 7, fill: '#fff', stroke: ROUTES[p.routes[0]].color, 'stroke-width': 4 }, g);
     }
   }
   const la = labelAttrs(p);
   const big = p.big || p.kind;
-  const t = text(g, la.x, la.y, p.name, Object.assign({
+  const t = text(g, la.x, la.y, p.name, {
     class: 'lbl', 'text-anchor': la.anchor,
-    'font-size': big ? 17 : p.monster ? 13 : 14,
+    'font-size': big ? 17 : p.monster ? 13 : 13.5,
     'font-weight': big ? 900 : 800,
     'font-style': p.monster ? 'italic' : 'normal',
-    fill: p.monster ? '#5b3a86' : INK
-  }, halo));
+    fill: p.monster ? '#4b2a7a' : INK
+  });
+  const texts = [t];
   if (p.kind === 'treasure' || p.kind === 'x') {
     const word = p.kind === 'x' ? 'X MARKS THE SPOT' : 'TREASURE: ' + p.treasure.toUpperCase();
-    text(g, la.x, la.y + 18, word, Object.assign({ 'text-anchor': la.anchor, 'font-size': 11.5, 'font-weight': 900, fill: '#a35f00', 'letter-spacing': 1.4 }, halo));
+    texts.push(text(g, la.x, la.y + 17, word, { 'text-anchor': la.anchor, 'font-size': 11.5, 'font-weight': 900, fill: '#a35f00', 'letter-spacing': 1.4 }));
   }
+  plate(g, texts, p.monster ? { fill: '#f4ecff', stroke: '#7b52b0', 'stroke-width': 1.4, opacity: .95 }
+    : p.kind ? { fill: '#fff6cf', stroke: '#c27a00', 'stroke-width': 2.2 }
+    : { fill: '#fdf4dc', stroke: '#9a7a48', 'stroke-width': 1.3, opacity: .95 });
   g.addEventListener('click', () => { if (!dragMoved()) selectPlace(p.id); });
   g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectPlace(p.id); } });
 }
 
-/* ---------- decoration: title, compass, key, legend ---------- */
-(function drawDecor() {
-  const D = L.decor;
-  // title scroll
-  const sc = el('g', { transform: 'translate(36 34)' }, D);
-  P(sc, 'M14 0 L430 0 C440 0 446 8 446 16 L446 196 C446 206 440 212 430 212 L14 212 C4 212 -2 206 -2 196 L-2 16 C-2 8 4 0 14 0 Z', { fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 2 });
-  P(sc, 'M-2 16 C-14 16 -14 0 0 0 M446 196 C458 196 458 212 444 212', { fill: 'none', stroke: '#8a6a3a', 'stroke-width': 2 });
-  text(sc, 22, 58, 'The Wobbly Seas', { 'font-family': TITLE_FONT, 'font-size': 52, fill: '#7a2e12' });
-  text(sc, 24, 84, 'A TREASURE MAP FOR BRAVE HEARTS', { 'font-size': 13, 'font-weight': 900, fill: '#b5651d', 'letter-spacing': 2.6 });
-  text(sc, 24, 116, 'Every wobble is just an island.', { 'font-size': 19, 'font-weight': 900 });
-  text(sc, 24, 139, 'Keep sailing. The treasure is waiting.', { 'font-size': 19, 'font-weight': 600 });
-  ['Every route starts with a wobble and ends with treasure.', 'Tame the sea monsters, swap routes at the white ports,', 'and hop on the Golden Current whenever you need help.']
-    .forEach((s, i) => text(sc, 24, 166 + i * 17, s, { 'font-size': 13.5, 'font-weight': 600, fill: '#6a5a48' }));
-
-  // compass rose
-  const c = el('g', { transform: 'translate(1505 112)' }, D);
-  el('circle', { r: 46, fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 2, opacity: .92 }, c);
-  el('circle', { r: 38, fill: 'none', stroke: '#8a6a3a', 'stroke-width': 1, 'stroke-dasharray': '2 3' }, c);
-  P(c, 'M0 -40 L7 -7 L40 0 L7 7 L0 40 L-7 7 L-40 0 L-7 -7 Z', { fill: '#e2a912', stroke: '#8a5d00', 'stroke-width': 1.2 });
-  P(c, 'M0 -40 L7 -7 L0 0 Z M40 0 L7 7 L0 0 Z M0 40 L-7 7 L0 0 Z M-40 0 L-7 -7 L0 0 Z', { fill: '#b57d0a' });
-  P(c, 'M0 -26 L4 -4 L0 0 L-4 -4 Z', { fill: '#c8322b' });
-  el('circle', { r: 4, fill: '#fbf0d4', stroke: '#8a5d00', 'stroke-width': 1.2 }, c);
-  text(c, 0, -50, 'N', { 'text-anchor': 'middle', 'font-family': TITLE_FONT, 'font-size': 20, fill: '#7a2e12' });
-
-  // sun over the treasure islands
-  const sun = el('g', { transform: 'translate(1535 375)' }, D);
-  for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; P(sun, `M${Math.cos(a) * 24} ${Math.sin(a) * 24} L${Math.cos(a) * 34} ${Math.sin(a) * 34}`, { stroke: '#f0b51c', 'stroke-width': 3, 'stroke-linecap': 'round' }); }
-  el('circle', { r: 19, fill: '#ffd34d', stroke: '#e09a10', 'stroke-width': 2 }, sun);
-  P(sun, 'M-8 3 C-4 9 4 9 8 3', { fill: 'none', stroke: '#8a5d00', 'stroke-width': 2, 'stroke-linecap': 'round' });
-  el('circle', { cx: -6, cy: -4, r: 2, fill: '#8a5d00' }, sun); el('circle', { cx: 6, cy: -4, r: 2, fill: '#8a5d00' }, sun);
-
-  // storm clouds over the wobbly west
-  ART.cloud(D, 790, 290, 1.3);
-  ART.cloud(D, 160, 690, 1.0);
-  P(D, 'M802 310 l-6 12 l6 0 l-6 12', { fill: 'none', stroke: '#f5c400', 'stroke-width': 2.6, 'stroke-linejoin': 'round' });
-
-  // region names
-  const region = { 'font-family': TITLE_FONT, 'font-size': 30, fill: '#466d7d', opacity: .55, 'letter-spacing': 1 };
-  text(D, 60, 1050, 'Wobbly Waters', region);
-  text(D, 1505, 442, 'Sunny Seas', Object.assign({}, region, { 'font-size': 26, 'text-anchor': 'middle', fill: '#2f8a7c', opacity: .6 }));
-  text(D, 640, 262, 'Here be dragons', { 'font-family': TITLE_FONT, 'font-size': 22, fill: '#8e2a1c', opacity: .8, 'text-anchor': 'middle', 'font-style': 'italic' });
-
-  // a little ship heading east
-  const sh = el('g', { opacity: .9 }, D);
-  ART.ship(sh, 1040, 1035, 1.1);
-})();
-
-(function drawLegend() {
-  const D = L.decor;
-  const lg = el('g', { transform: 'translate(1250 932)' }, D);
-  P(lg, 'M0 0 L320 0 L320 140 L0 140 Z', { fill: '#fbf0d4', stroke: '#8a6a3a', 'stroke-width': 1.6, opacity: .95 });
-  text(lg, 12, 20, 'SEA ROUTES', { 'font-size': 11.5, 'font-weight': 900, 'letter-spacing': 2.4, fill: '#6a5a48' });
-  text(lg, 308, 20, 'tap one to follow it', { 'font-size': 11, 'font-style': 'italic', fill: '#8a7a60', 'text-anchor': 'end' });
-  ROUTE_ORDER.forEach((id, i) => {
-    const r = ROUTES[id];
-    const col = i < 4 ? 0 : 1, row = i % 4;
-    const g = el('g', { class: 'lg', 'data-route': id, transform: `translate(${12 + col * 154} ${42 + row * 26})`, role: 'button', tabindex: 0, 'aria-label': 'Follow ' + r.name }, lg);
-    el('rect', { x: -4, y: -12, width: 150, height: 24, fill: 'transparent' }, g);
-    if (r.golden) el('line', { x1: 0, y1: 0, x2: 26, y2: 0, stroke: r.color, 'stroke-width': 9, 'stroke-linecap': 'round' }, g);
-    else el('line', { x1: 0, y1: 0, x2: 26, y2: 0, stroke: r.color, 'stroke-width': 5, 'stroke-dasharray': '7 4' }, g);
-    text(g, 34, 4.5, r.name, { 'font-size': 12.5, 'font-weight': 800 });
-    g.addEventListener('click', () => focusRoute(id));
-    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusRoute(id); } });
-  });})();
-
-(function drawFootnote() {
-  text(L.decor, 800, 1080, 'Something really worrying you? Tell a grown-up you trust, or call Childline free on 0800 1111.', { 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 700, fill: '#5a4a38' });
-})();
-
 /* ---------- ship marker ---------- */
 const shipG = el('g', { 'pointer-events': 'none' }, L.marker);
 shipG.style.display = 'none';
-ART.ship(shipG, 0, 0, 1.15);
+ART.ship(shipG, 0, 0, .95);
 function shipAt(x, y, faceLeft) {
   shipG.style.display = '';
-  shipG.setAttribute('transform', `translate(${x.toFixed(1)} ${(y - 12).toFixed(1)}) scale(${faceLeft ? -1 : 1} 1)`);
+  shipG.setAttribute('transform', `translate(${x.toFixed(1)} ${(y - 14).toFixed(1)}) scale(${faceLeft ? -1 : 1} 1)`);
 }
 
 /* =====================================================================
@@ -1275,13 +1733,14 @@ clearBtn.addEventListener('click', () => { clearFocus(); setMarker(null); showIn
 
 /* ---------- zoom and drag ---------- */
 const scroller = document.getElementById('mapScroll');
+const stage = document.getElementById('mapStage');
 let zoom = 1;
 function setZoom(z) {
   const cx = (scroller.scrollLeft + scroller.clientWidth / 2) / scroller.scrollWidth;
   const cy = (scroller.scrollTop + scroller.clientHeight / 2) / scroller.scrollHeight;
   zoom = Math.max(1, Math.min(3, z));
-  svg.style.width = zoom === 1 ? '' : (zoom * 100) + '%';
-  svg.style.minWidth = zoom === 1 ? '' : (1050 * zoom) + 'px';
+  stage.style.width = zoom === 1 ? '' : (zoom * 100) + '%';
+  stage.style.minWidth = zoom === 1 ? '' : (1050 * zoom) + 'px';
   scroller.scrollLeft = cx * scroller.scrollWidth - scroller.clientWidth / 2;
   scroller.scrollTop = cy * scroller.scrollHeight - scroller.clientHeight / 2;
 }
@@ -1535,18 +1994,23 @@ leadForm.addEventListener('submit', async e => {
 });
 
 function downloadSVG() {
+  // one file: the painted background, then the live map on top
   const clone = svg.cloneNode(true);
   clone.removeAttribute('class');
   clone.removeAttribute('style');
   clone.querySelector('#routeLayer').replaceChildren();
   clone.querySelector('#markerLayer').replaceChildren();
+  clone.querySelector('#dimLayer').replaceChildren();
   clone.querySelectorAll('[tabindex]').forEach(n => n.removeAttribute('tabindex'));
-  clone.querySelectorAll('.sparkle, .bob').forEach(n => n.removeAttribute('class'));
+  clone.querySelectorAll('[class]').forEach(n => n.removeAttribute('class'));
+  const bg = el('g', {});
+  for (const n of bgSvg.childNodes) bg.appendChild(n.cloneNode(true));
+  clone.insertBefore(bg, clone.querySelector('defs'));
   clone.setAttribute('xmlns', NS);
   clone.setAttribute('width', '1600');
   clone.setAttribute('height', '1100');
   const style = document.createElementNS(NS, 'style');
-  style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Pirata+One&display=swap');";
+  style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Pirata+One&display=swap');";
   clone.insertBefore(style, clone.firstChild);
   const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' });
   const a = document.createElement('a');
