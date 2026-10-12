@@ -1,7 +1,7 @@
 {
-  "name": "the-road-home",
+  "name": "the-long-way-home",
   "version": "1.0.0",
-  "description": "The Road Home: a night-time motorway map of the hard feelings everyone drives through. Interactive lead magnet with a satnav and printable poster.",
+  "description": "The Long Way Home: an illustrated country map of the hard feelings everyone walks through. Interactive lead magnet with a walk-me-home guide and printable poster.",
   "main": "server.js",
   "private": true,
   "scripts": {

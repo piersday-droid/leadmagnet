@@ -3,179 +3,160 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Road Home · A motorway map for hard days</title>
-<meta name="description" content="A night-time motorway map of the hard feelings everyone drives through. Anxiety, low mood, pressure, traffic, love, family and the urge to escape are all motorways, and every one of them leads home.">
-<meta property="og:title" content="The Road Home">
-<meta property="og:description" content="Every hard feeling is a junction. All roads lead home.">
-<meta name="theme-color" content="#0a0e19">
+<title>The Long Way Home · A country map for hard days</title>
+<meta name="description" content="An illustrated country map of the hard feelings everyone walks through. Worry, low days, exams and work, traffic, love, children and the urge to escape are all country lanes, and every one of them climbs out of the valley and leads home.">
+<meta property="og:title" content="The Long Way Home">
+<meta property="og:description" content="Every hard feeling is a place you pass through. Every lane leads home.">
+<meta name="theme-color" content="#f5eedd">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Overpass+Mono:wght@600;700&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0e19;
-    --card: #121a2e;
-    --rule: #233150;
-    --ink: #eef2fa;
-    --muted: #9aa8c4;
-    --amber: #ffc24b;
-    --blue: #1d5bbf;
-    --brown: #7b4a22;
-    --green: #17703a;
-    --red: #ff4f5e;
+    --paper: #f5eedd;
+    --card: #fffaf0;
+    --rule: #e2d6bb;
+    --ink: #33261a;
+    --muted: #6e5c48;
+    --green: #3f6b34;
+    --terracotta: #b8532f;
+    --gold: #d49a1f;
+    --red: #c0302b;
     --radius: 16px;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: Overpass, "Helvetica Neue", Arial, sans-serif;
-    font-size: 17px;
-    line-height: 1.55;
-  }
-  a { color: var(--amber); }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: Nunito, "Segoe UI", Arial, sans-serif; font-size: 17px; line-height: 1.6; }
+  a { color: var(--terracotta); }
   button, input, select { font: inherit; }
   .wrap { max-width: 1500px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+  .hand { font-family: Caveat, "Comic Sans MS", cursive; }
 
-  /* header */
-  .top { border-bottom: 1px solid var(--rule); background: rgba(10,14,25,.9); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px); }
-  .top-inner { display: flex; align-items: center; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
-  .shield { display: inline-flex; align-items: center; justify-content: center; background: var(--blue); color: #fff; font-weight: 800; border: 2px solid #fff; border-radius: 5px; padding: 1px 8px; font-size: 14px; letter-spacing: .5px; }
-  .brand { font-weight: 800; font-size: 19px; letter-spacing: .2px; }
-  .top nav { margin-left: auto; display: flex; gap: 20px; font-size: 15px; }
+  .top { background: rgba(245,238,221,.92); border-bottom: 1px solid var(--rule); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(6px); }
+  .top-inner { display: flex; align-items: center; gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+  .brand { font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 21px; }
+  .top nav { margin-left: auto; display: flex; gap: 20px; font-size: 15px; font-weight: 700; }
   .top nav a { color: var(--muted); text-decoration: none; }
-  .top nav a:hover { color: var(--ink); }
+  .top nav a:hover { color: var(--terracotta); }
   @media (max-width: 680px) { .top nav { display: none; } }
 
-  /* hero */
-  .hero { padding-top: 44px; padding-bottom: 26px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: end; }
-  .hero h1 { margin: 0; font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 600; font-size: clamp(40px, 6vw, 78px); line-height: 1; letter-spacing: -1px; }
-  .hero h1 span { color: var(--amber); }
-  .hero .kick { text-transform: uppercase; letter-spacing: 3px; font-size: 13px; color: var(--muted); font-weight: 700; margin: 0 0 14px; }
+  .hero { padding-top: 44px; padding-bottom: 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: end; }
+  .hero .kick { font-family: Caveat, cursive; font-size: 26px; color: var(--terracotta); margin: 0 0 4px; font-weight: 700; }
+  .hero h1 { margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: clamp(38px, 5.6vw, 72px); line-height: 1.02; letter-spacing: -1px; color: #2c3d22; }
+  .hero h1 em { font-style: italic; font-weight: 500; color: var(--terracotta); }
   .hero p.lead { margin: 0; color: var(--muted); max-width: 62ch; }
-  @media (max-width: 880px) { .hero { grid-template-columns: 1fr; gap: 16px; padding-top: 28px; } }
+  @media (max-width: 880px) { .hero { grid-template-columns: 1fr; gap: 14px; padding-top: 26px; } }
 
-  /* map */
   .mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
   @media (max-width: 1120px) { .mapwrap { grid-template-columns: 1fr; } }
-  .map-card { position: relative; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; background: #070a13; box-shadow: 0 30px 80px -40px rgba(255,194,75,.25); }
+  .map-card { position: relative; border: 1px solid #d6c7a4; border-radius: var(--radius); overflow: hidden; background: #e9e2c8; box-shadow: 0 2px 0 rgba(0,0,0,.03), 0 24px 50px -30px rgba(80,60,20,.45); }
   .map-scroll { overflow: auto; aspect-ratio: 4 / 3; cursor: grab; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
   .map-scroll.dragging { cursor: grabbing; user-select: none; }
-  #map { display: block; width: 100%; height: auto; min-width: 1000px; }
+  #map { display: block; width: 100%; height: auto; min-width: 1050px; }
   @media (max-width: 700px) { .map-scroll { aspect-ratio: auto; height: 72vh; } }
   .map-tools { position: absolute; right: 12px; top: 12px; z-index: 3; display: flex; gap: 6px; }
-  .map-tools button { min-width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--rule); background: rgba(18,26,46,.92); color: var(--ink); font-size: 20px; line-height: 1; cursor: pointer; padding: 0 12px; }
-  .map-tools button.wide { font-size: 14px; font-weight: 700; }
-  .map-tools button:hover { border-color: var(--amber); }
+  .map-tools button { min-width: 40px; height: 40px; border-radius: 10px; border: 1px solid #cdbb94; background: rgba(255,250,240,.95); color: var(--ink); font-size: 20px; line-height: 1; cursor: pointer; padding: 0 12px; font-weight: 700; }
+  .map-tools button.wide { font-size: 14px; }
+  .map-tools button:hover { border-color: var(--terracotta); }
   .map-tools button[hidden] { display: none; }
 
-  .satnav {
-    position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 3;
+  .guide {
+    position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 3;
     width: min(560px, calc(100% - 24px));
-    background: rgba(8,12,22,.94); border: 1px solid #2c3b60; border-radius: 14px;
-    padding: 12px 16px; display: flex; gap: 14px; align-items: center;
-    box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    background: #fffaf0; border: 2px solid #8b5e34; border-radius: 14px;
+    padding: 10px 16px; display: flex; gap: 14px; align-items: center;
+    box-shadow: 0 10px 30px rgba(60,40,10,.25);
   }
-  .satnav[hidden] { display: none; }
-  .satnav .badge { flex: none; min-width: 46px; height: 46px; border-radius: 10px; background: var(--blue); border: 2px solid #fff; display: grid; place-items: center; font-weight: 800; font-size: 15px; padding: 0 6px; }
-  .satnav .badge.brown { background: var(--brown); }
-  .satnav .badge.green { background: var(--green); color: #ffe14d; }
-  .satnav .badge.home { background: var(--amber); color: #1a1206; border-color: #ffe7b0; }
-  .satnav .what { font-weight: 800; font-size: 17px; line-height: 1.2; }
-  .satnav .why { font-family: Fraunces, Georgia, serif; font-style: italic; color: var(--amber); font-size: 16px; line-height: 1.25; }
-  .satnav .stop { margin-left: auto; flex: none; background: none; border: 1px solid #2c3b60; color: var(--muted); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px; }
+  .guide[hidden] { display: none; }
+  .guide .step { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--terracotta); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 15px; }
+  .guide .step.good { background: var(--green); }
+  .guide .what { font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 18px; line-height: 1.2; }
+  .guide .why { font-family: Caveat, cursive; font-size: 22px; line-height: 1.1; color: var(--terracotta); }
+  .guide .stop { margin-left: auto; flex: none; background: none; border: 1px solid #cdbb94; color: var(--muted); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px; font-weight: 700; }
 
-  /* svg interaction */
-  #map .sign, #map .node, #map .sos, #map .home { cursor: pointer; }
-  #map .sign:focus, #map .home:focus, #map .sos:focus { outline: none; }
-  #map .sign:hover .plate, #map .sign:focus-visible .plate { stroke: var(--amber); }
-  #map .rd, #map .sign, #map .node, #map .post { transition: opacity .3s ease; }
-  #map.focus .rd:not(.on) { opacity: .12; }
-  #map.focus .sign:not(.on), #map.focus .post:not(.on) { opacity: .18; }
-  #map.focus .node:not(.on) { opacity: .25; }
-  #map .sign.lit .plate { stroke: var(--amber); stroke-width: 3; }
-  #map .sign.lit { filter: drop-shadow(0 0 10px rgba(255,194,75,.9)); }
+  #map .place, #map .tag, #map .home { cursor: pointer; }
+  #map .tag:focus, #map .home:focus { outline: none; }
+  #map .tag:hover .board, #map .tag:focus-visible .board { stroke: var(--terracotta); stroke-width: 2.5; }
+  #map .ln, #map .tag, #map .post { transition: opacity .3s ease; }
+  #map .ln .edge { transition: stroke .3s ease; }
+  #map.focus .ln:not(.on) { opacity: .35; }
+  #map.focus .ln.on .edge { stroke: var(--c); }
+  #map.focus .tag:not(.on), #map.focus .post:not(.on) { opacity: .25; }
+  #map .tag.lit .board { stroke: var(--terracotta); stroke-width: 3.5; }
+  #map .tag.lit { filter: drop-shadow(0 0 8px rgba(255,196,80,.95)); }
   #map .lg { cursor: pointer; }
   #map .lg:hover text { text-decoration: underline; }
-  @keyframes homepulse { 0%, 100% { opacity: .55; } 50% { opacity: .95; } }
-  #map .homeglow { animation: homepulse 4s ease-in-out infinite; }
-  #map.arrived .homeglow { animation: none; opacity: 1; }
-  #map .reveal-sign { opacity: 0; transition: opacity .6s ease; }
-  #map .reveal-sign.in { opacity: 1; }
-  @media (prefers-reduced-motion: reduce) { #map .homeglow { animation: none; } }
+  #map .appear { opacity: 0; transition: opacity .7s ease; }
+  #map .appear.in { opacity: 1; }
 
-  /* panel */
-  .panel { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 22px; position: sticky; top: 74px; max-height: calc(100vh - 90px); overflow: auto; }
+  .panel { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 22px; position: sticky; top: 74px; max-height: calc(100vh - 90px); overflow: auto; box-shadow: 0 12px 30px -24px rgba(80,60,20,.5); }
   @media (max-width: 1120px) { .panel { position: static; max-height: none; } }
-  .panel .kicker { font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 0 0 8px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .panel h2 { font-size: 30px; line-height: 1.1; margin: 0 0 6px; font-weight: 800; }
-  .panel .reframe { font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 600; color: var(--amber); font-size: 22px; line-height: 1.2; margin: 0 0 6px; }
-  .panel h3 { font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase; margin: 20px 0 6px; color: var(--muted); }
+  .panel .kicker { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); font-weight: 800; margin: 0 0 8px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .panel h2 { font-family: Fraunces, Georgia, serif; font-size: 31px; line-height: 1.1; margin: 0 0 2px; }
+  .panel .reframe { font-family: Caveat, cursive; font-weight: 700; color: var(--terracotta); font-size: 29px; line-height: 1.1; margin: 0 0 6px; }
+  .panel h3 { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; margin: 20px 0 6px; color: var(--muted); font-weight: 800; }
   .panel p { margin: 0; }
-  .panel .gap { background: rgba(255,194,75,.08); border-left: 4px solid var(--amber); padding: 10px 12px; border-radius: 0 10px 10px 0; }
-  .panel .help { background: rgba(255,79,94,.1); border-left: 4px solid var(--red); padding: 10px 12px; border-radius: 0 10px 10px 0; margin-top: 14px; font-size: 15px; }
-  .tag { display: inline-flex; align-items: center; font-size: 12px; font-weight: 800; padding: 1px 8px; border-radius: 4px; border: 2px solid #fff; background: var(--blue); color: #fff; letter-spacing: .4px; }
-  .tag.ring { background: #2a2416; border-color: #fff1cf; color: #fff1cf; }
-  .tag.link { background: var(--green); color: #ffe14d; }
-  .roads { list-style: none; margin: 0; padding: 0; font-size: 15px; }
-  .roads li { padding: 8px 0; border-top: 1px solid var(--rule); display: flex; gap: 10px; align-items: baseline; }
-  .roads li:first-child { border-top: 0; }
-  .roads .sw { flex: none; width: 16px; height: 6px; border-radius: 3px; background: var(--c); transform: translateY(-3px); }
-  .linkbtn { background: none; border: 0; padding: 0; color: var(--amber); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; font-weight: 700; text-align: left; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--amber); color: #1a1206; border: 0; border-radius: 10px; padding: 11px 16px; font-weight: 800; cursor: pointer; text-decoration: none; }
+  .panel .gap { background: #f3f7e8; border-left: 4px solid var(--green); padding: 10px 12px; border-radius: 0 10px 10px 0; }
+  .panel .help { background: #fbebe7; border-left: 4px solid var(--red); padding: 10px 12px; border-radius: 0 10px 10px 0; margin-top: 14px; font-size: 15px; }
+  .chipline { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; padding: 2px 9px; border-radius: 999px; background: var(--c); color: #fff; letter-spacing: .3px; text-transform: none; }
+  .ways { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .ways li { padding: 8px 0; border-top: 1px dashed var(--rule); display: flex; gap: 10px; align-items: baseline; }
+  .ways li:first-child { border-top: 0; }
+  .ways .dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); transform: translateY(1px); }
+  .linkbtn { background: none; border: 0; padding: 0; color: var(--terracotta); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; font-weight: 800; text-align: left; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--green); color: #fff; border: 0; border-radius: 999px; padding: 11px 18px; font-weight: 800; cursor: pointer; text-decoration: none; }
   .btn:hover { filter: brightness(1.08); }
-  .btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px #3a4a72; }
-  .btn.ghost:hover { box-shadow: inset 0 0 0 2px var(--amber); }
+  .btn.ghost { background: transparent; color: var(--green); box-shadow: inset 0 0 0 2px var(--green); }
+  .btn.warm { background: var(--terracotta); }
   .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
 
-  /* sections */
   section.block { padding-top: 64px; }
-  section.block h2.sec { font-size: clamp(28px, 3.4vw, 42px); margin: 0 0 6px; font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 600; }
+  section.block h2.sec { font-family: Fraunces, Georgia, serif; font-size: clamp(28px, 3.4vw, 42px); margin: 0 0 4px; color: #2c3d22; }
   section.block .lede { color: var(--muted); margin: 0 0 22px; max-width: 70ch; }
 
   .planner { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 22px; }
   .planner form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; }
   @media (max-width: 780px) { .planner form { grid-template-columns: 1fr; } }
-  .planner label { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 700; color: var(--muted); display: block; margin-bottom: 5px; }
-  .planner select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #33456e; background: #0b1222; color: var(--ink); }
+  .planner label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800; color: var(--muted); display: block; margin-bottom: 5px; }
+  .planner select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #cdbb94; background: #fff; color: var(--ink); }
   .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; align-items: center; }
   .presets span { font-size: 14px; color: var(--muted); margin-right: 4px; }
-  .chip { border: 1px solid #33456e; background: #0b1222; color: var(--ink); border-radius: 999px; padding: 6px 13px; font-size: 14px; cursor: pointer; }
-  .chip:hover { border-color: var(--amber); color: var(--amber); }
+  .chip { border: 1px solid #cdbb94; background: #fff; color: var(--ink); border-radius: 999px; padding: 6px 13px; font-size: 14px; cursor: pointer; font-weight: 700; }
+  .chip:hover { border-color: var(--terracotta); color: var(--terracotta); }
   .result { margin-top: 22px; }
   .result:empty { display: none; }
-  .result .summary { font-weight: 700; margin: 0 0 14px; }
-  .leg { border-left: 6px solid var(--c); padding: 2px 0 2px 16px; margin-left: 8px; }
+  .result .summary { font-weight: 800; margin: 0 0 14px; }
+  .leg { border-left: 5px dotted var(--c); padding: 2px 0 2px 16px; margin-left: 8px; }
   .leg-head { font-weight: 800; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .leg ol { list-style: none; margin: 0; padding: 0; }
-  .leg li { padding: 6px 0; font-size: 15px; color: var(--muted); }
-  .leg li .rf { font-family: Fraunces, Georgia, serif; font-style: italic; color: var(--amber); }
-  .turn { margin: 10px 0 10px -2px; font-weight: 700; font-size: 15px; display: flex; gap: 10px; align-items: center; }
-  .turn::before { content: "↱"; width: 22px; height: 22px; border-radius: 6px; background: var(--blue); border: 2px solid #fff; color: #fff; display: grid; place-items: center; font-size: 13px; flex: none; }
+  .leg li { padding: 5px 0; font-size: 15.5px; color: var(--muted); }
+  .leg li .rf { font-family: Caveat, cursive; font-size: 21px; color: var(--terracotta); }
+  .turn { margin: 10px 0; font-weight: 800; font-size: 15px; display: flex; gap: 10px; align-items: center; }
+  .turn::before { content: "➜"; width: 24px; height: 24px; border-radius: 50%; background: var(--terracotta); color: #fff; display: grid; place-items: center; font-size: 12px; flex: none; }
   .arrive { margin-top: 12px; font-weight: 800; display: flex; gap: 10px; align-items: center; }
-  .arrive::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 12px var(--amber); flex: none; }
+  .arrive::before { content: "⌂"; width: 24px; height: 24px; border-radius: 50%; background: var(--gold); color: #fff; display: grid; place-items: center; flex: none; }
 
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 14px; }
-  .road-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px; border-top: 6px solid var(--c); display: flex; flex-direction: column; }
-  .road-card .hd { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
-  .road-card h3 { margin: 0; font-size: 21px; }
-  .road-card p { margin: 0 0 12px; font-size: 15.5px; color: #cdd6ea; }
-  .road-card .path { font-size: 14px; color: var(--muted); margin-bottom: 14px; flex: 1; }
-  .road-card .path b { color: var(--ink); }
+  .lane-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .lane-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--c); }
+  .lane-card .topic { font-family: Caveat, cursive; font-size: 21px; color: var(--c); font-weight: 700; line-height: 1; margin-top: 4px; }
+  .lane-card h3 { margin: 2px 0 8px; font-family: Fraunces, Georgia, serif; font-size: 23px; }
+  .lane-card p { margin: 0 0 12px; font-size: 15.5px; }
+  .lane-card .path { font-size: 14px; color: var(--muted); margin-bottom: 14px; flex: 1; }
+  .lane-card .path b { color: var(--ink); }
 
-  .capture { background: linear-gradient(135deg, #16244a, #0f1730); border: 1px solid #2a3b66; border-radius: var(--radius); padding: 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: center; }
+  .capture { background: #2f4a2a; color: #fdf6e3; border-radius: var(--radius); padding: 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: center; position: relative; overflow: hidden; }
   @media (max-width: 880px) { .capture { grid-template-columns: 1fr; padding: 22px; } }
-  .capture h2 { margin: 0 0 10px; font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 600; font-size: clamp(28px, 3.4vw, 40px); }
-  .capture p { margin: 0 0 10px; color: #cdd6ea; }
+  .capture h2 { margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-size: clamp(28px, 3.4vw, 40px); }
+  .capture p { margin: 0 0 10px; opacity: .92; }
   .capture form { display: grid; gap: 10px; }
-  .capture input { width: 100%; padding: 13px 14px; border-radius: 10px; border: 1px solid #33456e; background: #0b1222; color: var(--ink); }
-  .capture .small { font-size: 13px; color: var(--muted); }
+  .capture input { width: 100%; padding: 13px 14px; border-radius: 10px; border: 0; color: var(--ink); background: #fffaf0; }
+  .capture .small { font-size: 13px; opacity: .8; }
   .capture .msg { min-height: 1.2em; font-size: 15px; }
   .capture .unlocked { display: grid; gap: 10px; }
   .capture .unlocked[hidden], .capture form[hidden] { display: none; }
   .capture .btn { justify-self: start; }
+  .capture .btn.ghost { color: #fdf6e3; box-shadow: inset 0 0 0 2px #fdf6e3; }
 
   footer { margin-top: 64px; border-top: 1px solid var(--rule); padding-top: 26px; padding-bottom: 40px; font-size: 14.5px; color: var(--muted); }
   footer strong { color: var(--ink); }
@@ -185,7 +166,7 @@
   @media print {
     @page { size: A3 landscape; margin: 6mm; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body > *:not(main), main > *:not(.mapsection), .panel, .map-tools, .satnav { display: none !important; }
+    body > *:not(main), main > *:not(.mapsection), .panel, .map-tools, .guide { display: none !important; }
     .mapwrap { display: block; }
     .map-card { border: 0; box-shadow: none; }
     .map-scroll { overflow: visible; aspect-ratio: auto; height: auto; }
@@ -197,12 +178,12 @@
 
 <header class="top">
   <div class="wrap top-inner">
-    <span class="shield">M∞</span>
-    <span class="brand">The Road Home</span>
+    <svg width="30" height="30" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#2f4a2a"/><path d="M14 36 L30 20 L46 36 L41 36 L41 46 L19 46 L19 36 Z" fill="#f2c14e"/><rect x="26" y="36" width="8" height="10" fill="#b8532f"/></svg>
+    <span class="brand">The Long Way Home</span>
     <nav>
-      <a href="#map-section">Map</a>
-      <a href="#satnav">Satnav</a>
-      <a href="#roads">The roads</a>
+      <a href="#map-section">The map</a>
+      <a href="#walk">Walk me home</a>
+      <a href="#lanes">The lanes</a>
       <a href="#poster">Get the poster</a>
     </nav>
   </div>
@@ -211,57 +192,57 @@
 <main>
   <div class="wrap hero">
     <div>
-      <p class="kick">A motorway map for hard days</p>
-      <h1>Every hard feeling is a junction.<br><span>All roads lead home.</span></h1>
+      <p class="kick">a country map for hard days</p>
+      <h1>Every hard feeling is a place you pass through. <em>Every lane leads home.</em></h1>
     </div>
-    <p class="lead">Anxiety at 3am. A grey morning you cannot get out of bed for. Exams, deadlines, an inbox with teeth. Two hours nose to tail on the ring road with a meltdown in the back seat. They feel like separate problems. On this map they are motorways, and every one of them is driving you somewhere. Tap a sign to read it, or put your junction into the satnav and watch the road take you home.</p>
+    <p class="lead">Worry that keeps you up at 3am. Grey mornings. Exams, deadlines and an inbox with teeth. An hour stuck behind a tractor with a meltdown in the back seat. They feel like separate problems. On this map they are lanes in the same valley, and every one of them climbs towards a cottage on the hill with the kettle on. Tap a place to read it, or tell us where you are and we will walk you home.</p>
   </div>
 
   <div class="wrap mapsection" id="map-section">
     <div class="mapwrap">
       <div class="map-card">
         <div class="map-tools">
-          <button type="button" class="wide" id="clearBtn" hidden>Show all roads</button>
+          <button type="button" class="wide" id="clearBtn" hidden>Show every lane</button>
           <button type="button" id="zoomOut" aria-label="Zoom out">−</button>
           <button type="button" id="zoomIn" aria-label="Zoom in">+</button>
         </div>
         <div class="map-scroll" id="mapScroll">
           <svg id="map" viewBox="0 0 1600 1200" role="img" aria-labelledby="mapTitle mapDesc">
-            <title id="mapTitle">The Road Home</title>
-            <desc id="mapDesc">A night-time motorway map. Seven motorways named after hard feelings, such as anxiety, low mood, pressure, traffic, relationships, family and escape, run from the edges of the map through junctions to a ring road called the Kindness Orbital, and all of them end at Home in the centre.</desc>
+            <title id="mapTitle">The Long Way Home</title>
+            <desc id="mapDesc">An illustrated map of English countryside. Seven country lanes named after hard feelings, such as worry, low mood, pressure, traffic, relationships, children and escape, begin in a foggy valley and climb past illustrated places to the Kindness Way, then up a hill to a cottage called Home.</desc>
           </svg>
         </div>
-        <div class="satnav" id="satnav-bar" hidden aria-live="polite">
-          <div class="badge" id="snBadge">J1</div>
-          <div><div class="what" id="snWhat"></div><div class="why" id="snWhy"></div></div>
-          <button type="button" class="stop" id="snStop">Stop</button>
+        <div class="guide" id="guide" hidden aria-live="polite">
+          <div class="step" id="gStep">1</div>
+          <div><div class="what" id="gWhat"></div><div class="why" id="gWhy"></div></div>
+          <button type="button" class="stop" id="gStop">Stop</button>
         </div>
       </div>
       <aside class="panel" id="panel" aria-live="polite"></aside>
     </div>
   </div>
 
-  <section class="block" id="satnav">
+  <section class="block" id="walk">
     <div class="wrap">
-      <h2 class="sec">Satnav</h2>
-      <p class="lede">Tell it where you are today. It finds the route with the fewest junctions and changes, reads you every sign on the way, and then drives it with you on the map.</p>
+      <h2 class="sec">Walk me home</h2>
+      <p class="lede">Tell us where you are today. We will find the way with the fewest stops, read you what each place has to teach, and then walk it with you on the map.</p>
       <div class="planner">
         <form id="planForm">
           <div><label for="fromSel">I am at</label><select id="fromSel"></select></div>
           <div><label for="toSel">Take me to</label><select id="toSel"></select></div>
-          <button class="btn" type="submit">Plan and drive</button>
+          <button class="btn warm" type="submit">Start walking</button>
         </form>
-        <div class="presets" id="presets"><span>Common starting points:</span></div>
+        <div class="presets" id="presets"><span>Where people often start:</span></div>
         <div class="result" id="result"></div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="roads">
+  <section class="block" id="lanes">
     <div class="wrap">
-      <h2 class="sec">The roads</h2>
-      <p class="lede">Seven motorways, four A-road shortcuts and one ring road. Blue signs are the hard junctions. Brown signs are the places worth visiting. Every motorway crosses the Kindness Orbital before it reaches Home.</p>
-      <div class="grid" id="roadGrid"></div>
+      <h2 class="sec">The lanes</h2>
+      <p class="lede">Seven lanes start down in the valley, where it is foggy and the going is heavy. Every one of them climbs to the Kindness Way, a sunny ridge road with places worth stopping at, and from there Home Lane winds up the hill.</p>
+      <div class="grid" id="laneGrid"></div>
     </div>
   </section>
 
@@ -269,9 +250,9 @@
     <div class="wrap">
       <div class="capture">
         <div>
-          <h2>Put the road on your wall</h2>
-          <p>Get the full size poster file. It prints sharp at A2 or A1 for a classroom, a staffroom, a therapy room, a student bedroom or the back of the loo door.</p>
-          <p>We will also send the occasional note from the road: one junction, one practical way through. Nothing else.</p>
+          <h2>Hang the map on your wall</h2>
+          <p>Get the full size poster. It prints sharp at A2 or A1 for a classroom, a staffroom, a therapy room, a student bedroom or the back of the loo door.</p>
+          <p>We will also send the occasional postcard from the lanes: one place, one practical way through. Nothing else.</p>
         </div>
         <div>
           <form id="leadForm" novalidate>
@@ -279,13 +260,13 @@
             <input type="text" id="leadName" placeholder="First name" autocomplete="given-name" maxlength="80">
             <label class="sr-only" for="leadEmail">Email</label>
             <input type="email" id="leadEmail" placeholder="you@example.com" autocomplete="email" required maxlength="200">
-            <button class="btn" type="submit" id="leadBtn">Send me the poster</button>
+            <button class="btn warm" type="submit" id="leadBtn">Send me the poster</button>
             <div class="small">No spam. Unsubscribe whenever you like.</div>
             <div class="msg" id="leadMsg" role="status"></div>
           </form>
           <div class="unlocked" id="unlocked" hidden>
             <p><strong>You are on the list. Here is your poster.</strong></p>
-            <button class="btn" type="button" id="dlSvg">Download poster (SVG, prints any size)</button>
+            <button class="btn warm" type="button" id="dlSvg">Download poster (SVG, prints any size)</button>
             <button class="btn ghost" type="button" id="printBtn">Print or save as PDF</button>
           </div>
         </div>
@@ -297,7 +278,7 @@
 <footer>
   <div class="wrap">
     <div class="crisis"><strong>If you are in crisis right now</strong>, please talk to someone today. In the UK and Ireland, call Samaritans free on <strong>116 123</strong>, day or night, or text <strong>SHOUT</strong> to <strong>85258</strong>. If you are in danger, call <strong>999</strong>. Outside the UK, call your local emergency number.</div>
-    <p>The Road Home is a reflection tool. It is not medical advice and it does not replace a GP, therapist or counsellor. If any junction on this map has felt like home for more than a couple of weeks, that is a good reason to book an appointment.</p>
+    <p>The Long Way Home is a reflection tool. It is not medical advice and it does not replace a GP, therapist or counsellor. If any place on this map has felt like home for more than a couple of weeks, that is a good reason to book an appointment.</p>
   </div>
 </footer>
 
@@ -306,565 +287,994 @@
 'use strict';
 
 /* =====================================================================
-   THE NETWORK
-   Canvas is 1600 x 1200. Home sits at the centre, ringed by the
-   Kindness Orbital. Every motorway runs from a hard place on the edge,
-   through its junctions, onto the Orbital and into Home.
-   `sub` is the reframe printed on the sign itself.
+   THE VALLEY
+   A 1600 x 1200 illustrated map. The low ground at the bottom is where
+   the hard feelings live: foggy, grey and heavy going. Seven lanes climb
+   out of it to the Kindness Way, a sunny ridge road, and Home Lane winds
+   up the hill to the cottage. `sub` is the handwritten line on each sign.
+   `icon` picks the illustration; `on` means it sits on the lane itself.
    ===================================================================== */
 const W = 1600, H = 1200;
-const C = { x: 800, y: 600 }, R = 185;
-const polar = a => { const r = a * Math.PI / 180; return [C.x + R * Math.sin(r), C.y - R * Math.cos(r)]; };
 
 const NODES = {
-  home: { name: 'Home', sub: 'who you are underneath it all', type: 'home', x: C.x, y: C.y,
-    feel: 'The porch light on. The kettle. The person you were before the hard miles, and the one the miles made.',
-    gap: 'Every road on this map ends here. You do not need the shortest route, only to keep driving. Same address, different person.' },
+  home: { name: 'Home', sub: 'the kettle is on', icon: 'home', x: 800, y: 252, kind: 'home',
+    feel: 'Smoke from the chimney, the kettle on and a light in the window. The person you were before the hard miles, and the one the miles made.',
+    gap: 'Every lane on this map ends here. You do not need the shortest way, only to keep walking. Same front door, different person.' },
 
-  /* ---- Kindness Orbital (brown signs: places worth visiting) ---- */
-  rest: { name: 'Rest', sub: 'how you finish', type: 'orbital', ang: 0,
-    feel: 'Rest you do not have to earn, schedule to the minute or feel guilty about.',
-    gap: 'Rest is part of the work. It is how you finish, so stop waiting until you have finished to take it.' },
-  breathe: { name: 'Breathe', sub: 'out longer than in', type: 'orbital', ang: 40,
-    feel: 'In for four. Hold for four. Out for six.',
-    gap: 'Breath is the one part of your nervous system you can steer by hand. Make the out-breath longer than the in-breath and the brakes come on.' },
-  outofhands: { name: 'Out of Your Hands', sub: 'steer what you can', type: 'orbital', ang: 85,
-    feel: 'The jam, the weather, other people\'s driving. None of it is yours to control.',
-    gap: 'Grip the wheel you actually have and let the rest go by. Your energy goes further on the things you can steer.' },
-  forgiveness: { name: 'Forgiveness', sub: 'put the bag down', type: 'orbital', ang: 130,
-    feel: 'Putting down a bag you have carried for years, including the one with your own name on it.',
-    gap: 'Forgiving does not mean it was okay. It means it no longer gets to drive your life.' },
-  services: { name: 'Kindness Services', sub: 'tea, a chat, no judgement', type: 'services', ang: 180,
-    feel: 'Lukewarm tea, a sausage roll and ten minutes of not being on the road.',
-    gap: 'Motorway services exist because nobody can drive forever. Pull in. Eat something. Text someone. The road will still be there when you are ready.' },
-  reachout: { name: 'Reach Out', sub: 'shared weight is lighter', type: 'orbital', ang: 230,
-    feel: 'Telling a friend, your GP, a counsellor or a helpline the thing you swore you could handle alone.',
-    gap: 'This is the junction most people drive straight past, and the one that changes the most journeys. One message. One call. That is the whole manoeuvre.' },
-  stillness: { name: 'Stillness', sub: 'nothing left to flee', type: 'orbital', ang: 275,
-    feel: 'Sitting quietly with nothing to escape from at all.',
+  /* ---- The Kindness Way: places worth stopping ---- */
+  teatime: { name: 'Kindness Tea Rooms', sub: 'tea, cake, no judgement', icon: 'tearooms', x: 800, y: 382, kind: 'good',
+    feel: 'Mismatched cups, a slab of cake and someone who asks how you really are, then waits for the answer.',
+    gap: 'Nobody can walk forever. Stop in, eat something, let someone be kind to you, then be kind back. The lane will still be there.' },
+  stillwater: { name: 'Stillwater Pond', sub: 'nothing left to run from', icon: 'pond', x: 140, y: 525, kind: 'good',
+    feel: 'Sitting by still water with nothing to escape from at all. The ducks are not in a hurry either.',
     gap: 'Ten minutes a day of doing nothing on purpose. It is harder than it sounds, and it gets easier every time.' },
-  patience: { name: 'Patience', sub: 'back to calm, faster each time', type: 'orbital', ang: 320,
-    feel: 'Counting to ten. Then to twenty. Then laughing about it later.',
-    gap: 'Patience means coming back to calm, again and again, a little faster each time. Endless calm was never the goal.' },
+  meadow: { name: 'Breathing Meadow', sub: 'breathe out longer than in', icon: 'meadow', x: 322, y: 457, kind: 'good',
+    feel: 'Long grass, wildflowers and the slow in and out of a body that has finally stopped bracing.',
+    gap: 'In for four, out for six. Breath is the one part of your nervous system you can steer by hand, and a long out-breath puts the brakes on.' },
+  phonebox: { name: 'The Red Phone Box', sub: 'someone will answer', icon: 'phonebox', x: 548, y: 402, kind: 'good', crisis: true,
+    feel: 'Saying the thing you swore you could handle alone, out loud, to a friend, your GP or a helpline.',
+    gap: 'This is the stop most people walk straight past, and the one that changes the most journeys. One message or one call is the whole step.' },
+  restbench: { name: 'Rest Bench', sub: 'rest is how you finish', icon: 'bench', x: 1030, y: 398, kind: 'good',
+    feel: 'A bench under an old oak. Rest you do not have to earn, schedule or feel guilty about.',
+    gap: 'Rest is part of the work. It is how you finish, so stop waiting until you have finished to take it.' },
+  orchard: { name: 'Patience Orchard', sub: 'nothing good grows overnight', icon: 'orchard', x: 1210, y: 436, kind: 'good',
+    feel: 'Rows of apple trees that took years to fruit. Counting to ten, then to twenty, then laughing about it later.',
+    gap: 'Patience means coming back to calm again and again, a little faster each time. Endless calm was never the goal.' },
+  bridge: { name: 'Forgiveness Bridge', sub: 'put the heavy bag down', icon: 'bridge', on: true, x: 1360, y: 485, kind: 'good',
+    feel: 'An old stone bridge where you finally put down a bag you have carried for years, including the one with your own name on it.',
+    gap: 'Forgiving does not mean it was okay. It means it no longer gets to decide where you walk.' },
+  passing: { name: 'Passing Place', sub: 'pull in, let it pass', icon: 'passing', x: 1490, y: 539, kind: 'good',
+    feel: 'A little lay-by on a single-track lane, where you pull in and let the other traffic through.',
+    gap: 'Some things you cannot control: the tractor, the weather, other people. Pull in, let them pass, carry on. Your energy goes further on the things you can steer.' },
 
-  /* ---- Spaghetti Junction ---- */
-  overwhelm: { name: 'Spaghetti Junction', sub: 'Overwhelm · one exit at a time', type: 'knot', x: 800, y: 250,
-    feel: 'Every road arrives at once. Work, children and worry, all merging into the same lane at the same moment.',
-    gap: 'Nobody takes every exit at once. Pick one road and one next step, and let the rest of the traffic wait. The knot looks impossible from inside and simple from above.' },
+  /* ---- Muddle Crossroads (overwhelm) ---- */
+  crossroads: { name: 'Muddle Crossroads', sub: 'one direction at a time', icon: 'fingerpost', on: true, x: 790, y: 650, kind: 'hard',
+    feel: 'A signpost pointing everywhere at once. Work, worry, home and money, all shouting "this way" at the same time.',
+    gap: 'Nobody walks every road at once. Pick one direction and one next step, and let the other signs wait. From the top of the hill, the muddle makes sense.' },
 
-  /* ---- M1 Anxiety ---- */
-  whatif: { name: 'What If?', sub: 'try "even if" instead', type: 'origin', x: 80, y: 300,
-    feel: 'Two small words that can keep you up all night. Every answer opens three new questions.',
+  /* ---- Worry Lane (anxiety) ---- */
+  whatif: { name: 'Whatif Woods', sub: 'try "even if" instead', icon: 'woods', x: 330, y: 1078, kind: 'hard',
+    feel: 'Dark trees and two small words: what if. Every answer opens three more paths into the woods.',
     gap: 'You cannot think your way out of a what if. Swap it for an even if: even if that happens, what would I do? You usually know the answer.' },
-  racing: { name: 'Racing Thoughts', sub: 'a pen is slower than a head', type: 'j', x: 240, y: 320,
-    feel: 'Forty tabs open in your head, and one of them is playing music you cannot find.',
-    gap: 'Get it out of your head and onto paper. Thoughts written down slow to walking pace.' },
-  tightchest: { name: 'Tight Chest', sub: 'the body\'s fire drill', type: 'j', x: 400, y: 305,
-    feel: 'Shallow breaths, tight shoulders, a heart that will not slow down.',
-    gap: 'Your body is running a fire drill. It feels awful and it will pass. Long, slow out-breaths tell it the drill is over.' },
-  spiral: { name: 'Spiralling', sub: 'name it to tame it', type: 'j', x: 570, y: 282,
-    feel: 'One worry links to the next and the next, until you are planning for a disaster that has not happened.',
-    gap: 'Say it out loud: I am spiralling. Naming the pattern pulls you out of the loop and back into the driving seat.' },
-
-  /* ---- M2 Low Mood ---- */
-  heavymornings: { name: 'Heavy Mornings', sub: 'feet on the floor first', type: 'origin', x: 80, y: 780,
-    feel: 'The alarm goes off and your body feels like wet sand.',
-    gap: 'Forget the whole day. Feet on the floor is the only job right now. Then the kettle. Then the next small thing.' },
-  greydays: { name: 'Grey Days', sub: 'act first, feeling follows', type: 'j', x: 190, y: 860,
-    feel: 'Colours fade. Food tastes of cardboard. Things you used to love feel like paperwork.',
-    gap: 'Grey days are a symptom, and they do not get to write the verdict on your life. Keep doing small things you used to enjoy, even when they feel empty. Feeling tends to follow action.' },
-  numb: { name: 'Numb', sub: 'the mind\'s handbrake', type: 'j', x: 310, y: 950,
-    feel: 'Not sad, not happy. Just flat grey static where your feelings used to be.',
-    gap: 'Numbness is your mind pulling the handbrake to protect you. Feeling comes back slowly, usually through small doors first: a song, a smell, sun on your face.' },
-  rockbottom: { name: 'Rock Bottom', sub: 'the road turns here', type: 'j', x: 450, y: 1015, crisis: true,
-    feel: 'The lowest point of the road. From down here it is hard to believe it climbs.',
-    gap: 'Look at the map: from Rock Bottom the road only goes up. Nobody is meant to make this climb alone.' },
-  smallsteps: { name: 'Small Steps', sub: 'tiny wins still count', type: 'j', x: 555, y: 880,
-    feel: 'A shower. A walk to the shop. One email answered.',
-    gap: 'Small wins are bigger than they look. Each one proves to your brain that doing things still works.' },
-
-  /* ---- M3 Pressure ---- */
-  deadline: { name: 'Deadline', sub: 'make step one tiny', type: 'origin', x: 330, y: 60,
-    feel: 'The date on the calendar that has been quietly growing teeth.',
-    gap: 'Break the task down until the first step is almost embarrassingly small. Then take that step.' },
-  examhall: { name: 'Exam Hall', sub: 'the answers are still in there', type: 'j', x: 455, y: 100,
-    feel: 'Rows of desks, a loud clock and a mind that has gone perfectly blank.',
-    gap: 'Stress has locked the door, and the knowledge is behind it. Breathe out slowly, start with a question you can answer, and the door starts to open.' },
-  imposter: { name: 'Imposter Syndrome', sub: 'half the room feels it too', type: 'j', x: 585, y: 145,
-    feel: 'Everyone here knows what they are doing. Any minute now they will find out you do not.',
-    gap: 'Most of the room feels exactly the same way. Feeling out of your depth is often a sign you are growing into something bigger.' },
-  burnout: { name: 'Burnout', sub: 'change the load', type: 'j', x: 700, y: 198,
-    feel: 'Beyond tired. Hollow. You have stopped caring about things that used to matter.',
-    gap: 'A weekend off will not fix burnout. Changing the load will. Something has to come off the pile, and you are allowed to choose what.' },
-
-  /* ---- M4 Gridlock ---- */
-  trafficjam: { name: 'Traffic Jam', sub: 'you choose the inside of the car', type: 'origin', x: 1530, y: 560,
-    feel: 'Brake lights to the horizon, and the satnav keeps adding minutes.',
-    gap: 'You cannot move the traffic. You can choose what happens inside the car: a podcast, a call to your mum, or five minutes of simply sitting.' },
-  runninglate: { name: 'Running Late', sub: 'late and calm beats furious', type: 'j', x: 1410, y: 600,
-    feel: 'Shoes on the wrong feet, a missing book bag, and the 8:15 already gone.',
-    gap: 'Late is a problem with a fix. Send the text and arrive calm. Ten minutes late and calm beats on time and furious.' },
-  roadrage: { name: 'Road Rage', sub: 'ninety seconds, then it fades', type: 'j', x: 1290, y: 572,
-    feel: 'White knuckles on the wheel, shouting at someone who cannot hear you.',
-    gap: 'Traffic anger is usually anger about something else that found a handy target. Ask what it is really about.' },
-  clenchedjaw: { name: 'Clenched Jaw', sub: 'drop your shoulders', type: 'j', x: 1150, y: 592,
-    feel: 'You did not even notice you were doing it.',
-    gap: 'Drop your shoulders. Unclench your jaw. Loosen your grip. Your body has been carrying the traffic for you.' },
-
-  /* ---- M5 Heart ---- */
-  loneliness: { name: 'Loneliness', sub: 'a signal to reach', type: 'origin', x: 1520, y: 780,
-    feel: 'Surrounded by people, or by nobody at all, and still feeling unseen.',
-    gap: 'Loneliness is a hunger signal, as natural as thirst. It is telling you to reach towards people. It says nothing about your worth.' },
-  jealousy: { name: 'Jealousy', sub: 'a map of what you want', type: 'j', x: 1410, y: 860,
-    feel: 'Scrolling through someone else\'s life and feeling yours shrink.',
-    gap: 'Jealousy is a map of what you want. Read it, then stop comparing your behind the scenes with their highlight reel.' },
-  argument: { name: 'The Argument', sub: 'lower your voice first', type: 'j', x: 1290, y: 950,
-    feel: 'Two people, one car, one wrong turn, and both of you are right.',
-    gap: 'Most arguments are two tired people asking to be understood. Lower your voice first. It works more often than winning.' },
-  heartbreak: { name: 'Heartbreak', sub: 'proof that you loved', type: 'j', x: 1150, y: 1015, crisis: true,
-    feel: 'The real, physical ache of a love that ended or changed shape.',
-    gap: 'It hurts this much because you loved this much. That capacity is still yours, and it will find somewhere to go again.' },
-  honesttalk: { name: 'Honest Talk', sub: 'say the true thing, gently', type: 'j', x: 1045, y: 880,
-    feel: 'Saying the true thing, gently, while your voice shakes.',
-    gap: 'Relationships rarely break from conflict. They break from the conversations that never happen.' },
-
-  /* ---- M6 Family ---- */
-  meltdown: { name: 'Back Seat Meltdown', sub: 'be their brakes', type: 'origin', x: 1520, y: 90,
-    feel: 'Screaming from the back seat with nowhere to pull over. Theirs first, then very nearly yours.',
-    gap: 'A meltdown is a small nervous system overloaded. It says nothing about your parenting. Stay calm and close: you are their brakes until they grow their own.' },
-  nearlythere: { name: 'Are We Nearly There?', sub: 'this bit of the road counts', type: 'j', x: 1350, y: 130,
-    feel: 'The fourth time in ten minutes. If you are honest, you ask it about your own life too.',
-    gap: 'Children ask because they live for the destination. Adults do it too. Look out of the window for a minute. This stretch of road is part of the trip.' },
-  nevertime: { name: 'Never Enough Time', sub: 'presence beats hours', type: 'j', x: 1170, y: 170,
-    feel: 'Work wants you. The kids want you. You want a hot cup of tea.',
-    gap: 'Children remember presence more than hours. Ten minutes on the floor with your phone away fills them up more than a distracted afternoon.' },
-  guilt: { name: 'Parent Guilt', sub: 'repair, then release', type: 'j', x: 990, y: 212,
-    feel: 'Every bedtime story you rushed, every snapped word, every "not now, darling".',
-    gap: 'Guilt is proof you care. Let it point you towards one repair, then put it down. Children need parents who come back and make things right far more than they need perfect ones.' },
-
-  /* ---- M7 Escape ---- */
-  getout: { name: 'Get Me Out of Here', sub: 'listen to the signal', type: 'origin', x: 70, y: 590,
-    feel: 'The urge to be anywhere but here. Your chest says run; your calendar says stay.',
-    gap: 'Wanting to escape is a signal that something needs to change. Listen to it, then choose a better exit than the first one you see.' },
-  doomscroll: { name: 'Doom Scroll', sub: 'you have to end it', type: 'j', x: 210, y: 580,
-    feel: '1am. Your thumb is still moving, and every swipe makes you feel a little worse.',
-    gap: 'The feed is built never to end, so you have to end it. Tonight, try charging your phone in another room.' },
-  avoidance: { name: 'Avoidance', sub: 'calm now, interest later', type: 'j', x: 340, y: 600,
-    feel: 'Unopened letters. Unanswered messages. The thing you are not thinking about fills the whole room.',
-    gap: 'Avoidance buys calm today and charges interest tomorrow. Pick the smallest thing you have been avoiding and touch it once.' },
-  runningaway: { name: 'Running Away', sub: 'you always come too', type: 'j', x: 480, y: 590,
-    feel: 'New job, new city, new start. Somehow the same feelings arrive a week later.',
-    gap: 'Running can buy you space, and space has value. The work travels with you, though, so pack something kind for the trip.' },
-
-  /* ---- A-road links ---- */
-  sleepless: { name: 'Sleepless', sub: 'smaller by morning', type: 'link', x: 225, y: 450,
+  brook: { name: 'Racing Brook', sub: 'thoughts on paper slow down', icon: 'brook', on: true, x: 372, y: 925, kind: 'hard',
+    feel: 'Thoughts rushing past so fast you cannot catch one. Forty tabs open in your head.',
+    gap: 'Get them out of your head and onto paper. Written down, thoughts slow to walking pace.' },
+  hollow: { name: 'Sleepless Hollow', sub: 'everything is smaller by morning', icon: 'hollow', x: 300, y: 765, kind: 'hard',
     feel: '3am, the ceiling, and a full replay of every mistake you have made since school.',
     gap: 'Nothing looks its real size at 3am. Get up, keep the lights low, read something dull, then try again. Tomorrow does not get decided tonight.' },
-  isolation: { name: 'Isolation', sub: 'send one message', type: 'link', x: 330, y: 775,
-    feel: 'You cancel the plans, then feel hurt that nobody calls.',
-    gap: 'Low mood tells you that you are a burden. It is lying. Send one message today. "Thinking of you" counts.' },
-  schoolrun: { name: 'School Run', sub: 'prepared beats perfect', type: 'link', x: 1380, y: 365,
-    feel: 'Teeth, shoes, lunchbox, permission slip, and the gate closes at 8:50.',
-    gap: 'Mornings go better with a plan made the night before. Everybody forgets a PE kit sometimes.' },
-  shortfuse: { name: 'Short Fuse', sub: 'count to ninety', type: 'link', x: 1290, y: 760,
-    feel: 'Snapping at the person in the passenger seat about something the traffic did.',
-    gap: 'Anger peaks and fades in about ninety seconds if you stop feeding it. Count it out before you say the thing.' }
+
+  /* ---- The Low Road (depression) ---- */
+  moor: { name: 'Grey Moor', sub: 'feeling follows doing', icon: 'moor', x: 960, y: 935, kind: 'hard',
+    feel: 'Colours fade. Food tastes of cardboard. Things you used to love feel like paperwork.',
+    gap: 'Grey days are a symptom, and they do not get to write the verdict on your life. Keep doing small things you used to enjoy, even when they feel empty. Feeling tends to follow.' },
+  fog: { name: 'Fog Bottom', sub: 'slow down, it lifts', icon: 'fogcottage', x: 865, y: 1050, kind: 'hard',
+    feel: 'Heavy mornings in a valley where the fog never seems to clear. You can barely see the next fence post.',
+    gap: 'Fog is weather, and weather lifts. Until it does, slow down, keep a light on and only look as far as the next post.' },
+  rockbottom: { name: 'Rock Bottom Quarry', sub: 'there is a ladder', icon: 'quarry', x: 715, y: 1112, kind: 'hard', crisis: true,
+    feel: 'The lowest point on the map. From down here it is hard to believe the lane climbs out.',
+    gap: 'Look closely: there is a ladder up the side, and the lane only goes up from here. Nobody is meant to make this climb alone.' },
+  stile: { name: 'Small Steps Stile', sub: 'one leg over, then the other', icon: 'stile', on: true, x: 768, y: 885, kind: 'hard',
+    feel: 'A shower. A walk to the shop. One email answered. Clambering over one wall at a time.',
+    gap: 'Small wins are bigger than they look. Each one proves to your brain that doing things still works.' },
+
+  /* ---- Busy Lane (exams, study, work) ---- */
+  windmill: { name: 'Deadline Windmill', sub: 'make step one tiny', icon: 'windmill', x: 520, y: 1055, kind: 'hard',
+    feel: 'The sails keep turning and the date keeps coming, and it has been quietly growing teeth.',
+    gap: 'Break the task down until the first step is almost embarrassingly small. Then take that step.' },
+  school: { name: 'Exam Hall', sub: 'the answers are still in there', icon: 'school', x: 588, y: 905, kind: 'hard',
+    feel: 'Rows of desks, a loud clock and a mind that has gone perfectly blank. Everyone else seems to know what they are doing.',
+    gap: 'Stress has locked the door and the knowledge is behind it. Breathe out slowly, start with a question you can answer, and the door starts to open. Half the room feels exactly like you.' },
+  barn: { name: 'Burnout Barn', sub: 'something has to come off the cart', icon: 'barn', x: 655, y: 770, kind: 'hard',
+    feel: 'Beyond tired. Hollow. You have stopped caring about things that used to matter.',
+    gap: 'A weekend off will not fix burnout. Changing the load will. Something has to come off the cart, and you are allowed to choose what.' },
+
+  /* ---- Little Feet Lane (children) ---- */
+  puddles: { name: 'Tantrum Puddles', sub: 'be the calm one', icon: 'puddles', on: true, x: 1085, y: 1085, kind: 'hard',
+    feel: 'Screaming in the supermarket, wellies in the biggest puddle, and you very nearly joining in.',
+    gap: 'A meltdown is a small nervous system overloaded. It says nothing about your parenting. Stay calm and close: you are their brakes until they grow their own.' },
+  milestone: { name: 'Are We Nearly There?', sub: 'this bit of the walk counts', icon: 'milestone', x: 1135, y: 930, kind: 'hard',
+    feel: 'The fourth time in ten minutes. If you are honest, you ask it about your own life too.',
+    gap: 'Children live for the destination and adults do it too. Look up for a minute. This stretch of the lane is part of the trip.' },
+  clocktower: { name: 'Never Enough Time', sub: 'presence beats hours', icon: 'clocktower', x: 1075, y: 780, kind: 'hard',
+    feel: 'Work wants you. The kids want you. You want a hot cup of tea. The village clock keeps striking anyway.',
+    gap: 'Children remember presence more than hours. Ten minutes on the floor with your phone away fills them up more than a distracted afternoon.' },
+
+  /* ---- Holdup Lane (traffic and waiting) ---- */
+  tractor: { name: 'Stuck Behind a Tractor', sub: 'you choose what happens in the car', icon: 'tractor', on: true, x: 1440, y: 1095, kind: 'hard',
+    feel: 'Fifteen miles an hour for twelve miles, and you are already late.',
+    gap: 'You cannot move the tractor. You can choose what happens inside the car: a podcast, a call to your mum, or a few minutes of simply sitting.' },
+  sheep: { name: 'Sheep on the Road', sub: 'nobody hurries a sheep', icon: 'flock', on: true, x: 1515, y: 945, kind: 'hard',
+    feel: 'Two hundred sheep, one lane and a farmer in no rush at all. Your hands are white on the wheel.',
+    gap: 'Anger spikes and fades in about ninety seconds if you stop feeding it. Wind the window down and watch the sheep instead.' },
+  levelcrossing: { name: 'Level Crossing', sub: 'the barrier always lifts', icon: 'crossing', on: true, x: 1468, y: 790, kind: 'hard',
+    feel: 'Red lights flashing, barrier down, the train nowhere in sight. Your jaw is clenched and you did not even notice.',
+    gap: 'Waiting is part of every journey and the barrier always lifts. Drop your shoulders and unclench your jaw while you wait.' },
+
+  /* ---- Heartache Lane (relationships) ---- */
+  pine: { name: 'Lonesome Pine', sub: 'a signal to reach out', icon: 'pine', x: 1270, y: 1080, kind: 'hard',
+    feel: 'Surrounded by people, or by nobody at all, and still feeling unseen.',
+    gap: 'Loneliness is a hunger signal, as natural as thirst. It is telling you to reach towards people. It says nothing about your worth.' },
+  crosswords: { name: 'Cross Words Corner', sub: 'lower your voice first', icon: 'crosswords', x: 1250, y: 915, kind: 'hard',
+    feel: 'Two tired people, one wrong turn, and both of you are right.',
+    gap: 'Most arguments are two tired people asking to be understood. Lower your voice first. It works more often than winning.' },
+  ford: { name: 'Heartbreak Ford', sub: 'wet feet, still standing', icon: 'ford', on: true, x: 1300, y: 700, kind: 'hard',
+    feel: 'Wading through cold water with a real, physical ache in your chest, for a love that ended or changed shape.',
+    gap: 'It hurts this much because you loved this much. That capacity is still yours, and it will find somewhere to go again.' },
+
+  /* ---- Hideaway Lane (escape) ---- */
+  rabbithole: { name: 'The Rabbit Hole', sub: 'climb out before midnight', icon: 'rabbithole', x: 95, y: 1062, kind: 'hard',
+    feel: 'One more video, one more scroll, and suddenly it is 1am and you feel worse than when you started.',
+    gap: 'The feed is built never to end, so you have to end it. Tonight, try charging your phone in another room.' },
+  hut: { name: 'Hideaway Hut', sub: 'the letters still come', icon: 'hut', x: 185, y: 905, kind: 'hard',
+    feel: 'Unopened letters, unanswered messages, and the thing you are not thinking about filling the whole room.',
+    gap: 'Avoidance buys calm today and charges interest tomorrow. Pick the smallest thing you have been hiding from and touch it once.' },
+  faraway: { name: 'Faraway Fields', sub: 'you always come too', icon: 'suitcase', x: 92, y: 738, kind: 'hard',
+    feel: 'New job, new town, new start. Somehow the same feelings arrive a week later.',
+    gap: 'Getting away can buy you space, and space has value. The work travels with you, though, so pack something kind for the trip.' }
 };
 
-const ROADS = {
-  a3am:  { num: 'A3AM',  name: 'Sleepless link',  kind: 'link', color: '#7f90b3', flow: 9,  pts: ['racing', 'sleepless', 'doomscroll'] },
-  a1one: { num: 'A1ONE', name: 'Isolation link',  kind: 'link', color: '#7f90b3', flow: 12, pts: ['avoidance', 'isolation', 'numb'] },
-  a830:  { num: 'A830',  name: 'School Run link', kind: 'link', color: '#7f90b3', flow: 7,  pts: ['nearlythere', 'schoolrun', 'runninglate'] },
-  a90:   { num: 'A90',   name: 'Short Fuse link', kind: 'link', color: '#7f90b3', flow: 5,  pts: ['roadrage', 'shortfuse', 'argument'] },
-  m1: { num: 'M1', name: 'Anxiety', topic: 'Anxiety and worry', color: '#FFE14D', flow: 3.2,
-    about: 'The fastest road on the map, mostly heading for places that do not exist. Traffic runs all night.',
-    pts: ['whatif', 'racing', 'tightchest', 'spiral', 'overwhelm', [885, 335], 'breathe', 'home'] },
-  m2: { num: 'M2', name: 'Low Mood', topic: 'Depression and low mood', color: '#4D8DFF', flow: 16,
-    about: 'A slow road through fog. It dips all the way down to Rock Bottom, and then it climbs. Keep your lights on.',
-    pts: ['heavymornings', 'greydays', 'numb', 'rockbottom', 'smallsteps', 'reachout', 'home'] },
-  m3: { num: 'M3', name: 'Pressure', topic: 'Exams, study and work', color: '#FF4F5E', flow: 4.5,
-    about: 'Exams, revision, deadlines and the office. Rush hour all day, and everyone else seems to be in the fast lane.',
-    pts: ['deadline', 'examhall', 'imposter', 'burnout', 'overwhelm', 'rest', 'home'] },
-  m4: { num: 'M4', name: 'Gridlock', topic: 'Traffic, commuting and waiting', color: '#FF8A3D', flow: 20, jam: true,
-    about: 'Jams, commutes, queues and red lights. Stop start all the way, and excellent practice for everything else on this map.',
-    pts: ['trafficjam', 'runninglate', 'roadrage', 'clenchedjaw', 'outofhands', 'home'] },
-  m5: { num: 'M5', name: 'Heart', topic: 'Relationships', color: '#FF7EB6', flow: 9,
-    about: 'Love, friendship, arguments and heartbreak. Everybody drives it sooner or later, and like Low Mood it dips before it climbs.',
-    pts: ['loneliness', 'jealousy', 'argument', 'heartbreak', 'honesttalk', 'forgiveness', 'home'] },
-  m6: { num: 'M6', name: 'Family', topic: 'Children and parenting', color: '#3DDC84', flow: 7,
-    about: 'Children and parenting. The most rewarding road on the map, with the most crumbs in the footwell.',
-    pts: ['meltdown', 'nearlythere', 'nevertime', 'guilt', 'overwhelm', [715, 335], 'patience', 'home'] },
-  m7: { num: 'M7', name: 'Escape', topic: 'When you need a way out', color: '#A97BFF', flow: 6,
-    about: 'For when everything is too much. The early junctions numb you. Stay on, and the road leads somewhere still.',
-    pts: ['getout', 'doomscroll', 'avoidance', 'runningaway', 'stillness', 'home'] },
-  orbital: { num: 'M∞', name: 'Kindness Orbital', topic: 'Healing, from anywhere', color: '#FFF1CF', flow: 10, ring: true,
-    about: 'Rings Home and meets every motorway. Join it from anywhere, and go round as many times as you need.',
-    pts: ['rest', 'breathe', 'outofhands', 'forgiveness', 'services', 'reachout', 'stillness', 'patience'] }
+const LANES = {
+  worry:    { name: 'Worry Lane',      topic: 'anxiety and worry',       color: '#c8930f', about: 'It starts in Whatif Woods and runs fast and twisty, mostly towards places that do not exist. Busy all night.', pts: ['whatif', 'brook', 'hollow', 'meadow'] },
+  low:      { name: 'The Low Road',    topic: 'depression and low mood', color: '#4a6fa8', about: 'Heavy going through fog. It drops all the way down into Rock Bottom Quarry, and then it climbs, one stile at a time.', pts: ['moor', 'fog', 'rockbottom', 'stile', 'crossroads', 'phonebox'] },
+  busy:     { name: 'Busy Lane',       topic: 'exams, study and work',   color: '#b8432f', about: 'School, revision, deadlines and the office. Everyone on it walks too fast and assumes everyone else knows the way.', pts: ['windmill', 'school', 'barn', 'crossroads', 'restbench'] },
+  little:   { name: 'Little Feet Lane', topic: 'children and parenting', color: '#3e8a4a', about: 'The most rewarding lane in the valley. Also the muddiest, the slowest and the one with the most snacks dropped on it.', pts: ['puddles', 'milestone', 'clocktower', 'orchard'] },
+  holdup:   { name: 'Holdup Lane',     topic: 'traffic, commuting and waiting', color: '#d07a2a', about: 'Tractors, sheep, level crossings and every other kind of stuck. Excellent practice for everything else on the map.', pts: ['tractor', 'sheep', 'levelcrossing', 'passing'] },
+  heartache:{ name: 'Heartache Lane',  topic: 'relationships',           color: '#c9537e', about: 'Love, friendship, arguments and loss. Everybody walks it sooner or later, and it fords the river before it finds the bridge.', pts: ['pine', 'crosswords', 'ford', 'bridge'] },
+  hideaway: { name: 'Hideaway Lane',   topic: 'when you need to escape', color: '#7a5aa6', about: 'For when everything is too much. The early stops numb you. Stay on, and the lane leads to still water.', pts: ['rabbithole', 'hut', 'faraway', 'stillwater'] },
+  kindness: { name: 'The Kindness Way', topic: 'healing, from anywhere', color: '#c79a1c', ridge: true, about: 'A sunny ridge road that every lane climbs to. Join it from anywhere and stop as often as you need.', pts: ['stillwater', 'meadow', 'phonebox', 'teatime', 'restbench', 'orchard', 'bridge', 'passing'] },
+  homelane: { name: 'Home Lane',       topic: 'the last climb',          color: '#b8532f', ridge: true, about: 'The last little climb, up the hill to the cottage.', pts: ['teatime', [742, 352], [858, 318], [762, 286], 'home'] }
 };
-const MOTORWAYS = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7'];
-const DRAW_ORDER = ['a3am', 'a1one', 'a830', 'a90', 'm2', 'm5', 'm7', 'm4', 'm1', 'm6', 'm3', 'orbital'];
-const CARD_ORDER = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'orbital'];
+const LANE_ORDER = ['worry', 'low', 'busy', 'little', 'holdup', 'heartache', 'hideaway'];
+const DRAW_ORDER = ['hideaway', 'worry', 'heartache', 'holdup', 'little', 'low', 'busy', 'kindness', 'homelane'];
 
-const VMS = [
-  ['TIREDNESS IS A SIGNAL', 'TAKE A BREAK'],
-  ['QUEUE AHEAD', 'IT WILL PASS'],
-  ['YOU ARE DOING BETTER', 'THAN YOU THINK'],
-  ['ONE LANE', 'AT A TIME'],
-  ['FOG IN YOUR HEAD?', 'SLOW DOWN. LIGHTS ON'],
-  ['DO NOT DRIVE', 'ON EMPTY'],
-  ['NO SPEED LIMIT', 'ON GETTING BETTER']
-];
+const RIVER = [[-30, 610], [180, 640], [380, 690], [560, 702], [720, 726], [900, 736], [1100, 708], [1300, 700], [1450, 680], [1630, 642]];
+const BROOK = [[1395, 300], [1385, 400], [1360, 485], [1330, 590], [1305, 690]];
+const RAIL = [[1630, 752], [1468, 790], [1330, 830], [1235, 880], [1170, 960], [1150, 1060], [1160, 1230]];
 
 const PRESETS = [
-  ['3am worry', 'sleepless'], ['Exam stress', 'examhall'], ['Rock bottom', 'rockbottom'], ['Stuck in traffic', 'trafficjam'],
-  ['Back seat meltdown', 'meltdown'], ['Heartbreak', 'heartbreak'], ['Doom scrolling', 'doomscroll'], ['Overwhelmed', 'overwhelm']
+  ['3am worry', 'hollow'], ['Exam stress', 'school'], ['Rock bottom', 'rockbottom'], ['Stuck in traffic', 'tractor'],
+  ['Toddler meltdown', 'puddles'], ['Heartbreak', 'ford'], ['Doom scrolling', 'rabbithole'], ['Overwhelmed', 'crossroads']
 ];
 
 /* ---------- derive ---------- */
-for (const [id, n] of Object.entries(NODES)) {
-  n.id = id; n.roads = [];
-  if (n.ang !== undefined) [n.x, n.y] = polar(n.ang);
+for (const [id, n] of Object.entries(NODES)) { n.id = id; n.lanes = []; }
+for (const [lid, l] of Object.entries(LANES)) {
+  l.id = lid;
+  l.nodes = l.pts.filter(p => typeof p === 'string');
+  l.nodes.forEach(nid => { if (!NODES[nid]) throw new Error('Unknown place ' + nid); NODES[nid].lanes.push(lid); });
 }
-for (const [rid, r] of Object.entries(ROADS)) {
-  r.id = rid;
-  r.nodes = r.pts.filter(p => typeof p === 'string');
-  r.nodes.forEach((nid, i) => {
-    const n = NODES[nid];
-    if (!n) throw new Error('Unknown node ' + nid);
-    n.roads.push(rid);
-    if (!r.ring && !r.kind && n.type === 'j') n.j = i;
-    if (!r.ring && !r.kind && n.type === 'origin') n.origin = rid;
-  });
-}
+const mainLane = n => n.lanes.find(l => LANE_ORDER.includes(l)) || n.lanes[0];
 
-/* =====================================================================
-   GEOMETRY
-   Roads are smooth Catmull-Rom curves through their points. Each pair
-   of neighbouring junctions owns a list of segments, so the satnav can
-   stitch any route together and drive it.
-   ===================================================================== */
+/* ---------- geometry ---------- */
 const P = p => typeof p === 'string' ? [NODES[p].x, NODES[p].y] : p;
+const f = n => +(+n).toFixed(1);
 function catmull(pts) {
   const segs = [];
   for (let i = 0; i < pts.length - 1; i++) {
     const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
-    segs.push({ t: 'C', a: p1, c1: [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6], c2: [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6], b: p2 });
+    segs.push({ a: p1, c1: [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6], c2: [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6], b: p2 });
   }
   return segs;
 }
-const rev = s => s.t === 'C' ? { t: 'C', a: s.b, c1: s.c2, c2: s.c1, b: s.a } : { t: 'A', a: s.b, b: s.a, sweep: 1 - s.sweep };
-const f = n => +n.toFixed(1);
-function segsToD(segs) {
-  let d = `M${f(segs[0].a[0])} ${f(segs[0].a[1])}`;
-  for (const s of segs) {
-    if (s.t === 'C') d += ` C${f(s.c1[0])} ${f(s.c1[1])} ${f(s.c2[0])} ${f(s.c2[1])} ${f(s.b[0])} ${f(s.b[1])}`;
-    else d += ` A${R} ${R} 0 0 ${s.sweep} ${f(s.b[0])} ${f(s.b[1])}`;
-  }
-  return d;
-}
+const rev = s => ({ a: s.b, c1: s.c2, c2: s.c1, b: s.a });
+const segsToD = segs => `M${f(segs[0].a[0])} ${f(segs[0].a[1])}` + segs.map(s => ` C${f(s.c1[0])} ${f(s.c1[1])} ${f(s.c2[0])} ${f(s.c2[1])} ${f(s.b[0])} ${f(s.b[1])}`).join('');
+const smooth = pts => segsToD(catmull(pts));
 
-const EDGES = new Map();
-const ADJ = {};
+const EDGES = new Map(), ADJ = {};
 for (const id in NODES) ADJ[id] = [];
-for (const r of Object.values(ROADS)) {
-  if (r.ring) {
-    const n = r.nodes;
-    n.forEach((u, i) => {
-      const v = n[(i + 1) % n.length];
-      const seg = { t: 'A', a: P(u), b: P(v), sweep: 1 };
-      EDGES.set(u + '|' + v, { road: r.id, segs: [seg] });
-      EDGES.set(v + '|' + u, { road: r.id, segs: [rev(seg)] });
-      ADJ[u].push([v, r.id]); ADJ[v].push([u, r.id]);
-    });
-    r.d = `M${C.x} ${C.y - R} A${R} ${R} 0 1 1 ${C.x} ${C.y + R} A${R} ${R} 0 1 1 ${C.x} ${C.y - R}`;
-    continue;
-  }
-  const segs = catmull(r.pts.map(P));
-  r.d = segsToD(segs);
-  const idx = r.pts.map((p, i) => typeof p === 'string' ? i : -1).filter(i => i >= 0);
+for (const l of Object.values(LANES)) {
+  const segs = catmull(l.pts.map(P));
+  l.d = segsToD(segs);
+  const idx = l.pts.map((p, i) => typeof p === 'string' ? i : -1).filter(i => i >= 0);
   for (let k = 0; k < idx.length - 1; k++) {
-    const u = r.pts[idx[k]], v = r.pts[idx[k + 1]];
+    const u = l.pts[idx[k]], v = l.pts[idx[k + 1]];
     const part = segs.slice(idx[k], idx[k + 1]);
-    EDGES.set(u + '|' + v, { road: r.id, segs: part });
-    EDGES.set(v + '|' + u, { road: r.id, segs: part.slice().reverse().map(rev) });
-    ADJ[u].push([v, r.id]); ADJ[v].push([u, r.id]);
+    EDGES.set(u + '|' + v, { lane: l.id, segs: part });
+    EDGES.set(v + '|' + u, { lane: l.id, segs: part.slice().reverse().map(rev) });
+    ADJ[u].push([v, l.id]); ADJ[v].push([u, l.id]);
   }
 }
 
 /* =====================================================================
-   DRAWING
+   DRAWING HELPERS
    ===================================================================== */
 const NS = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('map');
-const FONT = 'Overpass, \'Helvetica Neue\', Arial, sans-serif';
-const SERIF = 'Fraunces, Georgia, serif';
-const MONO = '\'Overpass Mono\', \'Courier New\', monospace';
+const SERIF = 'Fraunces, Georgia, serif', HAND = 'Caveat, \'Comic Sans MS\', cursive', SANS = 'Nunito, Arial, sans-serif';
+const INK = '#4a3726';
 const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function el(tag, attrs, parent) {
+function E(tag, attrs, parent) {
   const e = document.createElementNS(NS, tag);
   if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
   if (parent) parent.appendChild(e);
   return e;
 }
-function txt(parent, x, y, s, attrs) {
-  const t = el('text', Object.assign({ x, y, 'font-family': FONT, fill: '#fff' }, attrs), parent);
+function T(parent, x, y, s, attrs) {
+  const t = E('text', Object.assign({ x, y, 'font-family': SERIF, fill: INK }, attrs), parent);
   t.textContent = s;
   return t;
 }
+const G = (parent, x = 0, y = 0, extra = {}) => E('g', Object.assign({ transform: `translate(${f(x)} ${f(y)})` }, extra), parent);
+const O = (extra = {}) => Object.assign({ stroke: INK, 'stroke-width': 1.3, 'stroke-linejoin': 'round' }, extra);
+function anim(el, attrs) { if (!reduceMotion) E('animate', attrs, el); }
+function spin(el, cx, cy, dur, from = 0) {
+  if (!reduceMotion) E('animateTransform', { attributeName: 'transform', type: 'rotate', from: `${from} ${cx} ${cy}`, to: `${from + 360} ${cx} ${cy}`, dur, repeatCount: 'indefinite' }, el);
+}
+function seeded(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rnd = seeded(20261012);
+const pick = a => a[Math.floor(rnd() * a.length)];
 
+/* layers */
 const L = {};
-L.defs = el('defs', {}, svg);
-['bg', 'decor', 'roads', 'nodes', 'route', 'posts', 'signs', 'car'].forEach(n => L[n] = el('g', { id: n + 'Layer' }, svg));
+L.defs = E('defs', {}, svg);
+['sky', 'land', 'water', 'lanes', 'scenery', 'icons', 'weather', 'route', 'walker', 'posts', 'tags', 'frame'].forEach(n => L[n] = E('g', { id: n + 'Layer' }, svg));
 
 L.defs.innerHTML = `
-  <radialGradient id="sky" cx="50%" cy="50%" r="75%">
-    <stop offset="0" stop-color="#18213b"/><stop offset=".55" stop-color="#0c1222"/><stop offset="1" stop-color="#05070e"/>
-  </radialGradient>
-  <radialGradient id="homeGlow" cx="50%" cy="50%" r="50%">
-    <stop offset="0" stop-color="#ffd27a" stop-opacity=".95"/><stop offset=".35" stop-color="#ffb347" stop-opacity=".35"/><stop offset="1" stop-color="#ff9a2f" stop-opacity="0"/>
-  </radialGradient>
-  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/></filter>
-  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
-`;
+  <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0ef"/><stop offset=".6" stop-color="#f7e2b5"/><stop offset="1" stop-color="#fbd79a"/></linearGradient>
+  <radialGradient id="sunG"><stop offset="0" stop-color="#fff6d0"/><stop offset=".55" stop-color="#ffd166"/><stop offset="1" stop-color="#ffb347"/></radialGradient>
+  <radialGradient id="warmG" cx="50%" cy="15%" r="70%"><stop offset="0" stop-color="#ffd98a" stop-opacity=".55"/><stop offset=".55" stop-color="#ffd98a" stop-opacity=".12"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>
+  <linearGradient id="gloomG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b6577" stop-opacity="0"/><stop offset=".45" stop-color="#5b6577" stop-opacity=".12"/><stop offset="1" stop-color="#4a5266" stop-opacity=".42"/></linearGradient>
+  <linearGradient id="hillG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9eaa2"/><stop offset="1" stop-color="#bcd88a"/></linearGradient>
+  <radialGradient id="nightG"><stop offset="0" stop-color="#2b3a66"/><stop offset=".75" stop-color="#22305a" stop-opacity=".95"/><stop offset="1" stop-color="#22305a" stop-opacity="0"/></radialGradient>
+  <radialGradient id="windowG"><stop offset="0" stop-color="#fff3b0"/><stop offset="1" stop-color="#ffd166" stop-opacity="0"/></radialGradient>
+  <pattern id="plough" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(28)"><rect width="8" height="8" fill="#d9c08f"/><rect width="8" height="3" fill="#c7a875"/></pattern>
+  <pattern id="wheat" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)"><rect width="7" height="7" fill="#ecd98f"/><rect width="7" height="2" fill="#e2cb76"/></pattern>
+  <pattern id="stripes" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(60)"><rect width="12" height="12" fill="#c6dd97"/><rect width="12" height="5" fill="#bcd68b"/></pattern>
+  <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="6"/></filter>
+  <filter id="paper" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="9" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .16  0 0 0 .55 0"/></filter>
+  <filter id="blur10" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+  <filter id="blur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+  <filter id="drop" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="1.6" flood-color="#3b2a1a" flood-opacity=".28"/></filter>`;
 
-el('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#sky)' }, L.bg);
-(function stars() {
-  let s = 7;
-  const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
-  for (let i = 0; i < 140; i++) {
-    const x = rnd() * W, y = rnd() * H, r = rnd() * 1.1 + .3;
-    if (Math.hypot(x - C.x, y - C.y) < 330) continue;
-    el('circle', { cx: f(x), cy: f(y), r: f(r), fill: '#c9d6ff', 'fill-opacity': f(.12 + rnd() * .35) }, L.bg);
+/* =====================================================================
+   ILLUSTRATIONS
+   Every drawing sits on its ground line at (0, 0) and grows upwards.
+   ===================================================================== */
+const shadow = (g, rx, ry = 5, y = 0) => E('ellipse', { cx: 0, cy: y, rx, ry, fill: '#3b2a1a', 'fill-opacity': .16 }, g);
+
+function tree(g, x, y, s = 1, kind = 'round', tint) {
+  const t = G(g, x, y, { transform: `translate(${f(x)} ${f(y)}) scale(${s})` });
+  shadow(t, 13, 4);
+  if (kind === 'pine') {
+    E('rect', O({ x: -2.5, y: -10, width: 5, height: 10, fill: '#6d4a2c' }), t);
+    const c = tint || '#3f6b3a';
+    E('path', O({ d: 'M-14 -8 L0 -30 L14 -8 Z', fill: c }), t);
+    E('path', O({ d: 'M-11 -22 L0 -42 L11 -22 Z', fill: c }), t);
+    E('path', O({ d: 'M-8 -34 L0 -52 L8 -34 Z', fill: c }), t);
+    return t;
   }
-})();
-el('circle', { class: 'homeglow', cx: C.x, cy: C.y, r: 300, fill: 'url(#homeGlow)' }, L.bg);
-
-/* roads */
-const roadEls = {};
-function drawRoad(r) {
-  const g = el('g', { class: 'rd', 'data-road': r.id }, L.roads);
-  roadEls[r.id] = g;
-  const link = r.kind === 'link';
-  el('path', { d: r.d, fill: 'none', stroke: r.color, 'stroke-width': link ? 14 : 26, 'stroke-opacity': link ? .12 : .28, filter: 'url(#glow)', 'stroke-linecap': 'round' }, g);
-  el('path', { class: 'edge', d: r.d, fill: 'none', stroke: r.color, 'stroke-width': link ? 10 : 15, 'stroke-linecap': 'round', 'stroke-opacity': link ? .7 : 1 }, g);
-  el('path', { d: r.d, fill: 'none', stroke: '#141a2b', 'stroke-width': link ? 6 : 9.5, 'stroke-linecap': 'round' }, g);
-  if (!link) el('path', { d: r.d, fill: 'none', stroke: '#ffffff', 'stroke-opacity': .45, 'stroke-width': 1.1, 'stroke-dasharray': '7 9' }, g);
-  // moving lights: headlights always flowing towards Home
-  const pattern = r.jam ? [2.4, 4, 2.4, 4, 2.4, 4, 2.4, 4, 2.4, 70] : link ? [2, 44] : [2.6, 34];
-  const period = pattern.reduce((a, b) => a + b, 0);
-  const lights = el('path', { d: r.d, fill: 'none', stroke: '#fff4cc', 'stroke-width': link ? 2.4 : 3.4, 'stroke-linecap': 'round', 'stroke-dasharray': pattern.join(' ') }, g);
-  if (!reduceMotion) el('animate', { attributeName: 'stroke-dashoffset', from: 0, to: f(-period * 6), dur: r.flow + 's', repeatCount: 'indefinite' }, lights);
-}
-DRAW_ORDER.forEach(id => drawRoad(ROADS[id]));
-
-/* Spaghetti Junction: slip-road loops around the knot */
-(function knot() {
-  const n = NODES.overwhelm, g = el('g', { class: 'knotloops' }, L.roads);
-  const loops = [[-34, -6, 30, 18, -25], [30, -14, 26, 16, 30], [4, 26, 34, 14, 8], [-14, 18, 22, 22, -40], [22, 16, 18, 26, 55]];
-  loops.forEach(([dx, dy, rx, ry, rot]) => {
-    const t = `rotate(${rot} ${n.x + dx} ${n.y + dy})`;
-    el('ellipse', { cx: n.x + dx, cy: n.y + dy, rx, ry, transform: t, fill: 'none', stroke: '#9aa8c4', 'stroke-opacity': .55, 'stroke-width': 6 }, g);
-    el('ellipse', { cx: n.x + dx, cy: n.y + dy, rx, ry, transform: t, fill: 'none', stroke: '#141a2b', 'stroke-width': 3 }, g);
-  });
-  L.roads.insertBefore(g, roadEls.m1);
-})();
-
-/* junction dots */
-const nodeEls = {};
-for (const n of Object.values(NODES)) {
-  if (n.type === 'home') continue;
-  const g = el('g', { class: 'node', 'data-id': n.id }, L.nodes);
-  nodeEls[n.id] = g;
-  if (n.type === 'knot') el('circle', { cx: n.x, cy: n.y, r: 13, fill: '#141a2b', stroke: '#fff', 'stroke-width': 3.5 }, g);
-  else if (n.type === 'orbital' || n.type === 'services') el('circle', { cx: n.x, cy: n.y, r: 8, fill: '#fff1cf', stroke: '#141a2b', 'stroke-width': 3 }, g);
-  else el('circle', { cx: n.x, cy: n.y, r: n.type === 'link' ? 5 : 6.5, fill: '#fff', stroke: '#141a2b', 'stroke-width': 2.5 }, g);
-  el('circle', { cx: n.x, cy: n.y, r: 16, fill: 'transparent' }, g);
-  g.addEventListener('click', () => { if (!dragMoved()) select(n.id); });
+  if (kind === 'bare') {
+    E('path', { d: 'M0 0 L0 -22 M0 -14 L-9 -24 M0 -18 L8 -28 M-5 -20 L-8 -30 M4 -24 L2 -33', stroke: '#6d5a48', 'stroke-width': 2.4, 'stroke-linecap': 'round', fill: 'none' }, t);
+    return t;
+  }
+  E('rect', O({ x: -3, y: -15, width: 6, height: 15, fill: '#7a5233' }), t);
+  const c1 = tint || pick(['#6f9f4a', '#5f9445', '#7aa850', '#6a9a48']);
+  E('circle', O({ cx: 0, cy: -26, r: 14, fill: c1 }), t);
+  E('circle', O({ cx: -9, cy: -19, r: 9.5, fill: c1 }), t);
+  E('circle', O({ cx: 9, cy: -20, r: 9.5, fill: c1 }), t);
+  E('circle', { cx: -4, cy: -31, r: 5, fill: '#fff', 'fill-opacity': .18 }, t);
+  if (kind === 'apple') for (const [ax, ay] of [[-6, -26], [5, -30], [8, -19], [-10, -16], [1, -18]]) E('circle', { cx: ax, cy: ay, r: 2.2, fill: '#d6453a' }, t);
+  return t;
 }
 
-/* Home */
-(function home() {
-  const g = el('g', { class: 'home', 'data-id': 'home', tabindex: 0, role: 'button', 'aria-label': 'Home' }, L.nodes);
-  el('circle', { cx: C.x, cy: C.y, r: 62, fill: '#1d1608', stroke: '#ffd27a', 'stroke-width': 3 }, g);
-  el('circle', { cx: C.x, cy: C.y, r: 54, fill: 'none', stroke: '#ffd27a', 'stroke-opacity': .35, 'stroke-width': 1.5 }, g);
-  el('path', { d: `M${C.x - 22} ${C.y - 4} L${C.x} ${C.y - 26} L${C.x + 22} ${C.y - 4} L${C.x + 16} ${C.y - 4} L${C.x + 16} ${C.y + 14} L${C.x - 16} ${C.y + 14} L${C.x - 16} ${C.y - 4} Z`, fill: '#ffd27a' }, g);
-  el('rect', { x: C.x - 6, y: C.y - 2, width: 12, height: 10, fill: '#fff7d9' }, g);
-  el('rect', { x: C.x - 6, y: C.y - 2, width: 12, height: 10, fill: '#fff2b8', filter: 'url(#soft)' }, g);
-  txt(g, C.x, C.y + 34, 'HOME', { 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, 'letter-spacing': 4, fill: '#ffd27a' });
-  g.addEventListener('click', () => { if (!dragMoved()) select('home'); });
-  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select('home'); } });
-})();
+function cottage(g, x, y, s = 1, opt = {}) {
+  const c = G(g, x, y, { transform: `translate(${f(x)} ${f(y)}) scale(${s})` });
+  shadow(c, 30, 5);
+  const wall = opt.wall || '#f3e6c8', roof = opt.roof || '#b5543b';
+  E('rect', O({ x: 9, y: -50, width: 7, height: 14, fill: '#8d6a50' }), c);
+  E('rect', O({ x: -22, y: -27, width: 44, height: 27, fill: wall }), c);
+  E('path', O({ d: 'M-27 -25 L0 -48 L27 -25 Z', fill: roof }), c);
+  E('rect', O({ x: -4, y: -14, width: 8, height: 14, fill: opt.door || '#6e8f4e' }), c);
+  for (const wx of [-16, 8]) E('rect', O({ x: wx, y: -21, width: 8, height: 7, fill: opt.lit === false ? '#cfd6dc' : '#ffe08a' }), c);
+  return c;
+}
 
-/* ---------- decor: title gantry, VMS, hazards, SOS, legend ---------- */
-const reserved = []; // rectangles the signs must avoid
-const reserve = (x, y, w, h) => reserved.push({ x, y, w, h });
+function sheep(g, x, y, s = 1, flip = false) {
+  const sh = G(g, x, y, { transform: `translate(${f(x)} ${f(y)}) scale(${flip ? -s : s} ${s})` });
+  shadow(sh, 9, 2.5);
+  E('path', { d: 'M-5 -3 L-5 0 M3 -3 L3 0', stroke: '#2b2b2b', 'stroke-width': 1.6 }, sh);
+  for (const [cx, cy] of [[-5, -7], [0, -9], [4, -7], [-1, -5], [-6, -10], [2, -11]]) E('circle', { cx, cy, r: 4.2, fill: '#fbfaf5', stroke: INK, 'stroke-width': .9 }, sh);
+  E('ellipse', { cx: 8, cy: -8, rx: 3.2, ry: 2.6, fill: '#2b2b2b' }, sh);
+  return sh;
+}
+function cow(g, x, y, s = 1, flip = false) {
+  const c = G(g, x, y, { transform: `translate(${f(x)} ${f(y)}) scale(${flip ? -s : s} ${s})` });
+  shadow(c, 12, 3);
+  E('path', { d: 'M-8 -5 L-8 0 M-4 -5 L-4 0 M5 -5 L5 0 M8 -5 L8 0', stroke: INK, 'stroke-width': 1.6 }, c);
+  E('rect', O({ x: -11, y: -14, width: 22, height: 10, rx: 4, fill: '#fbf7ee' }), c);
+  E('ellipse', { cx: -4, cy: -10, rx: 3.5, ry: 2.5, fill: '#3a2e28' }, c);
+  E('ellipse', { cx: 5, cy: -11, rx: 2.5, ry: 2, fill: '#3a2e28' }, c);
+  E('rect', O({ x: 9, y: -17, width: 7, height: 7, rx: 2, fill: '#fbf7ee' }), c);
+  E('rect', { x: 13, y: -13, width: 3.5, height: 3, rx: 1, fill: '#e9a7a0' }, c);
+  return c;
+}
+function duck(g, x, y, s = 1, flip = false) {
+  const d = G(g, x, y, { transform: `translate(${f(x)} ${f(y)}) scale(${flip ? -s : s} ${s})` });
+  E('path', O({ d: 'M-7 -3 Q-6 -9 1 -7 L3 -11 Q7 -12 7 -8 L10 -8 L7 -6 Q7 -1 0 0 Q-6 0 -7 -3 Z', fill: '#fdfdf6', 'stroke-width': .9 }), d);
+  E('circle', { cx: 5, cy: -9.5, r: .9, fill: '#222' }, d);
+  return d;
+}
+function rabbit(g, x, y, s = 1) {
+  const r = G(g, x, y, { transform: `translate(${f(x)} ${f(y)}) scale(${s})` });
+  E('ellipse', O({ cx: 0, cy: -5, rx: 6, ry: 5, fill: '#b08d6c', 'stroke-width': .9 }), r);
+  E('circle', O({ cx: 5, cy: -10, r: 3.4, fill: '#b08d6c', 'stroke-width': .9 }), r);
+  E('ellipse', O({ cx: 5, cy: -17, rx: 1.4, ry: 4.4, fill: '#b08d6c', 'stroke-width': .8 }), r);
+  E('ellipse', O({ cx: 7.4, cy: -16.5, rx: 1.3, ry: 4.2, fill: '#b08d6c', 'stroke-width': .8 }), r);
+  E('circle', { cx: -6, cy: -5, r: 2, fill: '#fff' }, r);
+  return r;
+}
+function flowers(g, x, y, n = 7, spread = 14) {
+  const fl = G(g, x, y);
+  for (let i = 0; i < n; i++) E('circle', { cx: f((rnd() - .5) * spread * 2), cy: f((rnd() - .5) * spread * .7), r: f(1.8 + rnd() * 1.3), fill: pick(['#e85d75', '#f2c14e', '#ffffff', '#9b7fd1', '#f08a4b']) }, fl);
+  return fl;
+}
+function bush(g, x, y, s = 1) {
+  const b = G(g, x, y, { transform: `translate(${f(x)} ${f(y)}) scale(${s})` });
+  shadow(b, 10, 3);
+  for (const [cx, cy, r] of [[-6, -6, 6], [5, -6, 6.5], [0, -10, 6]]) E('circle', O({ cx, cy, r, fill: '#5f8f45', 'stroke-width': 1 }), b);
+  return b;
+}
+function butterfly(g, x, y, col) {
+  const b = G(g, x, y);
+  const w = E('g', {}, b);
+  E('ellipse', { cx: -3, cy: 0, rx: 3.2, ry: 4, fill: col }, w);
+  E('ellipse', { cx: 3, cy: 0, rx: 3.2, ry: 4, fill: col }, w);
+  E('rect', { x: -.5, y: -3, width: 1, height: 6, fill: INK }, w);
+  if (!reduceMotion) E('animateTransform', { attributeName: 'transform', type: 'scale', values: '1 1;0.3 1;1 1', dur: (0.5 + rnd() * .4).toFixed(2) + 's', repeatCount: 'indefinite' }, w);
+  if (!reduceMotion) E('animateTransform', { attributeName: 'transform', type: 'translate', values: `${f(x)} ${f(y)};${f(x + 14)} ${f(y - 10)};${f(x - 6)} ${f(y - 4)};${f(x)} ${f(y)}`, dur: (6 + rnd() * 3).toFixed(1) + 's', repeatCount: 'indefinite' }, b);
+  return b;
+}
+function figure(g, x, y, coat = '#b8532f', s = 1, flip = false) {
+  const p = G(g, x, y, { transform: `translate(${f(x)} ${f(y)}) scale(${flip ? -s : s} ${s})` });
+  E('path', { d: 'M-2.5 -9 L-3.5 0 M2.5 -9 L3.5 0', stroke: '#3b3b48', 'stroke-width': 2.2, 'stroke-linecap': 'round' }, p);
+  E('path', O({ d: 'M-5 -9 L-4 -20 Q0 -23 4 -20 L5 -9 Z', fill: coat, 'stroke-width': 1 }), p);
+  E('circle', O({ cx: 0, cy: -25, r: 4.2, fill: '#f1c9a5', 'stroke-width': 1 }), p);
+  return p;
+}
 
-function drawDecor() {
-  const D = L.decor;
-
-  // Title gantry below Home
-  const gx = 590, gy = 905, gw = 420, gh = 170;
-  reserve(gx - 10, gy - 30, gw + 20, gh + 60);
-  el('rect', { x: gx + 40, y: gy + gh, width: 8, height: 60, fill: '#3a4357' }, D);
-  el('rect', { x: gx + gw - 48, y: gy + gh, width: 8, height: 60, fill: '#3a4357' }, D);
-  el('rect', { x: gx, y: gy, width: gw, height: gh, rx: 8, fill: '#1d5bbf', stroke: '#fff', 'stroke-width': 3 }, D);
-  el('rect', { x: gx + 7, y: gy + 7, width: gw - 14, height: gh - 14, rx: 5, fill: 'none', stroke: '#fff', 'stroke-opacity': .25, 'stroke-width': 1 }, D);
-  el('path', { d: `M${gx + 52} ${gy + 120} L${gx + 52} ${gy + 52} M${gx + 32} ${gy + 72} L${gx + 52} ${gy + 48} L${gx + 72} ${gy + 72}`, fill: 'none', stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, D);
-  txt(D, gx + 98, gy + 66, 'The Road Home', { 'font-family': SERIF, 'font-style': 'italic', 'font-weight': 600, 'font-size': 40 });
-  txt(D, gx + 100, gy + 98, 'ALL ROADS LEAD HERE', { 'font-size': 16, 'font-weight': 800, 'letter-spacing': 2.6, fill: '#ffe14d' });
-  txt(D, gx + 100, gy + 126, 'Every hard feeling is a junction.', { 'font-size': 14.5, fill: '#d9e6ff' });
-  txt(D, gx + 100, gy + 146, 'None of them is the end of the road.', { 'font-size': 14.5, fill: '#d9e6ff' });
-
-  // Variable message sign
-  const vx = 1100, vy = 262, vw = 250, vh = 84;
-  reserve(vx - 6, vy - 6, vw + 12, vh + 70);
-  el('rect', { x: vx + vw / 2 - 4, y: vy + vh, width: 8, height: 56, fill: '#3a4357' }, D);
-  el('rect', { x: vx, y: vy, width: vw, height: vh, rx: 6, fill: '#0b0b0b', stroke: '#3a4357', 'stroke-width': 4 }, D);
-  const vg = el('g', { style: 'transition: opacity .35s' }, D);
-  const vt = { 'text-anchor': 'middle', 'font-family': MONO, 'font-weight': 700, 'font-size': 15, fill: '#ffb000', 'letter-spacing': .5 };
-  const l1 = txt(vg, vx + vw / 2, vy + 36, VMS[0][0], vt);
-  const l2 = txt(vg, vx + vw / 2, vy + 62, VMS[0][1], vt);
-  // LED grid: thin dark lines over the text so it reads as a dot-matrix board
-  for (let gx2 = vx + 3; gx2 < vx + vw; gx2 += 3) el('line', { x1: gx2, y1: vy + 4, x2: gx2, y2: vy + vh - 4, stroke: '#0b0b0b', 'stroke-width': .8 }, D);
-  for (let gy2 = vy + 3; gy2 < vy + vh; gy2 += 3) el('line', { x1: vx + 4, y1: gy2, x2: vx + vw - 4, y2: gy2, stroke: '#0b0b0b', 'stroke-width': .8 }, D);
-  let vi = 0;
-  if (!reduceMotion) setInterval(() => {
-    vi = (vi + 1) % VMS.length;
-    vg.setAttribute('opacity', 0);
-    setTimeout(() => { l1.textContent = VMS[vi][0]; l2.textContent = VMS[vi][1]; vg.setAttribute('opacity', 1); }, 350);
-  }, 4200);
-
-  // Hazard signs
-  function hazard(x, y, glyph, plate) {
-    const g = el('g', {}, D);
-    reserve(x - 50, y - 34, 100, 82);
-    el('rect', { x: x - 3, y: y + 14, width: 6, height: 34, fill: '#3a4357' }, g);
-    el('path', { d: `M${x} ${y - 30} L${x + 30} ${y + 20} L${x - 30} ${y + 20} Z`, fill: '#fff', stroke: '#e0202f', 'stroke-width': 6, 'stroke-linejoin': 'round' }, g);
-    txt(g, x, y + 12, glyph, { 'text-anchor': 'middle', 'font-size': glyph.length > 1 ? 11 : 24, 'font-weight': 800, fill: '#111' });
-    const p = txt(g, x, y + 40, plate, { 'text-anchor': 'middle', 'font-size': 11.5, 'font-weight': 700, fill: '#111' });
-    const pw = p.getComputedTextLength() + 14;
-    g.insertBefore(el('rect', { x: x - pw / 2, y: y + 27, width: pw, height: 18, rx: 2, fill: '#fff', stroke: '#111', 'stroke-width': 1.5 }), p);
-  }
-  hazard(185, 960, 'FOG', 'Lights on, go slow');
-  hazard(300, 175, '!', 'Under construction');
-
-  // Emergency phones
-  [[450, 1072], [1150, 1072], [455, 395]].forEach(([x, y]) => {
-    reserve(x - 18, y - 16, 36, 32);
-    const g = el('g', { class: 'sos', tabindex: 0, role: 'button', 'aria-label': 'Emergency phone: get help' }, D);
-    el('rect', { x: x - 15, y: y - 13, width: 30, height: 26, rx: 4, fill: '#ff7a00', stroke: '#fff', 'stroke-width': 1.6 }, g);
-    txt(g, x, y + 4.5, 'SOS', { 'text-anchor': 'middle', 'font-size': 11, 'font-weight': 800 });
-    g.addEventListener('click', () => { if (!dragMoved()) showSOS(); });
-    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showSOS(); } });
-  });
-
-  // Legend, bottom left
-  const lx = 24, ly = 1032;
-  reserve(lx - 6, ly - 8, 340, 170);
-  el('rect', { x: lx, y: ly, width: 328, height: 156, rx: 10, fill: '#0b1020', 'fill-opacity': .85, stroke: '#26324f' }, D);
-  txt(D, lx + 14, ly + 22, 'MOTORWAYS', { 'font-size': 11, 'font-weight': 800, 'letter-spacing': 2.4, fill: '#9aa8c4' });
-  MOTORWAYS.concat('orbital').forEach((id, i) => {
-    const r = ROADS[id];
-    const x = lx + 14 + Math.floor(i / 4) * 160, y = ly + 44 + (i % 4) * 28;
-    const g = el('g', { class: 'lg', 'data-road': id, role: 'button', tabindex: 0, 'aria-label': 'Show ' + r.num + ' ' + r.name }, D);
-    el('rect', { x: x - 4, y: y - 14, width: 156, height: 24, fill: 'transparent' }, g);
-    el('line', { x1: x, y1: y - 2, x2: x + 22, y2: y - 2, stroke: r.color, 'stroke-width': 7, 'stroke-linecap': 'round' }, g);
-    txt(g, x + 30, y + 2.5, id === 'orbital' ? 'Kindness Orbital' : r.num + ' ' + r.name, { 'font-size': 13, 'font-weight': 700 });
-    g.addEventListener('click', () => focusRoad(id));
-    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusRoad(id); } });
-  });
-
-  // Sign key, bottom right
-  const kx = 1268, ky = 1032;
-  reserve(kx - 6, ky - 8, 330, 170);
-  el('rect', { x: kx, y: ky, width: 318, height: 156, rx: 10, fill: '#0b1020', 'fill-opacity': .85, stroke: '#26324f' }, D);
-  txt(D, kx + 14, ky + 22, 'READING THE SIGNS', { 'font-size': 11, 'font-weight': 800, 'letter-spacing': 2.4, fill: '#9aa8c4' });
-  [['#1d5bbf', '#fff', 'Blue', 'a hard junction'], ['#7b4a22', '#fff', 'Brown', 'a place worth visiting'], ['#17703a', '#ffe14d', 'Green', 'an A-road shortcut'], ['#ff7a00', '#fff', 'SOS', 'help, never far away']]
-    .forEach(([bg, fg, label, what], i) => {
-      const y = ky + 40 + i * 28;
-      el('rect', { x: kx + 14, y: y - 4, width: 52, height: 22, rx: 3, fill: bg, stroke: '#fff', 'stroke-width': 1.5 }, D);
-      txt(D, kx + 40, y + 11.5, label, { 'text-anchor': 'middle', 'font-size': 11.5, 'font-weight': 800, fill: fg });
-      txt(D, kx + 78, y + 11.5, what, { 'font-size': 13.5, fill: '#d9e1f2' });
+const ICONS = {
+  home: { w: 190, h: 120, draw(g) {
+    // garden, fence, washing line, smoke
+    E('ellipse', { cx: 0, cy: -2, rx: 92, ry: 12, fill: '#a9cc72', 'fill-opacity': .8 }, g);
+    for (let i = -80; i <= 80; i += 11) if (Math.abs(i) > 16) E('rect', O({ x: i, y: -12, width: 4, height: 12, fill: '#fffaf0', 'stroke-width': .8 }), g);
+    E('path', { d: 'M-82 -8 L82 -8', stroke: INK, 'stroke-width': .9 }, g);
+    const c = cottage(g, 0, 0, 1.9, { roof: '#c9a35b', wall: '#f6ead0', door: '#b8532f' });
+    E('circle', { cx: -12, cy: -32, r: 16, fill: 'url(#windowG)' }, c);
+    E('circle', { cx: 12, cy: -32, r: 16, fill: 'url(#windowG)' }, c);
+    for (let i = 0; i < 4; i++) {
+      const puff = E('circle', { cx: 24, cy: -98, r: 7, fill: '#fff', 'fill-opacity': .8 }, g);
+      if (!reduceMotion) {
+        E('animate', { attributeName: 'cy', values: '-98;-150', dur: '6s', begin: `${i * 1.5}s`, repeatCount: 'indefinite' }, puff);
+        E('animate', { attributeName: 'cx', values: '24;40', dur: '6s', begin: `${i * 1.5}s`, repeatCount: 'indefinite' }, puff);
+        E('animate', { attributeName: 'r', values: '6;16', dur: '6s', begin: `${i * 1.5}s`, repeatCount: 'indefinite' }, puff);
+        E('animate', { attributeName: 'fill-opacity', values: '.85;0', dur: '6s', begin: `${i * 1.5}s`, repeatCount: 'indefinite' }, puff);
+      }
+    }
+    // roses and washing line
+    for (const rx of [-62, -50, 48, 60]) { bush(g, rx, -2, .8); E('circle', { cx: rx, cy: -10, r: 2.2, fill: '#e2577a' }, g); }
+    E('path', { d: 'M-88 -40 L-88 -10 M-58 -40 L-58 -10', stroke: '#7a5233', 'stroke-width': 2 }, g);
+    E('path', { d: 'M-88 -38 Q-73 -32 -58 -38', stroke: INK, 'stroke-width': .8, fill: 'none' }, g);
+    for (const [wx, col] of [[-82, '#e85d75'], [-74, '#5b8fd1'], [-66, '#f2c14e']]) E('rect', O({ x: wx, y: -36, width: 6, height: 9, fill: col, 'stroke-width': .7 }), g);
+    // the cat on the wall
+    E('path', O({ d: 'M70 -12 Q70 -20 76 -20 L76 -24 L78 -21 L80 -24 L80 -18 Q84 -14 82 -12 Z', fill: '#3b3b3b', 'stroke-width': .7 }), g);
+  } },
+  tearooms: { w: 110, h: 80, draw(g) {
+    cottage(g, 0, 0, 1.25, { wall: '#f8d9d0', roof: '#7c8a9a', door: '#3f6b34' });
+    E('path', { d: 'M-34 -38 Q0 -28 34 -38', stroke: INK, 'stroke-width': .8, fill: 'none' }, g);
+    for (let i = 0; i < 8; i++) { const bx = -30 + i * 8.5; E('path', { d: `M${bx} ${-35 + Math.abs(i - 3.5) * -0.6} l3.5 6 l3.5 -6 Z`, fill: ['#e85d75', '#f2c14e', '#5b8fd1', '#6fbf73'][i % 4] }, g); }
+    E('rect', O({ x: 40, y: -12, width: 16, height: 2, fill: '#fffaf0', 'stroke-width': .8 }), g);
+    E('path', { d: 'M44 -10 L44 0 M52 -10 L52 0 M48 -12 L48 -30', stroke: INK, 'stroke-width': 1 }, g);
+    E('path', O({ d: 'M34 -28 Q48 -40 62 -28 Z', fill: '#e85d75', 'stroke-width': .9 }), g);
+    E('rect', O({ x: -50, y: -26, width: 18, height: 12, rx: 2, fill: '#fffaf0', 'stroke-width': .9 }), g);
+    T(g, -41, -17, 'TEA', { 'font-family': SANS, 'font-size': 7, 'font-weight': 800, 'text-anchor': 'middle', fill: '#b8532f' });
+    E('path', { d: 'M-41 -14 L-41 0', stroke: INK, 'stroke-width': 1.2 }, g);
+  } },
+  pond: { w: 120, h: 50, draw(g) {
+    E('ellipse', O({ cx: 0, cy: -12, rx: 54, ry: 18, fill: '#9fd0dc', stroke: '#6aa7b6', 'stroke-width': 2 }), g);
+    E('ellipse', { cx: -12, cy: -16, rx: 22, ry: 5, fill: '#fff', 'fill-opacity': .3 }, g);
+    for (const [lx, ly] of [[-30, -6], [22, -18], [30, -6]]) E('ellipse', { cx: lx, cy: ly, rx: 5, ry: 2.5, fill: '#5f9445' }, g);
+    for (const rx of [-50, -46, 46, 50]) E('path', { d: `M${rx} -10 l${rx > 0 ? 2 : -2} -14`, stroke: '#5f8f45', 'stroke-width': 1.6 }, g);
+    const d1 = duck(g, -8, -10, 1.2), d2 = duck(g, 12, -16, 1, true);
+    if (!reduceMotion) {
+      E('animateTransform', { attributeName: 'transform', type: 'translate', values: '-8 -10;8 -10;-8 -10', dur: '14s', repeatCount: 'indefinite' }, d1);
+      E('animateTransform', { attributeName: 'transform', type: 'translate', values: '12 -16;-4 -14;12 -16', dur: '11s', repeatCount: 'indefinite' }, d2);
+    }
+  } },
+  meadow: { w: 120, h: 40, draw(g) {
+    E('ellipse', { cx: 0, cy: -8, rx: 56, ry: 15, fill: '#cfe39a' }, g);
+    for (let i = 0; i < 46; i++) E('circle', { cx: f((rnd() - .5) * 104), cy: f(-8 + (rnd() - .5) * 24), r: f(1.6 + rnd() * 1.6), fill: pick(['#e85d75', '#f2c14e', '#ffffff', '#9b7fd1', '#f08a4b']) }, g);
+    butterfly(g, -20, -30, '#f2a541'); butterfly(g, 18, -36, '#7aa7e0');
+  } },
+  phonebox: { w: 40, h: 60, draw(g) {
+    shadow(g, 14, 4);
+    E('rect', O({ x: -10, y: -50, width: 20, height: 50, rx: 2, fill: '#cf2a2a' }), g);
+    E('path', O({ d: 'M-11 -50 Q0 -58 11 -50 Z', fill: '#cf2a2a' }), g);
+    E('rect', { x: -8, y: -46, width: 16, height: 4, fill: '#fff' }, g);
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 2; c++) E('rect', { x: -7 + c * 7.5, y: -39 + r * 9, width: 6, height: 7.5, fill: '#fff6d8', 'fill-opacity': .9 }, g);
+    E('circle', { cx: 0, cy: -30, r: 22, fill: 'url(#windowG)', 'fill-opacity': .5 }, g);
+  } },
+  bench: { w: 90, h: 80, draw(g) {
+    tree(g, -18, 0, 1.75, 'round', '#5e9142');
+    E('rect', O({ x: 4, y: -12, width: 30, height: 3, fill: '#a0703f', 'stroke-width': .9 }), g);
+    E('rect', O({ x: 4, y: -20, width: 30, height: 3, fill: '#a0703f', 'stroke-width': .9 }), g);
+    E('path', { d: 'M7 -9 L7 0 M31 -9 L31 0 M7 -20 L7 -12 M31 -20 L31 -12', stroke: INK, 'stroke-width': 1.6 }, g);
+  } },
+  orchard: { w: 130, h: 60, draw(g) {
+    for (const [ox, oy] of [[-44, -20], [0, -24], [44, -20], [-24, 0], [20, 0], [62, 0]]) tree(g, ox, oy, .8, 'apple');
+    E('path', O({ d: 'M-58 2 l6 0 l0 -6 l-6 0 Z', fill: '#c99a5c', 'stroke-width': .8 }), g);
+  } },
+  bridge: { w: 90, h: 34, on: true, draw(g) {
+    E('path', O({ d: 'M-44 4 Q0 -26 44 4 L36 4 Q0 -12 -36 4 Z', fill: '#b9b3a6' }), g);
+    E('path', { d: 'M-20 -6 L-20 -1 M0 -11 L0 -5 M20 -6 L20 -1 M-30 -2 L-30 3 M30 -2 L30 3', stroke: '#8d877b', 'stroke-width': 1 }, g);
+    E('path', { d: 'M-44 4 Q0 -26 44 4', stroke: INK, 'stroke-width': 2.4, fill: 'none' }, g);
+  } },
+  passing: { w: 50, h: 50, draw(g) {
+    E('ellipse', { cx: 0, cy: -2, rx: 22, ry: 7, fill: '#dccb98' }, g);
+    E('path', { d: 'M8 -2 L8 -30', stroke: INK, 'stroke-width': 2 }, g);
+    E('rect', O({ x: -6, y: -46, width: 28, height: 18, rx: 2, fill: '#fff' }), g);
+    T(g, 8, -39, 'Passing', { 'font-family': SANS, 'font-size': 6.5, 'font-weight': 800, 'text-anchor': 'middle', fill: '#222' });
+    T(g, 8, -32, 'Place', { 'font-family': SANS, 'font-size': 6.5, 'font-weight': 800, 'text-anchor': 'middle', fill: '#222' });
+  } },
+  fingerpost: { w: 70, h: 70, on: true, draw(g) {
+    E('rect', O({ x: -2.5, y: -60, width: 5, height: 60, fill: '#fffaf0' }), g);
+    E('circle', O({ cx: 0, cy: -62, r: 4, fill: '#c0302b' }), g);
+    const arms = [['WORK', -24, -52, 1], ['KIDS', 24, -48, 1], ['BILLS', -12, -40, 1], ['WORRY', 22, -36, 1], ['EXAMS', -20, -28, 1], ['HOME', 18, -22, 1]];
+    arms.forEach(([w, ax, ay, s], i) => {
+      const left = ax < 0;
+      const a = G(g, 0, ay, { transform: `translate(0 ${ay}) rotate(${(i % 2 ? 1 : -1) * (6 + i * 3)})` });
+      E('path', O({ d: left ? 'M0 -4 L-30 -4 L-35 0 L-30 4 L0 4 Z' : 'M0 -4 L30 -4 L35 0 L30 4 L0 4 Z', fill: '#fffaf0', 'stroke-width': 1 }), a);
+      T(a, left ? -16 : 16, 2.6, w, { 'font-family': SANS, 'font-size': 6.5, 'font-weight': 800, 'text-anchor': 'middle', fill: '#222' });
     });
+  } },
+  woods: { w: 150, h: 90, draw(g) {
+    E('ellipse', { cx: 0, cy: -6, rx: 74, ry: 16, fill: '#3e5a3a', 'fill-opacity': .45 }, g);
+    for (const [tx, ty, s, k] of [[-56, -10, 1.1, 'pine'], [-30, -18, 1.35, 'pine'], [-4, -8, 1.2, 'round'], [22, -20, 1.4, 'pine'], [46, -8, 1.15, 'pine'], [-42, 4, 1, 'round'], [8, 6, 1.1, 'pine'], [60, 4, .9, 'round']])
+      tree(g, tx, ty, s, k, k === 'pine' ? '#2f4a33' : '#3d5e3a');
+    for (const [qx, qy, rot] of [[-36, -66, -14], [12, -78, 10], [52, -54, 18]]) {
+      const q = T(g, qx, qy, '?', { 'font-family': HAND, 'font-weight': 700, 'font-size': 26, fill: '#f6e27a', transform: `rotate(${rot} ${qx} ${qy})` });
+      anim(q, { attributeName: 'opacity', values: '.3;1;.3', dur: (2.5 + rnd() * 2).toFixed(1) + 's', repeatCount: 'indefinite' });
+    }
+  } },
+  brook: { w: 120, h: 30, on: true, draw(g) {
+    E('path', { d: 'M-70 18 Q-40 4 -14 10 T40 -6 T80 -22', stroke: '#7fbfd0', 'stroke-width': 12, fill: 'none', 'stroke-linecap': 'round' }, g);
+    const foam = E('path', { d: 'M-70 18 Q-40 4 -14 10 T40 -6 T80 -22', stroke: '#fff', 'stroke-width': 2, fill: 'none', 'stroke-dasharray': '6 9' }, g);
+    anim(foam, { attributeName: 'stroke-dashoffset', from: 0, to: -60, dur: '1.4s', repeatCount: 'indefinite' });
+    for (const [sx, sy] of [[-10, 4], [2, 1], [14, -2]]) E('ellipse', O({ cx: sx, cy: sy, rx: 4, ry: 2.6, fill: '#b9b3a6', 'stroke-width': .8 }), g);
+  } },
+  hollow: { w: 130, h: 110, draw(g) {
+    E('circle', { cx: 0, cy: -46, r: 66, fill: 'url(#nightG)' }, g);
+    for (let i = 0; i < 14; i++) {
+      const st = E('circle', { cx: f((rnd() - .5) * 90), cy: f(-46 + (rnd() - .5) * 80), r: f(.8 + rnd()), fill: '#fff8d6' }, g);
+      anim(st, { attributeName: 'opacity', values: '1;.25;1', dur: (2 + rnd() * 3).toFixed(1) + 's', repeatCount: 'indefinite' });
+    }
+    E('path', { d: 'M30 -92 a13 13 0 1 0 10 20 a10 10 0 1 1 -10 -20 Z', fill: '#fff3c4' }, g);
+    tree(g, -14, 0, 1.6, 'bare');
+    E('path', { d: 'M-14 -30 L-34 -36', stroke: '#6d5a48', 'stroke-width': 2.4, 'stroke-linecap': 'round' }, g);
+    const owl = G(g, -30, -36);
+    E('ellipse', O({ cx: 0, cy: -8, rx: 6, ry: 8, fill: '#9a7552', 'stroke-width': .9 }), owl);
+    E('path', { d: 'M-5 -15 L-4 -19 L-2 -15 M5 -15 L4 -19 L2 -15', fill: '#9a7552', stroke: INK, 'stroke-width': .7 }, owl);
+    for (const ex of [-2.4, 2.4]) { E('circle', { cx: ex, cy: -11, r: 2.2, fill: '#fff' }, owl); E('circle', { cx: ex, cy: -11, r: 1, fill: '#222' }, owl); }
+  } },
+  moor: { w: 120, h: 70, draw(g) {
+    E('ellipse', { cx: 0, cy: -6, rx: 56, ry: 14, fill: '#9aa08e', 'fill-opacity': .7 }, g);
+    for (const [hx, hy] of [[-30, -6], [-10, -2], [14, -8], [36, -4], [-44, -2]]) E('ellipse', { cx: hx, cy: hy, rx: 8, ry: 4, fill: '#8a7f8f' }, g);
+    for (const [rx, ry, rr] of [[22, -2, 6], [-22, 0, 4.5]]) E('ellipse', O({ cx: rx, cy: ry - 2, rx: rr, ry: rr * .7, fill: '#a9a59a', 'stroke-width': .9 }), g);
+    tree(g, 40, -2, 1, 'bare');
+    const cl = G(g, -6, -46);
+    for (const [cx, cy, r] of [[-14, 0, 9], [-2, -5, 11], [11, -1, 9], [0, 3, 9]]) E('circle', { cx, cy, r, fill: '#a5abb3', stroke: '#7c838c', 'stroke-width': .8 }, cl);
+    const rain = E('path', { d: 'M-16 14 l-3 9 M-7 14 l-3 9 M2 14 l-3 9 M11 14 l-3 9', stroke: '#7d93ad', 'stroke-width': 1.6, 'stroke-linecap': 'round', 'stroke-dasharray': '4 6' }, cl);
+    anim(rain, { attributeName: 'stroke-dashoffset', from: 0, to: -20, dur: '.8s', repeatCount: 'indefinite' });
+  } },
+  fogcottage: { w: 80, h: 70, draw(g) {
+    cottage(g, 0, 0, 1.1, { wall: '#d9d6cc', roof: '#7f8189', door: '#6f6a64', lit: true });
+    tree(g, -40, 4, .9, 'bare'); tree(g, 36, 6, .8, 'bare');
+  } },
+  quarry: { w: 150, h: 60, draw(g) {
+    E('path', O({ d: 'M-74 -6 Q-70 -40 -20 -46 Q40 -50 72 -18 Q78 -2 50 4 Q0 10 -50 6 Q-74 4 -74 -6 Z', fill: '#a5a39b' }), g);
+    E('path', { d: 'M-58 -6 Q-52 -32 -14 -36 Q32 -38 56 -14 Q60 -2 40 0 Q0 4 -40 2 Q-58 0 -58 -6 Z', fill: '#8f8d85' }, g);
+    E('path', { d: 'M-40 -6 Q-36 -24 -8 -26 Q24 -26 40 -10 Q40 -2 24 -2 Q0 0 -26 -2 Q-40 -2 -40 -6 Z', fill: '#77756e' }, g);
+    for (const [rx, ry] of [[-20, -10], [10, -8], [28, -14], [-34, -16]]) E('ellipse', O({ cx: rx, cy: ry, rx: 5, ry: 3.4, fill: '#bdb9ae', 'stroke-width': .8 }), g);
+    // the ladder out
+    E('path', { d: 'M4 -8 L22 -50 M14 -6 L32 -48', stroke: '#a0703f', 'stroke-width': 2.6, 'stroke-linecap': 'round' }, g);
+    for (let i = 1; i < 6; i++) { const t = i / 6; E('path', { d: `M${f(4 + 18 * t)} ${f(-8 - 42 * t)} L${f(14 + 18 * t)} ${f(-6 - 42 * t)}`, stroke: '#a0703f', 'stroke-width': 2 }, g); }
+    const glow = E('circle', { cx: 28, cy: -52, r: 9, fill: '#ffd166', 'fill-opacity': .55, filter: 'url(#blur3)' }, g);
+    anim(glow, { attributeName: 'fill-opacity', values: '.25;.75;.25', dur: '3s', repeatCount: 'indefinite' });
+  } },
+  stile: { w: 60, h: 40, on: true, draw(g) {
+    E('path', { d: 'M-46 0 L46 0', stroke: '#a7a294', 'stroke-width': 7, 'stroke-linecap': 'round' }, g);
+    E('path', { d: 'M-46 0 L46 0', stroke: '#8f8b7f', 'stroke-width': 7, 'stroke-dasharray': '5 3' }, g);
+    E('path', { d: 'M-8 2 L-8 -26 M8 2 L8 -26', stroke: '#8a5a33', 'stroke-width': 3.2 }, g);
+    E('path', { d: 'M-12 -8 L12 -8 M-12 -17 L12 -17', stroke: '#a0703f', 'stroke-width': 3 }, g);
+  } },
+  windmill: { w: 70, h: 100, draw(g) {
+    shadow(g, 18, 4);
+    E('path', O({ d: 'M-14 0 L-9 -56 L9 -56 L14 0 Z', fill: '#f1e4c6' }), g);
+    E('path', O({ d: 'M-12 -56 Q0 -70 12 -56 Z', fill: '#8a5a33' }), g);
+    E('rect', O({ x: -4, y: -12, width: 8, height: 12, fill: '#7a5233' }), g);
+    E('rect', O({ x: -3, y: -36, width: 6, height: 6, fill: '#ffe08a' }), g);
+    const sails = E('g', {}, g);
+    for (const a of [0, 90, 180, 270]) {
+      const s = E('g', { transform: `rotate(${a} 0 -58)` }, sails);
+      E('rect', O({ x: -1, y: -96, width: 2, height: 38, fill: '#8a5a33', 'stroke-width': .6 }), s);
+      E('rect', O({ x: 1, y: -94, width: 9, height: 30, fill: '#fffaf0', 'stroke-width': .8 }), s);
+      for (let k = 1; k < 4; k++) E('path', { d: `M1 ${-94 + k * 7.5} L10 ${-94 + k * 7.5}`, stroke: INK, 'stroke-width': .5 }, s);
+    }
+    spin(sails, 0, -58, '7s');
+    E('circle', O({ cx: 0, cy: -58, r: 3, fill: '#8a5a33' }), g);
+  } },
+  school: { w: 100, h: 80, draw(g) {
+    shadow(g, 40, 5);
+    E('rect', O({ x: -36, y: -34, width: 72, height: 34, fill: '#c97b56' }), g);
+    E('path', O({ d: 'M-41 -32 L-30 -50 L30 -50 L41 -32 Z', fill: '#5c6475' }), g);
+    E('rect', O({ x: -6, y: -62, width: 12, height: 12, fill: '#f1e4c6' }), g);
+    E('path', O({ d: 'M-8 -62 L0 -72 L8 -62 Z', fill: '#5c6475' }), g);
+    E('circle', O({ cx: 0, cy: -56, r: 2.6, fill: '#d49a1f', 'stroke-width': .8 }), g);
+    for (const wx of [-30, -18, 10, 22]) E('rect', O({ x: wx, y: -27, width: 8, height: 13, fill: '#f6efe0', 'stroke-width': 1 }), g);
+    E('rect', O({ x: -5, y: -18, width: 10, height: 18, fill: '#3f6b34' }), g);
+    E('rect', O({ x: -22, y: -46, width: 44, height: 8, rx: 1, fill: '#fffaf0', 'stroke-width': .8 }), g);
+    T(g, 0, -40, 'EXAMS', { 'font-family': SANS, 'font-size': 6.5, 'font-weight': 800, 'text-anchor': 'middle', fill: '#b8432f', 'letter-spacing': 1 });
+  } },
+  barn: { w: 90, h: 80, draw(g) {
+    shadow(g, 36, 5);
+    E('rect', O({ x: -30, y: -32, width: 60, height: 32, fill: '#a88979' }), g);
+    E('path', O({ d: 'M-34 -30 L-24 -48 L-2 -52 L4 -44 L24 -48 L34 -30 Z', fill: '#5d4a42' }), g);
+    E('rect', O({ x: -10, y: -22, width: 20, height: 22, fill: '#8d6f61' }), g);
+    E('path', { d: 'M-10 -22 L10 0 M10 -22 L-10 0', stroke: '#e9e2d4', 'stroke-width': 1.6 }, g);
+    // overloaded cart with a broken wheel
+    E('path', O({ d: 'M34 -10 L66 -10 L62 -2 L38 -2 Z', fill: '#a0703f', 'stroke-width': 1 }), g);
+    for (const [bx, by, bw] of [[36, -22, 10], [46, -26, 12], [58, -20, 8], [40, -32, 9], [52, -36, 10]]) E('rect', O({ x: bx, y: by, width: bw, height: 10, fill: pick(['#e3c88a', '#c99a5c', '#e8dcc0']), 'stroke-width': .8 }), g);
+    E('circle', O({ cx: 42, cy: 0, r: 5, fill: 'none', 'stroke-width': 1.6 }), g);
+    E('ellipse', O({ cx: 62, cy: 2, rx: 5, ry: 2.4, fill: 'none', 'stroke-width': 1.6 }), g);
+    for (let i = 0; i < 3; i++) {
+      const w = E('circle', { cx: -18, cy: -52, r: 5, fill: '#9a9a9a', 'fill-opacity': .5 }, g);
+      if (!reduceMotion) {
+        E('animate', { attributeName: 'cy', values: '-52;-86', dur: '5s', begin: `${i * 1.6}s`, repeatCount: 'indefinite' }, w);
+        E('animate', { attributeName: 'fill-opacity', values: '.5;0', dur: '5s', begin: `${i * 1.6}s`, repeatCount: 'indefinite' }, w);
+        E('animate', { attributeName: 'r', values: '4;11', dur: '5s', begin: `${i * 1.6}s`, repeatCount: 'indefinite' }, w);
+      }
+    }
+  } },
+  puddles: { w: 90, h: 50, on: true, draw(g) {
+    for (const [px, py, rx] of [[-28, 2, 16], [8, 4, 22], [34, -2, 11]]) E('ellipse', O({ cx: px, cy: py, rx, ry: rx * .35, fill: '#8a6a4a', stroke: '#6b5034', 'stroke-width': 1 }), g);
+    const kid = G(g, 8, 0);
+    E('path', { d: 'M-2 -5 L-3 0 M2 -5 L4 -1', stroke: '#f2c14e', 'stroke-width': 3, 'stroke-linecap': 'round' }, kid);
+    E('path', O({ d: 'M-5 -5 L-4 -15 Q0 -17 4 -15 L5 -5 Z', fill: '#f2c14e', 'stroke-width': .9 }), kid);
+    E('circle', O({ cx: 0, cy: -19, r: 3.6, fill: '#f1c9a5', 'stroke-width': .9 }), kid);
+    if (!reduceMotion) E('animateTransform', { attributeName: 'transform', type: 'translate', values: '8 0;8 -7;8 0', dur: '.7s', repeatCount: 'indefinite' }, kid);
+    for (const [dx, dy] of [[-10, -6], [-14, -10], [24, -6], [28, -11]]) E('circle', { cx: dx, cy: dy, r: 1.6, fill: '#8a6a4a' }, g);
+  } },
+  milestone: { w: 50, h: 46, draw(g) {
+    shadow(g, 14, 3);
+    E('path', O({ d: 'M-11 0 L-11 -24 Q0 -36 11 -24 L11 0 Z', fill: '#d6d1c4' }), g);
+    T(g, 0, -20, 'HOME', { 'font-family': SANS, 'font-size': 6.2, 'font-weight': 800, 'text-anchor': 'middle', fill: '#4a4a4a' });
+    T(g, 0, -9, '2', { 'font-family': SERIF, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'middle', fill: '#4a4a4a' });
+    figure(g, 22, 0, '#5b8fd1', .7);
+  } },
+  clocktower: { w: 90, h: 100, draw(g) {
+    cottage(g, -30, 0, .75, { wall: '#efe0c2', roof: '#9a5a3a' });
+    cottage(g, 32, 0, .7, { wall: '#e9e1d0', roof: '#6b7385' });
+    shadow(g, 12, 4);
+    E('rect', O({ x: -9, y: -76, width: 18, height: 76, fill: '#d8c9a8' }), g);
+    E('path', O({ d: 'M-11 -76 L0 -96 L11 -76 Z', fill: '#5c6475' }), g);
+    E('circle', O({ cx: 0, cy: -60, r: 7, fill: '#fffaf0' }), g);
+    const big = E('path', { d: 'M0 -60 L0 -65.5', stroke: INK, 'stroke-width': 1.3, 'stroke-linecap': 'round' }, g);
+    const small = E('path', { d: 'M0 -60 L3.5 -60', stroke: INK, 'stroke-width': 1.6, 'stroke-linecap': 'round' }, g);
+    spin(big, 0, -60, '6s'); spin(small, 0, -60, '72s');
+    E('rect', O({ x: -4, y: -14, width: 8, height: 14, fill: '#7a5233' }), g);
+  } },
+  tractor: { w: 120, h: 44, on: true, draw(g) {
+    const tr = G(g, 18, 0);
+    E('rect', O({ x: -16, y: -16, width: 30, height: 11, rx: 2, fill: '#3f8a3e' }), tr);
+    E('rect', O({ x: -14, y: -32, width: 16, height: 16, rx: 1.5, fill: '#3f8a3e' }), tr);
+    E('rect', { x: -11, y: -29, width: 10, height: 8, fill: '#cfe6f0' }, tr);
+    E('path', { d: 'M8 -16 L8 -26', stroke: '#444', 'stroke-width': 2 }, tr);
+    E('circle', O({ cx: -9, cy: -7, r: 9, fill: '#333' }), tr); E('circle', { cx: -9, cy: -7, r: 3.5, fill: '#e3b341' }, tr);
+    E('circle', O({ cx: 11, cy: -4, r: 5, fill: '#333' }), tr); E('circle', { cx: 11, cy: -4, r: 2, fill: '#e3b341' }, tr);
+    for (const [cx, col] of [[-26, '#d65a5a'], [-52, '#5b8fd1']]) {
+      const c = G(g, cx, 0);
+      E('path', O({ d: 'M-11 -3 L-11 -9 L-6 -9 L-3 -15 L6 -15 L9 -9 L11 -9 L11 -3 Z', fill: col, 'stroke-width': .9 }), c);
+      E('rect', { x: -2.5, y: -13.5, width: 7, height: 4, fill: '#d8eef6' }, c);
+      for (const wx of [-6, 6]) E('circle', { cx: wx, cy: -2, r: 2.6, fill: '#333' }, c);
+    }
+    const puff = E('circle', { cx: 26, cy: -30, r: 3, fill: '#888', 'fill-opacity': .5 }, g);
+    anim(puff, { attributeName: 'cy', values: '-30;-46', dur: '2s', repeatCount: 'indefinite' });
+    anim(puff, { attributeName: 'fill-opacity', values: '.5;0', dur: '2s', repeatCount: 'indefinite' });
+  } },
+  flock: { w: 90, h: 40, on: true, draw(g) {
+    for (const [sx, sy, fl] of [[-34, -2, false], [-20, 6, true], [-6, -4, false], [8, 4, false], [22, -6, true], [30, 6, false], [-14, -12, false], [16, -14, true]]) sheep(g, sx, sy, 1, fl);
+    figure(g, 44, 2, '#6f8f4e', .8);
+    const dog = G(g, 54, 4);
+    E('path', O({ d: 'M-6 -4 Q0 -8 6 -5 L8 -9 L10 -6 L8 -3 L6 -3 L5 0 M-5 -4 L-6 0 M-6 -4 L-10 -7', fill: '#2b2b2b', 'stroke-width': .8 }), dog);
+  } },
+  crossing: { w: 70, h: 50, on: true, draw(g) {
+    for (const s of [-1, 1]) {
+      const px = s * 20;
+      E('path', { d: `M${px} 4 L${px} -24`, stroke: INK, 'stroke-width': 2 }, g);
+      E('rect', O({ x: px - 6, y: -30, width: 12, height: 6, rx: 1, fill: '#222', 'stroke-width': .6 }), g);
+      const lamp = E('circle', { cx: px + (s < 0 ? -2.5 : 2.5), cy: -27, r: 2.2, fill: '#ff4a3d' }, g);
+      anim(lamp, { attributeName: 'opacity', values: '1;.15;1', dur: '1s', begin: s < 0 ? '0s' : '.5s', repeatCount: 'indefinite' });
+      const arm = G(g, 0, 0);
+      E('rect', O({ x: s < 0 ? px : px - 28, y: -12, width: 28, height: 4, fill: '#fff', 'stroke-width': .8 }), arm);
+      for (let k = 0; k < 4; k++) E('rect', { x: (s < 0 ? px : px - 28) + k * 7, y: -12, width: 3.5, height: 4, fill: '#d6453a' }, arm);
+    }
+  } },
+  pine: { w: 70, h: 90, draw(g) {
+    E('ellipse', { cx: 0, cy: -2, rx: 34, ry: 9, fill: '#b9cf8a' }, g);
+    tree(g, 0, 0, 1.6, 'pine', '#3a6a45');
+    figure(g, 22, 0, '#7a8aa0', .75);
+    E('path', { d: 'M-24 -64 q3 -3 6 0 q3 -3 6 0', stroke: INK, 'stroke-width': 1.2, fill: 'none' }, g);
+  } },
+  crosswords: { w: 80, h: 56, draw(g) {
+    figure(g, -16, 0, '#7a5aa6', 1);
+    figure(g, 16, 0, '#d07a2a', 1, true);
+    E('path', { d: 'M-8 -34 L-4 -40 L0 -33 L4 -41 L8 -34', stroke: '#c0302b', 'stroke-width': 2, fill: 'none', 'stroke-linejoin': 'round' }, g);
+    T(g, -26, -38, '#@!', { 'font-family': HAND, 'font-size': 13, 'font-weight': 700, fill: '#c0302b' });
+    T(g, 18, -40, '!!', { 'font-family': HAND, 'font-size': 13, 'font-weight': 700, fill: '#c0302b' });
+  } },
+  ford: { w: 70, h: 30, on: true, draw(g) {
+    for (const [sx, sy] of [[-20, 8], [-8, 2], [4, -3], [16, -8]]) E('ellipse', O({ cx: sx, cy: sy, rx: 6, ry: 3.6, fill: '#c2bdb0', 'stroke-width': .9 }), g);
+    const ripple = E('path', { d: 'M-30 -6 q5 -3 10 0 M14 10 q5 -3 10 0 M-4 12 q5 -3 10 0', stroke: '#fff', 'stroke-width': 1.4, fill: 'none' }, g);
+    anim(ripple, { attributeName: 'opacity', values: '1;.2;1', dur: '2s', repeatCount: 'indefinite' });
+  } },
+  rabbithole: { w: 80, h: 44, draw(g) {
+    E('ellipse', O({ cx: 0, cy: -6, rx: 28, ry: 12, fill: '#a98a62' }), g);
+    E('ellipse', { cx: -2, cy: -6, rx: 13, ry: 6, fill: '#2c2018' }, g);
+    const scr = E('rect', { x: -6, y: -9, width: 7, height: 5, rx: 1, fill: '#8fd3ff' }, g);
+    anim(scr, { attributeName: 'opacity', values: '1;.4;1', dur: '1.6s', repeatCount: 'indefinite' });
+    E('circle', { cx: -3, cy: -7, r: 10, fill: '#8fd3ff', 'fill-opacity': .25, filter: 'url(#blur3)' }, g);
+    rabbit(g, 24, 0, 1.2);
+  } },
+  hut: { w: 80, h: 70, draw(g) {
+    tree(g, -30, 2, 1.1); tree(g, 32, 4, 1);
+    shadow(g, 22, 4);
+    E('rect', O({ x: -18, y: -26, width: 36, height: 26, fill: '#9a6d45' }), g);
+    for (let i = -14; i < 18; i += 6) E('path', { d: `M${i} -26 L${i} 0`, stroke: '#7a5233', 'stroke-width': .8 }, g);
+    E('path', O({ d: 'M-22 -24 L0 -40 L22 -24 Z', fill: '#5f6b4a' }), g);
+    E('rect', O({ x: -5, y: -16, width: 10, height: 16, fill: '#5a3d24' }), g);
+    for (const [lx, ly, r] of [[-12, -2, -10], [-4, 1, 6], [6, -1, 14], [12, 2, -4], [0, 4, 10]]) E('rect', O({ x: lx, y: ly, width: 9, height: 6, fill: '#fff', 'stroke-width': .7, transform: `rotate(${r} ${lx} ${ly})` }), g);
+  } },
+  suitcase: { w: 60, h: 50, draw(g) {
+    shadow(g, 16, 3);
+    E('rect', O({ x: -14, y: -16, width: 28, height: 16, rx: 3, fill: '#a0603a' }), g);
+    E('path', O({ d: 'M-5 -16 L-5 -21 L5 -21 L5 -16', fill: 'none', 'stroke-width': 1.6 }), g);
+    E('path', { d: 'M-14 -9 L14 -9', stroke: '#7a4425', 'stroke-width': 1.4 }, g);
+    E('rect', { x: -9, y: -14, width: 6, height: 4, fill: '#f2c14e' }, g);
+    E('path', { d: 'M24 2 L24 -36', stroke: INK, 'stroke-width': 2 }, g);
+    E('path', O({ d: 'M24 -36 L50 -36 L56 -31 L50 -26 L24 -26 Z', fill: '#fffaf0', 'stroke-width': 1 }), g);
+    T(g, 38, -28.5, 'FAR AWAY', { 'font-family': SANS, 'font-size': 6, 'font-weight': 800, 'text-anchor': 'middle', fill: '#222' });
+  } }
+};
 
-  txt(D, W / 2, H - 10, 'In crisis? Samaritans 116 123 (UK and ROI, free, 24/7) · or your local emergency number', { 'text-anchor': 'middle', 'font-size': 12, fill: '#6f7c99' });
-  reserve(W / 2 - 300, H - 26, 600, 24);
+/* =====================================================================
+   THE LAND
+   ===================================================================== */
+const RS = [];          // river sample points
+const laneSamples = []; // lane sample points, for keeping things off the lanes
+const reserved = [];    // boxes the signs and scenery must avoid
+const reserve = (x, y, w, h, tag) => reserved.push({ x, y, w, h, tag });
+const hit = (b, x, y, m = 0) => x > b.x - m && x < b.x + b.w + m && y > b.y - m && y < b.y + b.h + m;
+
+function drawSky() {
+  const S = L.sky;
+  E('rect', { x: 0, y: 0, width: W, height: 360, fill: 'url(#skyG)' }, S);
+  const rays = E('g', { opacity: .45 }, S);
+  for (let i = 0; i < 18; i++) E('path', { d: 'M800 168 L788 -260 L812 -260 Z', fill: '#fff1b8', transform: `rotate(${i * 20} 800 168)` }, rays);
+  spin(rays, 800, 168, '120s');
+  E('circle', { cx: 800, cy: 168, r: 64, fill: 'url(#sunG)' }, S);
+  // distant hills
+  E('path', { d: 'M0 250 C 120 200, 250 215, 360 236 S 560 200, 690 232 S 1000 205, 1150 228 S 1420 196, 1600 238 L1600 400 L0 400 Z', fill: '#b6cfa8' }, S);
+  E('path', { d: 'M0 286 C 160 250, 300 262, 430 280 S 700 262, 860 286 S 1150 258, 1300 276 S 1500 262, 1600 280 L1600 420 L0 420 Z', fill: '#a8c793' }, S);
+  // clouds and birds
+  for (const [cx, cy, s, dur] of [[230, 70, 1, 90], [1180, 52, 1.2, 120], [1420, 140, .8, 80], [560, 120, .7, 100]]) {
+    const c = G(S, cx, cy);
+    for (const [x, y, r] of [[-26, 4, 16], [-6, -6, 22], [18, 2, 18], [36, 8, 12]]) E('circle', { cx: x * s, cy: y * s, r: r * s, fill: '#fff', 'fill-opacity': .9 }, c);
+    if (!reduceMotion) E('animateTransform', { attributeName: 'transform', type: 'translate', values: `${cx} ${cy};${cx + 60} ${cy};${cx} ${cy}`, dur: dur + 's', repeatCount: 'indefinite' }, c);
+  }
+  for (const [bx, by] of [[620, 70], [650, 86], [672, 64], [1010, 110], [1036, 100]]) {
+    const b = E('path', { d: `M${bx} ${by} q5 -5 10 0 q5 -5 10 0`, stroke: '#4a3726', 'stroke-width': 1.6, fill: 'none' }, S);
+    if (!reduceMotion) E('animateTransform', { attributeName: 'transform', type: 'translate', values: '0 0;30 -6;0 0', dur: '16s', repeatCount: 'indefinite' }, b);
+  }
 }
 
-/* ---------- signs ---------- */
-const SIGN_BG = { j: '#1d5bbf', origin: '#1d5bbf', knot: '#1d5bbf', services: '#1d5bbf', orbital: '#7b4a22', link: '#17703a' };
-const SIGN_SUB = { j: '#d6e4ff', origin: '#d6e4ff', knot: '#ffe14d', services: '#d6e4ff', orbital: '#f6dfc2', link: '#e3f5e9' };
-const signEls = {}, postEls = {};
-
-function buildSign(n) {
-  const g = el('g', { class: 'sign', 'data-id': n.id, tabindex: 0, role: 'button', 'aria-label': `${n.name}: ${n.sub}` }, L.signs);
-  const plate = el('rect', { class: 'plate', x: 0, y: 0, width: 10, height: 10, rx: 6, fill: SIGN_BG[n.type], stroke: '#fff', 'stroke-width': 2 }, g);
-  const badges = [];
-  if (n.type === 'j') badges.push(['J' + n.j, '#111', '#fff', '#111']);
-  if (n.type === 'origin') badges.push([ROADS[n.origin].num, '#1d5bbf', '#fff', '#fff']);
-  if (n.type === 'knot') n.roads.forEach(rid => badges.push([ROADS[rid].num, '#1d5bbf', '#fff', '#fff']));
-  if (n.type === 'link') badges.push([ROADS[n.roads[0]].num, '#17703a', '#ffe14d', '#ffe14d']);
-  const top = 11;
-  let x = 11;
-  for (const [label, bg, fg, stroke] of badges) {
-    const t = txt(g, 0, 0, label, { 'font-size': 12.5, 'font-weight': 800, fill: fg, 'text-anchor': 'middle' });
-    const w = Math.max(26, t.getComputedTextLength() + 12);
-    g.insertBefore(el('rect', { x, y: top, width: w, height: 21, rx: 3, fill: bg, stroke, 'stroke-width': 1.4 }), t);
-    t.setAttribute('x', x + w / 2); t.setAttribute('y', top + 15);
-    x += w + 6;
+function drawFields() {
+  const F = E('g', { filter: 'url(#wobble)' }, L.land);
+  const cols = 11, rows = 8, x0 = -40, y0 = 300, cw = (W + 80) / cols, ch = (H - y0 + 40) / rows;
+  const pts = [];
+  for (let r = 0; r <= rows; r++) { pts.push([]); for (let c = 0; c <= cols; c++) {
+    const edge = r === 0 || r === rows || c === 0 || c === cols;
+    pts[r].push([x0 + c * cw + (edge ? 0 : (rnd() - .5) * cw * .5), y0 + r * ch + (edge ? 0 : (rnd() - .5) * ch * .5)]);
+  } }
+  const fills = ['#c9df98', '#bcd88a', '#d4e5a6', 'url(#wheat)', '#c3db91', 'url(#plough)', '#b4d184', 'url(#stripes)', '#cde29c'];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+    const q = [pts[r][c], pts[r][c + 1], pts[r + 1][c + 1], pts[r + 1][c]];
+    E('path', { d: 'M' + q.map(p => p.map(f).join(' ')).join(' L') + ' Z', fill: pick(fills) }, F);
   }
-  const tx = badges.length ? x + 2 : 13;
-  const name = txt(g, tx, top + 16, n.name, { 'font-size': n.type === 'knot' ? 18 : 16, 'font-weight': 800 });
-  const sub = txt(g, tx, top + 36, n.sub, { 'font-family': SERIF, 'font-style': 'italic', 'font-weight': 500, 'font-size': 13.5, fill: SIGN_SUB[n.type] });
-  const w = Math.max(tx + name.getComputedTextLength(), tx + sub.getComputedTextLength(), x) + 13;
-  const h = 56;
-  plate.setAttribute('width', f(w)); plate.setAttribute('height', h);
+  // hedgerows along every field edge
+  const hedge = [];
+  for (let r = 0; r <= rows; r++) hedge.push('M' + pts[r].map(p => p.map(f).join(' ')).join(' L'));
+  for (let c = 0; c <= cols; c++) hedge.push('M' + pts.map(row => row[c].map(f).join(' ')).join(' L'));
+  E('path', { d: hedge.join(' '), stroke: '#6b9a4a', 'stroke-width': 6, fill: 'none', 'stroke-linejoin': 'round' }, F);
+  E('path', { d: hedge.join(' '), stroke: '#55823b', 'stroke-width': 9, fill: 'none', 'stroke-dasharray': '.1 11', 'stroke-linecap': 'round' }, F);
+  // Home Hill
+  E('path', { d: 'M360 560 C 470 420, 600 236, 800 214 C 1000 236, 1130 420, 1240 560 Z', fill: 'url(#hillG)', filter: 'url(#wobble)' }, L.land);
+  // light from the sun, gloom in the valley
+  E('rect', { x: 0, y: 200, width: W, height: 700, fill: 'url(#warmG)' }, L.land);
+  E('rect', { x: 0, y: 600, width: W, height: 600, fill: 'url(#gloomG)' }, L.land);
+}
+
+function drawWater() {
+  const Wt = L.water;
+  const d = smooth(RIVER);
+  E('path', { d, stroke: '#7fb3c2', 'stroke-width': 34, fill: 'none', 'stroke-linecap': 'round' }, Wt);
+  E('path', { d, stroke: '#a7d4df', 'stroke-width': 26, fill: 'none', 'stroke-linecap': 'round' }, Wt);
+  const shimmer = E('path', { d, stroke: '#fff', 'stroke-opacity': .7, 'stroke-width': 2, fill: 'none', 'stroke-dasharray': '10 26' }, Wt);
+  anim(shimmer, { attributeName: 'stroke-dashoffset', from: 0, to: -144, dur: '9s', repeatCount: 'indefinite' });
+  const bd = smooth(BROOK);
+  E('path', { d: bd, stroke: '#7fb3c2', 'stroke-width': 12, fill: 'none', 'stroke-linecap': 'round' }, Wt);
+  E('path', { d: bd, stroke: '#a7d4df', 'stroke-width': 8, fill: 'none', 'stroke-linecap': 'round' }, Wt);
+  const label = E('text', { 'font-family': HAND, 'font-size': 24, 'font-weight': 700, fill: '#3f7f94', 'letter-spacing': 2 }, Wt);
+  E('path', { id: 'riverPath', d, fill: 'none' }, L.defs);
+  const tp = E('textPath', { href: '#riverPath', startOffset: '30%' }, label);
+  tp.textContent = 'the River of Tears';
+  const p = E('path', { d }, L.defs);
+  const len = p.getTotalLength();
+  for (let s = 0; s <= len; s += 10) { const q = p.getPointAtLength(s); RS.push([q.x, q.y]); }
+  // railway
+  const rd = smooth(RAIL);
+  E('path', { d: rd, stroke: '#7a5a3a', 'stroke-width': 12, fill: 'none', 'stroke-dasharray': '2.5 5' }, Wt);
+  E('path', { d: rd, stroke: '#5c5c64', 'stroke-width': 7, fill: 'none' }, Wt);
+  E('path', { d: rd, stroke: '#cfc7b4', 'stroke-width': 3.5, fill: 'none' }, Wt);
+  E('path', { id: 'railPath', d: rd, fill: 'none' }, L.defs);
+}
+
+function drawTrain() {
+  const t = E('g', {}, L.scenery);
+  const inner = G(t, 0, 0);
+  // engine faces the direction of travel (+x)
+  E('rect', O({ x: -14, y: -12, width: 24, height: 10, rx: 3, fill: '#2f4a2a' }), inner);
+  E('rect', O({ x: -16, y: -20, width: 10, height: 10, fill: '#2f4a2a' }), inner);
+  E('rect', O({ x: 4, y: -18, width: 4, height: 6, fill: '#222' }), inner);
+  E('circle', { cx: 12, cy: -7, r: 2, fill: '#ffd166' }, inner);
+  for (const cx of [-30, -58]) E('rect', O({ x: cx - 12, y: -13, width: 24, height: 11, rx: 2, fill: '#b8532f' }), inner);
+  for (const wx of [-10, 2, -38, -26, -66, -54]) E('circle', { cx: wx, cy: -1.5, r: 2.6, fill: '#222' }, inner);
+  for (let i = 0; i < 3; i++) {
+    const p = E('circle', { cx: 6, cy: -22, r: 3, fill: '#fff', 'fill-opacity': .8 }, inner);
+    if (!reduceMotion) {
+      E('animate', { attributeName: 'cy', values: '-22;-40', dur: '1.5s', begin: `${i * .5}s`, repeatCount: 'indefinite' }, p);
+      E('animate', { attributeName: 'cx', values: '6;-14', dur: '1.5s', begin: `${i * .5}s`, repeatCount: 'indefinite' }, p);
+      E('animate', { attributeName: 'fill-opacity', values: '.8;0', dur: '1.5s', begin: `${i * .5}s`, repeatCount: 'indefinite' }, p);
+    }
+  }
+  if (!reduceMotion) {
+    const m = E('animateMotion', { dur: '26s', repeatCount: 'indefinite', rotate: 'auto', keyPoints: '1;0', keyTimes: '0;1', calcMode: 'linear' }, t);
+    E('mpath', { href: '#railPath' }, m);
+    inner.setAttribute('transform', 'scale(-1 1)');
+  } else t.setAttribute('transform', 'translate(1400 800)');
+}
+
+/* lanes */
+const laneEls = {};
+function drawLane(l) {
+  const g = E('g', { class: 'ln', 'data-lane': l.id, style: `--c:${l.color}` }, L.lanes);
+  laneEls[l.id] = g;
+  const ridge = l.ridge;
+  E('path', { class: 'edge', d: l.d, stroke: ridge ? '#c9a24f' : '#b99c66', 'stroke-width': 19, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g);
+  E('path', { d: l.d, stroke: ridge ? '#f4e2a6' : '#e8d6a2', 'stroke-width': 13, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g);
+  E('path', { d: l.d, stroke: '#9cbf6a', 'stroke-width': 2.2, fill: 'none', 'stroke-dasharray': '7 11', 'stroke-linecap': 'round' }, g);
+  const p = E('path', { d: l.d }, L.defs);
+  const len = p.getTotalLength();
+  for (let s = 0; s <= len; s += 8) { const q = p.getPointAtLength(s); laneSamples.push([q.x, q.y, l.id]); }
+  p.remove();
+}
+
+/* bridges wherever a lane crosses the river (except the ford) */
+function drawBridges() {
+  for (const lid of DRAW_ORDER) {
+    const l = LANES[lid];
+    const p = E('path', { d: l.d }, L.defs);
+    const len = p.getTotalLength();
+    let inside = false;
+    for (let s = 0; s <= len; s += 3) {
+      const q = p.getPointAtLength(s);
+      const near = RS.some(([x, y]) => Math.hypot(x - q.x, y - q.y) < 11);
+      if (near && !inside) {
+        inside = true;
+        if (Math.hypot(q.x - NODES.ford.x, q.y - NODES.ford.y) < 60) continue;
+        const a = p.getPointAtLength(Math.max(0, s - 4)), b = p.getPointAtLength(Math.min(len, s + 14));
+        const ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+        const br = G(L.lanes, q.x, q.y, { transform: `translate(${f(q.x)} ${f(q.y + 6)}) rotate(${f(ang)})`, class: 'brg' });
+        E('rect', O({ x: -4, y: -13, width: 34, height: 26, rx: 3, fill: '#c7c1b3' }), br);
+        E('rect', { x: -2, y: -8, width: 30, height: 16, fill: '#e8d6a2' }, br);
+      }
+      if (!near) inside = false;
+    }
+    p.remove();
+  }
+}
+
+/* =====================================================================
+   PLACES: illustrations, then the signs, then the scenery
+   ===================================================================== */
+const iconEls = {}, tagEls = {}, postEls = {};
+function laneDirAt(n) {
+  let best = null;
+  for (const [x, y, lid] of laneSamples) {
+    if (!n.lanes.includes(lid)) continue;
+    const d = Math.hypot(x - n.x, y - n.y);
+    if (!best || d < best.d) best = { d, x, y };
+  }
+  return best;
+}
+
+function placeIcons() {
+  const order = Object.values(NODES).sort((a, b) => (ICONS[b.icon].w * ICONS[b.icon].h) - (ICONS[a.icon].w * ICONS[a.icon].h));
+  for (const n of order) {
+    const ic = ICONS[n.icon];
+    let bx, by;
+    if (n.on || ic.on) { bx = n.x; by = n.y + (n.icon === 'bridge' ? 6 : n.icon === 'fingerpost' ? 4 : 8); }
+    else if (n.id === 'home') { bx = n.x; by = n.y - 14; }
+    else {
+      let best = null;
+      for (const gap of [10, 22, 38]) for (let a = 0; a < 360; a += 30) {
+        const ux = Math.cos(a * Math.PI / 180), uy = Math.sin(a * Math.PI / 180);
+        const cx = n.x + ux * (ic.w / 2 + gap), cy = n.y + uy * (ic.h / 2 + gap);
+        const box = { x: cx - ic.w / 2, y: cy - ic.h / 2, w: ic.w, h: ic.h };
+        let score = gap;
+        if (box.x < 4 || box.x + box.w > W - 4 || box.y < 200 || box.y + box.h > H - 18) score += 1e5;
+        for (const [x, y] of laneSamples) if (hit(box, x, y, 6)) score += 30;
+        for (const [x, y] of RS) if (hit(box, x, y, 4)) score += n.icon === 'pond' ? 0 : 18;
+        for (const r of reserved) { const ox = Math.max(0, Math.min(box.x + box.w, r.x + r.w) - Math.max(box.x, r.x)), oy = Math.max(0, Math.min(box.y + box.h, r.y + r.h) - Math.max(box.y, r.y)); score += ox * oy * 2; }
+        if (!best || score < best.score) best = { score, cx, cy };
+      }
+      bx = best.cx; by = best.cy + ic.h / 2;
+    }
+    reserve(bx - ic.w / 2, by - ic.h, ic.w, ic.h, 'icon');
+    const g = G(L.icons, bx, by, { class: 'place', 'data-id': n.id });
+    ic.draw(g);
+    g.addEventListener('click', () => { if (!dragMoved()) select(n.id); });
+    iconEls[n.id] = g;
+    n.ix = bx; n.iy = by - ic.h / 2;
+  }
+}
+
+function buildTag(n) {
+  const good = n.kind === 'good' || n.kind === 'home';
+  const origin = LANE_ORDER.some(l => LANES[l].nodes[0] === n.id);
+  const g = E('g', { class: 'tag', 'data-id': n.id, tabindex: 0, role: 'button', 'aria-label': `${n.name}: ${n.sub}` }, L.tags);
+  const board = E('rect', { class: 'board', x: 0, y: 0, width: 10, height: 10, rx: 7, fill: good ? '#fbf6df' : '#fffaf0', stroke: good ? '#5f8f45' : '#8b5e34', 'stroke-width': 1.8, filter: 'url(#drop)' }, g);
+  let y = 22;
+  let kick = null;
+  if (origin) { kick = T(g, 12, 17, LANES[mainLane(n)].name.toUpperCase(), { 'font-family': SANS, 'font-size': 10, 'font-weight': 800, 'letter-spacing': 1.6, fill: LANES[mainLane(n)].color }); y = 35; }
+  if (n.kind === 'good' && n.id !== 'teatime') { kick = T(g, 12, 17, 'WORTH A STOP', { 'font-family': SANS, 'font-size': 10, 'font-weight': 800, 'letter-spacing': 1.6, fill: '#5f8f45' }); y = 35; }
+  const name = T(g, 12, y, n.name, { 'font-size': n.id === 'home' ? 20 : 16, 'font-weight': 700, fill: '#33261a' });
+  const sub = T(g, 12, y + 22, n.sub, { 'font-family': HAND, 'font-size': 20, 'font-weight': 700, fill: good ? '#3f6b34' : '#b8532f' });
+  const w = Math.max(name.getComputedTextLength(), sub.getComputedTextLength(), kick ? kick.getComputedTextLength() : 0) + 24;
+  const h = y + 33;
+  board.setAttribute('width', f(w)); board.setAttribute('height', h);
   g.addEventListener('click', () => { if (!dragMoved()) select(n.id); });
   g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(n.id); } });
-  signEls[n.id] = g;
+  tagEls[n.id] = g;
   return { g, w, h };
 }
 
-/* Greedy placement: try eight directions at four distances and keep the
-   spot that covers the fewest roads, junctions, signs and furniture. */
-function placeSigns() {
-  const samples = [];
-  L.roads.querySelectorAll('.rd > path.edge').forEach(p => {
-    const len = p.getTotalLength();
-    for (let s = 0; s <= len; s += 7) { const q = p.getPointAtLength(s); samples.push([q.x, q.y]); }
-  });
-  const nodePts = Object.values(NODES).map(n => [n.x, n.y]);
-  const placed = reserved.slice();
-  const rank = { knot: 0, orbital: 1, services: 1, origin: 2, link: 3, j: 4 };
-  const order = Object.values(NODES).filter(n => n.type !== 'home').sort((a, b) => rank[a.type] - rank[b.type]);
+function placeTags() {
+  const placed = reserved.filter(r => r.tag !== 'icon-self');
+  const rank = n => n.id === 'home' ? 0 : n.kind === 'good' ? 1 : 2;
+  const order = Object.values(NODES).sort((a, b) => rank(a) - rank(b));
   for (const n of order) {
-    const { g, w, h } = buildSign(n);
+    const { g, w, h } = buildTag(n);
+    const ox = n.ix, oy = n.iy, ic = ICONS[n.icon];
     let best = null;
-    for (const gap of [14, 30, 52, 80]) {
-      for (const [ux, uy] of [[0, -1], [0, 1], [1, 0], [-1, 0], [1, -1], [-1, -1], [1, 1], [-1, 1]]) {
-        const k = ux && uy ? .55 : 1;
-        const cx = n.x + ux * (w / 2 + gap * k), cy = n.y + uy * (h / 2 + gap * k);
-        const rx = cx - w / 2, ry = cy - h / 2;
-        let score = gap * 1.2 + (ux && uy ? 6 : 0);
-        if (rx < 8 || ry < 8 || rx + w > W - 8 || ry + h > H - 8) score += 1e6;
-        for (const r of placed) {
-          const ox = Math.max(0, Math.min(rx + w + 6, r.x + r.w) - Math.max(rx - 6, r.x));
-          const oy = Math.max(0, Math.min(ry + h + 6, r.y + r.h) - Math.max(ry - 6, r.y));
-          score += ox * oy * 4;
-        }
-        for (const [px, py] of samples) if (px > rx - 9 && px < rx + w + 9 && py > ry - 9 && py < ry + h + 9) score += 60;
-        for (const [px, py] of nodePts) if (px > rx - 14 && px < rx + w + 14 && py > ry - 14 && py < ry + h + 14) score += 400;
-        if (!best || score < best.score) best = { score, rx, ry };
+    for (const gap of [6, 18, 34, 56]) for (const [ux, uy] of [[0, -1], [0, 1], [1, 0], [-1, 0], [1, -1], [-1, -1], [1, 1], [-1, 1]]) {
+      const cx = ox + ux * (ic.w / 2 + w / 2 + gap) * (uy ? .55 : 1), cy = oy + uy * (ic.h / 2 + h / 2 + gap);
+      const box = { x: cx - w / 2, y: cy - h / 2, w, h };
+      let score = gap * 1.4;
+      if (box.x < 6 || box.x + w > W - 6 || box.y < 6 || box.y + h > H - 22) score += 1e6;
+      for (const r of placed) {
+        const own = r.tag === 'icon' && Math.abs(r.x + r.w / 2 - ox) < 1 && Math.abs(r.y + r.h / 2 - oy) < 1;
+        const ox2 = Math.max(0, Math.min(box.x + w + 4, r.x + r.w) - Math.max(box.x - 4, r.x)), oy2 = Math.max(0, Math.min(box.y + h + 4, r.y + r.h) - Math.max(box.y - 4, r.y));
+        score += ox2 * oy2 * (own ? 8 : r.tag === 'icon' ? 2.2 : 6);
       }
+      for (const [x, y] of laneSamples) if (hit(box, x, y, 7)) score += 28;
+      for (const [x, y] of RS) if (hit(box, x, y, 4)) score += 22;
+      if (!best || score < best.score) best = { score, box };
     }
-    g.setAttribute('transform', `translate(${f(best.rx)} ${f(best.ry)})`);
-    placed.push({ x: best.rx, y: best.ry, w, h });
-    const qx = Math.max(best.rx, Math.min(n.x, best.rx + w)), qy = Math.max(best.ry, Math.min(n.y, best.ry + h));
-    if (Math.hypot(qx - n.x, qy - n.y) > 10) {
-      postEls[n.id] = el('line', { class: 'post', x1: n.x, y1: n.y, x2: f(qx), y2: f(qy), stroke: '#c7d2ea', 'stroke-opacity': .55, 'stroke-width': 2, 'stroke-dasharray': '1 4', 'stroke-linecap': 'round' }, L.posts);
+    const b = best.box;
+    g.setAttribute('transform', `translate(${f(b.x)} ${f(b.y)})`);
+    placed.push(Object.assign({ tag: 'tag' }, b));
+    reserved.push(Object.assign({ tag: 'tag' }, b));
+    const qx = Math.max(b.x, Math.min(n.x, b.x + w)), qy = Math.max(b.y, Math.min(n.y, b.y + h));
+    if (Math.hypot(qx - n.x, qy - n.y) > 24) postEls[n.id] = E('path', { class: 'post', d: `M${f(qx)} ${f(qy)} L${f(n.x)} ${f(n.y)}`, stroke: '#8b5e34', 'stroke-width': 1.6, 'stroke-dasharray': '2 4', 'stroke-linecap': 'round', fill: 'none' }, L.posts);
+    E('circle', { cx: n.x, cy: n.y, r: 4, fill: '#fffaf0', stroke: '#8b5e34', 'stroke-width': 1.6, class: 'post' + (postEls[n.id] ? '' : ' lone') }, L.posts);
+  }
+}
+
+function scatter() {
+  const S = L.scenery;
+  const placed = [];
+  let tries = 0, made = 0;
+  while (made < 150 && tries < 9000) {
+    tries++;
+    const x = 12 + rnd() * (W - 24), y = 330 + rnd() * (H - 360);
+    if (laneSamples.some(([lx, ly]) => Math.abs(lx - x) < 22 && Math.abs(ly - y) < 22)) continue;
+    if (RS.some(([rx, ry]) => Math.abs(rx - x) < 26 && Math.abs(ry - y) < 26)) continue;
+    if (reserved.some(r => hit(r, x, y, 18))) continue;
+    if (placed.some(([px, py]) => Math.hypot(px - x, py - y) < 30)) continue;
+    if (Math.abs(x - 800) < 300 && y < 560 && Math.hypot((x - 800) / 440, (y - 560) / 340) < 1 && y < 360) continue;
+    placed.push([x, y]); made++;
+    const low = y > 860, up = y < 560;
+    const r = rnd();
+    if (up) {
+      if (r < .16) { const n = 2 + Math.floor(rnd() * 2); for (let i = 0; i < n; i++) sheep(S, x + (rnd() - .5) * 26, y + (rnd() - .5) * 10, .9, rnd() > .5); }
+      else if (r < .5) flowers(S, x, y, 8, 14);
+      else tree(S, x, y, .9 + rnd() * .4);
+    } else if (!low) {
+      if (r < .2) cow(S, x, y, 1, rnd() > .5);
+      else if (r < .32) { const n = 1 + Math.floor(rnd() * 2); for (let i = 0; i < n; i++) sheep(S, x + (rnd() - .5) * 26, y + (rnd() - .5) * 10, .9, rnd() > .5); }
+      else if (r < .85) tree(S, x, y, .9 + rnd() * .35);
+      else bush(S, x, y);
+    } else {
+      if (r < .45) tree(S, x, y, .85 + rnd() * .3, rnd() < .55 ? 'bare' : 'round', '#7d8f6a');
+      else if (r < .65) bush(S, x, y, .9);
+      else if (r < .8) E('ellipse', O({ cx: f(x), cy: f(y), rx: 7, ry: 4.5, fill: '#b3aea1', 'stroke-width': .8 }), S);
+      else bush(S, x, y, .8);
     }
   }
+  // ducks on the river
+  for (const k of [12, 45, 110, 140]) { const q = RS[k]; if (q) duck(S, q[0], q[1] + 4, 1.1, k % 2 === 0); }
+  rabbit(S, 160, 1110, 1); rabbit(S, 40, 1010, .9);
+}
+
+function drawWeather() {
+  const Wt = L.weather;
+  for (const [cx, cy, rx, ry, dx] of [[860, 1030, 150, 40, 40], [960, 960, 130, 34, -30], [700, 1120, 170, 30, 30], [560, 1090, 120, 26, -20], [1000, 1100, 140, 32, 30]]) {
+    const fg = E('ellipse', { cx, cy, rx, ry, fill: '#f4f4f0', 'fill-opacity': .62, filter: 'url(#blur10)', 'pointer-events': 'none' }, Wt);
+    if (!reduceMotion) E('animateTransform', { attributeName: 'transform', type: 'translate', values: `0 0;${dx} 0;0 0`, dur: (18 + rnd() * 10).toFixed(0) + 's', repeatCount: 'indefinite' }, fg);
+  }
+}
+
+function drawFrame() {
+  const F = L.frame;
+  // title cartouche
+  const t = G(F, 26, 22);
+  E('path', O({ d: 'M0 14 Q0 0 14 0 L420 0 Q434 0 434 14 L434 118 Q434 132 420 132 L14 132 Q0 132 0 118 Z', fill: '#fffaf0', stroke: '#8b5e34', 'stroke-width': 2.5, filter: 'url(#drop)' }), t);
+  E('path', { d: 'M8 20 Q8 8 20 8 L414 8 Q426 8 426 20 L426 112 Q426 124 414 124 L20 124 Q8 124 8 112 Z', fill: 'none', stroke: '#c9a24f', 'stroke-width': 1, 'stroke-dasharray': '3 3' }, t);
+  T(t, 26, 56, 'The Long Way Home', { 'font-size': 40, 'font-weight': 700, fill: '#2c3d22', 'font-style': 'italic' });
+  T(t, 28, 90, 'every hard feeling is a place you pass through', { 'font-family': HAND, 'font-size': 24, 'font-weight': 700, fill: '#b8532f' });
+  T(t, 28, 112, 'Start where you are. Every lane climbs out of the valley.', { 'font-family': SANS, 'font-size': 12.5, 'font-weight': 700, fill: '#6e5c48' });
+  reserve(20, 16, 446, 144, 'frame');
+
+  // compass that points home
+  const c = G(F, 1520, 86);
+  E('circle', O({ r: 46, fill: '#fffaf0', stroke: '#8b5e34', 'stroke-width': 2, filter: 'url(#drop)' }), c);
+  E('circle', { r: 38, fill: 'none', stroke: '#c9a24f', 'stroke-dasharray': '2 3' }, c);
+  E('path', O({ d: 'M0 -34 L8 0 L0 34 L-8 0 Z', fill: '#fbf6df', 'stroke-width': 1 }), c);
+  E('path', { d: 'M0 -34 L8 0 L-8 0 Z', fill: '#b8532f' }, c);
+  E('path', O({ d: 'M-30 0 L0 -6 L30 0 L0 6 Z', fill: '#fbf6df', 'stroke-width': .8 }), c);
+  T(c, 0, -52, 'HOME', { 'font-family': SANS, 'font-size': 12, 'font-weight': 800, 'text-anchor': 'middle', fill: '#b8532f', 'letter-spacing': 2 });
+  reserve(1466, 18, 110, 130, 'frame');
+
+  // legend of lanes
+  const lg = G(F, 1286, 18);
+  const rows = LANE_ORDER.concat('kindness');
+  E('rect', O({ x: -10, y: 0, width: 168, height: 26 + rows.length * 19, rx: 10, fill: '#fffaf0', stroke: '#8b5e34', 'stroke-width': 1.5, filter: 'url(#drop)' }), lg);
+  T(lg, 0, 18, 'THE LANES', { 'font-family': SANS, 'font-size': 10, 'font-weight': 800, 'letter-spacing': 2, fill: '#6e5c48' });
+  rows.forEach((id, i) => {
+    const l = LANES[id];
+    const row = E('g', { class: 'lg', transform: `translate(0 ${34 + i * 19})`, role: 'button', tabindex: 0, 'aria-label': 'Show ' + l.name }, lg);
+    E('rect', { x: -6, y: -11, width: 160, height: 18, fill: 'transparent' }, row);
+    E('circle', { cx: 5, cy: -4, r: 5, fill: l.color }, row);
+    T(row, 16, 0, l.name, { 'font-family': SANS, 'font-size': 12.5, 'font-weight': 700, fill: '#33261a' });
+    row.addEventListener('click', () => focusLane(id));
+    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusLane(id); } });
+  });
+  reserve(1270, 14, 180, 40 + rows.length * 19, 'frame');
+
+  T(F, W / 2, H - 8, 'In crisis? Call Samaritans free on 116 123 (UK and ROI, day or night), or your local emergency number.', { 'font-family': SANS, 'font-size': 12.5, 'font-weight': 700, 'text-anchor': 'middle', fill: '#4a3726' });
+  reserve(W / 2 - 320, H - 26, 640, 26, 'frame');
+  E('rect', { x: 0, y: 0, width: W, height: H, filter: 'url(#paper)', opacity: .22, 'pointer-events': 'none' }, F);
+  E('rect', { x: 3, y: 3, width: W - 6, height: H - 6, rx: 6, fill: 'none', stroke: '#8b5e34', 'stroke-width': 6, 'pointer-events': 'none' }, F);
 }
 
 /* =====================================================================
@@ -873,51 +1283,40 @@ function placeSigns() {
 const panel = document.getElementById('panel');
 const clearBtn = document.getElementById('clearBtn');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const roadTag = id => { const r = ROADS[id]; return `<span class="tag${r.ring ? ' ring' : r.kind ? ' link' : ''}">${esc(r.num)}</span>`; };
-const roadName = id => { const r = ROADS[id]; return r.ring ? 'Kindness Orbital' : `${r.num} ${r.name}`; };
+const chip = id => `<span class="chipline" style="--c:${LANES[id].color}">${esc(LANES[id].name)}</span>`;
 
 function clearFocus() {
-  svg.classList.remove('focus', 'arrived');
+  svg.classList.remove('focus');
   svg.querySelectorAll('.on, .lit').forEach(e => e.classList.remove('on', 'lit'));
   clearBtn.hidden = true;
 }
-function light(id) { [signEls[id], postEls[id], nodeEls[id]].forEach(e => e && e.classList.add('on')); }
-function focusRoad(id) {
-  stopDrive(); clearFocus();
+const light = id => [tagEls[id], postEls[id]].forEach(e => e && e.classList.add('on'));
+function focusLane(id) {
+  stopWalk(); clearFocus();
   svg.classList.add('focus');
-  roadEls[id].classList.add('on');
-  ROADS[id].nodes.forEach(light);
+  laneEls[id].classList.add('on');
+  LANES[id].nodes.forEach(light);
   clearBtn.hidden = false;
-  showRoad(id);
+  showLane(id);
 }
 function select(id) {
-  stopDrive(); clearFocus();
+  stopWalk(); clearFocus();
   if (id !== 'home') {
     svg.classList.add('focus');
     light(id);
-    NODES[id].roads.forEach(rid => { roadEls[rid].classList.add('on'); ROADS[rid].nodes.forEach(light); });
+    NODES[id].lanes.forEach(lid => { laneEls[lid].classList.add('on'); LANES[lid].nodes.forEach(light); });
     clearBtn.hidden = false;
   }
-  showNode(id);
+  showPlace(id);
   if (window.innerWidth <= 1120) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
-function kicker(n) {
-  if (n.type === 'home') return 'Your destination';
-  if (n.type === 'knot') return `${n.roads.map(roadTag).join(' ')} Interchange`;
-  if (n.type === 'orbital') return `${roadTag('orbital')} A place worth visiting`;
-  if (n.type === 'services') return `${roadTag('orbital')} Services`;
-  if (n.type === 'link') return `${roadTag(n.roads[0])} A-road shortcut`;
-  if (n.type === 'origin') return `${roadTag(n.origin)} Start of the ${esc(ROADS[n.origin].name)} motorway`;
-  return `${roadTag(n.roads.find(r => MOTORWAYS.includes(r)))} Junction ${n.j}`;
-}
-const onward = id => ADJ[id].map(([v, rid]) => `<li style="--c:${ROADS[rid].color}"><span class="sw"></span><span>${esc(roadName(rid))} to <button type="button" class="linkbtn" data-go="${v}">${esc(NODES[v].name)}</button></span></li>`).join('');
 const crisisBox = () => `<p class="help">If you are here right now, please talk to someone today. In the UK and Ireland, Samaritans are free on <strong>116 123</strong>, any time, or text <strong>SHOUT</strong> to <strong>85258</strong>. If you are in danger, call <strong>999</strong>.</p>`;
 
-function showNode(id) {
+function showPlace(id) {
   const n = NODES[id];
+  const ways = ADJ[id].map(([v, lid]) => `<li style="--c:${LANES[lid].color}"><span class="dot"></span><span>${esc(LANES[lid].name)} to <button type="button" class="linkbtn" data-go="${v}">${esc(NODES[v].name)}</button></span></li>`).join('');
   panel.innerHTML = `
-    <p class="kicker">${kicker(n)}</p>
+    <p class="kicker">${n.lanes.map(chip).join(' ')}${n.kind === 'good' ? ' Worth a stop' : ''}</p>
     <h2>${esc(n.name)}</h2>
     <p class="reframe">${esc(n.sub)}</p>
     <h3>What it feels like</h3>
@@ -925,66 +1324,47 @@ function showNode(id) {
     <h3>The way through</h3>
     <p class="gap">${esc(n.gap)}</p>
     ${n.crisis ? crisisBox() : ''}
-    ${id === 'home' ? '' : `<h3>Roads from here</h3><ul class="roads">${onward(id)}</ul>`}
-    <div class="actions">
-      ${id === 'home' ? `<a class="btn" href="#satnav">Plan a route here</a>` : `<button class="btn" type="button" data-drive="${id}">Drive home from here</button>`}
-    </div>`;
+    ${id === 'home' ? '' : `<h3>Lanes from here</h3><ul class="ways">${ways}</ul>`}
+    <div class="actions">${id === 'home' ? `<a class="btn" href="#walk">Plan a walk here</a>` : `<button class="btn warm" type="button" data-walk="${id}">Walk me home from here</button>`}</div>`;
 }
-function showRoad(id) {
-  const r = ROADS[id];
+function showLane(id) {
+  const l = LANES[id];
   panel.innerHTML = `
-    <p class="kicker">${roadTag(id)} ${esc(r.topic || 'A-road')}</p>
-    <h2>${esc(roadName(id))}</h2>
-    <p>${esc(r.about || '')}</p>
-    <h3>${r.ring ? 'Around the Orbital' : 'Junctions, in order'}</h3>
-    <ul class="roads">${r.nodes.map(nid => `<li style="--c:${r.color}"><span class="sw"></span><span><button type="button" class="linkbtn" data-go="${nid}">${esc(NODES[nid].name)}</button> · <i style="color:#9aa8c4">${esc(NODES[nid].sub)}</i></span></li>`).join('')}</ul>
-    ${r.ring ? '' : `<div class="actions"><button class="btn" type="button" data-road-drive="${id}">Drive it end to end</button></div>`}`;
-}
-function showSOS() {
-  stopDrive(); clearFocus();
-  panel.innerHTML = `
-    <p class="kicker"><span class="tag" style="background:#ff7a00">SOS</span> Emergency phone</p>
-    <h2>Help is never far away</h2>
-    <p class="reframe">breaking down is expected</p>
-    <h3>Why it is on the map</h3>
-    <p>On a real motorway there is an emergency phone every mile, because breakdowns are expected. The same goes for people.</p>
-    ${crisisBox()}
-    <p style="margin-top:12px;color:#9aa8c4;font-size:15px">Not urgent, but not okay? Your GP is a good first call. In England you can also refer yourself to NHS Talking Therapies without seeing a GP.</p>`;
-  if (window.innerWidth <= 1120) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    <p class="kicker">${chip(id)}</p>
+    <h2>${esc(l.name)}</h2>
+    <p class="reframe">${esc(l.topic)}</p>
+    <p>${esc(l.about)}</p>
+    <h3>Along the way</h3>
+    <ul class="ways">${l.nodes.map(nid => `<li style="--c:${l.color}"><span class="dot"></span><span><button type="button" class="linkbtn" data-go="${nid}">${esc(NODES[nid].name)}</button> <span class="hand" style="font-size:19px;color:#b8532f">${esc(NODES[nid].sub)}</span></span></li>`).join('')}</ul>
+    ${LANE_ORDER.includes(id) ? `<div class="actions"><button class="btn warm" type="button" data-walk="${l.nodes[0]}">Walk it, then home</button></div>` : ''}`;
 }
 function showIntro() {
   panel.innerHTML = `
     <p class="kicker">You are here</p>
-    <h2>Find your junction</h2>
-    <p class="reframe">then follow the signs home</p>
-    <p>Every blue sign is a hard junction, with a reframe written underneath it. Tap one to read what it feels like and the way through.</p>
-    <h3>How the roads work</h3>
-    <p>Seven motorways start somewhere hard at the edge of the map. Three of them tangle at Spaghetti Junction. A-road shortcuts swap traffic between them. All seven cross the Kindness Orbital and finish at Home. The little lights on the roads are always heading inward.</p>
+    <h2>Find your place on the map</h2>
+    <p class="reframe">then follow the lane uphill</p>
+    <p>Down in the valley it is foggy and the going is heavy. That is where the hard feelings live: Whatif Woods, Burnout Barn, Rock Bottom Quarry, stuck behind a tractor.</p>
+    <h3>How the map works</h3>
+    <p>Every lane climbs. Each one reaches the Kindness Way, a sunny ridge road with places worth stopping at, and from the Tea Rooms, Home Lane winds up the hill to the cottage with the kettle on. Tap any sign to read it.</p>
     <div class="actions">
-      <button class="btn" type="button" data-drive="overwhelm">Drive home from Spaghetti Junction</button>
-      <a class="btn ghost" href="#satnav">Open the satnav</a>
+      <button class="btn warm" type="button" data-walk="crossroads">Walk home from Muddle Crossroads</button>
+      <a class="btn ghost" href="#walk">Plan a walk</a>
     </div>`;
 }
-
 panel.addEventListener('click', e => {
-  const go = e.target.closest('[data-go]');
-  if (go) return select(go.dataset.go);
-  const rd = e.target.closest('[data-road-drive]');
-  if (rd) { const r = ROADS[rd.dataset.roadDrive]; return runPlan(r.nodes[0], r.nodes[r.nodes.length - 1], true, r.id); }
-  const dv = e.target.closest('[data-drive]');
-  if (dv) return runPlan(dv.dataset.drive, 'home', true);
+  const go = e.target.closest('[data-go]'); if (go) return select(go.dataset.go);
+  const wk = e.target.closest('[data-walk]'); if (wk) return runPlan(wk.dataset.walk, 'home', true);
 });
-clearBtn.addEventListener('click', () => { stopDrive(); clearFocus(); showIntro(); });
+clearBtn.addEventListener('click', () => { stopWalk(); clearFocus(); showIntro(); });
 
-/* ---------- zoom and drag ---------- */
+/* zoom and drag */
 const scroller = document.getElementById('mapScroll');
 let zoom = 1;
 function setZoom(z) {
-  const cx = (scroller.scrollLeft + scroller.clientWidth / 2) / scroller.scrollWidth;
-  const cy = (scroller.scrollTop + scroller.clientHeight / 2) / scroller.scrollHeight;
+  const cx = (scroller.scrollLeft + scroller.clientWidth / 2) / scroller.scrollWidth, cy = (scroller.scrollTop + scroller.clientHeight / 2) / scroller.scrollHeight;
   zoom = Math.max(1, Math.min(3, z));
   svg.style.width = zoom === 1 ? '' : zoom * 100 + '%';
-  svg.style.minWidth = zoom === 1 ? '' : 1000 * zoom + 'px';
+  svg.style.minWidth = zoom === 1 ? '' : 1050 * zoom + 'px';
   scroller.scrollLeft = cx * scroller.scrollWidth - scroller.clientWidth / 2;
   scroller.scrollTop = cy * scroller.scrollHeight - scroller.clientHeight / 2;
 }
@@ -992,10 +1372,7 @@ document.getElementById('zoomIn').addEventListener('click', () => setZoom(zoom +
 document.getElementById('zoomOut').addEventListener('click', () => setZoom(zoom - .5));
 let drag = null;
 function dragMoved() { return drag && drag.moved; }
-scroller.addEventListener('pointerdown', e => {
-  if (e.pointerType !== 'mouse' || e.button !== 0) return;
-  drag = { x: e.clientX, y: e.clientY, sl: scroller.scrollLeft, st: scroller.scrollTop, moved: false };
-});
+scroller.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button !== 0) return; drag = { x: e.clientX, y: e.clientY, sl: scroller.scrollLeft, st: scroller.scrollTop, moved: false }; });
 window.addEventListener('pointermove', e => {
   if (!drag) return;
   const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
@@ -1005,224 +1382,197 @@ window.addEventListener('pointermove', e => {
 window.addEventListener('pointerup', () => { scroller.classList.remove('dragging'); setTimeout(() => { drag = null; }, 0); });
 
 /* =====================================================================
-   SATNAV
-   Dijkstra over (junction, road) states: each junction costs 1 and a
-   change of road costs 2, so routes prefer to stay on one road.
+   WALK ME HOME
+   Dijkstra over (place, lane) states: each stop costs 1 and changing
+   lane costs 2, so walks prefer to stay on one lane.
    ===================================================================== */
-function plan(from, to, via) {
+function plan(from, to) {
   if (from === to) return null;
-  const key = (n, r) => n + '|' + r;
+  const key = (n, l) => n + '|' + l;
   const dist = new Map(), prev = new Map(), q = [];
-  for (const r of via ? [via] : NODES[from].roads) { dist.set(key(from, r), 0); q.push([0, from, r]); }
+  for (const l of NODES[from].lanes) { dist.set(key(from, l), 0); q.push([0, from, l]); }
   let end = null;
   while (q.length) {
     q.sort((a, b) => a[0] - b[0]);
-    const [d, n, r] = q.shift();
-    if (d > dist.get(key(n, r))) continue;
-    if (n === to) { end = key(n, r); break; }
-    const nb = ADJ[n].filter(([, rid]) => rid === r).map(([v]) => [v, r, 1]);
-    if (!via) for (const r2 of NODES[n].roads) if (r2 !== r) nb.push([n, r2, 2]);
-    for (const [v, r2, c] of nb) {
-      const k = key(v, r2), nd = d + c;
-      if (nd < (dist.has(k) ? dist.get(k) : Infinity)) { dist.set(k, nd); prev.set(k, key(n, r)); q.push([nd, v, r2]); }
+    const [d, n, l] = q.shift();
+    if (d > dist.get(key(n, l))) continue;
+    if (n === to) { end = key(n, l); break; }
+    const nb = ADJ[n].filter(([, lid]) => lid === l).map(([v]) => [v, l, 1]);
+    for (const l2 of NODES[n].lanes) if (l2 !== l) nb.push([n, l2, 2]);
+    for (const [v, l2, c] of nb) {
+      const k = key(v, l2), nd = d + c;
+      if (nd < (dist.has(k) ? dist.get(k) : Infinity)) { dist.set(k, nd); prev.set(k, key(n, l)); q.push([nd, v, l2]); }
     }
   }
   if (!end) return null;
   const states = [];
   for (let k = end; k; k = prev.get(k)) states.unshift(k.split('|'));
   const legs = [];
-  for (const [n, r] of states) {
-    const last = legs[legs.length - 1];
-    if (last && last.road === r) last.nodes.push(n);
-    else legs.push({ road: r, nodes: [n] });
-  }
-  return legs.filter(l => l.nodes.length > 1);
+  for (const [n, l] of states) { const last = legs[legs.length - 1]; if (last && last.lane === l) last.nodes.push(n); else legs.push({ lane: l, nodes: [n] }); }
+  return legs.filter(x => x.nodes.length > 1);
 }
 
-const bar = document.getElementById('satnav-bar');
-const snBadge = document.getElementById('snBadge'), snWhat = document.getElementById('snWhat'), snWhy = document.getElementById('snWhy');
-let driving = null;
-function stopDrive() {
-  if (driving) { cancelAnimationFrame(driving.raf); driving = null; }
-  L.route.replaceChildren(); L.car.replaceChildren();
-  bar.hidden = true;
+const guide = document.getElementById('guide'), gStep = document.getElementById('gStep'), gWhat = document.getElementById('gWhat'), gWhy = document.getElementById('gWhy');
+let walking = null;
+function stopWalk() {
+  if (walking) { cancelAnimationFrame(walking.raf); walking = null; }
+  L.route.replaceChildren(); L.walker.replaceChildren();
+  guide.hidden = true;
 }
-document.getElementById('snStop').addEventListener('click', stopDrive);
+document.getElementById('gStop').addEventListener('click', stopWalk);
 
-function badgeFor(n) {
-  snBadge.className = 'badge' + (n.type === 'orbital' ? ' brown' : n.type === 'link' ? ' green' : n.type === 'home' ? ' home' : '');
-  snBadge.textContent = n.type === 'j' ? 'J' + n.j : n.type === 'home' ? '⌂' : n.type === 'orbital' ? '✿' : n.type === 'link' ? ROADS[n.roads[0]].num : n.type === 'origin' ? ROADS[n.origin].num : n.type === 'services' ? 'S' : '∞';
-}
-
-function drive(legs, from) {
-  stopDrive(); clearFocus();
-  svg.classList.add('focus');
-  clearBtn.hidden = false;
+function walk(legs, from) {
+  stopWalk(); clearFocus();
+  svg.classList.add('focus'); clearBtn.hidden = false;
   const nodes = [from];
-  legs.forEach(l => { nodes.push(...l.nodes.slice(1)); roadEls[l.road].classList.add('on'); });
+  legs.forEach(l => { nodes.push(...l.nodes.slice(1)); laneEls[l.lane].classList.add('on'); });
   nodes.forEach(light);
-
-  const hops = [];
-  let total = 0, allSegs = [];
+  const hops = []; let total = 0, all = [];
   for (let i = 0; i < nodes.length - 1; i++) {
     const e = EDGES.get(nodes[i] + '|' + nodes[i + 1]);
-    const p = el('path', { d: segsToD(e.segs), fill: 'none', stroke: 'none' }, L.route);
+    const p = E('path', { d: segsToD(e.segs), fill: 'none', stroke: 'none' }, L.route);
     const len = p.getTotalLength();
     hops.push({ to: nodes[i + 1], start: total, len, path: p });
-    total += len;
-    allSegs = allSegs.concat(e.segs);
+    total += len; all = all.concat(e.segs);
   }
-  const trail = el('path', { d: segsToD(allSegs), fill: 'none', stroke: '#ffd27a', 'stroke-width': 5, 'stroke-linecap': 'round', filter: 'url(#soft)', 'stroke-dasharray': `${f(total)} ${f(total + 10)}`, 'stroke-dashoffset': f(total) }, L.route);
-  const car = el('g', {}, L.car);
-  el('circle', { r: 18, fill: '#ffd27a', 'fill-opacity': .4, filter: 'url(#glow)' }, car);
-  el('circle', { r: 7, fill: '#fff7d9', stroke: '#ffb347', 'stroke-width': 2.5 }, car);
-  const placeCar = (x, y) => car.setAttribute('transform', `translate(${f(x)} ${f(y)})`);
-  placeCar(NODES[from].x, NODES[from].y);
-
-  const SPEED = 210, PAUSE = reduceMotion ? 900 : 1600;
-  bar.hidden = false;
-  const last = nodes[nodes.length - 1];
+  const trail = E('path', { d: segsToD(all), fill: 'none', stroke: '#b8532f', 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-dasharray': '0.1 9' }, L.route);
+  const mask = E('path', { d: segsToD(all), fill: 'none', stroke: '#fff', 'stroke-width': 14, 'stroke-dasharray': `${f(total)} ${f(total + 10)}`, 'stroke-dashoffset': f(total) }, L.defs);
+  const mk = E('mask', { id: 'walkMask', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: W, height: H }, L.defs);
+  mk.appendChild(mask);
+  trail.setAttribute('mask', 'url(#walkMask)');
+  const walker = E('g', {}, L.walker);
+  E('circle', { r: 20, fill: '#ffd166', 'fill-opacity': .5, filter: 'url(#blur3)' }, walker);
+  const body = G(walker, 0, 4);
+  figure(body, -4, 0, '#b8532f', 1.15);
+  const dog = G(body, 10, 0);
+  E('path', O({ d: 'M-6 -4 Q0 -8 6 -5 L8 -9 L10 -6 L8 -3 L6 -3 L5 0 M-5 -4 L-6 0 M-6 -4 L-10 -7', fill: '#8a5a33', 'stroke-width': .8 }), dog);
+  if (!reduceMotion) E('animateTransform', { attributeName: 'transform', type: 'translate', values: '0 4;0 2;0 4', dur: '.45s', repeatCount: 'indefinite' }, body);
+  const put = (x, y) => walker.setAttribute('transform', `translate(${f(x)} ${f(y)})`);
+  put(NODES[from].x, NODES[from].y);
+  const SPEED = 150, PAUSE = reduceMotion ? 900 : 1700;
+  guide.hidden = false;
+  const lastId = nodes[nodes.length - 1];
+  let stepNo = 0;
   const announce = id => {
     const n = NODES[id];
-    badgeFor(n);
-    snWhat.textContent = id === last && id === 'home' ? 'You made it home.' : n.name;
-    snWhy.textContent = id === 'home' ? 'Same address, different person.' : n.sub;
-    Object.values(signEls).forEach(s => s.classList.remove('lit'));
-    if (signEls[id]) signEls[id].classList.add('lit');
-    if (id === 'home') svg.classList.add('arrived');
-    showNode(id);
+    stepNo++;
+    gStep.textContent = id === 'home' ? '⌂' : stepNo;
+    gStep.className = 'step' + (n.kind === 'good' || n.kind === 'home' ? ' good' : '');
+    gWhat.textContent = id === lastId && id === 'home' ? 'You made it home.' : n.name;
+    gWhy.textContent = id === 'home' ? 'same front door, different person' : n.sub;
+    Object.values(tagEls).forEach(t => t.classList.remove('lit'));
+    if (tagEls[id]) tagEls[id].classList.add('lit');
+    showPlace(id);
   };
   announce(from);
-
   let hop = 0, moving = false, t0 = performance.now();
   const step = now => {
-    if (!driving) return;
+    if (!walking) return;
     if (!moving) {
-      if (now - t0 >= PAUSE) {
-        if (hop >= hops.length) { driving = null; return; }
-        moving = true; t0 = now;
-      }
+      if (now - t0 >= PAUSE) { if (hop >= hops.length) { walking = null; return; } moving = true; t0 = now; }
     } else {
       const h = hops[hop];
       const k = reduceMotion ? 1 : Math.min(1, (now - t0) / (h.len / SPEED * 1000));
       const e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
       const q = h.path.getPointAtLength(h.len * e);
-      placeCar(q.x, q.y);
-      trail.setAttribute('stroke-dashoffset', f(total - (h.start + h.len * e)));
+      put(q.x, q.y);
+      mask.setAttribute('stroke-dashoffset', f(total - (h.start + h.len * e)));
       if (k >= 1) { hop++; moving = false; t0 = now; announce(h.to); }
     }
-    driving.raf = requestAnimationFrame(step);
+    walking.raf = requestAnimationFrame(step);
   };
-  driving = { raf: requestAnimationFrame(step) };
+  walking = { raf: requestAnimationFrame(step) };
 }
 
 const fromSel = document.getElementById('fromSel'), toSel = document.getElementById('toSel'), result = document.getElementById('result');
-const opts = Object.values(NODES).filter(n => n.type !== 'home').sort((a, b) => a.name.localeCompare(b.name)).map(n => `<option value="${n.id}">${esc(n.name)}</option>`).join('');
-fromSel.innerHTML = opts;
-toSel.innerHTML = `<option value="home">Home</option>` + opts;
-fromSel.value = 'overwhelm'; toSel.value = 'home';
+const opts = Object.values(NODES).filter(n => n.id !== 'home').sort((a, b) => a.name.localeCompare(b.name)).map(n => `<option value="${n.id}">${esc(n.name)}</option>`).join('');
+fromSel.innerHTML = opts; toSel.innerHTML = `<option value="home">Home</option>` + opts;
+fromSel.value = 'crossroads'; toSel.value = 'home';
 
-function runPlan(from, to, scrollToMap, via) {
+function runPlan(from, to, scrollToMap) {
   fromSel.value = from; toSel.value = to;
   if (from === to) { result.innerHTML = `<p class="summary">You are already at ${esc(NODES[from].name)}. Sometimes the work is staying put for a while.</p>`; return; }
-  const legs = plan(from, to, via);
-  if (!legs || !legs.length) { result.innerHTML = `<p class="summary">No route found.</p>`; return; }
-  const hops = legs.reduce((a, l) => a + l.nodes.length - 1, 0);
-  const changes = legs.length - 1;
-  let html = `<p class="summary">${esc(NODES[from].name)} to ${esc(NODES[to].name)}: ${hops} junction${hops === 1 ? '' : 's'}, ${changes ? changes + ' change' + (changes === 1 ? '' : 's') + ' of road' : 'no changes'}. Journey time varies. Feelings do not drive to a timetable.</p>`;
+  const legs = plan(from, to);
+  if (!legs || !legs.length) { result.innerHTML = `<p class="summary">No way through found.</p>`; return; }
+  const stops = legs.reduce((a, l) => a + l.nodes.length - 1, 0), changes = legs.length - 1;
+  let html = `<p class="summary">${esc(NODES[from].name)} to ${esc(NODES[to].name)}: ${stops} stop${stops === 1 ? '' : 's'}, ${changes ? changes + ' change' + (changes === 1 ? '' : 's') + ' of lane' : 'one lane all the way'}. Take it at your own pace. Feelings do not keep a timetable.</p>`;
   legs.forEach((leg, i) => {
-    const r = ROADS[leg.road];
-    html += i === 0
-      ? `<div class="turn">Start at ${esc(NODES[from].name)} and join the ${esc(roadName(leg.road))}</div>`
-      : `<div class="turn">At ${esc(NODES[leg.nodes[0]].name)}, ${r.ring ? 'join the Kindness Orbital' : 'take the ' + esc(roadName(leg.road))}</div>`;
-    html += `<div class="leg" style="--c:${r.color}"><div class="leg-head">${roadTag(leg.road)} ${esc(roadName(leg.road))} · ${leg.nodes.length - 1} junction${leg.nodes.length === 2 ? '' : 's'}</div><ol>` +
-      leg.nodes.slice(1).map(id => `<li><b style="color:#eef2fa">${esc(NODES[id].name)}</b> · <span class="rf">${esc(NODES[id].sub)}</span></li>`).join('') + `</ol></div>`;
+    const l = LANES[leg.lane];
+    html += i === 0 ? `<div class="turn">Set off from ${esc(NODES[from].name)} along ${esc(l.name)}</div>` : `<div class="turn">At ${esc(NODES[leg.nodes[0]].name)}, take ${esc(l.name)}</div>`;
+    html += `<div class="leg" style="--c:${l.color}"><div class="leg-head">${chip(leg.lane)}</div><ol>` + leg.nodes.slice(1).map(id => `<li><b style="color:#33261a">${esc(NODES[id].name)}</b> · <span class="rf">${esc(NODES[id].sub)}</span></li>`).join('') + `</ol></div>`;
   });
-  html += `<div class="arrive">Arrive at ${esc(NODES[to].name)}</div><div class="actions"><button class="btn" type="button" id="replay">Drive it again</button></div>`;
+  html += `<div class="arrive">Arrive at ${esc(NODES[to].name)}</div><div class="actions"><button class="btn" type="button" id="again">Walk it again</button></div>`;
   result.innerHTML = html;
-  document.getElementById('replay').addEventListener('click', () => { document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); drive(legs, from); });
+  document.getElementById('again').addEventListener('click', () => { document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); walk(legs, from); });
   if (scrollToMap !== false) document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
-  drive(legs, from);
+  walk(legs, from);
 }
 document.getElementById('planForm').addEventListener('submit', e => { e.preventDefault(); runPlan(fromSel.value, toSel.value); });
 const presetEl = document.getElementById('presets');
-PRESETS.forEach(([label, id]) => {
-  const b = document.createElement('button');
-  b.type = 'button'; b.className = 'chip'; b.textContent = label;
-  b.addEventListener('click', () => runPlan(id, 'home'));
-  presetEl.appendChild(b);
-});
+PRESETS.forEach(([label, id]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = label; b.addEventListener('click', () => runPlan(id, 'home')); presetEl.appendChild(b); });
 
-/* road cards */
-document.getElementById('roadGrid').innerHTML = CARD_ORDER.map(id => {
-  const r = ROADS[id], n = r.nodes;
-  const path = r.ring ? n.map(x => esc(NODES[x].name)).join(' · ') : `<b>${esc(NODES[n[0]].name)}</b> → ${n.slice(1, -1).map(x => esc(NODES[x].name)).join(' → ')} → <b>Home</b>`;
-  return `<article class="road-card" style="--c:${r.color}">
-    <div class="hd">${roadTag(id)}<h3>${esc(r.ring ? 'Kindness Orbital' : r.name)}</h3></div>
-    <p>${esc(r.about)}</p>
-    <div class="path">${path}</div>
-    <div><button class="btn ghost" type="button" data-show="${id}">Show on the map</button></div>
-  </article>`;
+document.getElementById('laneGrid').innerHTML = LANE_ORDER.concat('kindness').map(id => {
+  const l = LANES[id], n = l.nodes;
+  const path = id === 'kindness' ? n.map(x => esc(NODES[x].name)).join(' · ') : `<b>${esc(NODES[n[0]].name)}</b> → ${n.slice(1, -1).map(x => esc(NODES[x].name)).join(' → ')} → <b>${esc(NODES[n[n.length - 1]].name)}</b>`;
+  return `<article class="lane-card" style="--c:${l.color}"><div class="topic">${esc(l.topic)}</div><h3>${esc(l.name)}</h3><p>${esc(l.about)}</p><div class="path">${path}</div><div><button class="btn ghost" type="button" data-show="${id}">Show on the map</button></div></article>`;
 }).join('');
-document.getElementById('roadGrid').addEventListener('click', e => {
-  const b = e.target.closest('[data-show]');
-  if (b) { focusRoad(b.dataset.show); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); }
-});
+document.getElementById('laneGrid').addEventListener('click', e => { const b = e.target.closest('[data-show]'); if (b) { focusLane(b.dataset.show); document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' }); } });
 
 /* poster capture */
 const leadForm = document.getElementById('leadForm'), leadMsg = document.getElementById('leadMsg'), unlocked = document.getElementById('unlocked');
-function unlock() {
-  leadForm.hidden = true; unlocked.hidden = false;
-  try { localStorage.setItem('trh-unlocked', '1'); } catch (e) { /* storage unavailable */ }
-}
-try { if (localStorage.getItem('trh-unlocked') === '1') unlock(); } catch (e) { /* storage unavailable */ }
+function unlock() { leadForm.hidden = true; unlocked.hidden = false; try { localStorage.setItem('lwh-unlocked', '1'); } catch (e) { /* storage unavailable */ } }
+try { if (localStorage.getItem('lwh-unlocked') === '1') unlock(); } catch (e) { /* storage unavailable */ }
 leadForm.addEventListener('submit', async e => {
   e.preventDefault();
   const email = document.getElementById('leadEmail').value.trim(), name = document.getElementById('leadName').value.trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { leadMsg.textContent = 'That email address does not look quite right.'; return; }
-  const btn = document.getElementById('leadBtn');
-  btn.disabled = true; leadMsg.textContent = 'Sending…';
+  const btn = document.getElementById('leadBtn'); btn.disabled = true; leadMsg.textContent = 'Sending…';
   try {
-    const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name, source: 'the-road-home' }) });
+    const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name, source: 'the-long-way-home' }) });
     const j = await r.json().catch(() => ({}));
     if (!r.ok || !j.ok) throw new Error(j.error || 'Something went wrong. Please try again in a minute.');
     leadMsg.textContent = ''; unlock();
-  } catch (err) {
-    leadMsg.textContent = err.message && !/fetch|JSON/i.test(err.message) ? err.message : 'We could not reach the server. Please try again in a minute.';
-  } finally { btn.disabled = false; }
+  } catch (err) { leadMsg.textContent = err.message && !/fetch|JSON/i.test(err.message) ? err.message : 'We could not reach the server. Please try again in a minute.'; }
+  finally { btn.disabled = false; }
 });
 function downloadSVG() {
-  stopDrive(); clearFocus();
+  stopWalk(); clearFocus();
   const clone = svg.cloneNode(true);
   clone.removeAttribute('class'); clone.removeAttribute('style');
   clone.querySelectorAll('[tabindex]').forEach(n => n.removeAttribute('tabindex'));
-  clone.querySelectorAll('.reveal-sign').forEach(n => n.classList.remove('reveal-sign', 'in'));
+  clone.querySelectorAll('.appear').forEach(n => n.classList.remove('appear', 'in'));
   clone.setAttribute('xmlns', NS); clone.setAttribute('width', W); clone.setAttribute('height', H);
-  const style = document.createElementNS(NS, 'style');
-  style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Overpass+Mono:wght@600;700&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap');";
-  clone.insertBefore(style, clone.firstChild);
+  const st = document.createElementNS(NS, 'style');
+  st.textContent = "@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,600&family=Nunito:wght@400;600;700;800&display=swap');";
+  clone.insertBefore(st, clone.firstChild);
   const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob); a.download = 'the-road-home-poster.svg';
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'the-long-way-home-poster.svg';
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
 document.getElementById('dlSvg').addEventListener('click', downloadSVG);
-document.getElementById('printBtn').addEventListener('click', () => { stopDrive(); clearFocus(); setZoom(1); window.print(); });
+document.getElementById('printBtn').addEventListener('click', () => { stopWalk(); clearFocus(); setZoom(1); window.print(); });
 
 /* =====================================================================
-   START: wait for the fonts so sign widths measure correctly, then
-   place the signs and light them up from the edges inwards.
+   START: wait for the fonts so the signs measure correctly
    ===================================================================== */
 const fontsReady = document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2500))]) : Promise.resolve();
 fontsReady.then(() => {
-  drawDecor();
-  placeSigns();
+  drawSky();
+  drawFields();
+  drawWater();
+  DRAW_ORDER.forEach(id => drawLane(LANES[id]));
+  drawBridges();
+  drawFrame();
+  placeIcons();
+  placeTags();
+  scatter();
+  drawTrain();
+  drawWeather();
+  L.icons.parentNode.insertBefore(L.scenery, L.icons);
   if (!reduceMotion) {
-    const signs = Object.values(signEls);
-    const dist = s => Math.hypot(NODES[s.dataset.id].x - C.x, NODES[s.dataset.id].y - C.y);
-    signs.forEach(s => s.classList.add('reveal-sign'));
-    signs.sort((a, b) => dist(b) - dist(a)).forEach((s, i) => setTimeout(() => s.classList.add('in'), 150 + i * 35));
+    const tags = Object.values(tagEls);
+    tags.forEach(t => t.classList.add('appear'));
+    tags.sort((a, b) => NODES[b.dataset.id].y - NODES[a.dataset.id].y).forEach((t, i) => setTimeout(() => t.classList.add('in'), 200 + i * 45));
   }
   showIntro();
   if (scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) / 2;

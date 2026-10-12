@@ -1,34 +1,39 @@
-# The Road Home
+# The Long Way Home
 
-A night-time motorway map of the hard feelings everyone drives through. Anxiety, low mood, exams and work, traffic, relationships, parenting and the urge to escape are all motorways. Every hard feeling is a junction, every sign carries a reframe, and all roads lead home.
+An illustrated country map of the hard feelings everyone walks through. Every hard feeling is a place you pass through, and every lane climbs out of the valley towards a cottage on the hill with the kettle on.
 
-![The Road Home](docs/map-preview.png)
+![The Long Way Home](docs/map-preview.png)
 
-## What is in it
+## The idea
 
-- **The map.** Seven motorways run in from the edges of the map. Their junctions are blue road signs, each with a short reframe printed underneath ("Burnout: change the load"). Anxiety, Pressure and Family tangle at Spaghetti Junction (Overwhelm). Four A-road shortcuts link feelings that travel together: A3AM Sleepless, A1ONE Isolation, A830 School Run and A90 Short Fuse. Every motorway crosses the Kindness Orbital, where the brown "worth visiting" signs are, and finishes at Home.
-- **Moving traffic.** Headlights flow along every road towards Home. The Anxiety lane is fast and jittery, Low Mood crawls, and Gridlock is stop start.
-- **Satnav.** Pick your junction. It plans the route with the fewest junctions and changes, lists every sign on the way, and then drives it on the map while a satnav bar reads each reframe aloud. The Low Mood and Heart roads dip before they climb, on purpose.
-- **Road furniture with a job.** A variable message sign cycles kind messages ("QUEUE AHEAD / IT WILL PASS"). Hazard signs mark fog and roadworks. Orange SOS phones open crisis help.
-- **Poster capture.** An email form unlocks the full-size SVG poster (prints sharp at A2 or A1) and a print-to-PDF version.
-- **Crisis signposting** on Rock Bottom, Heartbreak, the SOS phones, the poster and the footer (Samaritans 116 123, SHOUT 85258).
+The bottom of the map is a foggy valley, and that is where the hard places are: Whatif Woods, Sleepless Hollow, Burnout Barn, Rock Bottom Quarry, Stuck Behind a Tractor. Seven country lanes climb out of it. Each one reaches the Kindness Way, a sunny ridge road lined with places worth stopping at, such as the Red Phone Box, Rest Bench and Forgiveness Bridge. From the Kindness Tea Rooms, Home Lane winds up the hill to the cottage.
 
-## The roads
+Every place on the map has a hand-lettered reframe on its sign ("Burnout Barn: something has to come off the cart"), plus a fuller "what it feels like" and "the way through" when you tap it.
 
-| Road | Covers | Starts at | Orbital junction |
+## The lanes
+
+| Lane | Covers | Starts at | Climbs to |
 | --- | --- | --- | --- |
-| M1 Anxiety | Anxiety and worry | What If? | Breathe |
-| M2 Low Mood | Depression and low mood | Heavy Mornings | Reach Out |
-| M3 Pressure | Exams, study and work | Deadline | Rest |
-| M4 Gridlock | Traffic, commuting and waiting | Traffic Jam | Out of Your Hands |
-| M5 Heart | Relationships | Loneliness | Forgiveness |
-| M6 Family | Children and parenting | Back Seat Meltdown | Patience |
-| M7 Escape | When you need a way out | Get Me Out of Here | Stillness |
-| Kindness Orbital | Healing, from anywhere | Rings Home | Kindness Services |
+| Worry Lane | Anxiety and worry | Whatif Woods | Breathing Meadow |
+| The Low Road | Depression and low mood | Grey Moor | The Red Phone Box |
+| Busy Lane | Exams, study and work | Deadline Windmill | Rest Bench |
+| Little Feet Lane | Children and parenting | Tantrum Puddles | Patience Orchard |
+| Holdup Lane | Traffic, commuting and waiting | Stuck Behind a Tractor | Passing Place |
+| Heartache Lane | Relationships | Lonesome Pine | Forgiveness Bridge |
+| Hideaway Lane | When you need to escape | The Rabbit Hole | Stillwater Pond |
+
+Busy Lane and The Low Road meet at Muddle Crossroads (overwhelm), where the signpost points everywhere at once. The Low Road drops right down into Rock Bottom Quarry, which has a ladder up the side.
+
+## What else is on the page
+
+- **Walk me home.** Pick where you are. It plans the way with the fewest stops, lists every sign, then a little walker and their dog walk it on the map while a guide card reads each reframe.
+- **Life in the valley.** The windmill turns, smoke rises from the chimneys, ducks paddle, a steam train runs along the railway, the fog drifts and the stars twinkle over Sleepless Hollow.
+- **Poster capture.** An email form unlocks the full-size SVG poster (prints sharp at A2 or A1) and a print-to-PDF version.
+- **Crisis signposting** on Rock Bottom Quarry, the Red Phone Box, the poster and the footer (Samaritans 116 123, SHOUT 85258).
 
 ## Editing the map
 
-Everything lives in `public/index.html`. The `NODES` object holds each junction's name, its on-sign reframe (`sub`), the panel copy (`feel` and `gap`) and its position on a 1600 x 1200 canvas. Orbital junctions take an angle (`ang`) instead. The `ROADS` object lists the junctions each road passes through, in order, and you can drop in `[x, y]` waypoints to bend a road. Signs place themselves automatically to avoid roads and each other, so you can add or move junctions without hand-placing labels.
+Everything lives in `public/index.html`. The `NODES` object holds each place's name, sign reframe (`sub`), panel copy (`feel` and `gap`), illustration (`icon`) and position on a 1600 x 1200 canvas. `LANES` lists the places each lane passes through, in order. Illustrations are small drawing functions in `ICONS`. Pictures and signs place themselves to avoid the lanes and each other, and the trees, sheep and cows are scattered into whatever space is left, so you can move or add places freely.
 
 ## Running it
 
@@ -50,4 +55,4 @@ Endpoints: `GET /health`, `POST /api/subscribe` (`{ "email": "...", "name": "...
 
 Create a new project from this repo. Railway detects the `start` script and sets `PORT`. Add a volume mounted at `/data`, set `DATA_DIR=/data`, and optionally set `SUBSCRIBE_WEBHOOK_URL`.
 
-The Road Home is a reflection tool. It is not medical advice and does not replace a GP, therapist or counsellor.
+The Long Way Home is a reflection tool. It is not medical advice and does not replace a GP, therapist or counsellor.
